@@ -1,0 +1,17 @@
+site_name: My Docs
+theme: 'readthedocs'
+
+pages:
+  - 'Home': 'index.md'
+  - 'Colors': 'colors.md'
+  - 'Text': 'text.md'
+  - 'Container': 'container.md'
+  - 'Button': 'button.md'
+  - 'TextField': 'textfield.md'
+
+
+markdown_extensions:
+    - admonition
+    - codehilite(guess_lang=false)
+    - toc(permalink=true)
+    - sane_lists

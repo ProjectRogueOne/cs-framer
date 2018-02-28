@@ -1,0 +1,1 @@
+{"author":"Steve Ruiz","dependencies":[],"description":"A new class named Icon for creating Material Design icons. Comes with 1600 icons as SVGs.","example":"example.coffee","github":"https://github.com/steveruizok/framer-icon","install":"Icon.coffee","installed_count":29,"name":"Icon","require":"{ Icon } = require 'Icon'","thumb":"icon.png","unique_name":"icon"}

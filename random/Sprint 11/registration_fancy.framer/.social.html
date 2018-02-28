@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=bebf9e02b367f924af8a1c73f179fb2e"></script>
+		<script src="framer/framer.modules.js?nocache=f2d5727d7b1b176f6a174bb63619e303"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 2089;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var BLUR, CLOSE_BUTTON, agreeToTerms, background, checkbox, close, closeButton, container, cs, email, finishLoad, header, label, load, loadIcon, loginHitArea, password, showLogin, showRegistration, signin, signinButton, signupHitArea, status, submitButton, submitEmail, title;
+
+  cs = require('cs');
+
+  CLOSE_BUTTON = true;
+
+  BLUR = false;
+
+  Screen.backgroundColor = '#FFF';
+
+  Framer.Extras.Hints.disable();
+
+  Framer.Extras.Preloader.enable();
+
+  status = 'null';
+
+  load = (function(_this) {
+    return function(duration, button, callback) {
+      if (duration == null) {
+        duration = 2;
+      }
+      button.textLabel.animate({
+        opacity: 0,
+        options: {
+          time: .15
+        }
+      });
+      button.animate({
+        opacity: .8
+      });
+      loadIcon.parent = button;
+      loadIcon.x = Align.center;
+      loadIcon.rotation = 0;
+      loadIcon.animate({
+        opacity: 1,
+        options: {
+          time: .25,
+          delay: .15
+        }
+      });
+      loadIcon.animate({
+        rotation: 360,
+        options: {
+          repeat: 300,
+          curve: 'linear'
+        }
+      });
+      return Utils.delay(duration, function() {
+        finishLoad(button);
+        return callback();
+      });
+    };
+  })(this);
+
+  finishLoad = function(button) {
+    loadIcon.animate({
+      opacity: 0,
+      options: {
+        time: .25
+      }
+    });
+    button.textLabel.animate({
+      opacity: 1,
+      options: {
+        time: .1,
+        delay: .25
+      }
+    });
+    return button.animate({
+      opacity: 1,
+      options: {
+        time: .1,
+        delay: .25
+      }
+    });
+  };
+
+  submitEmail = (function(_this) {
+    return function() {
+      email.disabled = true;
+      if (Math.random() > .5) {
+        return load(2, submitButton, showRegistration);
+      } else {
+        return load(2, submitButton, showLogin);
+      }
+    };
+  })(this);
+
+  showRegistration = function() {
+    var duration, i, layer, len, ref;
+    if (status === 'registration') {
+      return;
+    }
+    if (status !== 'null') {
+      close();
+      Utils.delay(.45, showRegistration);
+      return;
+    }
+    status = 'registration';
+    duration = {
+      time: .45
+    };
+    background.animate({
+      y: 100,
+      blur: 30,
+      opacity: .6,
+      options: duration
+    });
+    signinButton.y = agreeToTerms.maxY + 32;
+    signinButton.text = 'Sign Up Free';
+    ref = [email, password, signinButton, agreeToTerms];
+    for (i = 0, len = ref.length; i < len; i++) {
+      layer = ref[i];
+      layer.visible = true;
+      layer.animate({
+        x: Align.center,
+        opacity: 1,
+        options: duration
+      });
+    }
+    password.focused = true;
+    email.disabled = false;
+    submitButton.animate({
+      x: 398,
+      opacity: 0,
+      blur: 15,
+      options: duration
+    });
+    return closeButton.animate({
+      opacity: CLOSE_BUTTON ? 1 : 0,
+      x: 378,
+      options: duration
+    });
+  };
+
+  showLogin = function() {
+    var duration, i, layer, len, ref;
+    if (status === 'login') {
+      return;
+    }
+    if (status !== 'null') {
+      close();
+      Utils.delay(.45, showLogin);
+      return;
+    }
+    status = 'login';
+    duration = {
+      time: .45
+    };
+    background.animate({
+      y: 100,
+      blur: 30,
+      opacity: .6,
+      options: duration
+    });
+    signinButton.text = 'Sign In';
+    email.disabled = false;
+    signinButton.y = password.maxY + 32;
+    ref = [email, password, signinButton];
+    for (i = 0, len = ref.length; i < len; i++) {
+      layer = ref[i];
+      layer.visible = true;
+      layer.animate({
+        x: Align.center,
+        opacity: 1,
+        options: duration
+      });
+    }
+    password.focused = true;
+    password.on("submit", function() {
+      return load(2, signinButton, signin);
+    });
+    submitButton.animate({
+      x: 398,
+      opacity: 0,
+      blur: 15,
+      options: duration
+    });
+    return closeButton.animate({
+      opacity: CLOSE_BUTTON ? 1 : 0,
+      x: 378,
+      options: duration
+    });
+  };
+
+  signin = function() {
+    password.disabled = true;
+    email.disabled = true;
+    return Utils.delay(.35, function() {
+      var i, layer, len, ref;
+      ref = [email, password, signinButton, agreeToTerms, title, signinButton, closeButton];
+      for (i = 0, len = ref.length; i < len; i++) {
+        layer = ref[i];
+        layer.animate({
+          y: layer.y + 32,
+          opacity: 0,
+          options: {
+            time: .25
+          }
+        });
+      }
+      background.animate({
+        opacity: 0,
+        y: background.y + 100
+      });
+      return Utils.delay(2, (function(_this) {
+        return function() {
+          return window.location.reload();
+        };
+      })(this));
+    });
+  };
+
+  close = function() {
+    var duration, i, layer, len, ref;
+    status = 'null';
+    duration = {
+      time: .45
+    };
+    background.animate({
+      y: 0,
+      blur: 0,
+      opacity: 1,
+      brightness: 100,
+      options: {
+        time: .65
+      }
+    });
+    email.animate({
+      x: 1,
+      options: duration
+    });
+    ref = [password, agreeToTerms, signinButton, agreeToTerms];
+    for (i = 0, len = ref.length; i < len; i++) {
+      layer = ref[i];
+      layer.animate({
+        x: 0,
+        opacity: 0,
+        options: duration
+      });
+      Utils.delay(duration, function() {
+        return layer.visible = true;
+      });
+    }
+    email.focused = true;
+    email.disabled = false;
+    submitButton.animate({
+      x: 266,
+      opacity: 1,
+      blur: 0,
+      options: duration
+    });
+    return closeButton.animate({
+      opacity: 0,
+      x: 282,
+      options: duration
+    });
+  };
+
+  background = window.__framerNew("background", "250:17-253:0", "#15af163c1",new Layer({
+    image: 'images/background_image.png',
+    size: Screen.size
+  }));
+
+  header = window.__framerNew("header", "254:13-258:0", "#fa3db939",new Layer({
+    width: Screen.width,
+    height: 101,
+    image: 'images/header_xl.png'
+  }));
+
+  title = window.__framerNew("title", "259:12-266:17", "#101958213",new Layer({
+    width: 656,
+    height: 128,
+    image: 'images/title_centered.png',
+    x: 389,
+    y: 143
+  }));
+
+  container = window.__framerNew("container", "267:16-274:12", "#c64ff55a",new Layer({
+    width: 426,
+    height: 50,
+    x: Align.center,
+    y: 308,
+    backgroundColor: null
+  }));
+
+  email = window.__framerNew("email", "275:12-283:0", "?",new cs.Field({
+    name: 'Email',
+    parent: container,
+    placeholder: 'Enter your e-mail',
+    fill: 'white',
+    pattern: function(value) {
+      return _.includes(value, '@') && _.includes(value, '.com');
+    }
+  }));
+
+  email.input.focused = true;
+
+  email.input.on("submit", submitEmail);
+
+  password = window.__framerNew("password", "290:15-300:20", "?",new cs.TextField({
+    name: 'Password',
+    parent: container,
+    y: email.maxY + 32,
+    placeholder: 'Enter your Password',
+    fill: 'white',
+    password: true,
+    visible: false,
+    opacity: 0
+  }));
+
+  submitButton = window.__framerNew("submitButton", "301:19-310:0", "?",new cs.Button({
+    name: 'Get Started',
+    parent: container,
+    x: Align.right,
+    color: 'white',
+    size: 'auto',
+    type: 'body',
+    text: 'Get Started',
+    action: submitEmail
+  }));
+
+  loadIcon = window.__framerNew("loadIcon", "311:15-320:15", "?",new cs.Icon({
+    name: 'Loading Icon',
+    icon: 'vector-circle-variant',
+    parent: submitButton,
+    x: Align.center,
+    y: Align.center,
+    color: 'white',
+    opacity: 0
+  }));
+
+  agreeToTerms = window.__framerNew("agreeToTerms", "321:19-329:0", "#fa6ae3be",new Layer({
+    parent: container,
+    height: 16,
+    y: password.maxY + 32,
+    width: password.width,
+    backgroundColor: null,
+    visible: false,
+    opacity: 0
+  }));
+
+  checkbox = window.__framerNew("checkbox", "330:15-333:0", "?",new cs.Checkbox({
+    parent: agreeToTerms,
+    y: Align.center
+  }));
+
+  label = window.__framerNew("label", "334:12-342:15", "?",new cs.Text({
+    type: 'body1',
+    parent: agreeToTerms,
+    y: Align.center,
+    x: 32,
+    text: "I agree to the terms and conditions."
+  }));
+
+  signinButton = window.__framerNew("signinButton", "343:19-356:6", "?",new cs.Button({
+    name: 'Sign In',
+    parent: container,
+    y: password.maxY + 32,
+    color: 'white',
+    size: 'medium',
+    type: 'body',
+    text: 'Get Started',
+    visible: false,
+    opacity: 0,
+    action: function() {
+      return load(2, signinButton, signin);
+    }
+  }));
+
+  closeButton = window.__framerNew("closeButton", "357:18-365:0", "?",new cs.Icon({
+    name: 'Close Button',
+    type: 'close',
+    parent: container,
+    x: email.maxX + 32,
+    y: 12,
+    color: 'grey',
+    opacity: 0
+  }));
+
+  closeButton.onTap(close);
+
+  signupHitArea = window.__framerNew("signupHitArea", "369:20-376:0", "#8bbc0bd0",new Layer({
+    name: 'Sign in Header Button',
+    x: 1107,
+    y: 27,
+    width: 125,
+    height: 58,
+    backgroundColor: null
+  }));
+
+  signupHitArea.onTap(showRegistration);
+
+  loginHitArea = window.__framerNew("loginHitArea", "380:19-387:0", "#10c2450e5",new Layer({
+    name: 'Log in Header Button',
+    x: 1232,
+    y: 27,
+    width: 109,
+    height: 58,
+    backgroundColor: null
+  }));
+
+  loginHitArea.onTap(showLogin);
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

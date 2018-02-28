@@ -1,0 +1,83 @@
+# In:
+
+scrim
+	duration: .32
+	delay: 0
+
+button1:
+	duration: .44
+	delay: .32
+
+button2:
+	duration: .44
+	delay: .36
+
+button3:
+	duration: .44
+	delay: .40
+
+button4:
+	duration: .44
+	delay: .44
+
+button6:
+	duration: .44
+	delay: .48
+
+button6:
+	duration: .44
+	delay: .52
+
+login:
+	duration: .36
+	delay: .56
+
+signup:
+	duration: .36
+	delay: .56
+
+closeButton:
+	duration: .36
+	delay: 0
+
+# Out:
+
+scrim
+	duration: .32
+	delay: .15
+
+button1:
+	duration: .24
+	delay: .1
+
+button2:
+	duration: .24
+	delay: .08
+
+button3:
+	duration: .24
+	delay: .06
+
+button4:
+	duration: .24
+	delay: .04
+
+button6:
+	duration: .24
+	delay: .02
+
+button6:
+	duration: .24
+	delay: 0
+
+login:
+	duration: .24
+	delay: 0
+
+signup:
+	duration: .24
+	delay: 0
+
+closeButton:
+	duration: .24
+	delay: 0

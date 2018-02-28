@@ -1,0 +1,14 @@
+site_name: My Docs
+theme: 'readthedocs'
+
+pages:
+  - 'Home': 'index.md'
+  - 'Colors': 'colors.md'
+  - 'Text': 'text.md'
+  - 'Button': 'button.md'
+
+markdown_extensions:
+    - admonition
+    - codehilite(guess_lang=false)
+    - toc(permalink=true)
+    - sane_lists

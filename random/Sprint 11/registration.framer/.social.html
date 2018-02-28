@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=6832c89424de08f92d547e211cc2111b"></script>
+		<script src="framer/framer.modules.js?nocache=62657fb518db88cd686e9bae0dd669f9"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 1;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var agreeToTerms, background, birthday_day, birthday_month, birthday_wrapper, birthday_year, checkbox, cs, email, greeting, load, loadIcon, login, login_container, password, register, reload, showNewUser, showUserHasAccount, submitButton, submitEmail, terms;
+
+  cs = require('cs');
+
+  Screen.backgroundColor = cs.Colors.page;
+
+  Framer.Extras.Hints.disable();
+
+  Framer.Extras.Preloader.enable();
+
+  background = window.__framerNew("background", "11:17-15:0", "#e19ad544",new Layer({
+    image: 'images/site_background.png',
+    size: Screen.size
+  }));
+
+  load = (function(_this) {
+    return function() {
+      submitButton.text = '';
+      submitButton.animate({
+        opacity: .8
+      });
+      loadIcon.animate({
+        opacity: 1,
+        options: {
+          time: .25,
+          delay: .15
+        }
+      });
+      return loadIcon.animate({
+        rotation: 360,
+        options: {
+          repeat: 300,
+          curve: 'linear'
+        }
+      });
+    };
+  })(this);
+
+  submitEmail = (function(_this) {
+    return function() {
+      email.input.focused = false;
+      email.disabled = true;
+      load();
+      return Utils.delay(1, function() {
+        if (Math.random() > .5) {
+          return showNewUser();
+        } else {
+          return showUserHasAccount();
+        }
+      });
+    };
+  })(this);
+
+  showUserHasAccount = (function(_this) {
+    return function() {
+      greeting.text = 'Sign In';
+      greeting.animate({
+        opacity: 1,
+        options: {
+          time: .35
+        }
+      });
+      loadIcon.animate({
+        opacity: 0,
+        options: {
+          time: .25
+        }
+      });
+      submitButton.animate({
+        opacity: 1,
+        y: password.maxY + 32
+      });
+      submitButton.action = login;
+      submitButton.text = "Log In";
+      email.disabled = false;
+      password.visible = true;
+      password.focused = true;
+      return password.animate({
+        opacity: 1,
+        options: {
+          time: .25
+        }
+      });
+    };
+  })(this);
+
+  showNewUser = (function(_this) {
+    return function() {
+      greeting.text = 'Sign Up Free';
+      greeting.animate({
+        opacity: 1,
+        options: {
+          time: .35
+        }
+      });
+      loadIcon.animate({
+        opacity: 0,
+        options: {
+          time: .25
+        }
+      });
+      email.disabled = false;
+      birthday_wrapper.visible = true;
+      birthday_day.focused = true;
+      birthday_wrapper.animate({
+        opacity: 1,
+        options: {
+          time: .25,
+          delay: .05
+        }
+      });
+      password.y = birthday_wrapper.maxY + 32;
+      password.visible = true;
+      password.animate({
+        opacity: 1,
+        options: {
+          time: .25,
+          delay: .1
+        }
+      });
+      agreeToTerms.visible = true;
+      agreeToTerms.y = password.maxY + 32;
+      agreeToTerms.animate({
+        opacity: 1,
+        options: {
+          time: .25
+        }
+      });
+      submitButton.animate({
+        opacity: 1,
+        y: agreeToTerms.maxY + 32
+      });
+      submitButton.action = register;
+      return submitButton.text = "Sign Up for Free";
+    };
+  })(this);
+
+  register = (function(_this) {
+    return function() {
+      load();
+      email.disabled = true;
+      password.disabled = true;
+      birthday_wrapper.opacity = .5;
+      Utils.delay(1, function() {
+        submitButton.animate({
+          opacity: 0,
+          options: {
+            time: .4
+          }
+        });
+        password.animate({
+          opacity: 0,
+          options: {
+            time: .4,
+            delay: .1
+          }
+        });
+        birthday_wrapper.animate({
+          opacity: 0,
+          options: {
+            time: .4,
+            delay: .2
+          }
+        });
+        email.animate({
+          opacity: 0,
+          options: {
+            time: .4,
+            delay: .3
+          }
+        });
+        return greeting.animate({
+          opacity: 0,
+          options: {
+            time: .4,
+            delay: .4
+          }
+        });
+      });
+      return Utils.delay(2, reload);
+    };
+  })(this);
+
+  login = (function(_this) {
+    return function() {
+      load();
+      email.disabled = true;
+      password.disabled = true;
+      Utils.delay(1, function() {
+        submitButton.animate({
+          opacity: 0,
+          options: {
+            time: .4
+          }
+        });
+        password.animate({
+          opacity: 0,
+          options: {
+            time: .4,
+            delay: .1
+          }
+        });
+        email.animate({
+          opacity: 0,
+          options: {
+            time: .4,
+            delay: .2
+          }
+        });
+        return greeting.animate({
+          opacity: 0,
+          options: {
+            time: .4,
+            delay: .3
+          }
+        });
+      });
+      return Utils.delay(2, reload);
+    };
+  })(this);
+
+  reload = function() {
+    return window.location.reload();
+  };
+
+  login_container = window.__framerNew("login_container", "191:22-199:0", "#121093e9f",new Layer({
+    name: "Container",
+    y: 298,
+    x: Align.right(-80),
+    width: 250,
+    backgroundColor: null
+  }));
+
+  greeting = window.__framerNew("greeting", "200:15-208:12", "?",new cs.H2({
+    parent: login_container,
+    x: 0,
+    y: 0,
+    text: 'Sign in or Sign Up',
+    opacity: 1
+  }));
+
+  email = window.__framerNew("email", "209:12-215:0", "?",new cs.Field({
+    parent: login_container,
+    name: 'Email',
+    y: 82,
+    placeholder: 'Enter your e-mail',
+    x: Align.center
+  }));
+
+  email.input.on("submit", submitEmail);
+
+  submitButton = window.__framerNew("submitButton", "219:19-228:0", "?",new cs.Button({
+    parent: login_container,
+    name: 'Get Started',
+    x: Align.center,
+    y: email.maxY + 32,
+    color: 'white',
+    type: 'body',
+    text: 'Get Started',
+    action: submitEmail
+  }));
+
+  loadIcon = window.__framerNew("loadIcon", "229:15-238:15", "?",new cs.Icon({
+    name: 'Loading Icon',
+    icon: 'vector-circle-variant',
+    parent: submitButton,
+    x: Align.center,
+    y: Align.center,
+    color: 'white',
+    opacity: 0
+  }));
+
+  birthday_wrapper = window.__framerNew("birthday_wrapper", "239:23-249:0", "#dacf9431",new Layer({
+    parent: login_container,
+    name: 'Birthday Wrapper',
+    width: submitButton.width,
+    height: 50,
+    x: Align.center,
+    y: submitButton.y,
+    backgroundColor: null,
+    opacity: 0,
+    visible: false
+  }));
+
+  birthday_day = window.__framerNew("birthday_day", "250:19-255:0", "?",new cs.Field({
+    name: 'Day',
+    parent: birthday_wrapper,
+    placeholder: 'Day',
+    opacity: 1
+  }));
+
+  birthday_day.input.width = 55;
+
+  birthday_month = window.__framerNew("birthday_month", "258:21-264:0", "?",new cs.Field({
+    name: 'Month',
+    parent: birthday_wrapper,
+    x: 80,
+    placeholder: 'Month',
+    opacity: 1
+  }));
+
+  birthday_month.input.width = 72;
+
+  birthday_year = window.__framerNew("birthday_year", "267:20-273:0", "?",new cs.Field({
+    name: 'Year',
+    parent: birthday_wrapper,
+    x: 177,
+    placeholder: 'Year',
+    opacity: 1
+  }));
+
+  birthday_year.input.width = 72;
+
+  password = window.__framerNew("password", "278:15-288:0", "?",new cs.Field({
+    parent: login_container,
+    name: 'Password',
+    x: Align.center,
+    y: email.maxY + 32,
+    placeholder: 'Enter your Password',
+    password: true,
+    visible: false,
+    opacity: 0,
+    rightIcon: 'eye'
+  }));
+
+  password.input.on("submit", login);
+
+  agreeToTerms = window.__framerNew("agreeToTerms", "293:19-301:0", "#e3c2d564",new Layer({
+    parent: login_container,
+    height: 25,
+    y: submitButton.maxY + 16,
+    width: 400,
+    backgroundColor: null,
+    opacity: 0,
+    visibl: false
+  }));
+
+  checkbox = window.__framerNew("checkbox", "302:15-306:0", "?",new cs.Checkbox({
+    parent: agreeToTerms,
+    y: Align.center,
+    color: 'tertiary'
+  }));
+
+  terms = window.__framerNew("terms", "307:12-311:15", "?",new cs.Small({
+    parent: agreeToTerms,
+    text: 'Agree to our Terms and Conditions',
+    x: 32,
+    y: Align.center
+  }));
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=c0eb77fc4ef55cff599b2e8404b7fa67"></script>
+		<script src="framer/framer.modules.js?nocache=d712539487830d9c30c91456f0dff26b"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 7;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var background, changeText, cs, emailField, header, iPad, j, layer, len, loadNext, nextText, passwordField, ref, setNextText, showLogin, showRegistration, showStart, signUpButton, state, submitEmail, termsBox, termsText, textEntries, topCopy;
+
+  cs = require('cs');
+
+  cs.Context.setStandard();
+
+  state = "start";
+
+  background = window.__framerNew("background", "43:17-46:0", "#16e2a7c05",new Layer({
+    size: Screen.size,
+    backgroundColor: '#e3e3e3'
+  }));
+
+  header_bar.bringToFront();
+
+  header_bar.width = Screen.width;
+
+  header_bar.height = header_bar.height * 2;
+
+  header_bar.x = 0;
+
+  header_bar.y = 0;
+
+  topCopy = window.__framerNew("topCopy", "53:14-60:0", "?",new cs.H1({
+    text: 'Your credit score and report. For free, forever.',
+    y: 250,
+    x: 857,
+    width: 530,
+    fontWeight: 400,
+    textAlign: 'center'
+  }));
+
+  iPad = window.__framerNew("iPad", "61:11-69:0", "#c69c7343",new Layer({
+    image: laptop_static.image,
+    height: 616,
+    width: 802,
+    x: 85,
+    y: 226
+  }));
+
+  header = window.__framerNew("header", "70:13-77:0", "#17b0a40ec",new TextLayer({
+    text: 'Take a look at your',
+    fontSize: 32,
+    fontWeight: 300,
+    x: 887,
+    y: 375,
+    color: '#777'
+  }));
+
+  changeText = window.__framerNew("changeText", "78:17-86:0", "#ba4c05e8",new TextLayer({
+    text: '{value}',
+    fontSize: 32,
+    fontWeight: 300,
+    x: header.maxX + 4,
+    y: 375,
+    fontWeight: 400,
+    color: '#d22d2e'
+  }));
+
+  textEntries = ['credit score', 'credit report', 'best offers', 'next steps', 'credit history'];
+
+  nextText = Utils.cycle(textEntries);
+
+  setNextText = function() {
+    var i, j, len, letter, newText, results, string;
+    newText = _.split(nextText(), '');
+    string = "";
+    results = [];
+    for (i = j = 0, len = newText.length; j < len; i = ++j) {
+      letter = newText[i];
+      results.push((function(letter, i) {
+        return Utils.delay(i * .054, function() {
+          string += letter;
+          return changeText.text = string + "|";
+        });
+      })(letter, i));
+    }
+    return results;
+  };
+
+  setNextText();
+
+  Utils.interval(5, setNextText);
+
+  emailField = window.__framerNew("emailField", "106:17-119:0", "?",new cs.Field({
+    x: 930,
+    y: 468,
+    size: 'large',
+    fill: 'white',
+    placeholder: 'Enter your email address',
+    pattern: function(value) {
+      return _.includes(value, '.com') && _.includes(value, '@');
+    }
+  }));
+
+  passwordField = window.__framerNew("passwordField", "120:20-127:0", "?",new cs.Field({
+    x: emailField.x,
+    y: emailField.maxY + 16,
+    size: 'large',
+    fill: 'white',
+    placeholder: 'Enter your password',
+    password: true
+  }));
+
+  ref = [emailField, passwordField];
+  for (j = 0, len = ref.length; j < len; j++) {
+    layer = ref[j];
+    layer.input.style['text-align'] = 'center';
+  }
+
+  termsBox = window.__framerNew("termsBox", "133:15-136:0", "?",new cs.Checkbox({
+    x: emailField.x,
+    y: passwordField.maxY + 16
+  }));
+
+  termsText = window.__framerNew("termsText", "137:16-144:0", "?",new cs.Text({
+    x: termsBox.maxX + 16,
+    y: termsBox.y,
+    width: 300,
+    text: 'By clicking sign up you agree to our Terms and that you have read our Data Use Policy'
+  }));
+
+  signUpButton = window.__framerNew("signUpButton", "145:19-155:0", "?",new cs.Button({
+    x: emailField.x,
+    y: emailField.maxY + 32,
+    size: 'large',
+    color: 'white',
+    type: 'body',
+    text: 'Sign Up',
+    fill: '#0592bc'
+  }));
+
+  _.bind(function() {
+    this.loadingLine = window.__framerNew(undefined, "158:20-166:0", "#a7038db2",new Layer({
+      name: 'Loading Line',
+      height: 4,
+      width: 0,
+      x: signUpButton.x,
+      y: signUpButton.maxY,
+      backgroundColor: '0592bc'
+    }));
+    this.on("change:y", (function(_this) {
+      return function() {
+        return _this.loadingLine.y = _this.maxY;
+      };
+    })(this));
+    this.loadingLine.states = {
+      start: {
+        width: 0
+      },
+      load: {
+        width: this.width
+      }
+    };
+    return this.states = {
+      start: {
+        y: emailField.maxY + 32
+      },
+      registration: {
+        y: emailField.maxY + 32
+      },
+      login: {
+        y: passwordField.maxY + 32
+      }
+    };
+  }, signUpButton)();
+
+  passwordField.visible = false;
+
+  termsBox.visible = false;
+
+  termsText.visible = false;
+
+  emailField.visible = false;
+
+  submitEmail = function() {
+    if (!emailField.matches) {
+      return;
+    }
+    return Utils.delay(.1, (function(_this) {
+      return function() {
+        if (Math.random() > .5) {
+          return loadNext();
+        } else {
+          return showLogin();
+        }
+      };
+    })(this));
+  };
+
+  showStart = function() {
+    state = "start";
+    signUpButton.animate(state);
+    passwordField.visible = false;
+    termsBox.visible = false;
+    termsText.visible = false;
+    emailField.focused = true;
+    signUpButton.text = "Sign Up for Free";
+    return signUpButton.action = submitEmail;
+  };
+
+  showRegistration = function() {
+    if (state === "registration") {
+      showStart();
+      return;
+    }
+    state = "registration";
+    signUpButton.animate(state);
+    passwordField.visible = false;
+    termsBox.visible = false;
+    termsText.visible = false;
+    passwordField.focused = true;
+    signUpButton.text = "Sign Up";
+    return signUpButton.action = loadNext;
+  };
+
+  showLogin = function() {
+    if (state === "login") {
+      showStart();
+      return;
+    }
+    state = "login";
+    signUpButton.animate(state);
+    passwordField.visible = true;
+    termsBox.visible = false;
+    termsText.visible = false;
+    passwordField.focused = true;
+    signUpButton.text = "Sign In";
+    return signUpButton.action = loadNext;
+  };
+
+  loadNext = function() {
+    signUpButton.loadingLine.animate("load");
+    return Utils.delay(4, (function(_this) {
+      return function() {
+        showStart();
+        emailField.value = "";
+        emailField.focused = true;
+        return termsBox.isOn = false;
+      };
+    })(this));
+  };
+
+  emailField.on("submit", loadNext);
+
+  signUpButton.y = emailField.y;
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

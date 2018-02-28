@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=94ac8eb502594cd20c6629a17663f623"></script>
+		<script src="framer/framer.modules.js?nocache=eccc4437e1929d90911891a29d34eda9"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 997;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};window.__framerAnimation = function (th,a){if (a.isNoop === true) {return a;};var l = a.layer;if (l == null) { return a; };if (l.__framerAnimationInfo == null) {l.__framerAnimationInfo = {};};l.__framerAnimationInfo[th] = {originalState:a._originalState, destinationProperties: a.properties, destinationOptions: a.options};return a;};(function() {
+  var SLIDE_DETAILS_IN, cs, setup, uiSwitch;
+
+  cs = require('cs');
+
+  cs.Context.setMobile();
+
+  Framer.Extras.Hints.disable();
+
+  Framer.Device.customize({
+    deviceType: Framer.Device.Type.Tablet,
+    screenWidth: 1440,
+    screenHeight: 1024,
+    deviceImage: 'modules/cs-ux-images/safari_device.png',
+    deviceImageWidth: 1442,
+    deviceImageHeight: 1087,
+    devicePixelRatio: 1
+  });
+
+  Screen.backgroundColor = '#FFF';
+
+  Framer.Device.screen.y = 62;
+
+  SLIDE_DETAILS_IN = false;
+
+  uiSwitch = window.__framerNew("uiSwitch", "21:15-24:0", "?",new cs.Switch({
+    x: 32,
+    y: Align.bottom(-32)
+  }));
+
+  uiSwitch.on("change:isOn", function(isOn) {
+    SLIDE_DETAILS_IN = isOn;
+    return setup();
+  });
+
+  setup = function() {
+    var i, layer, len, ref;
+    ref = [details_bg, report_bg, details_nav];
+    for (i = 0, len = ref.length; i < len; i++) {
+      layer = ref[i];
+      layer.stateSwitch("default");
+    }
+    tap_area.removeAllListeners();
+    back_area.removeAllListeners();
+    switch (SLIDE_DETAILS_IN) {
+      case true:
+        details_nav.opacity = 0;
+        details_bg.x = Screen.width;
+        tap_area.onTap(function() {
+          details_bg.bringToFront();
+          window.__framerAnimation("#b247d580",details_bg.animate({
+            x: 0,
+            options: {
+              time: .4
+            }
+          }));
+          details_nav.bringToFront();
+          return window.__framerAnimation("#14690155b",details_nav.animate({
+            opacity: 1,
+            options: {
+              time: .25,
+              delay: .15
+            }
+          }));
+        });
+        return back_area.onTap(function() {
+          window.__framerAnimation("#b8dbb422",details_nav.animate({
+            opacity: 0,
+            options: {
+              time: .25
+            }
+          }));
+          details_bg.x = 0;
+          return window.__framerAnimation("#820a2f3e",details_bg.animate({
+            x: Screen.width,
+            options: {
+              time: .25
+            }
+          }));
+        });
+      case false:
+        details_bg.bringToFront();
+        details_bg.opacity = 0;
+        details_nav.bringToFront();
+        details_nav.opacity = 0;
+        tap_area.onTap(function() {
+          details_nav.bringToFront();
+          details_nav.opacity = 0;
+          window.__framerAnimation("#17e339bf8",details_nav.animate({
+            opacity: 1,
+            options: {
+              time: .25,
+              delay: .15
+            }
+          }));
+          details_bg.opacity = 0;
+          return window.__framerAnimation("#f07f3abf",details_bg.animate({
+            opacity: 1,
+            options: {
+              time: .25,
+              delay: .15
+            }
+          }));
+        });
+        return back_area.onTap(function() {
+          window.__framerAnimation("#b9adb5db",details_nav.animate({
+            opacity: 0,
+            options: {
+              time: .25,
+              delay: .15
+            }
+          }));
+          return window.__framerAnimation("#101418799",details_bg.animate({
+            opacity: 0,
+            options: {
+              time: .25,
+              delay: .15
+            }
+          }));
+        });
+    }
+  };
+
+  setup();
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

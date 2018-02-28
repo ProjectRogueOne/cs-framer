@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Bonds/Icons/Learn/Arrow/Left</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bonds/Icons/Learn/Arrow/Left">
+            <path d="M0.517241379,14.9137241 C0.517241379,6.96268966 6.96206897,0.516827586 14.9141379,0.516827586 C22.8651724,0.516827586 29.31,6.96268966 29.31,14.9137241 C29.31,22.8647586 22.8651724,29.3106207 14.9141379,29.3106207 C6.96206897,29.3106207 0.517241379,22.8647586 0.517241379,14.9137241 Z" id="Stroke-1" stroke="#D1D1D1"></path>
+            <polygon id="Fill-3" fill="#7A7979" points="18.8651379 20.7668276 10.4278966 14.7378621 18.7203103 9.06062069 16.3078966 14.7130345"></polygon>
+        </g>
+    </g>
+</svg>

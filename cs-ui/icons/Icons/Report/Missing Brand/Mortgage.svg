@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Bonds/Icons/Report/Missing Brand/Mortgage</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M27.625,16.4615385 L30,17.5 L30,28 L20.5,28 L11,28 L11,22.75 L19.7083333,18.625 L19.7083333,13 L25.25,15.4230769 L25.25,13.75 L27.625,13.75 L27.625,16.4615385 Z M19.7083333,19.4635255 L11.7916667,23.2135255 L11.7916667,27.25 L19.7083333,27.25 L19.7083333,19.4635255 Z M20.5,27.25 L29.2083333,27.25 L29.2083333,17.9798743 L20.5,14.172182 L20.5,27.25 Z M14.5808978,23.5403646 L17.3019159,23.5403646 L17.3019159,27.25 L14.5808978,27.25 L14.5808978,23.5403646 Z M22.7439519,21.7836372 L27.278982,21.7836372 L27.278982,27.25 L22.7439519,27.25 L22.7439519,21.7836372 Z M25.0114669,20.0269097 C24.2600786,20.0269097 23.6509579,19.4370245 23.6509579,18.7093641 C23.6509579,17.9817038 24.2600786,17.3918186 25.0114669,17.3918186 C25.7628553,17.3918186 26.371976,17.9817038 26.371976,18.7093641 C26.371976,19.4370245 25.7628553,20.0269097 25.0114669,20.0269097 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bonds/Icons/Report/Missing-Brand/Mortgage">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Combined-Shape" fill-rule="nonzero"></g>
+            <g id="Bonds/Colours/General/Light-Grey" mask="url(#mask-2)" fill="#C4C8CB">
+                <rect id="Rectangle-3" x="0" y="0" width="40" height="40"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

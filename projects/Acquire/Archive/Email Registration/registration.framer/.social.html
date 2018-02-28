@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=cbd4c0500c2f672db6ffc42669554cd1"></script>
+		<script src="framer/framer.modules.js?nocache=c6b85eeb2864b4949edd9b1182f5f143"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 83;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};window.__framerAnimation = function (th,a){if (a.isNoop === true) {return a;};var l = a.layer;if (l == null) { return a; };if (l.__framerAnimationInfo == null) {l.__framerAnimationInfo = {};};l.__framerAnimationInfo[th] = {originalState:a._originalState, destinationProperties: a.properties, destinationOptions: a.options};return a;};(function() {
+  var BLUR, CANCEL_LINK, CLOSE_BUTTON, ERROR_TEXT_ONLY, FULL_WIDTH_ERROR, LEFT_SIDE_ERROR, MOVE_BACKGROUND_ON_ERROR, RIGHT_SIDE_ERROR, STEP_TWO, Tooltip, USE_SETTINGS, agreeToTerms, background, cancelLink, checkbox, close, closeButton, container, cs, email, finishLoad, header, label, load, loadIcon, loginHitArea, loginStatic, password, settingsPage, showLogin, showRegistration, signin, signinButton, signupHitArea, status, submitButton, submitEmail, title, tooltip, tooltipopen, verify,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  cs = require('cs');
+
+  USE_SETTINGS = false;
+
+  ERROR_TEXT_ONLY = false;
+
+  MOVE_BACKGROUND_ON_ERROR = false;
+
+  FULL_WIDTH_ERROR = false;
+
+  RIGHT_SIDE_ERROR = false;
+
+  LEFT_SIDE_ERROR = false;
+
+  CANCEL_LINK = false;
+
+  STEP_TWO = true;
+
+  CLOSE_BUTTON = true;
+
+  BLUR = true;
+
+  Screen.backgroundColor = '#FFF';
+
+  Framer.Extras.Hints.disable();
+
+  Framer.Extras.Preloader.enable();
+
+  status = 'null';
+
+  tooltipopen = false;
+
+  email = void 0;
+
+  tooltip = void 0;
+
+  password = void 0;
+
+  signinButton = void 0;
+
+  agreeToTerms = void 0;
+
+  load = (function(_this) {
+    return function(duration, button, callback) {
+      if (duration == null) {
+        duration = 2;
+      }
+      button.textLabel.animate({
+        opacity: 0,
+        options: {
+          time: .15
+        }
+      });
+      button.animate({
+        opacity: .8
+      });
+      loadIcon.parent = button;
+      loadIcon.x = Align.center;
+      loadIcon.rotation = 0;
+      loadIcon.animate({
+        opacity: 1,
+        options: {
+          time: .25,
+          delay: .15
+        }
+      });
+      loadIcon.animate({
+        rotation: 360,
+        options: {
+          repeat: 300,
+          curve: 'linear'
+        }
+      });
+      return Utils.delay(duration, function() {
+        finishLoad(button);
+        return callback();
+      });
+    };
+  })(this);
+
+  finishLoad = function(button) {
+    loadIcon.animate({
+      opacity: 0,
+      options: {
+        time: .25
+      }
+    });
+    button.textLabel.animate({
+      opacity: 1,
+      options: {
+        time: .1,
+        delay: .25
+      }
+    });
+    return button.animate({
+      opacity: 1,
+      options: {
+        time: .1,
+        delay: .25
+      }
+    });
+  };
+
+  submitEmail = (function(_this) {
+    return function() {
+      if (submitButton.disabled) {
+        return;
+      }
+      email.focused = false;
+      email.disabled = true;
+      if (STEP_TWO) {
+        if (Math.random() > .5) {
+          return load(2, submitButton, showRegistration);
+        } else {
+          return load(2, submitButton, showLogin);
+        }
+      } else {
+        return load(2, submitButton, function() {
+          loginStatic.visible = true;
+          return loginStatic.bringToFront();
+        });
+      }
+    };
+  })(this);
+
+  showRegistration = function() {
+    var duration, i, layer, len, showlayers;
+    if (status === 'registration') {
+      return;
+    }
+    if (status !== 'null') {
+      close();
+      Utils.delay(.45, showRegistration);
+      return;
+    }
+    status = 'registration';
+    duration = {
+      time: .45
+    };
+    background.animate({
+      y: 100,
+      blur: 30,
+      opacity: .6,
+      options: duration
+    });
+    signinButton.y = agreeToTerms.maxY + 32;
+    signinButton.text = 'Sign Up Free';
+    showlayers = [email, password, signinButton, agreeToTerms];
+    if (CANCEL_LINK) {
+      showlayers.push(cancelLink);
+    }
+    for (i = 0, len = showlayers.length; i < len; i++) {
+      layer = showlayers[i];
+      layer.animateStop();
+      layer.visible = true;
+      layer.animate({
+        x: Align.center,
+        opacity: 1,
+        options: duration
+      });
+    }
+    password.focused = true;
+    email.disabled = false;
+    submitButton.animate({
+      x: 398,
+      opacity: 0,
+      blur: 15,
+      options: duration
+    });
+    return closeButton.animate({
+      opacity: 1,
+      x: 378,
+      options: duration
+    });
+  };
+
+  showLogin = function() {
+    var duration, i, layer, len, showlayers;
+    if (status === 'login') {
+      return;
+    }
+    if (status !== 'null') {
+      close();
+      Utils.delay(.45, showLogin);
+      return;
+    }
+    status = 'login';
+    duration = {
+      time: .45
+    };
+    background.animate({
+      y: 100,
+      blur: 30,
+      opacity: .6,
+      options: duration
+    });
+    signinButton.text = 'Sign In';
+    email.disabled = false;
+    signinButton.y = password.maxY + 32;
+    showlayers = [email, password, signinButton, agreeToTerms];
+    if (CANCEL_LINK) {
+      showlayers.push(cancelLink);
+    }
+    for (i = 0, len = showlayers.length; i < len; i++) {
+      layer = showlayers[i];
+      layer.visible = true;
+      layer.animate({
+        x: Align.center,
+        opacity: 1,
+        options: duration
+      });
+    }
+    password.focused = true;
+    password.on("submit", function() {
+      return load(2, signinButton, signin);
+    });
+    submitButton.animate({
+      x: 398,
+      opacity: 0,
+      blur: 15,
+      options: duration
+    });
+    return closeButton.animate({
+      opacity: CLOSE_BUTTON ? 1 : 0,
+      x: 378,
+      options: duration
+    });
+  };
+
+  signin = function() {
+    password.disabled = true;
+    email.disabled = true;
+    return Utils.delay(.35, function() {
+      var i, layer, len, ref;
+      ref = [email, password, signinButton, agreeToTerms, title, signinButton, closeButton];
+      for (i = 0, len = ref.length; i < len; i++) {
+        layer = ref[i];
+        layer.animate({
+          y: layer.y + 32,
+          opacity: 0,
+          options: {
+            time: .25
+          }
+        });
+      }
+      background.animate({
+        opacity: 0,
+        y: background.y + 100
+      });
+      return Utils.delay(2, (function(_this) {
+        return function() {
+          return window.location.reload();
+        };
+      })(this));
+    });
+  };
+
+  close = function() {
+    var duration, i, layer, len, ref;
+    status = 'null';
+    duration = {
+      time: .45
+    };
+    background.animate({
+      y: 0,
+      blur: 0,
+      opacity: 1,
+      brightness: 100,
+      options: {
+        time: .65
+      }
+    });
+    email.animate({
+      x: 1,
+      options: duration
+    });
+    ref = [password, agreeToTerms, signinButton, agreeToTerms, cancelLink];
+    for (i = 0, len = ref.length; i < len; i++) {
+      layer = ref[i];
+      layer.animate({
+        x: 0,
+        opacity: 0,
+        options: duration
+      });
+      Utils.delay(duration, function() {
+        return layer.visible = true;
+      });
+    }
+    email.focused = true;
+    email.disabled = false;
+    submitButton.animate({
+      x: 266,
+      opacity: 1,
+      blur: 0,
+      options: duration
+    });
+    return closeButton.animate({
+      opacity: 0,
+      x: 282,
+      options: duration
+    });
+  };
+
+  background = window.__framerNew("background", "306:17-311:0", "#d92bb715",new Layer({
+    image: 'images/background_image.png',
+    size: Screen.size
+  }));
+
+  header = window.__framerNew("header", "312:13-318:0", "#cdb31496",new Layer({
+    width: Screen.width,
+    height: 101,
+    image: 'images/header_xl.png'
+  }));
+
+  title = window.__framerNew("title", "319:12-327:0", "#a4cd372e",new Layer({
+    width: 656,
+    height: 128,
+    image: 'images/title_centered.png',
+    x: 389,
+    y: 143
+  }));
+
+  loginStatic = window.__framerNew("loginStatic", "328:18-334:0", "#d1850656",new Layer({
+    width: 1680,
+    height: 939,
+    point: Align.center,
+    image: "images/Screen%20Shot%202017-10-03%20at%2016.19.38.png",
+    visible: false
+  }));
+
+  loginStatic.onTap(function() {
+    return window.location.reload();
+  });
+
+  signupHitArea = window.__framerNew("signupHitArea", "338:20-345:0", "#1670d91ee",new Layer({
+    name: 'Sign in Header Button',
+    x: 1107,
+    y: 27,
+    width: 125,
+    height: 58,
+    backgroundColor: null
+  }));
+
+  signupHitArea.onTap(showRegistration);
+
+  loginHitArea = window.__framerNew("loginHitArea", "349:19-356:0", "#161fd28b8",new Layer({
+    name: 'Log in Header Button',
+    x: 1232,
+    y: 27,
+    width: 109,
+    height: 58,
+    backgroundColor: null
+  }));
+
+  loginHitArea.onTap(showLogin);
+
+  container = window.__framerNew("container", "365:16-372:12", "#ead70cbb",new Layer({
+    width: 426,
+    height: 50,
+    x: Align.center,
+    y: 308,
+    backgroundColor: null
+  }));
+
+  email = window.__framerNew("email", "373:12-378:0", "?",new cs.Field({
+    name: 'Email',
+    parent: container,
+    placeholder: 'Enter your e-mail',
+    fill: 'white'
+  }));
+
+  email.focused = true;
+
+  email.on("submit", submitEmail);
+
+  verify = function() {
+    var value;
+    if (status !== 'null') {
+      return;
+    }
+    if (tooltipopen === true) {
+      return;
+    }
+    value = email.value;
+    if (_.includes(value, '@') && _.includes(value, 'gnail.com')) {
+      tooltip.set(this);
+      return this.border = 'tertiary';
+    } else if (_.includes(value, '@') && _.includes(value, 'gmail.com')) {
+      return submitButton.disabled = false;
+    } else {
+      tooltip.close();
+      this.border = 'grey';
+      return submitButton.disabled = true;
+    }
+  };
+
+  email.on("change:value", verify);
+
+  Tooltip = (function(superClass) {
+    extend(Tooltip, superClass);
+
+    function Tooltip(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.close = bind(this.close, this);
+      this.set = bind(this.set, this);
+      tooltipopen = false;
+      if (ERROR_TEXT_ONLY) {
+        _.assign(options, {
+          x: email.screenFrame.x,
+          y: email.screenFrame.y + email.height + 4,
+          height: 50,
+          width: 200,
+          backgroundColor: null,
+          visible: false,
+          opacity: 0,
+          animationOptions: {
+            time: .25
+          }
+        });
+      } else {
+        _.assign(options, {
+          x: email.screenFrame.x,
+          y: email.screenFrame.y + email.height + 4,
+          height: 50,
+          width: container.width,
+          borderWidth: 1,
+          borderColor: 'black',
+          borderRadius: 4,
+          backgroundColor: "rgba(255, 251, 245, 1.000)",
+          visible: false,
+          opacity: 0,
+          animationOptions: {
+            time: .25
+          }
+        });
+      }
+      Tooltip.__super__.constructor.call(this, options);
+      this.intro = window.__framerNew(undefined, "438:15-446:1", "#cfc5d40e",new TextLayer({
+        parent: this,
+        x: 16,
+        y: Align.center,
+        fontSize: 14,
+        text: "Did you mean",
+        color: 'black'
+      }));
+      this.fix = window.__framerNew(undefined, "446:13-456:1", "#942bba4f",new TextLayer({
+        parent: this,
+        x: this.intro.maxX,
+        y: Align.center,
+        padding: {
+          left: 6
+        },
+        fontSize: 14,
+        text: "{email}@gmail.com?",
+        color: 'orange',
+        textDecoration: 'underline'
+      }));
+      this.nope = window.__framerNew(undefined, "456:14-466:1", "#1287e40d1",new TextLayer({
+        parent: this,
+        x: this.fix.maxX + 24,
+        y: Align.center,
+        fontSize: 12,
+        text: "Nope",
+        color: '#777'
+      }));
+      this.nope.onTap((function(_this) {
+        return function() {
+          return _this.close();
+        };
+      })(this));
+      this.fix.onTap((function(_this) {
+        return function() {
+          email.input.value = _.trimEnd(_this.fix.text, '?');
+          email.setValue();
+          return _this.close();
+        };
+      })(this));
+    }
+
+    Tooltip.prototype.set = function() {
+      var shift;
+      tooltipopen = true;
+      this.fix.template = _.trimEnd(email.value, '@gnail.com');
+      this.visible = true;
+      if (FULL_WIDTH_ERROR) {
+        this.width = container.width;
+        this.nope.x = Align.right(-16);
+      } else {
+        this.nope.x = this.fix.maxX + 16;
+        this.width = this.nope.maxX + 16;
+      }
+      if (RIGHT_SIDE_ERROR) {
+        this.x = submitButton.screenFrame.x + submitButton.width;
+        this.y = submitButton.screenFrame.y;
+        this.animate({
+          x: submitButton.screenFrame.x + submitButton.width + 16,
+          opacity: 1
+        });
+      } else if (LEFT_SIDE_ERROR) {
+        this.x = email.screenFrame.x - this.width;
+        this.y = email.screenFrame.y;
+        this.animate({
+          x: email.screenFrame.x - this.width - 16,
+          opacity: 1
+        });
+      } else {
+        this.x = email.screenFrame.x;
+        shift = ERROR_TEXT_ONLY ? -4 : 16;
+        this.animate({
+          y: email.screenFrame.y + email.height + shift,
+          opacity: 1
+        });
+      }
+      if (MOVE_BACKGROUND_ON_ERROR) {
+        if (ERROR_TEXT_ONLY) {
+          return window.__framerAnimation("#122159d5b",background.animate({
+            y: this.height / 2,
+            options: {
+              time: .25
+            }
+          }));
+        } else {
+          return window.__framerAnimation("#12a94c5a0",background.animate({
+            y: this.height,
+            options: {
+              time: .25
+            }
+          }));
+        }
+      }
+    };
+
+    Tooltip.prototype.close = function() {
+      if (tooltipopen === false) {
+        return;
+      }
+      tooltipopen = false;
+      this.animate({
+        y: email.screenFrame.y + email.height,
+        opacity: 0
+      });
+      window.__framerAnimation("#bcd58cd6",background.animate({
+        y: 0,
+        options: {
+          time: .25
+        }
+      }));
+      email.border = 'grey';
+      return Utils.delay(.25, function() {
+        return verify();
+      });
+    };
+
+    return Tooltip;
+
+  })(Layer);
+
+  if (!USE_SETTINGS) {
+    tooltip = window.__framerNew("tooltip", "550:11-550:21", "#991c3890",new Tooltip);
+  }
+
+  submitButton = window.__framerNew("submitButton", "553:19-563:32", "?",new cs.Button({
+    name: 'Get Started',
+    parent: container,
+    x: Align.right,
+    color: 'white',
+    size: 'auto',
+    type: 'body',
+    text: 'Get Started',
+    action: submitEmail
+  }));
+
+  loadIcon = window.__framerNew("loadIcon", "564:15-577:15", "?",new cs.Icon({
+    name: 'Loading Icon',
+    icon: 'vector-circle-variant',
+    parent: submitButton,
+    x: Align.center,
+    y: Align.center,
+    color: 'white',
+    opacity: 0
+  }));
+
+  password = window.__framerNew("password", "578:15-588:15", "?",new cs.Field({
+    name: 'Password',
+    parent: container,
+    y: email.maxY + 32,
+    placeholder: 'Enter your Password',
+    fill: 'white',
+    password: true,
+    visible: false,
+    opacity: 0
+  }));
+
+  agreeToTerms = window.__framerNew("agreeToTerms", "589:19-597:0", "#9ba1c6fa",new Layer({
+    parent: container,
+    height: 16,
+    y: password.maxY + 32,
+    width: password.width,
+    backgroundColor: null,
+    visible: false,
+    opacity: 0
+  }));
+
+  checkbox = window.__framerNew("checkbox", "598:15-601:0", "?",new cs.Checkbox({
+    parent: agreeToTerms,
+    y: Align.center
+  }));
+
+  label = window.__framerNew("label", "602:12-609:15", "?",new cs.Text({
+    type: 'body1',
+    parent: agreeToTerms,
+    y: Align.center,
+    x: 32,
+    text: "I agree to the terms and conditions."
+  }));
+
+  signinButton = window.__framerNew("signinButton", "610:19-624:0", "?",new cs.Button({
+    name: 'Sign In',
+    parent: container,
+    y: password.maxY + 32,
+    color: 'white',
+    size: 'medium',
+    type: 'body',
+    text: 'Get Started',
+    visible: false,
+    opacity: 0,
+    action: function() {
+      return load(2, signinButton, signin);
+    }
+  }));
+
+  closeButton = window.__framerNew("closeButton", "625:18-633:0", "?",new cs.Icon({
+    name: 'Close Button',
+    type: 'close',
+    parent: container,
+    x: email.maxX + 32,
+    y: 12,
+    color: 'grey',
+    opacity: 0
+  }));
+
+  closeButton.onTap(close);
+
+  cancelLink = window.__framerNew("cancelLink", "638:17-651:0", "?",new cs.Button({
+    name: 'Cancel',
+    parent: container,
+    y: signinButton.maxY + 24,
+    x: Align.center,
+    fill: 'transparent',
+    border: 'transparent',
+    type: 'link',
+    color: 'black',
+    text: 'Cancel',
+    opacity: 0,
+    visible: false,
+    action: function() {
+      return Utils.delay(.15, close);
+    }
+  }));
+
+  signinButton.on("change:y", function() {
+    return cancelLink.y = signinButton.maxY + 24;
+  });
+
+  settingsPage = window.__framerNew("settingsPage", "662:19-667:0", "?",new cs.StackView({
+    size: Screen.size,
+    backgroundColor: 'white',
+    padding: {
+      top: 80,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      stack: 32
+    },
+    visible: USE_SETTINGS
+  }));
+
+  _.bind(function() {
+    var closeButtonControl, errorSide, errorTextOnly, fullWidthError, moveBackgroundOnError, stepTwo;
+    this.addToStack(window.__framerNew(undefined, "670:17-674:0", "?",new cs.H2({
+      text: 'Settings',
+      x: Align.center
+    })));
+    this.addToStack(window.__framerNew(undefined, "674:17-677:0", "?",new cs.Divider({
+      x: Align.center
+    })));
+    this.addToStack(window.__framerNew(undefined, "677:17-683:0", "?",new cs.H3({
+      text: 'Gnail.com Errors',
+      x: Align.center
+    })));
+    this.addToStack(errorTextOnly = window.__framerNew("errorTextOnly", "683:33-689:0", "#123b94f17",new Layer({
+      width: 280,
+      height: 24,
+      x: Align.center,
+      backgroundColor: null
+    })));
+    _.bind(function() {
+      this.label = window.__framerNew(undefined, "691:15-695:1", "?",new cs.H4({
+        parent: this,
+        text: 'Error Text Only'
+      }));
+      this.box = window.__framerNew(undefined, "695:13-699:1", "?",new cs.Checkbox({
+        parent: this,
+        x: Align.right
+      }));
+      this.box.isOn = ERROR_TEXT_ONLY;
+      return this.box.on("change:isOn", function(isOn) {
+        return ERROR_TEXT_ONLY = isOn;
+      });
+    }, errorTextOnly)();
+    this.addToStack(moveBackgroundOnError = window.__framerNew("moveBackgroundOnError", "708:41-714:0", "#17eddd226",new Layer({
+      width: 280,
+      height: 24,
+      x: Align.center,
+      backgroundColor: null
+    })));
+    _.bind(function() {
+      this.label = window.__framerNew(undefined, "716:15-720:1", "?",new cs.H4({
+        parent: this,
+        text: 'Move Background on Error'
+      }));
+      this.box = window.__framerNew(undefined, "720:13-724:1", "?",new cs.Checkbox({
+        parent: this,
+        x: Align.right
+      }));
+      this.box.isOn = MOVE_BACKGROUND_ON_ERROR;
+      return this.box.on("change:isOn", function(isOn) {
+        return MOVE_BACKGROUND_ON_ERROR = isOn;
+      });
+    }, moveBackgroundOnError)();
+    this.addToStack(fullWidthError = window.__framerNew("fullWidthError", "733:34-739:0", "#132baacb2",new Layer({
+      width: 280,
+      height: 24,
+      x: Align.center,
+      backgroundColor: null
+    })));
+    _.bind(function() {
+      this.label = window.__framerNew(undefined, "741:15-745:1", "?",new cs.H4({
+        parent: this,
+        text: 'Full Width Error'
+      }));
+      this.box = window.__framerNew(undefined, "745:13-749:1", "?",new cs.Checkbox({
+        parent: this,
+        x: Align.right
+      }));
+      this.box.isOn = FULL_WIDTH_ERROR;
+      return this.box.on("change:isOn", function(isOn) {
+        return FULL_WIDTH_ERROR = isOn;
+      });
+    }, fullWidthError)();
+    this.addToStack(errorSide = window.__framerNew("errorSide", "758:29-764:0", "#1613b07f5",new Layer({
+      width: 280,
+      height: 24,
+      x: Align.center,
+      backgroundColor: null
+    })));
+    errorSide.icons = [];
+    _.bind(function() {
+      this.icons = [];
+      this.leftLabel = window.__framerNew(undefined, "772:19-776:1", "?",new cs.H4({
+        parent: this,
+        text: 'Left'
+      }));
+      this.leftBox = window.__framerNew(undefined, "776:17-781:1", "?",new cs.Radiobox({
+        parent: this,
+        x: this.leftLabel.maxX + 8,
+        group: this.icons
+      }));
+      this.leftBox.isOn = LEFT_SIDE_ERROR;
+      this.leftBox.on("change:isOn", function(isOn) {
+        if (isOn) {
+          return LEFT_SIDE_ERROR = true;
+        }
+      });
+      this.centerLabel = window.__framerNew(undefined, "788:21-793:1", "?",new cs.H4({
+        parent: this,
+        text: 'Center',
+        x: Align.center(-24)
+      }));
+      this.centerBox = window.__framerNew(undefined, "793:19-798:1", "?",new cs.Radiobox({
+        parent: this,
+        x: this.centerLabel.maxX + 8,
+        group: this.icons
+      }));
+      this.centerBox.isOn = !LEFT_SIDE_ERROR && !RIGHT_SIDE_ERROR;
+      this.centerBox.on("change:isOn", function(isOn) {
+        if (isOn) {
+          LEFT_SIDE_ERROR = false;
+          return RIGHT_SIDE_ERROR = false;
+        }
+      });
+      this.rightLabel = window.__framerNew(undefined, "807:20-812:1", "?",new cs.H4({
+        parent: this,
+        text: 'Center',
+        x: Align.right(-24)
+      }));
+      this.rightBox = window.__framerNew(undefined, "812:18-817:1", "?",new cs.Radiobox({
+        parent: this,
+        x: this.rightLabel.maxX + 8,
+        group: this.icons
+      }));
+      this.rightBox.isOn = RIGHT_SIDE_ERROR;
+      return this.rightBox.on("change:isOn", function(isOn) {
+        if (isOn) {
+          return RIGHT_SIDE_ERROR = true;
+        }
+      });
+    }, errorSide)();
+    this.addToStack(window.__framerNew(undefined, "826:17-829:0", "?",new cs.Divider({
+      x: Align.center
+    })));
+    this.addToStack(window.__framerNew(undefined, "829:17-835:0", "?",new cs.H3({
+      text: 'Second Stage',
+      x: Align.center
+    })));
+    this.addToStack(stepTwo = window.__framerNew("stepTwo", "835:27-841:0", "#f53be573",new Layer({
+      width: 280,
+      height: 24,
+      x: Align.center,
+      backgroundColor: null
+    })));
+    _.bind(function() {
+      this.label = window.__framerNew(undefined, "843:15-847:1", "?",new cs.H4({
+        parent: this,
+        text: 'Step Two'
+      }));
+      this.box = window.__framerNew(undefined, "847:13-851:1", "?",new cs.Checkbox({
+        parent: this,
+        x: Align.right
+      }));
+      this.box.isOn = STEP_TWO;
+      return this.box.on("change:isOn", function(isOn) {
+        return STEP_TWO = isOn;
+      });
+    }, stepTwo)();
+    this.addToStack(closeButtonControl = window.__framerNew("closeButtonControl", "860:38-866:0", "#ac66423b",new Layer({
+      width: 280,
+      height: 24,
+      x: Align.center,
+      backgroundColor: null
+    })));
+    _.bind(function() {
+      this.label = window.__framerNew(undefined, "868:15-872:1", "?",new cs.H4({
+        parent: this,
+        text: 'Close Button'
+      }));
+      this.box = window.__framerNew(undefined, "872:13-876:1", "?",new cs.Checkbox({
+        parent: this,
+        x: Align.right
+      }));
+      this.box.isOn = CLOSE_BUTTON;
+      return this.box.on("change:isOn", function(isOn) {
+        return CLOSE_BUTTON = isOn;
+      });
+    }, closeButtonControl)();
+    this.addToStack(window.__framerNew(undefined, "885:17-888:0", "?",new cs.Divider({
+      x: Align.center
+    })));
+    return this.addToStack(window.__framerNew(undefined, "888:17-895:0", "?",new cs.Button({
+      x: Align.center,
+      color: 'white',
+      text: 'start',
+      action: (function(_this) {
+        return function() {
+          _this.destroy();
+          return tooltip = window.__framerNew("tooltip", "894:13-894:23", "#991c3890",new Tooltip);
+        };
+      })(this)
+    })));
+  }, settingsPage)();
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

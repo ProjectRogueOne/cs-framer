@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Bonds/Icons/Global/Valid/Cross</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M30.1118555,20.9219336 L38.9483398,12.0854492 C41.4756055,9.55818359 41.4756055,5.42271484 38.9483398,2.89552734 L38.9483398,2.89552734 C36.4210742,0.368261719 32.2856055,0.368261719 29.758418,2.89552734 L20.9219336,11.7320117 L12.0854492,2.89544922 C9.55818359,0.368183594 5.42271484,0.368183594 2.89552734,2.89544922 L2.89552734,2.89544922 C0.368261719,5.42271484 0.368261719,9.55818359 2.89552734,12.0853711 L11.7320117,20.9219336 L2.89544922,29.758418 C0.368183594,32.2856836 0.368183594,36.4211523 2.89544922,38.9483398 L2.89544922,38.9483398 C5.42271484,41.4756055 9.55818359,41.4756055 12.0853711,38.9483398 L20.9219336,30.1119336 L29.758418,38.948418 C32.2856836,41.4756836 36.4211523,41.4756836 38.9483398,38.948418 L38.9483398,38.948418 C41.4756055,36.4211523 41.4756055,32.2856836 38.9483398,29.7584961 L30.1118555,20.9219336 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bonds/Icons/Global/Valid/Cross">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Shape" fill-rule="nonzero"></g>
+            <g id="Bonds/Colours/General/White" mask="url(#mask-2)" fill="#FFFFFF">
+                <rect id="Rectangle-3" x="0" y="0" width="42" height="42"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,27 @@
+{
+  "orientation" : 0,
+  "updateDelay" : 0.29999999999999999,
+  "designModeSelected" : 0,
+  "cachedDeviceHeight" : 0,
+  "contentScale" : 1,
+  "cachedDeviceWidth" : 0,
+  "fullScreen" : false,
+  "deviceType" : "apple-ipad-pro-space-gray",
+  "sharedPrototype" : true,
+  "projectId" : "EABFE703-FC83-4516-87B3-EBB70D67D525",
+  "deviceOrientation" : 0,
+  "selectedHand" : "",
+  "showBezel" : true,
+  "foldedCodeRanges" : [
+    "{79, 41}",
+    "{156, 1566}",
+    "{1751, 122}",
+    "{1962, 791}",
+    "{2754, 787}",
+    "{3542, 1384}",
+    "{4927, 830}",
+    "{5758, 1435}",
+    "{7194, 1575}"
+  ],
+  "deviceScale" : -1
+}

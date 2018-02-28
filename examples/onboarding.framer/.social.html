@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=aa9c6026650540b5f263eabb88e19c50"></script>
+		<script src="framer/framer.modules.js?nocache=a143380d6421fe9d16da68acef1f0684"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 92;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var accordianPage, app, buttonPage, carouselPage, checkboxPage, containerPage, cs, donutsPage, fieldPage, ghostButton, headerPage, iconPage, j, len, link, links, logoPage, navigationPage, progressBarPage, progressPage, pullerPage, radioboxPage, ref, segmentPage, sortableView, switchPage, textPage, togglePage, view;
+
+  cs = require('cs');
+
+  cs.Context.setMobile();
+
+  app = window.__framerNew("app", "6:10-13:0", "?",new cs.App({
+    backgroundColor: '#efefef',
+    collapse: true,
+    type: 'safari',
+    navigation: 'default'
+  }));
+
+  Screen.backgroundColor = cs.Colors.background;
+
+  Framer.Extras.Hints.disable();
+
+  textPage = window.__framerNew("textPage", "23:15-25:0", "?",new cs.View({
+    title: 'Text'
+  }));
+
+  textPage.build(function() {
+    var results;
+    this.addToStack(window.__framerNew(undefined, "28:17-32:0", "?",new cs.Text({
+      type: 'subheader',
+      text: 'Subheader'
+    })));
+    this.addToStack(window.__framerNew(undefined, "32:17-36:0", "?",new cs.Text({
+      type: 'body',
+      text: 'Body'
+    })));
+    this.addToStack(window.__framerNew(undefined, "36:17-40:0", "?",new cs.Text({
+      type: 'body1',
+      text: 'Body1'
+    })));
+    this.addToStack(window.__framerNew(undefined, "40:17-44:0", "?",new cs.Text({
+      type: 'button',
+      text: 'Button'
+    })));
+    this.addToStack(window.__framerNew(undefined, "44:17-48:0", "?",new cs.Text({
+      type: 'link',
+      text: 'link'
+    })));
+    this.addToStack(window.__framerNew(undefined, "48:17-55:0", "?",new cs.Text({
+      type: 'caption',
+      text: 'Caption'
+    })));
+    this.addToStack(window.__framerNew(undefined, "55:13-55:26", "?",new cs.Divider));
+    this.addToStack(results = window.__framerNew("results", "56:27-59:0", "?",new cs.Text({
+      text: "Text Color"
+    })));
+    this.addToStack(window.__framerNew(undefined, "59:17-63:0", "?",new cs.Text({
+      color: 'primary',
+      text: 'Primary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "63:17-67:0", "?",new cs.Text({
+      color: 'secondary',
+      text: 'Secondary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "67:17-71:0", "?",new cs.Text({
+      color: 'tertiary',
+      text: 'Tertiary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "71:17-75:0", "?",new cs.Text({
+      color: 'accent',
+      text: 'Accent'
+    })));
+    this.addToStack(window.__framerNew(undefined, "75:17-79:0", "?",new cs.Text({
+      color: 'grey',
+      text: 'Grey'
+    })));
+    this.addToStack(window.__framerNew(undefined, "79:17-83:0", "?",new cs.Text({
+      color: 'white',
+      text: 'White'
+    })));
+    this.addToStack(window.__framerNew(undefined, "83:17-87:0", "?",new cs.Text({
+      color: 'black',
+      text: 'Black'
+    })));
+    this.addToStack(window.__framerNew(undefined, "87:17-94:0", "?",new cs.Text({
+      color: 'disabled',
+      text: 'Disabled'
+    })));
+    this.addToStack(window.__framerNew(undefined, "94:13-94:26", "?",new cs.Divider));
+    this.addToStack(results = window.__framerNew("results", "95:27-98:0", "?",new cs.Text({
+      text: "Text actions"
+    })));
+    return this.addToStack(window.__framerNew(undefined, "98:17-104:0", "?",new cs.Text({
+      type: 'link',
+      text: 'Click Here!',
+      action: function() {
+        return this.text = 'Clicked!';
+      }
+    })));
+  });
+
+  iconPage = window.__framerNew("iconPage", "105:15-107:0", "?",new cs.View({
+    title: 'Icon'
+  }));
+
+  iconPage.build(function() {
+    var arrows, color, colorTypes, colors, direction, i, iconContainer, j, k, l, len, len1, len2, len3, len4, len5, m, n, o, outlines, ref, ref1, ref2, ref3, ref4, ref5, results, type, types;
+    this.addToStack(window.__framerNew(undefined, "110:13-110:23", "?",new cs.Icon));
+    this.addToStack(window.__framerNew(undefined, "114:13-114:26", "?",new cs.Divider));
+    this.addToStack(results = window.__framerNew("results", "115:27-118:0", "?",new cs.Text({
+      text: "Icon.type"
+    })));
+    this.addToStack(types = window.__framerNew("types", "118:25-123:0", "#156384733",new Layer({
+      width: this.width - 32,
+      height: 64,
+      backgroundColor: null
+    })));
+    ref = ['info', 'menu', 'required', 'arrow', 'check'];
+    for (i = j = 0, len = ref.length; j < len; i = ++j) {
+      type = ref[i];
+      window.__framerNew(undefined, "124:6-131:0", "?",new cs.Icon({
+        parent: types,
+        x: 48 * i,
+        y: Align.center,
+        type: type
+      }));
+    }
+    this.addToStack(colorTypes = window.__framerNew("colorTypes", "131:30-136:0", "#a9074e36",new Layer({
+      width: this.width - 32,
+      height: 64,
+      backgroundColor: null
+    })));
+    ref1 = ['cross', 'star-outline', 'star', 'notification'];
+    for (i = k = 0, len1 = ref1.length; k < len1; i = ++k) {
+      type = ref1[i];
+      window.__framerNew(undefined, "137:6-144:0", "?",new cs.Icon({
+        parent: colorTypes,
+        x: 48 * i,
+        y: Align.center,
+        type: type
+      }));
+    }
+    this.addToStack(window.__framerNew(undefined, "144:13-144:26", "?",new cs.Divider));
+    this.addToStack(outlines = window.__framerNew("outlines", "146:28-151:0", "#1436d80fb",new Layer({
+      width: this.width - 32,
+      height: 64,
+      backgroundColor: null
+    })));
+    ref2 = ['accordian', 'account', 'question', 'alert', 'score', 'empty'];
+    for (i = l = 0, len2 = ref2.length; l < len2; i = ++l) {
+      type = ref2[i];
+      window.__framerNew(undefined, "152:6-159:0", "?",new cs.Icon({
+        parent: outlines,
+        x: 48 * i,
+        y: Align.center,
+        type: type
+      }));
+    }
+    this.addToStack(window.__framerNew(undefined, "159:13-159:26", "?",new cs.Divider));
+    this.addToStack(results = window.__framerNew("results", "160:27-163:0", "?",new cs.Text({
+      text: "Icon.direction"
+    })));
+    this.addToStack(arrows = window.__framerNew("arrows", "163:26-168:0", "#13436a95e",new Layer({
+      width: this.width - 32,
+      height: 64,
+      backgroundColor: null
+    })));
+    ref3 = ['right', 'down', 'left', 'up'];
+    for (i = m = 0, len3 = ref3.length; m < len3; i = ++m) {
+      direction = ref3[i];
+      window.__framerNew(undefined, "169:6-177:0", "?",new cs.Icon({
+        parent: arrows,
+        x: 48 * i,
+        y: Align.center,
+        type: 'accordian',
+        direction: direction
+      }));
+    }
+    this.addToStack(window.__framerNew(undefined, "177:13-177:26", "?",new cs.Divider));
+    this.addToStack(results = window.__framerNew("results", "178:27-181:0", "?",new cs.Text({
+      text: "Icon.color"
+    })));
+    this.addToStack(colors = window.__framerNew("colors", "181:26-186:0", "#8cfd2da2",new Layer({
+      width: this.width - 32,
+      height: 64,
+      backgroundColor: null
+    })));
+    ref4 = ['black', 'grey', 'white', 'primary', 'secondary'];
+    for (i = n = 0, len4 = ref4.length; n < len4; i = ++n) {
+      color = ref4[i];
+      window.__framerNew(undefined, "187:6-195:0", "?",new cs.Icon({
+        parent: colors,
+        x: 48 * i,
+        y: Align.center,
+        type: 'account',
+        color: color
+      }));
+    }
+    this.addToStack(window.__framerNew(undefined, "195:13-195:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "196:17-199:0", "?",new cs.Text({
+      text: "About 1600 in total!"
+    })));
+    this.addToStack(iconContainer = window.__framerNew("iconContainer", "199:33-205:0", "?",new cs.Container({
+      fill: 'none',
+      border: 'grey',
+      height: this.width - 32,
+      width: this.width - 32
+    })));
+    ref5 = _.range(100);
+    for (o = 0, len5 = ref5.length; o < len5; o++) {
+      i = ref5[o];
+      window.__framerNew(undefined, "206:6-212:0", "?",new cs.Icon({
+        parent: iconContainer,
+        x: 14 + (32 * (i % 10)),
+        y: 14 + (32 * Math.floor(i / 10)),
+        type: 'random'
+      }));
+    }
+    return this.addToStack(window.__framerNew(undefined, "212:17-217:0", "?",new cs.Text({
+      type: 'body1',
+      text: 'See https://materialdesignicons.com/ for complete set.'
+    })));
+  });
+
+  logoPage = window.__framerNew("logoPage", "218:15-220:0", "?",new cs.View({
+    title: 'Logo'
+  }));
+
+  logoPage.padding.stack = 32;
+
+  logoPage.build(function() {
+    this.addToStack(window.__framerNew(undefined, "227:13-227:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "228:17-231:0", "?",new cs.Text({
+      text: 'Logo.type'
+    })));
+    this.addToStack(window.__framerNew(undefined, "231:17-236:0", "?",new cs.Logo({
+      type: 'logo'
+    })));
+    this.addToStack(window.__framerNew(undefined, "236:17-241:0", "?",new cs.Logo({
+      type: 'logotype'
+    })));
+    this.addToStack(window.__framerNew(undefined, "241:17-246:0", "?",new cs.Logo({
+      type: 'logomark'
+    })));
+    this.addToStack(window.__framerNew(undefined, "246:13-246:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "247:17-250:0", "?",new cs.Text({
+      text: 'Logo.color'
+    })));
+    this.addToStack(window.__framerNew(undefined, "250:13-250:23", "?",new cs.Logo));
+    this.addToStack(window.__framerNew(undefined, "252:17-255:0", "?",new cs.Logo({
+      color: 'white'
+    })));
+    this.addToStack(window.__framerNew(undefined, "255:17-258:0", "?",new cs.Logo({
+      color: 'grey'
+    })));
+    return this.addToStack(window.__framerNew(undefined, "258:17-262:0", "?",new cs.Logo({
+      color: 'primary'
+    })));
+  });
+
+  containerPage = window.__framerNew("containerPage", "263:20-265:0", "?",new cs.View({
+    title: 'Container'
+  }));
+
+  containerPage.build(function() {
+    this.addToStack(window.__framerNew(undefined, "268:13-268:28", "?",new cs.Container));
+    this.addToStack(window.__framerNew(undefined, "273:13-273:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "274:17-277:0", "?",new cs.Text({
+      text: 'Container.size'
+    })));
+    this.addToStack(window.__framerNew(undefined, "277:17-280:0", "?",new cs.Container({
+      size: 'icon'
+    })));
+    this.addToStack(window.__framerNew(undefined, "280:17-283:0", "?",new cs.Container({
+      size: 'small'
+    })));
+    this.addToStack(window.__framerNew(undefined, "283:17-286:0", "?",new cs.Container({
+      size: 'medium'
+    })));
+    this.addToStack(window.__framerNew(undefined, "286:17-292:0", "?",new cs.Container({
+      size: 'large'
+    })));
+    this.addToStack(window.__framerNew(undefined, "292:13-292:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "293:17-296:0", "?",new cs.Text({
+      text: 'Container.fill'
+    })));
+    this.addToStack(window.__framerNew(undefined, "296:17-299:0", "?",new cs.Container({
+      fill: 'white'
+    })));
+    this.addToStack(window.__framerNew(undefined, "299:17-302:0", "?",new cs.Container({
+      fill: 'primary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "302:17-305:0", "?",new cs.Container({
+      fill: 'secondary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "305:17-311:0", "?",new cs.Container({
+      fill: 'transparent'
+    })));
+    this.addToStack(window.__framerNew(undefined, "311:13-311:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "312:17-315:0", "?",new cs.Text({
+      text: 'Container.border'
+    })));
+    this.addToStack(window.__framerNew(undefined, "315:17-319:0", "?",new cs.Container({
+      border: 'white',
+      fill: 'transparent'
+    })));
+    this.addToStack(window.__framerNew(undefined, "319:17-323:0", "?",new cs.Container({
+      border: 'primary',
+      fill: 'transparent'
+    })));
+    this.addToStack(window.__framerNew(undefined, "323:17-327:0", "?",new cs.Container({
+      border: 'secondary',
+      fill: 'transparent'
+    })));
+    return this.addToStack(window.__framerNew(undefined, "327:17-333:0", "?",new cs.Container({
+      border: 'transparent',
+      fill: 'transparent'
+    })));
+  });
+
+  buttonPage = window.__framerNew("buttonPage", "334:17-336:0", "?",new cs.View({
+    title: 'Button'
+  }));
+
+  buttonPage.build(function() {
+    this.addToStack(window.__framerNew(undefined, "341:17-344:0", "?",new cs.Button({
+      action: function() {
+        return this.text = 'Tapped!';
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "344:17-354:0", "?",new cs.Button({
+      text: 'toggle button',
+      toggle: true,
+      action: function() {
+        if (this.isOn) {
+          return this.text = 'Toggled!';
+        } else {
+          return this.text = 'toggle button';
+        }
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "354:13-354:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "355:17-358:0", "?",new cs.Text({
+      text: 'Button.size'
+    })));
+    this.addToStack(window.__framerNew(undefined, "358:17-362:0", "?",new cs.Button({
+      size: 'small',
+      text: 'Small'
+    })));
+    this.addToStack(window.__framerNew(undefined, "362:17-366:0", "?",new cs.Button({
+      size: 'medium',
+      text: 'Medium'
+    })));
+    this.addToStack(window.__framerNew(undefined, "366:17-370:0", "?",new cs.Button({
+      size: 'large',
+      text: 'Large'
+    })));
+    this.addToStack(window.__framerNew(undefined, "370:17-377:0", "?",new cs.Button({
+      size: 'auto',
+      text: 'Auto'
+    })));
+    this.addToStack(window.__framerNew(undefined, "377:13-377:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "378:17-381:0", "?",new cs.Text({
+      text: 'Button.fill'
+    })));
+    this.addToStack(window.__framerNew(undefined, "381:17-387:0", "?",new cs.Button({
+      fill: 'todo'
+    })));
+    this.addToStack(window.__framerNew(undefined, "387:13-387:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "388:17-391:0", "?",new cs.Text({
+      text: 'Button.border'
+    })));
+    this.addToStack(window.__framerNew(undefined, "391:17-399:0", "?",new cs.Button({
+      fill: 'todo',
+      border: 'secondary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "399:13-399:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "400:17-403:0", "?",new cs.Text({
+      text: 'Button.text'
+    })));
+    this.addToStack(window.__framerNew(undefined, "403:17-410:0", "?",new cs.Button({
+      text: 'Click Here!',
+      action: function() {
+        return this.text = 'Clicked!';
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "410:13-410:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "411:17-414:0", "?",new cs.Text({
+      text: 'Button.type'
+    })));
+    this.addToStack(window.__framerNew(undefined, "414:17-422:0", "?",new cs.Button({
+      text: 'Click Here!',
+      type: 'body',
+      action: function() {
+        return this.text = 'Clicked!';
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "422:13-422:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "423:17-426:0", "?",new cs.Text({
+      text: 'Button.color'
+    })));
+    this.addToStack(window.__framerNew(undefined, "426:17-435:0", "?",new cs.Button({
+      text: 'Click Here!',
+      type: 'body',
+      color: 'white',
+      action: function() {
+        return this.text = 'Clicked!';
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "435:13-435:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "436:17-439:0", "?",new cs.Text({
+      text: 'Button.disabled'
+    })));
+    return this.addToStack(window.__framerNew(undefined, "439:17-448:0", "?",new cs.Button({
+      text: 'Click Here!',
+      type: 'body',
+      color: 'white',
+      disabled: true,
+      action: function() {
+        return this.text = 'Clicked!';
+      }
+    })));
+  });
+
+  ghostButton = function(options) {
+    _.assign(options, {
+      type: "body",
+      size: 'auto',
+      border: 'primary',
+      color: 'primary',
+      fill: 'transparent'
+    });
+    return window.__framerNew(undefined, "458:12-458:28", "?",new cs.Button(options));
+  };
+
+  buttonPage.addToStack(window.__framerNew(undefined, "462:22-462:35", "?",new cs.Divider));
+
+  buttonPage.addToStack(window.__framerNew(undefined, "464:26-468:0", "*",new ghostButton({
+    text: 'Ghost button'
+  })));
+
+  sortableView = window.__framerNew("sortableView", "469:19-471:0", "?",new cs.View({
+    title: 'Sortable'
+  }));
+
+  sortableView.build(function() {
+    var i, j, len, positions, ref;
+    positions = [];
+    ref = _.range(5);
+    for (j = 0, len = ref.length; j < len; j++) {
+      i = ref[j];
+      window.__framerNew(undefined, "477:6-482:0", "?",new cs.Sortable({
+        y: 16,
+        parent: this.content,
+        positions: positions
+      }));
+    }
+    return window.__framerNew(undefined, "482:5-488:0", "?",new cs.Sortable({
+      parent: this.content,
+      positions: positions,
+      fill: 'secondary'
+    }));
+  });
+
+  segmentPage = window.__framerNew("segmentPage", "489:18-491:0", "?",new cs.View({
+    title: 'Segment Control'
+  }));
+
+  segmentPage.build(function() {
+    var left, results, right, segmentControl;
+    this.addToStack(window.__framerNew(undefined, "493:13-493:33", "?",new cs.SegmentControl));
+    this.addToStack(window.__framerNew(undefined, "498:13-498:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "499:17-502:0", "?",new cs.Text({
+      text: 'SegmentControl.segments'
+    })));
+    left = {
+      text: 'Left',
+      action: function() {
+        return results.template = 'Left';
+      }
+    };
+    right = {
+      text: 'Right',
+      action: function() {
+        return results.template = 'Right';
+      }
+    };
+    this.addToStack(segmentControl = window.__framerNew("segmentControl", "505:34-509:0", "?",new cs.SegmentControl({
+      segments: [left, right],
+      selected: right
+    })));
+    this.addToStack(results = window.__framerNew("results", "509:27-512:0", "?",new cs.Text({
+      text: "Segments: {value} is selected."
+    })));
+    return results.template = segmentControl.selected.text;
+  });
+
+  fieldPage = window.__framerNew("fieldPage", "516:16-518:0", "?",new cs.View({
+    title: 'Field'
+  }));
+
+  fieldPage.build(function() {
+    var sWords, test;
+    this.addToStack(window.__framerNew(undefined, "522:13-522:24", "?",new cs.Field));
+    this.addToStack(window.__framerNew(undefined, "525:13-525:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "526:17-530:0", "?",new cs.Text({
+      text: 'Field.placeholder'
+    })));
+    this.addToStack(window.__framerNew(undefined, "530:17-534:0", "?",new cs.Field({
+      placeholder: 'Placeholder'
+    })));
+    this.addToStack(window.__framerNew(undefined, "534:13-534:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "535:17-539:0", "?",new cs.Text({
+      text: 'Field.password'
+    })));
+    this.addToStack(window.__framerNew(undefined, "539:17-544:0", "?",new cs.Field({
+      placeholder: 'Password',
+      password: true
+    })));
+    this.addToStack(window.__framerNew(undefined, "544:13-544:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "545:17-549:0", "?",new cs.Text({
+      text: 'Field.border'
+    })));
+    this.addToStack(window.__framerNew(undefined, "549:17-554:0", "?",new cs.Field({
+      placeholder: 'Border',
+      border: 'black'
+    })));
+    this.addToStack(window.__framerNew(undefined, "554:13-554:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "555:17-559:0", "?",new cs.Text({
+      text: 'Field.fill'
+    })));
+    this.addToStack(window.__framerNew(undefined, "559:17-563:0", "?",new cs.Field({
+      placeholder: 'Fill',
+      fill: 'field'
+    })));
+    this.addToStack(window.__framerNew(undefined, "563:13-563:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "566:17-572:0", "?",new cs.Field({
+      placeholder: 'Border and Fill',
+      fill: 'field',
+      border: 'black'
+    })));
+    this.addToStack(window.__framerNew(undefined, "572:13-572:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "573:17-576:0", "?",new cs.Text({
+      text: 'Field.color'
+    })));
+    this.addToStack(window.__framerNew(undefined, "576:17-581:0", "?",new cs.Field({
+      placeholder: 'Colored Text',
+      color: 'accent'
+    })));
+    this.addToStack(window.__framerNew(undefined, "581:13-581:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "582:17-585:0", "?",new cs.Text({
+      text: 'Field.disabled'
+    })));
+    this.addToStack(window.__framerNew(undefined, "585:17-590:0", "?",new cs.Field({
+      placeholder: 'Disabled',
+      disabled: true
+    })));
+    this.addToStack(window.__framerNew(undefined, "590:13-590:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "591:17-595:0", "?",new cs.Text({
+      text: 'Field.leftIcon'
+    })));
+    this.addToStack(window.__framerNew(undefined, "595:17-600:0", "?",new cs.Field({
+      placeholder: 'Field with a left icon',
+      leftIcon: 'information-outline'
+    })));
+    this.addToStack(window.__framerNew(undefined, "600:13-600:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "601:17-605:0", "?",new cs.Text({
+      text: 'Field.rightIcon'
+    })));
+    this.addToStack(window.__framerNew(undefined, "605:17-609:0", "?",new cs.Field({
+      placeholder: 'Field with a right icon',
+      rightIcon: 'eye'
+    })));
+    this.addToStack(window.__framerNew(undefined, "609:13-609:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "612:17-618:0", "?",new cs.Field({
+      placeholder: 'Field with both icons',
+      leftIcon: 'information-outline',
+      rightIcon: 'eye'
+    })));
+    this.addToStack(window.__framerNew(undefined, "618:13-618:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "619:17-623:0", "?",new cs.Text({
+      text: 'Field.pattern'
+    })));
+    this.addToStack(sWords = window.__framerNew("sWords", "623:26-631:0", "?",new cs.Field({
+      y: 100,
+      placeholder: 'Patterns (s words only)',
+      pattern: function(value) {
+        return value[0] === "s" || value[0] === "S" || value === '';
+      }
+    })));
+    sWords.on("change:matches", function(matches, hasTextContent) {
+      if (matches) {
+        this.color = 'black';
+        return this.border = 'grey';
+      } else {
+        this.color = 'accent';
+        return this.border = 'accent';
+      }
+    });
+    this.addToStack(window.__framerNew(undefined, "640:13-640:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "641:17-644:0", "?",new cs.Text({
+      text: 'Field.title'
+    })));
+    this.addToStack(window.__framerNew(undefined, "644:17-649:0", "?",new cs.Field({
+      placeholder: 'Field with Title',
+      title: 'Title'
+    })));
+    this.addToStack(window.__framerNew(undefined, "649:13-649:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "650:17-653:0", "?",new cs.Text({
+      text: 'Field.message'
+    })));
+    this.addToStack(window.__framerNew(undefined, "653:17-657:0", "?",new cs.Field({
+      placeholder: 'Field with Message',
+      message: 'Message'
+    })));
+    this.addToStack(window.__framerNew(undefined, "657:13-657:26", "?",new cs.Divider));
+    return this.addToStack(test = window.__framerNew("test", "659:24-666:0", "?",new cs.Field({
+      placeholder: 'Field with Label and Message',
+      title: 'Label',
+      message: 'Message',
+      color: 'accent'
+    })));
+  });
+
+  donutsPage = window.__framerNew("donutsPage", "667:17-669:0", "?",new cs.View({
+    title: 'Donuts'
+  }));
+
+  donutsPage.build(function() {
+    var animDonut, donut, i, j, labelLayer, len, page, pageDonut, ref;
+    this.addToStack(donut = window.__framerNew("donut", "672:21-672:32", "?",new cs.Donut));
+    this.addToStack(window.__framerNew(undefined, "675:13-675:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "676:17-679:0", "?",new cs.Text({
+      text: 'Donut.value'
+    })));
+    this.addToStack(donut = window.__framerNew("donut", "679:25-683:0", "?",new cs.Donut({
+      value: 62
+    })));
+    this.addToStack(window.__framerNew(undefined, "683:13-683:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "684:17-687:0", "?",new cs.Text({
+      text: 'Donut.showNumber'
+    })));
+    this.addToStack(donut = window.__framerNew("donut", "687:25-692:0", "?",new cs.Donut({
+      showNumber: false,
+      value: 62
+    })));
+    this.addToStack(window.__framerNew(undefined, "692:13-692:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "693:17-696:0", "?",new cs.Text({
+      text: 'Donut.showCircle'
+    })));
+    this.addToStack(donut = window.__framerNew("donut", "696:25-700:0", "?",new cs.Donut({
+      showCircle: false,
+      value: 62
+    })));
+    this.addToStack(window.__framerNew(undefined, "700:13-700:26", "?",new cs.Divider));
+    this.addToStack(donut = window.__framerNew("donut", "702:25-708:0", "?",new cs.Donut({
+      showCircle: false,
+      showNumber: false,
+      value: 62
+    })));
+    this.addToStack(window.__framerNew(undefined, "708:13-708:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "709:17-712:0", "?",new cs.Text({
+      text: 'Donut.min, Donut.max'
+    })));
+    this.addToStack(donut = window.__framerNew("donut", "712:25-718:0", "?",new cs.Donut({
+      min: 0,
+      value: 3,
+      max: 10
+    })));
+    this.addToStack(window.__framerNew(undefined, "718:13-718:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "719:17-722:0", "?",new cs.Text({
+      text: 'Animating values'
+    })));
+    this.addToStack(animDonut = window.__framerNew("animDonut", "722:25-722:36", "?",new cs.Donut));
+    animDonut.onTap(function() {
+      return animDonut.animate({
+        value: _.random(700)
+      });
+    });
+    this.addToStack(window.__framerNew(undefined, "729:13-729:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "730:17-733:0", "?",new cs.Text({
+      text: 'Donut.addPages()'
+    })));
+    this.addToStack(pageDonut = window.__framerNew("pageDonut", "733:29-739:0", "?",new cs.Donut({
+      showNumber: false,
+      min: 0,
+      max: 3,
+      value: 1
+    })));
+    ref = _.range(3);
+    for (j = 0, len = ref.length; j < len; j++) {
+      i = ref[j];
+      page = pageDonut.newPage();
+      labelLayer = window.__framerNew("labelLayer", "742:19-747:0", "?",new cs.Text({
+        parent: page,
+        point: Align.center,
+        text: 'Page ' + (i + 1)
+      }));
+    }
+    pageDonut.on("change:currentPage", function(currentPage) {
+      return this.animate({
+        value: this.pages.indexOf(currentPage) + 1
+      });
+    });
+    this.addToStack(window.__framerNew(undefined, "752:13-752:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "753:17-756:0", "?",new cs.Text({
+      text: 'Donut.type'
+    })));
+    this.addToStack(window.__framerNew(undefined, "756:17-761:0", "?",new cs.Donut({
+      type: 'dashboard',
+      value: 420
+    })));
+    this.addToStack(window.__framerNew(undefined, "761:13-761:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "762:17-765:0", "?",new cs.Text({
+      text: 'Donut.size'
+    })));
+    this.addToStack(window.__framerNew(undefined, "765:17-769:0", "?",new cs.Donut({
+      size: 'icon',
+      value: 62
+    })));
+    this.addToStack(window.__framerNew(undefined, "769:17-773:0", "?",new cs.Donut({
+      size: 'small',
+      value: 62
+    })));
+    this.addToStack(window.__framerNew(undefined, "773:17-777:0", "?",new cs.Donut({
+      size: 'medium',
+      value: 62
+    })));
+    return this.addToStack(window.__framerNew(undefined, "777:17-783:0", "?",new cs.Donut({
+      size: 'large',
+      value: 62
+    })));
+  });
+
+  togglePage = window.__framerNew("togglePage", "784:17-786:0", "?",new cs.View({
+    title: 'Toggle'
+  }));
+
+  togglePage.build(function() {
+    var makeReport, report, toggle;
+    this.addToStack(toggle = window.__framerNew("toggle", "789:22-789:34", "?",new cs.Toggle));
+    this.addToStack(report = window.__framerNew("report", "793:26-798:0", "?",new cs.Text({
+      type: 'subheader',
+      text: '{string}'
+    })));
+    makeReport = function(isOn) {
+      if (isOn) {
+        return report.template = 'Toggle is on / open.';
+      } else {
+        return report.template = 'Toggle is off / closed.';
+      }
+    };
+    toggle.on("change:isOn", function(isOn) {
+      return makeReport(isOn);
+    });
+    makeReport(toggle.isOn);
+    this.addToStack(window.__framerNew(undefined, "813:13-813:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "814:17-817:0", "?",new cs.Text({
+      text: 'Toggle.isOn'
+    })));
+    return this.addToStack(window.__framerNew(undefined, "817:17-821:0", "?",new cs.Toggle({
+      isOn: true
+    })));
+  });
+
+  switchPage = window.__framerNew("switchPage", "822:17-824:0", "?",new cs.View({
+    title: 'Switch'
+  }));
+
+  switchPage.build(function() {
+    var makeReport, report, uiSwitch;
+    this.addToStack(uiSwitch = window.__framerNew("uiSwitch", "827:24-827:36", "?",new cs.Switch));
+    this.addToStack(report = window.__framerNew("report", "831:26-836:0", "?",new cs.Text({
+      type: 'subheader',
+      text: '{string}'
+    })));
+    makeReport = function(isOn) {
+      if (isOn) {
+        return report.template = 'Switch is on / open.';
+      } else {
+        return report.template = 'Switch is off / closed.';
+      }
+    };
+    uiSwitch.on("change:isOn", function(isOn) {
+      return makeReport(isOn);
+    });
+    makeReport(uiSwitch.isOn);
+    this.addToStack(window.__framerNew(undefined, "850:13-850:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "851:17-854:0", "?",new cs.Text({
+      text: 'Switch.isOn'
+    })));
+    return this.addToStack(window.__framerNew(undefined, "854:17-858:0", "?",new cs.Switch({
+      isOn: true
+    })));
+  });
+
+  checkboxPage = window.__framerNew("checkboxPage", "859:19-861:0", "?",new cs.View({
+    title: 'Checkbox'
+  }));
+
+  checkboxPage.build(function() {
+    var box, boxesWidth, checkboxContainer, checkboxReport, checkboxes, gap, i, j, k, len, len1, ref, showChecked, startX;
+    this.addToStack(window.__framerNew(undefined, "864:13-864:27", "?",new cs.Checkbox));
+    this.addToStack(window.__framerNew(undefined, "867:13-867:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "868:17-872:0", "?",new cs.Text({
+      text: 'Checkbox.group '
+    })));
+    this.addToStack(checkboxContainer = window.__framerNew("checkboxContainer", "872:37-878:0", "?",new cs.Container({
+      size: 'medium',
+      border: 'grey',
+      fill: 'transparent'
+    })));
+    checkboxes = [];
+    boxesWidth = 0;
+    ref = _.range(6);
+    for (j = 0, len = ref.length; j < len; j++) {
+      i = ref[j];
+      box = window.__framerNew("box", "884:12-890:1", "?",new cs.Checkbox({
+        parent: checkboxContainer,
+        group: checkboxes,
+        y: Align.center,
+        value: i
+      }));
+      box.on("change:isOn", function(isOn) {
+        return showChecked();
+      });
+      boxesWidth += box.width;
+    }
+    gap = (checkboxContainer.width - boxesWidth) / 6;
+    startX = gap / 2;
+    for (k = 0, len1 = checkboxes.length; k < len1; k++) {
+      box = checkboxes[k];
+      box.x = startX;
+      startX += box.width + gap;
+    }
+    this.addToStack(checkboxReport = window.__framerNew("checkboxReport", "903:34-908:0", "?",new cs.Text({
+      type: 'subheader',
+      text: 'Checked: {string}'
+    })));
+    showChecked = function() {
+      var l, len2, string;
+      string = '';
+      for (l = 0, len2 = checkboxes.length; l < len2; l++) {
+        box = checkboxes[l];
+        if (box.isOn === true) {
+          string += box.value + ', ';
+        }
+      }
+      string = _.trimEnd(string, ', ');
+      return checkboxReport.template = string;
+    };
+    return showChecked();
+  });
+
+  radioboxPage = window.__framerNew("radioboxPage", "924:19-926:0", "?",new cs.View({
+    title: 'Radiobox'
+  }));
+
+  radioboxPage.build(function() {
+    var box, boxesWidth, gap, i, j, k, len, len1, radioboxContainer, radioboxReport, radioboxes, ref, showSelected, startX;
+    this.addToStack(window.__framerNew(undefined, "929:13-929:27", "?",new cs.Radiobox));
+    this.addToStack(window.__framerNew(undefined, "932:13-932:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "933:17-937:0", "?",new cs.Text({
+      text: 'Radiobox.group '
+    })));
+    this.addToStack(radioboxContainer = window.__framerNew("radioboxContainer", "937:37-943:0", "?",new cs.Container({
+      size: 'medium',
+      border: 'grey',
+      fill: 'transparent'
+    })));
+    radioboxes = [];
+    this.addToStack(radioboxReport = window.__framerNew("radioboxReport", "946:34-951:0", "?",new cs.Text({
+      type: 'subheader',
+      text: 'Selected: {string}'
+    })));
+    showSelected = function(value) {
+      return radioboxReport.template = value;
+    };
+    boxesWidth = 0;
+    ref = _.range(6);
+    for (j = 0, len = ref.length; j < len; j++) {
+      i = ref[j];
+      box = window.__framerNew("box", "958:12-964:1", "?",new cs.Radiobox({
+        parent: radioboxContainer,
+        group: radioboxes,
+        y: Align.center,
+        value: i
+      }));
+      boxesWidth += box.width;
+      box.on("change:isOn", function(isOn) {
+        if (isOn === true) {
+          return showSelected(this.value);
+        }
+      });
+    }
+    gap = (radioboxContainer.width - boxesWidth) / 6;
+    startX = gap / 2;
+    for (k = 0, len1 = radioboxes.length; k < len1; k++) {
+      box = radioboxes[k];
+      box.x = startX;
+      startX += box.width + gap;
+    }
+    return radioboxes[1].isOn = true;
+  });
+
+  accordianPage = window.__framerNew("accordianPage", "996:20-998:0", "?",new cs.View({
+    title: 'Accordian'
+  }));
+
+  accordianPage.build(function() {
+    var acco, accordian, accordianBoth, accordianIcon, accordianSubtitle, body, j, len, ref, results1;
+    this.addToStack(accordian = window.__framerNew("accordian", "1001:25-1001:40", "?",new cs.Accordian));
+    body = window.__framerNew("body", "1003:12-1011:0", "?",new cs.Text({
+      parent: accordian,
+      y: 72,
+      x: 16,
+      width: accordian.width - 32,
+      text: 'This is an example of an accordian, a container that may be opened or closed to reveal additional content.'
+    }));
+    this.addToStack(window.__framerNew(undefined, "1011:13-1011:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "1012:17-1015:0", "?",new cs.Text({
+      text: 'Accordian.title '
+    })));
+    this.addToStack(accordian = window.__framerNew("accordian", "1015:29-1019:0", "?",new cs.Accordian({
+      title: 'Accordian Title'
+    })));
+    this.addToStack(window.__framerNew(undefined, "1019:13-1019:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "1020:17-1023:0", "?",new cs.Text({
+      text: 'Accordian.subtitle '
+    })));
+    this.addToStack(accordianSubtitle = window.__framerNew("accordianSubtitle", "1023:37-1028:0", "?",new cs.Accordian({
+      title: 'Accordian with Subtitle',
+      subtitle: 'Subtitle'
+    })));
+    this.addToStack(window.__framerNew(undefined, "1028:13-1028:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "1029:17-1032:0", "?",new cs.Text({
+      text: 'Accordian.icon '
+    })));
+    this.addToStack(accordianIcon = window.__framerNew("accordianIcon", "1032:33-1037:0", "?",new cs.Accordian({
+      title: 'Accordian with Icon',
+      icon: 'alert'
+    })));
+    this.addToStack(window.__framerNew(undefined, "1037:13-1037:26", "?",new cs.Divider));
+    this.addToStack(accordianBoth = window.__framerNew("accordianBoth", "1039:33-1045:0", "?",new cs.Accordian({
+      title: 'Accordian with Both',
+      subtitle: 'Subtitle and Icon',
+      icon: 'alert'
+    })));
+    ref = [accordian, accordianSubtitle, accordianIcon, accordianBoth];
+    results1 = [];
+    for (j = 0, len = ref.length; j < len; j++) {
+      acco = ref[j];
+      results1.push(body = window.__framerNew("body", "1046:13-1054:0", "?",new cs.Text({
+        parent: acco,
+        y: 72,
+        x: 16,
+        width: acco.width - 32,
+        text: 'This is an example of an accordian, a container that may be opened or closed to reveal additional content.'
+      })));
+    }
+    return results1;
+  });
+
+  carouselPage = window.__framerNew("carouselPage", "1055:19-1057:0", "?",new cs.View({
+    title: 'Carousel'
+  }));
+
+  carouselPage.build(function() {
+    var carousel, circleCarousel, i, j, k, l, len, len1, len10, len11, len12, len13, len14, len2, len3, len4, len5, len6, len7, len8, len9, lineCarousel, m, n, o, opacity1Carousel, opacity2Carousel, opacityCarousel, originY1Carousel, originY2Carousel, originYCarousel, p, padding1Carousel, padding2Carousel, paddingCarousel, q, r, ref, ref1, ref10, ref11, ref12, ref13, ref14, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9, results1, s, scale1Carousel, scale2Carousel, scaleCarousel, t, u, v, w, x;
+    this.addToStack(carousel = window.__framerNew("carousel", "1059:24-1059:38", "?",new cs.Carousel));
+    ref = _.range(7);
+    for (j = 0, len = ref.length; j < len; j++) {
+      i = ref[j];
+      carousel.addPage();
+    }
+    this.addToStack(window.__framerNew(undefined, "1065:13-1065:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "1066:17-1069:0", "?",new cs.Text({
+      text: 'Carousel.shape'
+    })));
+    this.addToStack(lineCarousel = window.__framerNew("lineCarousel", "1069:32-1072:0", "?",new cs.Carousel({
+      shape: 'line'
+    })));
+    ref1 = _.range(7);
+    for (k = 0, len1 = ref1.length; k < len1; k++) {
+      i = ref1[k];
+      lineCarousel.addPage();
+    }
+    this.addToStack(circleCarousel = window.__framerNew("circleCarousel", "1075:34-1078:0", "?",new cs.Carousel({
+      shape: 'circle'
+    })));
+    ref2 = _.range(7);
+    for (l = 0, len2 = ref2.length; l < len2; l++) {
+      i = ref2[l];
+      circleCarousel.addPage();
+    }
+    this.addToStack(window.__framerNew(undefined, "1082:13-1082:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "1083:17-1086:0", "?",new cs.Text({
+      text: 'Carousel.opacityScale '
+    })));
+    this.addToStack(opacityCarousel = window.__framerNew("opacityCarousel", "1086:35-1090:0", "?",new cs.Carousel({
+      shape: 'circle',
+      opacityScale: 1
+    })));
+    ref3 = _.range(7);
+    for (m = 0, len3 = ref3.length; m < len3; m++) {
+      i = ref3[m];
+      opacityCarousel.addPage();
+    }
+    this.addToStack(opacity1Carousel = window.__framerNew("opacity1Carousel", "1093:36-1097:0", "?",new cs.Carousel({
+      shape: 'circle',
+      opacityScale: .5
+    })));
+    ref4 = _.range(7);
+    for (n = 0, len4 = ref4.length; n < len4; n++) {
+      i = ref4[n];
+      opacity1Carousel.addPage();
+    }
+    this.addToStack(opacity2Carousel = window.__framerNew("opacity2Carousel", "1100:36-1104:0", "?",new cs.Carousel({
+      shape: 'circle',
+      opacityScale: 0
+    })));
+    ref5 = _.range(7);
+    for (o = 0, len5 = ref5.length; o < len5; o++) {
+      i = ref5[o];
+      opacity2Carousel.addPage();
+    }
+    this.addToStack(window.__framerNew(undefined, "1108:13-1108:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "1109:17-1112:0", "?",new cs.Text({
+      text: 'Carousel.scaleScale'
+    })));
+    this.addToStack(scaleCarousel = window.__framerNew("scaleCarousel", "1112:33-1115:0", "?",new cs.Carousel({
+      scaleScale: 1
+    })));
+    ref6 = _.range(7);
+    for (p = 0, len6 = ref6.length; p < len6; p++) {
+      i = ref6[p];
+      scaleCarousel.addPage();
+    }
+    this.addToStack(scale1Carousel = window.__framerNew("scale1Carousel", "1118:34-1121:0", "?",new cs.Carousel({
+      scaleScale: .5
+    })));
+    ref7 = _.range(7);
+    for (q = 0, len7 = ref7.length; q < len7; q++) {
+      i = ref7[q];
+      scale1Carousel.addPage();
+    }
+    this.addToStack(scale2Carousel = window.__framerNew("scale2Carousel", "1124:34-1127:0", "?",new cs.Carousel({
+      scaleScale: 0
+    })));
+    ref8 = _.range(7);
+    for (r = 0, len8 = ref8.length; r < len8; r++) {
+      i = ref8[r];
+      scale2Carousel.addPage();
+    }
+    this.addToStack(window.__framerNew(undefined, "1131:13-1131:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "1132:17-1135:0", "?",new cs.Text({
+      text: 'Carousel.padding'
+    })));
+    this.addToStack(paddingCarousel = window.__framerNew("paddingCarousel", "1135:35-1138:0", "?",new cs.Carousel({
+      padding: 0
+    })));
+    ref9 = _.range(7);
+    for (s = 0, len9 = ref9.length; s < len9; s++) {
+      i = ref9[s];
+      paddingCarousel.addPage();
+    }
+    this.addToStack(padding1Carousel = window.__framerNew("padding1Carousel", "1141:36-1144:0", "?",new cs.Carousel({
+      padding: 32
+    })));
+    ref10 = _.range(7);
+    for (t = 0, len10 = ref10.length; t < len10; t++) {
+      i = ref10[t];
+      padding1Carousel.addPage();
+    }
+    this.addToStack(padding2Carousel = window.__framerNew("padding2Carousel", "1147:36-1150:0", "?",new cs.Carousel({
+      padding: -32
+    })));
+    ref11 = _.range(7);
+    for (u = 0, len11 = ref11.length; u < len11; u++) {
+      i = ref11[u];
+      padding2Carousel.addPage();
+    }
+    this.addToStack(window.__framerNew(undefined, "1154:13-1154:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "1155:17-1158:0", "?",new cs.Text({
+      text: 'Carousel.originY'
+    })));
+    this.addToStack(originYCarousel = window.__framerNew("originYCarousel", "1158:35-1161:0", "?",new cs.Carousel({
+      originY: 0
+    })));
+    ref12 = _.range(7);
+    for (v = 0, len12 = ref12.length; v < len12; v++) {
+      i = ref12[v];
+      originYCarousel.addPage();
+    }
+    this.addToStack(originY1Carousel = window.__framerNew("originY1Carousel", "1164:36-1167:0", "?",new cs.Carousel({
+      originY: .5
+    })));
+    ref13 = _.range(7);
+    for (w = 0, len13 = ref13.length; w < len13; w++) {
+      i = ref13[w];
+      originY1Carousel.addPage();
+    }
+    this.addToStack(originY2Carousel = window.__framerNew("originY2Carousel", "1170:36-1173:0", "?",new cs.Carousel({
+      originY: 1
+    })));
+    ref14 = _.range(7);
+    results1 = [];
+    for (x = 0, len14 = ref14.length; x < len14; x++) {
+      i = ref14[x];
+      results1.push(originY2Carousel.addPage());
+    }
+    return results1;
+  });
+
+  pullerPage = window.__framerNew("pullerPage", "1178:17-1180:0", "?",new cs.View({
+    title: 'Puller'
+  }));
+
+  pullerPage.build(function() {
+    var puller;
+    return puller = window.__framerNew("puller", "1183:14-1187:0", "?",new cs.Puller({
+      parent: this.content
+    }));
+  });
+
+  progressPage = window.__framerNew("progressPage", "1188:19-1191:0", "?",new cs.View({
+    title: 'Progress',
+    padding: {
+      left: 16,
+      top: 102,
+      stack: 32,
+      right: 16
+    }
+  }));
+
+  progressPage.build(function() {
+    var next, prev, progress;
+    progress = window.__framerNew("progress", "1194:16-1199:0", "?",new cs.Progress({
+      parent: this.content,
+      y: 16,
+      step: 1
+    }));
+    prev = window.__framerNew("prev", "1199:12-1206:0", "*",new ghostButton({
+      parent: this.content,
+      x: 16,
+      y: progress.maxY + 16,
+      text: "Prev step",
+      action: function() {
+        return progress.step--;
+      }
+    }));
+    return next = window.__framerNew("next", "1206:12-1214:0", "*",new ghostButton({
+      parent: this.content,
+      x: prev.maxX + 16,
+      y: progress.maxY + 16,
+      text: "Next step",
+      action: function() {
+        return progress.step++;
+      }
+    }));
+  });
+
+  progressBarPage = window.__framerNew("progressBarPage", "1215:22-1216:21", "?",new cs.View({
+    title: 'Progress Bar'
+  }));
+
+  progressBarPage.build(function() {
+    var bar, label;
+    this.addToStack(window.__framerNew(undefined, "1219:13-1219:30", "?",new cs.ProgressBar));
+    this.addToStack(window.__framerNew(undefined, "1223:13-1223:26", "?",new cs.Divider));
+    this.addToStack(bar = window.__framerNew("bar", "1225:23-1228:0", "?",new cs.ProgressBar({
+      value: 70
+    })));
+    this.addToStack(label = window.__framerNew("label", "1228:25-1232:0", "?",new cs.Text({
+      type: "body1",
+      text: "Value: {value}"
+    })));
+    label.template = bar.value.toFixed();
+    this.addToStack(window.__framerNew(undefined, "1234:17-1240:0", "*",new ghostButton({
+      text: "Set new value",
+      action: function() {
+        return bar.animate({
+          value: _.random(bar.min, bar.max)
+        });
+      }
+    })));
+    return bar.on("change:value", function(value) {
+      return label.template = value.toFixed();
+    });
+  });
+
+  navigationPage = window.__framerNew("navigationPage", "1247:21-1249:0", "?",new cs.View({
+    title: 'Navigation'
+  }));
+
+  navigationPage.build(function() {
+    this.addToStack(window.__framerNew(undefined, "1255:13-1255:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "1256:17-1259:0", "?",new cs.Text({
+      text: 'Navigation.type '
+    })));
+    this.addToStack(window.__framerNew(undefined, "1259:17-1264:0", "*",new ghostButton({
+      text: 'Default',
+      action: function() {
+        var ref;
+        return (ref = app.navigation) != null ? ref.type = 'default' : void 0;
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "1264:17-1269:0", "*",new ghostButton({
+      text: 'Page',
+      action: function() {
+        var ref;
+        return (ref = app.navigation) != null ? ref.type = 'page' : void 0;
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "1269:17-1274:0", "*",new ghostButton({
+      text: 'Login',
+      action: function() {
+        var ref;
+        return (ref = app.navigation) != null ? ref.type = 'login' : void 0;
+      }
+    })));
+    return this.addToStack(window.__framerNew(undefined, "1274:17-1280:0", "*",new ghostButton({
+      text: 'Registration',
+      action: function() {
+        var ref;
+        return (ref = app.navigation) != null ? ref.type = 'registration' : void 0;
+      }
+    })));
+  });
+
+  headerPage = window.__framerNew("headerPage", "1281:17-1285:0", "?",new cs.View({
+    title: 'Headers',
+    right: {
+      icon: 'settings'
+    }
+  }));
+
+  headerPage.build(function() {
+    var swap;
+    this.addToStack(swap = window.__framerNew("swap", "1289:24-1295:0", "*",new ghostButton({
+      text: 'Safari Bar',
+      action: function() {
+        return app.type = "safari";
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "1295:24-1301:0", "*",new ghostButton({
+      text: 'iOS Bar',
+      action: function() {
+        return app.type = "ios";
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "1301:24-1309:0", "*",new ghostButton({
+      text: 'iOS Bar (collapse)',
+      size: 'auto',
+      action: function() {
+        app.type = "ios";
+        return app.header.collapse = true;
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "1309:24-1315:0", "*",new ghostButton({
+      text: 'Android Bar',
+      action: function() {
+        return app.type = "android";
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "1315:24-1321:0", "*",new ghostButton({
+      text: 'Blank Bar',
+      action: function() {
+        return app.type = "mobile";
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "1321:24-1328:0", "*",new ghostButton({
+      text: 'Blank Bar (collapse)',
+      action: function() {
+        app.type = "mobile";
+        return app.header.collapse = true;
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "1328:24-1337:0", "*",new ghostButton({
+      text: 'Blank Bar (fill color)',
+      action: function() {
+        app.type = "mobile";
+        app.header.collapse = true;
+        app.header.fill = 'secondary';
+        return app.header.closedFill = 'secondary';
+      }
+    })));
+    return this.addToStack(swap = window.__framerNew("swap", "1337:24-1347:0", "*",new ghostButton({
+      text: 'Blank Bar (closedFill)',
+      action: function() {
+        app.type = "mobile";
+        app.header.collapse = true;
+        app.header.fill = 'secondary';
+        return app.header.closedFill = 'tertiary';
+      }
+    })));
+  });
+
+  links = [];
+
+  ref = app.views;
+  for (j = 0, len = ref.length; j < len; j++) {
+    view = ref[j];
+    link = {
+      text: view.title,
+      view: view
+    };
+    links.push(link);
+  }
+
+  app.navigation.links = links;
+
+  app.showNext(headerPage);
+
+  app.showNext(textPage);
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

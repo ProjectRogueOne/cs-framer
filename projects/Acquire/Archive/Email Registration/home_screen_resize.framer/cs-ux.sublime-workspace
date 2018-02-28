@@ -1,0 +1,404 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "Package Control Messages\n========================\n\nDashDoc\n-------\n\n  # Added support for linux\n  \n  DashDoc can now be used on linux, with the help of xdg-utils tool.\n\n  # Warning, breaking change!\n  \n  After a long discussion in https://github.com/farcaller/DashDoc/issues/29\n  I came to decision to change the default hotkeys (ctrl+h and ctrl+alt+h).\n  Given there are no good alternatives, this version REMOVES the default hotkey,\n  leaving the choice to the user.\n  \n  You can always use the command palette too.\n  \n  To set up the hotkey for dash open the Preferences > Key Bindings from the menu\n  and add a new entry that looks like this:\n  \n      { \"keys\": [\"YOUR HOTKEY\"], \"command\": \"dash_doc\"}\n  \n  for the default mode\n  \n      { \"keys\": [\"YOUR HOTKEY\"], \"command\": \"dash_doc\",\n                                 \"args\": { \"flip_syntax_sensitive\": true } }\n  \n  for the flipped case sensitive mode.\n",
+			"settings":
+			{
+				"buffer_size": 910,
+				"line_ending": "Unix",
+				"name": "Package Control Messages",
+				"read_only": true,
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 384.0,
+		"last_filter": "ascii",
+		"selected_items":
+		[
+			[
+				"ascii",
+				"ASCII Decorator: Font Selector"
+			],
+			[
+				"scope",
+				"Scope Hunter: Toggle Instant Scoper"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Class"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"extract",
+				"PackageResourceViewer: Extract Package"
+			],
+			[
+				"open ",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Extract Sublime Package: Extract open Package File"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"json",
+				"JSONComma: Run"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 479.0
+	},
+	"console":
+	{
+		"height": 134.0,
+		"history":
+		[
+			"view.scope_name(view.sel()[0].begin())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/cs-ux.framer/modules"
+	],
+	"file_history":
+	[
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/cs-ux.framer/modules/SafariBar.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/cs-ux.framer/modules/IOSBar.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/cs-ux.framer/modules/Database.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/cs-ux.framer/modules/Subnav.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/cs-ux.framer/modules/Icon.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/cs-ux.framer/modules/Container.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/cs-ux.framer/modules/TextField.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/cs-ux.framer/modules/Colors.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md-docs/source/includes/_app.md",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-dev.framer/modules/md-components/Flow.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-dev.framer/modules/md-components/App.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/View.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Type.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Toast.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Tile.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Theme.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/TextField.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/TextArea.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/TableCard.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Table.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Switch.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/StatusBar.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/StackView.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Snackbar.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Slider.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Select.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/RowItem.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Ripple.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Radiobox.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Page.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Notification.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/MenuOverlay.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/MenuButton.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Menu.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Icon.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Header.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/GridList.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Flow.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Elevation.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Dropdown.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Divider.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Dialog.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Checkbox.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Card.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/BottomNav.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/App.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/ActionButton.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/cs.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Progress.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-app.framer/modules/md-components/Button.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/MobileHeader.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/NavigationBar.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/SafariBar.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/View.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/App.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Toggle.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/TextField.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Toolbar.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Text.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Switch.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Standard.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/StackView.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Radiobox.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/NavButton.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/myModule.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Mobile.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Icon.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Field.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Divider.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Database.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Container.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Colors.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Checkbox.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Button.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/ActionSheet.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Stepper.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Arrow.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Flow.coffee",
+		"/Users/steveruiz/Downloads/cs-ux.framer/modules/Page.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/View.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Type.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Toast.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Tile.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Theme.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/TextField.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/TextArea.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/TableCard.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Table.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Switch.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/StatusBar.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/StackView.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Snackbar.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Slider.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Select.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/RowItem.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Ripple.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Radiobox.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Page.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Notification.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/MenuOverlay.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/MenuButton.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Menu.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Icon.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Header.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/GridList.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Dropdown.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Divider.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Dialog.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Checkbox.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Card.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/Button.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/BottomNav.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/App.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/GitHub/framer-md/framer-md-no-app.framer/modules/md-components/ActionButton.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/View.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/Switch.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/StatusBar.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/RowItem.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/MenuOverlay.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/MenuButton.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/Menu.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/Header.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/Dropdown.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/BottomNav.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/App.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/ActionButton.coffee",
+		"/Users/steveruiz/Library/Mobile Documents/com~apple~CloudDocs/Framer/test.framer/modules/md-components/GridList.coffee"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 136.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 910,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								910,
+								910
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.markdown":
+	{
+		"height": 100.0
+	},
+	"output.scopehunter.results":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "cs-ux.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"icon",
+				"~/Library/Mobile Documents/com~apple~CloudDocs/Framer/TheCops.framer/modules/Icon.coffee"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 357.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 374.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 160.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+		"max_columns": 1
+	}
+}

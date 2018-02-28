@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function () {
+			var scale = 1 / window.devicePixelRatio
+			var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no, viewport-fit=cover"
+			var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+			if (iOS) { viewport += ", shrink-to-fit=no" }
+			document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+	</script>
+
+	<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+	<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+	<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+	<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+	<script src="framer/coffee-script.js"></script>
+	<script src="framer/framer.js?nocache=8e1498a1c4e3829b3ecfc26f93288d1d"></script>
+	<script src="framer/framer.generated.js?nocache=bf0136c12444a151bb6e9a06289d123c"></script>
+	<script src="framer/framer.modules.js?nocache=036cebb051118c29a0d0652bac9df8f6"></script>
+	<script src="framer/framer.vekter.js"></script>
+	<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 248;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var EMAIL_SUBMIT, SHOW_ALL, SHOW_LAYER_TREE, app, dumbthing, header, home, homeView, j, len, logo, navigation, page, pager, pages, ref, scale, shapes, showPage, theme, topLinks;
+
+  require('framework');
+
+  SHOW_ALL = true;
+
+  SHOW_LAYER_TREE = false;
+
+  theme = require('components/Theme').theme;
+
+  Canvas.backgroundColor = bg3;
+
+  Framer.Extras.Hints.disable();
+
+  dumbthing = (ref = document.getElementById("FramerContextRoot-TouchEmulator")) != null ? ref.childNodes[0] : void 0;
+
+  if (dumbthing != null) {
+    dumbthing.style.width = "0px";
+  }
+
+  EMAIL_SUBMIT = false;
+
+  Framer.Device.customize({
+    deviceImageWidth: 1920,
+    deviceImageHeight: 1080,
+    screenWidth: 1920,
+    screenHeight: 1080,
+    devicePixelRatio: 1,
+    deviceType: "fullscreen"
+  });
+
+  app = window.__framerNew("app", "31:10-35:0", "?",new App({
+    chrome: null
+  }));
+
+  scale = 1;
+
+  header = window.__framerNew("header", "40:13-48:0", "#1364e9764",new Layer({
+    width: Screen.width,
+    height: 36 * scale,
+    gradient: {
+      start: "#d6d5d7",
+      end: "f7f6f7"
+    },
+    shadowY: 1,
+    shadowColor: "#a2a1a3"
+  }));
+
+  app.loadingLayer.y = header.maxY - 2;
+
+  Utils.bind(header, function() {
+    var button, color, i, j, len, ref1;
+    ref1 = ['#ff5f58', '#ffbd2d', '#28cc42'];
+    for (i = j = 0, len = ref1.length; j < len; i = ++j) {
+      color = ref1[i];
+      button = window.__framerNew("button", "56:15-69:0", "#139f642a1",new Layer({
+        parent: this,
+        x: 16 + ((20 * scale) * i),
+        y: Align.center,
+        size: 24,
+        borderRadius: 12,
+        backgroundColor: color,
+        borderColor: window.__framerNew(undefined, "63:20-63:31", "@Color",new Color(color)).darken(10),
+        borderWidth: 1,
+        scale: .5 * scale
+      }));
+    }
+    this.backButton = window.__framerNew(undefined, "69:19-85:0", "#106169643",new Layer({
+      parent: this,
+      x: button.maxX + (8 * scale),
+      y: Align.center,
+      height: 44,
+      width: 50,
+      borderRadius: 4,
+      borderWidth: 1,
+      borderColor: "#cecdcf",
+      shadowY: 1,
+      shadowColor: "#a5a4a6",
+      gradient: {
+        start: "#f1f1f1",
+        end: "#fdfdfd"
+      },
+      scale: .5 * scale
+    }));
+    this.backButtonIcon = window.__framerNew(undefined, "85:23-92:0", "?",new Icon({
+      parent: this.backButton,
+      x: Align.center,
+      y: Align.center(4),
+      icon: "ios-back",
+      color: "#808080"
+    }));
+    this.backButton.onTap((function(_this) {
+      return function() {
+        return app.showPrevious();
+      };
+    })(this));
+    this.forwardButton = window.__framerNew(undefined, "94:22-110:0", "#bcd03703",new Layer({
+      parent: this,
+      x: button.maxX + (32 * scale),
+      y: Align.center,
+      height: 44,
+      width: 50,
+      borderRadius: 4,
+      borderWidth: 1,
+      borderColor: "#cecdcf",
+      shadowY: 1,
+      shadowColor: "#a5a4a6",
+      gradient: {
+        start: "#f1f1f1",
+        end: "#fdfdfd"
+      },
+      scale: .5 * scale
+    }));
+    this.forwardButtonIcon = window.__framerNew(undefined, "110:26-119:0", "?",new Icon({
+      parent: this.forwardButton,
+      x: Align.center,
+      y: Align.center(-2),
+      icon: "ios-back",
+      rotation: 180,
+      color: "#808080"
+    }));
+    this.addressField = window.__framerNew(undefined, "119:21-133:0", "#bde1160e",new Layer({
+      parent: this,
+      height: 48,
+      width: this.width * .618,
+      point: Align.center(),
+      gradient: {
+        start: "#f1f1f1",
+        end: "#fefefe"
+      },
+      borderRadius: 4,
+      borderColor: "#cac9cb",
+      shadowY: 1,
+      shadowColor: "#a5a4a6",
+      scale: .5 * scale
+    }));
+    this.textLayer = window.__framerNew(undefined, "133:18-141:0", "#ebade6d9",new TextLayer({
+      parent: this.addressField,
+      point: Align.center(),
+      text: "clearscore.com",
+      fontSize: 24,
+      color: '#333'
+    }));
+    this.readerIcon = window.__framerNew(undefined, "141:19-150:0", "?",new Icon({
+      parent: this.addressField,
+      x: 8,
+      y: Align.center(),
+      height: 26,
+      width: 26,
+      icon: "format-align-left",
+      color: '#7c7c7d'
+    }));
+    this.lockIcon = window.__framerNew(undefined, "150:17-159:0", "?",new Icon({
+      parent: this.addressField,
+      x: this.textLayer.x - 32,
+      y: Align.center(),
+      height: 22,
+      width: 22,
+      icon: "lock",
+      color: '#7c7c7d'
+    }));
+    return this.refreshIcon = window.__framerNew(undefined, "159:20-173:0", "?",new Icon({
+      parent: this.addressField,
+      x: Align.right(-8),
+      y: Align.center(),
+      height: 26,
+      width: 26,
+      icon: "refresh",
+      color: '#7c7c7d'
+    }));
+  });
+
+  homeView = window.__framerNew("homeView", "174:15-179:0", "?",new View({
+    title: 'Framework',
+    padding: null,
+    scrollVertical: false
+  }));
+
+  app.showNext(homeView);
+
+  shapes = _.range(5).map(function(i) {
+    var h, half_device, half_width, scrim, shape, w, x0, x1, x2, x3;
+    shape = window.__framerNew("shape", "187:13-195:0", "#fa651bba",new Layer({
+      name: "Shape " + i,
+      parent: homeView.content,
+      x: Align.right(),
+      y: Align.center(),
+      height: Screen.height,
+      width: Screen.width / 2
+    }));
+    shape.setImages = function(images) {
+      if (images == null) {
+        images = {};
+      }
+      _.assign(this, {
+        startImg: images.startImg,
+        endImg: images.endImg
+      });
+      this.imageLayerImage.image = this.startImg;
+      this.startImgLayer.image = this.startImg;
+      this.imageLayerEndImage.image = this.endImg;
+      return this.endImgLayer.image = this.endImg;
+    };
+    _.assign(shape, {
+      startImg: Utils.randomImage(),
+      endImg: Utils.randomImage(),
+      startColor: blue,
+      endColor: green
+    });
+    shape.imageLayer = window.__framerNew(undefined, "211:24-218:0", "#1734b66b8",new Layer({
+      name: 'image mask',
+      parent: shape,
+      size: shape.size,
+      clip: true,
+      backgroundColor: null
+    }));
+    shape.imageLayerImage = window.__framerNew(undefined, "218:29-227:0", "#14aba1656",new Layer({
+      name: 'image',
+      parent: shape.imageLayer,
+      height: shape.height * 1.25,
+      width: shape.width * 1.25,
+      image: shape.startImg,
+      y: Align.center(),
+      blur: 80
+    }));
+    shape.imageLayerEndImage = window.__framerNew(undefined, "227:32-237:0", "#1786f8c90",new Layer({
+      name: 'image',
+      parent: shape.imageLayer,
+      height: shape.height * 1.25,
+      width: shape.width * 1.25,
+      image: shape.endImg,
+      y: Align.center(),
+      blur: 80
+    }));
+    scrim = window.__framerNew("scrim", "237:13-244:0", "#1095861d4",new Layer({
+      parent: shape,
+      height: 251,
+      width: shape.width + 2,
+      x: -1,
+      backgroundColor: white
+    }));
+    scrim = window.__framerNew("scrim", "244:13-253:0", "#165f94a38",new Layer({
+      parent: shape,
+      y: 250,
+      width: shape.width + 2,
+      height: 500,
+      gradient: {
+        start: 'rgba(255,255,255,0)',
+        end: 'rgba(255,255,255,1)'
+      }
+    }));
+    h = Screen.height * .618;
+    w = h * 676 / 1354;
+    shape.device = window.__framerNew(undefined, "256:20-271:0", "#cb8aa513",new Layer({
+      name: "Device " + i,
+      parent: shape,
+      height: h,
+      width: w - 32,
+      y: Align.center(),
+      x: -w / 2,
+      backgroundColor: grey,
+      borderRadius: 48,
+      image: shape.startImg,
+      shadowX: 12,
+      shadowY: 24,
+      shadowBlur: 40,
+      shadowColor: "rgba(0,0,0,.41)"
+    }));
+    shape.startImgLayer = window.__framerNew(undefined, "271:27-278:0", "#ed104741",new Layer({
+      name: "Device " + i,
+      parent: shape.device,
+      size: shape.device,
+      borderRadius: 48,
+      image: shape.startImg
+    }));
+    shape.endImgLayer = window.__framerNew(undefined, "278:25-285:0", "#c41c5258",new Layer({
+      name: "Device " + i,
+      parent: shape.device,
+      size: shape.device,
+      borderRadius: 48,
+      image: shape.endImg
+    }));
+    shape.deviceScreen = window.__framerNew(undefined, "285:26-294:0", "#120cb523d",new Layer({
+      name: "Device " + i,
+      parent: shape.device,
+      height: h,
+      width: w,
+      x: -20,
+      backgroundColor: null,
+      image: 'images/iPhoneX.png'
+    }));
+    half_device = shape.device.width / 2;
+    half_width = (Screen.width * .191) - half_device;
+    x1 = 393 + half_device - shape.width + 128;
+    x2 = (Screen.width - 393) - half_device;
+    x3 = x2 + (x2 - x1);
+    x0 = x1 - (x2 - x1);
+    shape.setFactor = function(factor) {
+      this.x = Utils.modulate(factor, [0, 3], [x0, x3]);
+      this.imageLayer.backgroundColor = Color.mix(this.startColor, this.endColor, Utils.modulate(factor, [0, 3], [0, 1], true));
+      this.imageLayerImage.x = Utils.modulate(factor, [1, 2], [-this.imageLayer.width * .9, -this.imageLayer.width * .5], true);
+      this.device.midX = Utils.modulate(factor, [1, 2], [this.width - 48, 24], true);
+      this.endImgLayer.opacity = Utils.modulate(factor, [1, 2], [1, 0], true);
+      this.imageLayerEndImage.opacity = Utils.modulate(factor, [1, 2], [1, 0], true);
+      return this.device.shadowX = Utils.modulate(factor, [1, 2], [-24, 24], true);
+    };
+    Utils.define(shape, "factor", 1, shape.setFactor);
+    return _.assign(shape, {
+      factor: 2,
+      visible: false
+    });
+  });
+
+  pages = [];
+
+  pager = window.__framerNew("pager", "360:12-366:17", "#cd275b7c",new PageComponent({
+    parent: homeView.content,
+    size: homeView.size,
+    scrollHorizontal: false,
+    scrollVertical: false
+  }));
+
+  pager.content.on("change:x", (function(_this) {
+    return function() {
+      return pages.forEach(function(page) {
+        var factor;
+        factor = Utils.modulate(pager.scrollX - page.x, [page.width * 2, -page.width * 2], [-2, 2], true);
+        return page.emit("change:factor", factor, page);
+      });
+    };
+  })(this));
+
+  showPage = function(page) {
+    var diff;
+    diff = Math.abs(_.indexOf(pages, pager.currentPage) - _.indexOf(pages, page));
+    if (diff === 0) {
+      return;
+    }
+    if (Math.abs(diff) === 1) {
+      pager.snapToPage(page, true, {
+        time: .7
+      });
+      return;
+    }
+    homeView.animate({
+      opacity: 0,
+      options: {
+        time: .15
+      }
+    });
+    return Utils.delay(.17, (function(_this) {
+      return function() {
+        var i, j, len, shape;
+        pager.snapToPage(page, true, {
+          time: 0
+        });
+        for (i = j = 0, len = shapes.length; j < len; i = ++j) {
+          shape = shapes[i];
+          shape.setFactor(0);
+        }
+        return Utils.delay(.25, function() {
+          var ref1;
+          if ((ref1 = page.shape) != null) {
+            ref1.setFactor(2);
+          }
+          return homeView.animate({
+            opacity: 1,
+            options: {
+              time: .25
+            }
+          });
+        });
+      };
+    })(this));
+  };
+
+  pages[0] = window.__framerNew("0", "405:15-408:0", "#16577cc53",new Layer({
+    size: homeView.size,
+    backgroundColor: null
+  }));
+
+  Utils.bind(pages[0], function() {
+    var copy, isValidEmail;
+    _.assign(this, {
+      shape: shapes[0],
+      description: "Home"
+    });
+    copy = window.__framerNew("copy", "415:12-422:0", "?",new H1({
+      parent: this,
+      x: 393,
+      y: Screen.height * .280,
+      text: "Your credit score and report. For free, forever.",
+      width: Screen.width / 5
+    }));
+    if (EMAIL_SUBMIT) {
+      this.emailSubmit = window.__framerNew(undefined, "423:21-430:1", "?",new TextInput({
+        parent: this,
+        x: copy.x,
+        y: copy.maxY + 64,
+        width: 240,
+        placeholder: "Enter your email"
+      }));
+      this.warnText = window.__framerNew(undefined, "430:18-439:1", "?",new Micro({
+        parent: this,
+        y: this.emailSubmit.maxY + 4,
+        x: copy.x + 24,
+        color: black,
+        text: "Please enter a valid email address",
+        color: black30,
+        visible: false
+      }));
+      this.primaryCTA = window.__framerNew(undefined, "439:20-446:1", "?",new Button({
+        parent: this,
+        x: this.emailSubmit.maxX + 16,
+        y: copy.maxY + 64,
+        text: 'Get started',
+        width: 128
+      }));
+      this.emailSubmit.on("change:value", (function(_this) {
+        return function() {
+          return _this.warnText.visible = false;
+        };
+      })(this));
+      isValidEmail = function(email) {
+        var re;
+        re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return email.toLowerCase().match(re);
+      };
+      this.primaryCTA.onSelect((function(_this) {
+        return function() {
+          if (!isValidEmail(_this.emailSubmit.value)) {
+            return _this.warnText.visible = true;
+          } else {
+            _this.warnText.visible = false;
+            homeView.animate({
+              opacity: 0
+            });
+            return Utils.delay(3, function() {
+              _this.emailSubmit.value = "";
+              return homeView.animate({
+                opacity: 1
+              });
+            });
+          }
+        };
+      })(this));
+    } else {
+      this.primaryCTA = window.__framerNew(undefined, "467:20-474:1", "?",new Button({
+        parent: this,
+        x: copy.x,
+        y: copy.maxY + 64,
+        width: 200,
+        text: "Get Started"
+      }));
+      this.secondaryCTA = window.__framerNew(undefined, "474:22-483:0", "?",new Button({
+        parent: this,
+        x: this.primaryCTA.maxX + 16,
+        y: copy.maxY + 64,
+        width: 200,
+        text: "Find out more",
+        secondary: true,
+        select: (function(_this) {
+          return function() {
+            return pager.snapToPage(pages[1], true, {
+              time: 1
+            });
+          };
+        })(this)
+      }));
+    }
+    return this.on("change:factor", (function(_this) {
+      return function(factor) {
+        if ((-2 < factor && factor < 2)) {
+          factor = Utils.modulate(factor, [-2, 2], [0, 4], true);
+          return _.assign(_this.shape, {
+            visible: true,
+            factor: factor
+          });
+        }
+      };
+    })(this));
+  });
+
+  pages[1] = window.__framerNew("1", "500:15-503:0", "#1525b5d17",new Layer({
+    size: homeView.size,
+    backgroundColor: null
+  }));
+
+  Utils.bind(pages[1], function() {
+    var copy;
+    _.assign(this, {
+      description: "About credit scores"
+    });
+    copy = window.__framerNew("copy", "509:12-516:0", "?",new H1({
+      parent: this,
+      x: 1069,
+      y: Screen.height * .280,
+      width: 353,
+      text: "We make finance simple"
+    }));
+    copy = window.__framerNew("copy", "516:12-523:0", "?",new Body({
+      parent: this,
+      y: copy.maxY + 16,
+      x: copy.x,
+      width: 353,
+      text: "Your credit score is a overall rating of your financial history. The better your credit score, the more likely you are to get the best deals and interest rates. Get your free credit score every month and check it as often as you like!"
+    }));
+    return this.primaryCTA = window.__framerNew(undefined, "523:19-531:0", "?",new Button({
+      parent: this,
+      x: copy.x,
+      y: copy.maxY + 24,
+      width: 200,
+      text: "Get Started"
+    }));
+  });
+
+  pages[2] = window.__framerNew("2", "532:15-535:0", "#deeb03d8",new Layer({
+    size: homeView.size,
+    backgroundColor: null
+  }));
+
+  Utils.bind(pages[2], function() {
+    var copy;
+    _.assign(this, {
+      shape: shapes[1],
+      description: "Build your score"
+    });
+    copy = window.__framerNew("copy", "542:12-549:0", "?",new H1({
+      parent: this,
+      x: 393,
+      y: Screen.height * .280,
+      width: Screen.width / 5,
+      text: "Building your score"
+    }));
+    copy = window.__framerNew("copy", "549:12-556:0", "?",new Body({
+      parent: this,
+      y: copy.maxY + 16,
+      x: copy.x,
+      width: 353,
+      text: "If your new to credit you may have a low or no score. This can prevent you from being accepted for financial services. We’ll show you how to build your score to help you meet your financial goals."
+    }));
+    this.primaryCTA = window.__framerNew(undefined, "556:19-563:0", "?",new Button({
+      parent: this,
+      x: copy.x,
+      y: copy.maxY + 24,
+      width: 200,
+      text: "Get Started"
+    }));
+    return this.on("change:factor", (function(_this) {
+      return function(factor) {
+        if ((-2 < factor && factor < 2)) {
+          factor = Utils.modulate(factor, [-2, 2], [0, 4], true);
+          return _.assign(_this.shape, {
+            visible: true,
+            factor: factor
+          });
+        }
+      };
+    })(this));
+  });
+
+  pages[3] = window.__framerNew("3", "580:15-583:0", "#f47ed51f",new Layer({
+    size: homeView.size,
+    backgroundColor: null
+  }));
+
+  Utils.bind(pages[3], function() {
+    var copy;
+    _.assign(this, {
+      description: "The best offers"
+    });
+    copy = window.__framerNew("copy", "589:12-596:0", "?",new H1({
+      parent: this,
+      x: 1069,
+      y: Screen.height * .280,
+      width: 353,
+      text: "Get the best offers"
+    }));
+    copy = window.__framerNew("copy", "596:12-603:0", "?",new Body({
+      parent: this,
+      y: copy.maxY + 16,
+      x: copy.x,
+      width: 353,
+      text: "Having a good credit score means your more likely to get better deals and interest rates on mortgages, loans, credit cards and car insurance. We’ll show you the best deals for you and how likely you’ll be accepted."
+    }));
+    return this.primaryCTA = window.__framerNew(undefined, "603:19-611:0", "?",new Button({
+      parent: this,
+      x: copy.x,
+      y: copy.maxY + 64,
+      width: 200,
+      text: "See your offers"
+    }));
+  });
+
+  pages[4] = window.__framerNew("4", "612:15-615:0", "#aaab96f5",new Layer({
+    size: homeView.size,
+    backgroundColor: null
+  }));
+
+  Utils.bind(pages[4], function() {
+    var copy;
+    _.assign(this, {
+      shape: shapes[2],
+      description: "The monthly report"
+    });
+    copy = window.__framerNew("copy", "622:12-629:0", "?",new H1({
+      parent: this,
+      x: 393,
+      y: Screen.height * .280,
+      width: Screen.width / 5,
+      text: "Your full credit report. Every month."
+    }));
+    copy = window.__framerNew("copy", "629:12-636:0", "?",new Body({
+      parent: this,
+      y: copy.maxY + 16,
+      x: copy.x,
+      width: 353,
+      text: "Keep track of your financial history with our free monthly credit reports. Credit reports are a great way to see any outstanding issues in your credit and keep track of spending."
+    }));
+    this.primaryCTA = window.__framerNew(undefined, "636:19-643:0", "?",new Button({
+      parent: this,
+      x: copy.x,
+      y: copy.maxY + 24,
+      width: 200,
+      text: "See your report"
+    }));
+    return this.on("change:factor", (function(_this) {
+      return function(factor) {
+        if ((-2 < factor && factor < 2)) {
+          factor = Utils.modulate(factor, [-2, 2], [0, 4], true);
+          return _.assign(_this.shape, {
+            visible: true,
+            factor: factor
+          });
+        }
+      };
+    })(this));
+  });
+
+  pages[5] = window.__framerNew("5", "660:15-663:0", "#c03f683c",new Layer({
+    size: homeView.size,
+    backgroundColor: null
+  }));
+
+  Utils.bind(pages[5], function() {
+    var copy;
+    _.assign(this, {
+      description: "Your privacy"
+    });
+    copy = window.__framerNew("copy", "669:12-676:0", "?",new H1({
+      parent: this,
+      x: 1069,
+      y: Screen.height * .280,
+      width: 353,
+      text: "You’re in safe hands"
+    }));
+    copy = window.__framerNew("copy", "676:12-683:0", "?",new Body({
+      parent: this,
+      y: copy.maxY + 16,
+      x: copy.x,
+      width: 353,
+      text: "Your financial data is important. We use the latest in 256-bit encryption to ensure your information stays secure. We will never sell your data, we won’t send nuisance emails and checking your score is risk free."
+    }));
+    return this.primaryCTA = window.__framerNew(undefined, "683:19-691:0", "?",new Button({
+      parent: this,
+      x: copy.x,
+      y: copy.maxY + 64,
+      width: 200,
+      text: "Get Started"
+    }));
+  });
+
+  pages[6] = window.__framerNew("6", "692:15-695:0", "#14ccf0efd",new Layer({
+    size: homeView.size,
+    backgroundColor: '#FFF'
+  }));
+
+  Utils.bind(pages[6], function() {
+    _.assign(this, {
+      description: "About us"
+    });
+    return window.__framerNew(undefined, "701:5-709:0", "#1267b9bb7",new Layer({
+      parent: this,
+      image: "images/we_make_clearscore.png",
+      width: 1180,
+      height: 699,
+      point: Align.center()
+    }));
+  });
+
+  pages[7] = window.__framerNew("7", "710:15-713:0", "#cf32ae56",new Layer({
+    size: homeView.size,
+    backgroundColor: "#f5f3f3"
+  }));
+
+  Utils.bind(pages[7], function() {
+    _.assign(this, {
+      description: "Talk to us"
+    });
+    window.__framerNew(undefined, "719:5-728:0", "#1358ea29e",new Layer({
+      parent: this,
+      image: "images/support.png",
+      width: 432,
+      height: 422,
+      point: Align.center()
+    }));
+    shapes[0].setImages({
+      startImg: "images/Screens/Dashboard.png",
+      endImg: "images/Screens/Dashboard2.png"
+    });
+    shapes[1].setImages({
+      startImg: "images/Screens/Coaching chat bot.png",
+      endImg: "images/Screens/Offers.png"
+    });
+    return shapes[2].setImages({
+      startImg: "images/Screens/Timeline.png",
+      endImg: "images/Screens/Privacy.png"
+    });
+  });
+
+  navigation = window.__framerNew("navigation", "740:17-756:0", "#8c1c2a5b",new Layer({
+    x: Align.center(),
+    y: Align.bottom(-56),
+    width: 1192,
+    height: 64,
+    backgroundColor: white,
+    borderRadius: 64,
+    shadowY: 6,
+    shadowBlur: 12,
+    borderWidth: 2,
+    borderColor: "#efefef",
+    shadowColor: "rgba(0,0,0,.16)",
+    clip: true
+  }));
+
+  home = window.__framerNew("home", "757:11-762:0", "?",new Icon({
+    parent: navigation,
+    icon: "home",
+    x: 40,
+    y: Align.center(2),
+    color: grey80
+  }));
+
+  home.onTap(function() {
+    var j, len, ref1, ref2, results, sib;
+    showPage(pages[0]);
+    ref1 = this.siblings;
+    results = [];
+    for (j = 0, len = ref1.length; j < len; j++) {
+      sib = ref1[j];
+      results.push((ref2 = sib.circle) != null ? ref2.brightness = 100 : void 0);
+    }
+    return results;
+  });
+
+  navigation.buttons = pages.slice(1, 6).map(function(page, i) {
+    var button, ref1, ref2;
+    button = window.__framerNew("button", "770:14-778:0", "#148bf30db",new Layer({
+      parent: navigation,
+      height: navigation.height - 8,
+      y: Align.center(),
+      x: 28 + ((ref1 = (ref2 = _.last(navigation.children)) != null ? ref2.maxX : void 0) != null ? ref1 : 0) + 16,
+      backgroundColor: white
+    }));
+    Utils.bind(button, function() {
+      var copy;
+      this.circle = window.__framerNew(undefined, "779:16-790:1", "#efc5f3b4",new Layer({
+        parent: this,
+        height: 28,
+        width: 28,
+        borderRadius: 32,
+        x: 16,
+        y: Align.center(),
+        borderWidth: 1,
+        borderColor: black,
+        backgroundColor: white
+      }));
+      this.number = window.__framerNew(undefined, "790:16-796:1", "?",new Body2({
+        parent: this.circle,
+        text: i + 1,
+        x: Align.center(1),
+        y: Align.center(1)
+      }));
+      copy = window.__framerNew("copy", "796:13-803:1", "?",new Body2({
+        parent: button,
+        x: this.circle.maxX + 16,
+        y: Align.center(),
+        text: page.description
+      }));
+      button.width = copy.maxX;
+      return this.onTap(function() {
+        var j, len, ref3, ref4, ref5, results, sib;
+        showPage(page);
+        if ((ref3 = this.circle) != null) {
+          ref3.brightness = 90;
+        }
+        ref4 = this.siblings;
+        results = [];
+        for (j = 0, len = ref4.length; j < len; j++) {
+          sib = ref4[j];
+          results.push((ref5 = sib.circle) != null ? ref5.brightness = 100 : void 0);
+        }
+        return results;
+      });
+    });
+    return button;
+  });
+
+  topLinks = window.__framerNew("topLinks", "823:15-837:0", "#8f641513",new Layer({
+    y: 56,
+    width: 580,
+    height: 64,
+    backgroundColor: white,
+    borderRadius: 64,
+    shadowY: 6,
+    shadowBlur: 12,
+    borderWidth: 2,
+    borderColor: "#efefef",
+    shadowColor: "rgba(0,0,0,.16)",
+    clip: true
+  }));
+
+  topLinks.midX = shapes[0].x;
+
+  topLinks.buttons = ["Benefits", "Learn", "About us", "Talk to us", "Sign in"].map(function(link, i) {
+    var button, ref1, ref2;
+    button = window.__framerNew("button", "848:14-856:0", "#bf44bbef",new Layer({
+      parent: topLinks,
+      height: topLinks.height - 8,
+      y: Align.center(),
+      x: 41 + ((ref1 = (ref2 = _.last(topLinks.children)) != null ? ref2.maxX : void 0) != null ? ref1 : 0) + 16,
+      backgroundColor: white
+    }));
+    Utils.bind(button, function() {
+      button.link = window.__framerNew(undefined, "857:20-864:1", "?",new Body2Link({
+        parent: button,
+        x: 0,
+        y: Align.center(),
+        text: link
+      }));
+      button.width = button.link.maxX;
+      return this.onTap(function() {
+        return null;
+      });
+    });
+    return button;
+  });
+
+  topLinks.buttons[2].link.onSelect((function(_this) {
+    return function() {
+      return showPage(pages[6]);
+    };
+  })(this));
+
+  topLinks.buttons[3].link.onSelect((function(_this) {
+    return function() {
+      return showPage(pages[7]);
+    };
+  })(this));
+
+  logo = window.__framerNew("logo", "883:11-889:0", "#108c65115",new Layer({
+    width: 168,
+    height: 22,
+    image: "images/logo.png",
+    x: 393,
+    y: 86
+  }));
+
+  for (j = 0, len = pages.length; j < len; j++) {
+    page = pages[j];
+    pager.addPage(page);
+  }
+
+  pager.snapToPage(pages[0]);
+
+  pages[0].shape.visible = true;
+
+}).call(this);
+})</script>
+
+</head>
+
+<body>
+</body>
+
+</html>

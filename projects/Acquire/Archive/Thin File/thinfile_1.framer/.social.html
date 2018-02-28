@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=13eddb9320ab42232e19dfbac6906595"></script>
+		<script src="framer/framer.generated.js?nocache=5ad5c2214a7afb32eada0b7fe6d45a5b"></script>
+		<script src="framer/framer.modules.js?nocache=8243895a4cb37a61046cbc3fdb9afca4"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 818;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var BlankView, DOC_RESUBMIT, DocUploadView, PriorView, PriorView1, RegistrationView, ThinFileAccountView, UploadComponent, app, blankView, cs, docUploadView, priorView, priorView1, thinFileAccountView, user,
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  require("gotcha/gotcha");
+
+  cs = require('cs');
+
+  cs.Context.setMobile();
+
+  Framer.Extras.Hints.disable();
+
+  Canvas.backgroundColor = '#FFF';
+
+  app = window.__framerNew("app", "6:10-9:0", "?",new cs.App({
+    type: 'safari',
+    navigation: 'registration'
+  }));
+
+  app.header.backgroundColor = '#79765e';
+
+  app.navigation.step = 3;
+
+  DOC_RESUBMIT = false;
+
+  Utils.define = function(layer, property) {
+    return Object.defineProperty(layer, property, {
+      get: function() {
+        return layer["_" + property];
+      },
+      set: function(value) {
+        if (layer.__constructor) {
+          return;
+        }
+        layer["_" + property] = value;
+        return layer.emit("change:" + property, value, layer);
+      }
+    });
+  };
+
+  RegistrationView = (function(superClass) {
+    extend(RegistrationView, superClass);
+
+    function RegistrationView(options) {
+      if (options == null) {
+        options = {};
+      }
+      _.assign(options, {
+        name: 'Registration View',
+        showLayers: true,
+        padding: {
+          top: 0,
+          stack: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+        }
+      });
+      RegistrationView.__super__.constructor.call(this, options);
+      this.backgroundColor = '#f1f1f1';
+    }
+
+    return RegistrationView;
+
+  })(cs.View);
+
+  UploadComponent = (function(superClass) {
+    extend(UploadComponent, superClass);
+
+    function UploadComponent(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.setHeight = bind(this.setHeight, this);
+      this.setUpload = bind(this.setUpload, this);
+      this.showUploadSuccess = bind(this.showUploadSuccess, this);
+      this.showUploadFailed = bind(this.showUploadFailed, this);
+      this.showLoading = bind(this.showLoading, this);
+      this.tryUpload = bind(this.tryUpload, this);
+      this.showDocType = bind(this.showDocType, this);
+      this.__constructor = true;
+      _.defaults(options, {
+        name: 'Upload Block',
+        title: '',
+        document: 'selfie',
+        errorText: '',
+        failfirst: false,
+        backgroundColor: null,
+        height: 195
+      });
+      UploadComponent.__super__.constructor.call(this, options);
+      this.bodyLayer = window.__framerNew(undefined, "73:19-79:1", "?",new cs.Text({
+        name: 'Advice',
+        parent: this,
+        width: 999,
+        text: options.body
+      }));
+      this.bodyLayer.lineHeight = 1.3;
+      this.valid1Icon = window.__framerNew(undefined, "81:20-90:1", "?",new cs.Icon({
+        name: 'Validation 1 Icon',
+        parent: this,
+        icon: 'cs-check',
+        color: '#81af51',
+        y: this.bodyLayer.maxY,
+        x: -8,
+        scale: .5
+      }));
+      this.valid1Body = window.__framerNew(undefined, "90:20-98:1", "?",new cs.Text({
+        name: 'Validation 1 Body',
+        parent: this,
+        y: this.bodyLayer.maxY,
+        x: 20,
+        text: ' ',
+        fontSize: 12
+      }));
+      this.valid2Icon = window.__framerNew(undefined, "98:20-107:1", "?",new cs.Icon({
+        name: 'Validation 1 Icon',
+        parent: this,
+        icon: 'cs-check',
+        color: '#81af51',
+        y: this.bodyLayer.maxY,
+        x: -8,
+        scale: .5
+      }));
+      this.valid2Body = window.__framerNew(undefined, "107:20-117:1", "?",new cs.Text({
+        name: 'Validation 1 Body',
+        parent: this,
+        y: this.bodyLayer.maxY,
+        x: 20,
+        text: ' ',
+        fontSize: 12
+      }));
+      this.illoLayer = window.__framerNew(undefined, "117:19-126:1", "#ecda9fb9",new Layer({
+        name: 'Illustration',
+        parent: this,
+        x: Align.right(),
+        height: 108,
+        width: 96
+      }));
+      this.uploadButton = window.__framerNew(undefined, "126:22-141:1", "?",new cs.Button({
+        name: 'Upload Button',
+        parent: this,
+        x: 0,
+        text: 'Upload a photo of your ID',
+        type: 'body1',
+        width: this.width,
+        backgroundColor: '#dcaa74',
+        shadowY: 3,
+        shadowColor: '#8b939c',
+        color: 'white',
+        clip: true,
+        animationOptions: {
+          time: .15
+        }
+      }));
+      this.uploadLayer = window.__framerNew(undefined, "141:21-157:1", "#13ba4fc19",new Layer({
+        name: 'Uploaded Photo',
+        parent: this,
+        x: Align.right(6),
+        y: 6,
+        width: 108,
+        height: 96,
+        rotation: 90,
+        borderRadius: 2,
+        visible: true,
+        backgroundColor: null,
+        image: null,
+        borderWidth: 2,
+        borderColor: '#6c6c6c',
+        clip: true
+      }));
+      this.iconLayer = window.__framerNew(undefined, "157:19-163:1", "?",new cs.Icon({
+        name: 'Icon',
+        parent: this.uploadButton,
+        point: Align.center(),
+        color: 'white'
+      }));
+      this.errorTextLayer = window.__framerNew(undefined, "163:24-172:1", "?",new cs.Text({
+        name: 'Error Text',
+        type: 'small',
+        parent: this,
+        x: 0,
+        y: this.uploadButton.maxY + 4,
+        color: '#dcaa74',
+        textAlign: 'right'
+      }));
+      this.input = document.createElement("input");
+      this.uploadButton._element.appendChild(this.input);
+      _.assign(this.input, {
+        name: 'Camera Input',
+        id: 'cameraInput',
+        type: 'file',
+        capture: 'camera',
+        accept: 'image/*'
+      });
+      _.assign(this.input.style, {
+        position: 'absolute',
+        left: "-10px",
+        top: "-10px",
+        opacity: '0',
+        zoom: '100',
+        'z-index': '999',
+        'background-color': 'red'
+      });
+      this.input1 = document.createElement("input");
+      this.uploadLayer._element.appendChild(this.input1);
+      _.assign(this.input1, {
+        name: 'Camera Input 1',
+        id: 'cameraInput1',
+        type: 'file',
+        capture: 'camera',
+        accept: 'image/*'
+      });
+      _.assign(this.input1.style, {
+        position: 'absolute',
+        left: "-10px",
+        top: "-10px",
+        opacity: '0',
+        zoom: '100',
+        'z-index': '999'
+      });
+      delete this.__constructor;
+      Utils.define(this, "title");
+      Utils.define(this, "illo");
+      Utils.define(this, "file");
+      Utils.define(this, "baseIllo");
+      Utils.define(this, "icon");
+      Utils.define(this, "body");
+      Utils.define(this, "errorText");
+      Utils.define(this, "upload");
+      Utils.define(this, "photo");
+      Utils.define(this, "failfirst");
+      Utils.define(this, "document");
+      this.on("change:document", this.showDocType);
+      this.on("change:title", (function(_this) {
+        return function(value) {
+          return _this.setHeight();
+        };
+      })(this));
+      this.on("change:body", (function(_this) {
+        return function(value) {
+          _this.bodyLayer.text = value;
+          _this.bodyLayer._element.childNodes[1].innerHTML = value;
+          return _this.setHeight();
+        };
+      })(this));
+      this.on("change:illo", (function(_this) {
+        return function(value) {
+          _this.illoLayer.image = value != null ? value.image : void 0;
+          return _this.setHeight();
+        };
+      })(this));
+      this.on("change:icon", (function(_this) {
+        return function(value) {
+          _this.iconLayer.icon = value;
+          return _this.setHeight();
+        };
+      })(this));
+      this.on("change:errorText", (function(_this) {
+        return function(value) {
+          if (value == null) {
+            value = '';
+          }
+          _this.errorTextLayer.text = value;
+          return _this.setHeight();
+        };
+      })(this));
+      this.on("change:file", (function(_this) {
+        return function(value) {
+          if ((value == null) || value === '') {
+            _.assign(_this.uploadLayer, {
+              image: null
+            });
+            return;
+          }
+          return _.assign(_this.uploadLayer, {
+            visible: true,
+            image: value
+          });
+        };
+      })(this));
+      this.uploadButton.onTapStart((function(_this) {
+        return function() {
+          return _this.uploadButton.animate('pressed');
+        };
+      })(this));
+      this.uploadButton.onTapEnd((function(_this) {
+        return function() {
+          return _this.uploadButton.animate('normal');
+        };
+      })(this));
+      this.tryUpload = Utils.throttle(.25, this.tryUpload);
+      if (Utils.isMobile()) {
+        this.input.onchange = (function(_this) {
+          return function() {
+            var image, url;
+            image = _this.input.files[0];
+            if (image == null) {
+              _this.tryUpload(void 0, "That didn't work. Try again?");
+              return;
+            }
+            url = window.URL.createObjectURL(image);
+            return _this.tryUpload(url);
+          };
+        })(this);
+        this.input1.onchange = (function(_this) {
+          return function() {
+            var image, url;
+            image = _this.input1.files[0];
+            if (image == null) {
+              _this.tryUpload(void 0, "That didn't work. Try again?");
+              return;
+            }
+            url = window.URL.createObjectURL(image);
+            return _this.tryUpload(url);
+          };
+        })(this);
+      } else {
+        this.uploadButton.onTapEnd((function(_this) {
+          return function() {
+            return _this.tryUpload('');
+          };
+        })(this));
+        this.uploadButton.onLongPressEnd((function(_this) {
+          return function() {
+            return _this.tryUpload(void 0, "That didn't work. Try again?");
+          };
+        })(this));
+        this.uploadLayer.onTap((function(_this) {
+          return function() {
+            return _this.tryUpload('');
+          };
+        })(this));
+      }
+      _.assign(this, {
+        title: options.title,
+        errorText: options.errorText,
+        baseIllo: options.illo,
+        photo: options.photo,
+        document: options.document
+      });
+      this.setUpload();
+    }
+
+    UploadComponent.prototype.showDocType = function(value) {
+      switch (value) {
+        case 'passport':
+          _.assign(this, {
+            illo: illos_passport,
+            baseIllo: illos_passport,
+            photo: photo_passport,
+            body: 'Please make sure we can see your passport’s entire <b>photo page</b> with all information visible.'
+          });
+          this.valid1Icon.y = this.bodyLayer.maxY + 8;
+          _.assign(this.valid1Body, {
+            y: this.bodyLayer.maxY + 8,
+            text: 'Are all four corners visible?'
+          });
+          this.valid2Icon.y = this.valid1Body.maxY + 2;
+          _.assign(this.valid2Body, {
+            y: this.valid1Body.maxY + 2,
+            text: 'Is the image clear?'
+          });
+          _.assign(this.uploadButton, {
+            text: 'Upload a photo of your ID'
+          });
+          break;
+        case 'licence':
+          _.assign(this, {
+            illo: illos_licence,
+            baseIllo: illos_licence,
+            photo: photo_id,
+            body: 'Please make sure we can see the entire front side of your driving licence.'
+          });
+          this.valid1Icon.y = this.bodyLayer.maxY + 8;
+          _.assign(this.valid1Body, {
+            y: this.bodyLayer.maxY + 8,
+            text: 'Are all four corners visible?'
+          });
+          this.valid2Icon.y = this.valid1Body.maxY + 2;
+          _.assign(this.valid2Body, {
+            y: this.valid1Body.maxY + 2,
+            text: 'Is the image clear?'
+          });
+          _.assign(this.uploadButton, {
+            text: 'Upload a photo of your ID'
+          });
+          break;
+        case 'selfie':
+          _.assign(this, {
+            illo: illos_selfie,
+            baseIllo: illos_selfie,
+            photo: selfie_id,
+            body: 'For your selfie, please make sure we can see your face and your entire ID in the same photo.'
+          });
+          this.valid1Icon.y = this.bodyLayer.maxY + 8;
+          _.assign(this.valid1Body, {
+            y: this.bodyLayer.maxY + 8,
+            text: 'Is the entire ID in the photo?'
+          });
+          this.valid2Icon.y = this.valid1Body.maxY + 2;
+          _.assign(this.valid2Body, {
+            y: this.valid1Body.maxY + 2,
+            text: 'Is your whole face in the photo?'
+          });
+          _.assign(this.uploadButton, {
+            text: 'Upload a selfie with your ID'
+          });
+      }
+      return this._baseuploadbuttontext = this.uploadButton.text;
+    };
+
+    UploadComponent.prototype.tryUpload = function(url, errorText) {
+      var uploadDuration;
+      uploadDuration = _.random(.75, 1.5);
+      this.showLoading(uploadDuration);
+      return Utils.delay(uploadDuration, (function(_this) {
+        return function() {
+          return _this.setUpload(url, errorText);
+        };
+      })(this));
+    };
+
+    UploadComponent.prototype.showLoading = function(uploadDuration) {
+      this.iconLayer.animateStop();
+      _.assign(this.iconLayer, {
+        color: cs.Colors.dark,
+        icon: 'cs-load',
+        rotation: 0
+      });
+      this.iconLayer.animate({
+        rotation: 360,
+        options: {
+          looping: true,
+          curve: 'linear',
+          time: 1.5
+        }
+      });
+      _.assign(this.uploadButton, {
+        backgroundColor: '#dca974',
+        text: ''
+      });
+      this.errorText = "";
+      return Utils.delay(uploadDuration, (function(_this) {
+        return function() {
+          _this.iconLayer.animateStop();
+          return _this.iconLayer.rotation = 0;
+        };
+      })(this));
+    };
+
+    UploadComponent.prototype.showUploadFailed = function(errorText) {
+      _.assign(this.iconLayer, {
+        color: 'white',
+        icon: ''
+      });
+      _.assign(this.uploadButton, {
+        text: this._baseuploadbuttontext,
+        fill: 'white'
+      });
+      this.illo = this.baseIllo;
+      this.errorText = errorText;
+      return this.uploadButton.backgroundColor = '#dca974';
+    };
+
+    UploadComponent.prototype.showUploadSuccess = function(url) {
+      _.assign(this.iconLayer, {
+        color: 'secondary',
+        icon: 'cs-check'
+      });
+      this.illo = this.photo;
+      this.errorText = '';
+      _.assign(this.uploadButton, {
+        text: '',
+        fill: 'white'
+      });
+      return this.errorText = "";
+    };
+
+    UploadComponent.prototype.setUpload = function(url, errorText) {
+      this.file = url;
+      if ((url == null) || this.failFirst) {
+        this.showUploadFailed(errorText);
+        return;
+      }
+      return this.showUploadSuccess(url);
+    };
+
+    UploadComponent.prototype.setHeight = function() {
+      _.assign(this.bodyLayer, {
+        width: this.illoLayer.x - 16
+      });
+      _.assign(this.uploadButton, {
+        y: this.illoLayer.maxY + 16,
+        states: {
+          pressed: {
+            y: this.illoLayer.maxY + 19,
+            shadowY: 1
+          },
+          normal: {
+            y: this.illoLayer.maxY + 16,
+            shadowY: 3
+          }
+        }
+      });
+      this.errorTextLayer.y = this.uploadButton.maxY + 8;
+      return Utils.delay(0, (function(_this) {
+        return function() {
+          return _this.height = _this.uploadButton.maxY;
+        };
+      })(this));
+    };
+
+    return UploadComponent;
+
+  })(Layer);
+
+  BlankView = (function(superClass) {
+    extend(BlankView, superClass);
+
+    function BlankView(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      _.defaults(options, {
+        showLayers: true
+      });
+      BlankView.__super__.constructor.call(this, options);
+      window.__framerNew(undefined, "494:6-499:1", "#147637b90",new UploadComponent({
+        parent: this.content,
+        width: this.width - 32,
+        x: 16
+      }));
+      delete this.__constructor;
+    }
+
+    return BlankView;
+
+  })(cs.View);
+
+  PriorView = (function(superClass) {
+    extend(PriorView, superClass);
+
+    function PriorView(options) {
+      var bodyFlexrow, pullerFlexrow;
+      if (options == null) {
+        options = {};
+      }
+      this.goToNext = bind(this.goToNext, this);
+      this.onLoad = bind(this.onLoad, this);
+      this.setDocType = bind(this.setDocType, this);
+      _.assign(options, {
+        name: 'Doc Upload View',
+        showLayers: true,
+        padding: {
+          top: 0,
+          stack: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+        }
+      });
+      PriorView.__super__.constructor.call(this, options);
+      this.scrollVertical = false;
+      pullerFlexrow = window.__framerNew("pullerFlexrow", "520:22-524:1", "?",new cs.FlexRow({
+        name: 'pullerFlexrow',
+        fullWidth: true
+      }));
+      this.puller = window.__framerNew(undefined, "524:16-528:1", "?",new cs.Puller({
+        parent: pullerFlexrow.content,
+        text: "We'll also need some details about where you live."
+      }));
+      bodyFlexrow = window.__framerNew("bodyFlexrow", "528:20-532:1", "?",new cs.FlexRow({
+        name: 'bodyflexrow',
+        maxWidth: 580
+      }));
+      this.title = window.__framerNew(undefined, "532:15-540:1", "?",new cs.Text({
+        parent: bodyFlexrow.content,
+        x: 16,
+        text: 'What kind of residence do you have?',
+        type: 'body'
+      }));
+      this.documentSelectField = window.__framerNew(undefined, "540:29-553:1", "?",new cs.Select({
+        parent: bodyFlexrow.content,
+        y: this.title.maxY + 20,
+        action: this.setDocType,
+        options: ['Choose your residence type', 'Dormitory', 'Apartment', "House", "Collective Farm", "I live on the road, man"]
+      }));
+      this.documentSelectField.textLayer.textAlign = 'left';
+      this.documentSelectField.textLayer.padding = {
+        left: 15
+      };
+      this.nextButton = window.__framerNew(undefined, "556:20-569:1", "?",new cs.Button({
+        parent: bodyFlexrow.content,
+        y: this.documentSelectField.maxY + 32,
+        x: 16,
+        text: 'Next',
+        fill: 'dcaa74',
+        type: 'body',
+        color: 'white',
+        disabled: true,
+        action: this.goToNext
+      }));
+      Utils.delay(.15, (function(_this) {
+        return function() {
+          _this.contentInset = {
+            top: 0,
+            bottom: 16,
+            left: 0,
+            right: 0
+          };
+          _this.addToStack(pullerFlexrow, {
+            x: 0,
+            y: 0
+          });
+          _this.addToStack(bodyFlexrow, {
+            x: 0,
+            y: 50
+          });
+          return _this.updateContent();
+        };
+      })(this));
+    }
+
+    PriorView.prototype.setDocType = function() {
+      return this.nextButton.disabled = this.documentSelectField.text === this.documentSelectField.options[0];
+    };
+
+    PriorView.prototype.onLoad = function() {
+      app.navigation = 'registration';
+      app.navigation.step = 3;
+      return app.header.backgroundColor = '#79765e';
+    };
+
+    PriorView.prototype.goToNext = function() {
+      return app.showNext(priorView1);
+    };
+
+    return PriorView;
+
+  })(RegistrationView);
+
+  PriorView1 = (function(superClass) {
+    extend(PriorView1, superClass);
+
+    function PriorView1(options) {
+      var bodyFlexrow, pullerFlexrow;
+      if (options == null) {
+        options = {};
+      }
+      this.goToNext = bind(this.goToNext, this);
+      this.onLoad = bind(this.onLoad, this);
+      this.setDocType = bind(this.setDocType, this);
+      _.assign(options, {
+        name: 'Doc Upload View',
+        showLayers: true,
+        padding: {
+          top: 0,
+          stack: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+        }
+      });
+      PriorView1.__super__.constructor.call(this, options);
+      this.scrollVertical = false;
+      pullerFlexrow = window.__framerNew("pullerFlexrow", "619:22-623:1", "?",new cs.FlexRow({
+        name: 'pullerFlexrow',
+        fullWidth: true
+      }));
+      this.puller = window.__framerNew(undefined, "623:16-627:1", "?",new cs.Puller({
+        parent: pullerFlexrow.content,
+        text: "We'll also need some details about where you live."
+      }));
+      bodyFlexrow = window.__framerNew("bodyFlexrow", "627:20-631:1", "?",new cs.FlexRow({
+        name: 'bodyflexrow',
+        maxWidth: 580
+      }));
+      this.title = window.__framerNew(undefined, "631:15-639:1", "?",new cs.Text({
+        parent: bodyFlexrow.content,
+        x: 16,
+        text: 'Do you have any pets?',
+        type: 'body'
+      }));
+      this.documentSelectField = window.__framerNew(undefined, "639:29-653:1", "?",new cs.Select({
+        parent: bodyFlexrow.content,
+        y: this.title.maxY + 20,
+        action: this.setDocType,
+        options: ['Choose your pet type', 'Cat', 'Dog', "Turtle", "Bengal Tiger", "A couple billion bedbugs", "None"]
+      }));
+      this.documentSelectField.textLayer.textAlign = 'left';
+      this.documentSelectField.textLayer.padding = {
+        left: 15
+      };
+      this.nextButton = window.__framerNew(undefined, "656:20-669:1", "?",new cs.Button({
+        parent: bodyFlexrow.content,
+        y: this.documentSelectField.maxY + 32,
+        x: 16,
+        text: 'Next',
+        fill: 'dcaa74',
+        type: 'body',
+        color: 'white',
+        disabled: true,
+        action: this.goToNext
+      }));
+      Utils.delay(.15, (function(_this) {
+        return function() {
+          _this.contentInset = {
+            top: 0,
+            bottom: 16,
+            left: 0,
+            right: 0
+          };
+          _this.addToStack(pullerFlexrow, {
+            x: 0,
+            y: 0
+          });
+          _this.addToStack(bodyFlexrow, {
+            x: 0,
+            y: 50
+          });
+          return _this.updateContent();
+        };
+      })(this));
+    }
+
+    PriorView1.prototype.setDocType = function() {
+      return this.nextButton.disabled = this.documentSelectField.text === this.documentSelectField.options[0];
+    };
+
+    PriorView1.prototype.onLoad = function() {
+      app.navigation = 'registration';
+      app.navigation.step = 3;
+      return app.header.backgroundColor = '#79765e';
+    };
+
+    PriorView1.prototype.goToNext = function() {
+      return app.showNext(docUploadView);
+    };
+
+    return PriorView1;
+
+  })(RegistrationView);
+
+  DocUploadView = (function(superClass) {
+    extend(DocUploadView, superClass);
+
+    function DocUploadView(options) {
+      var bodyFlexrow, noto, pullerFlexrow, smallIcon;
+      if (options == null) {
+        options = {};
+      }
+      this.goToNext = bind(this.goToNext, this);
+      this.checkForReady = bind(this.checkForReady, this);
+      this.setDocType = bind(this.setDocType, this);
+      _.assign(options, {
+        name: 'Doc Upload View',
+        showLayers: true,
+        padding: {
+          top: 0,
+          stack: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+        }
+      });
+      DocUploadView.__super__.constructor.call(this, options);
+      this.onLoad = function() {
+        app.navigation = 'registration';
+        app.navigation.step = 4;
+        return app.header.backgroundColor = '#79765e';
+      };
+      this.scrollVertical = false;
+      pullerFlexrow = window.__framerNew("pullerFlexrow", "726:22-732:1", "?",new cs.FlexRow({
+        name: 'pullerFlexrow',
+        fullWidth: true
+      }));
+      this.puller = window.__framerNew(undefined, "732:16-738:1", "?",new cs.Puller({
+        parent: pullerFlexrow.content,
+        text: "Next we'll need a photo of your ID and a selfie with your ID to verify that it’s yours."
+      }));
+      if (DOC_RESUBMIT) {
+        noto = window.__framerNew("noto", "739:14-745:2", "?",new cs.Puller({
+          parent: pullerFlexrow.content,
+          text: "Sorry, but we couldn’t validate your identity from the photos you sent last time. You’ll need to upload your photos again. Dismiss",
+          fill: "#daad67",
+          arrow: false
+        }));
+        _.assign(noto.textLayer, {
+          x: 48,
+          width: this.width - 64
+        });
+        smallIcon = window.__framerNew("smallIcon", "749:19-756:2", "?",new cs.Icon({
+          parent: noto,
+          scale: .6,
+          icon: 'close',
+          color: 'white',
+          x: 8,
+          y: 16
+        }));
+        noto.onTap(function() {
+          return this.destroy();
+        });
+      }
+      bodyFlexrow = window.__framerNew("bodyFlexrow", "760:20-764:1", "?",new cs.FlexRow({
+        name: 'bodyflexrow',
+        maxWidth: 580
+      }));
+      this.title = window.__framerNew(undefined, "764:15-772:1", "?",new cs.Text({
+        parent: bodyFlexrow.content,
+        x: 16,
+        text: 'What kind of ID do you have?',
+        type: 'body'
+      }));
+      this.documentSelectField = window.__framerNew(undefined, "772:29-783:1", "?",new cs.Select({
+        parent: bodyFlexrow.content,
+        y: this.title.maxY + 20,
+        action: this.setDocType,
+        options: ['Choose your ID type', 'Passport', "UK driving licence", "Other"]
+      }));
+      this.documentSelectField.textLayer.textAlign = 'left';
+      this.documentSelectField.textLayer.padding = {
+        left: 15
+      };
+      this.otherSelected = window.__framerNew(undefined, "806:23-814:1", "?",new cs.Text({
+        parent: bodyFlexrow.content,
+        y: this.documentSelectField.maxY + 20,
+        text: "If you don’t have a passport or UK driving licence and wish to upload another type of ID, please contact us and we’ll do our best to help you.",
+        visible: false
+      }));
+      this.loadSpinner = window.__framerNew(undefined, "814:21-821:1", "?",new cs.Icon({
+        parent: this.content,
+        x: Align.center(),
+        y: this.documentSelectField.maxY + 160,
+        icon: 'cs-load',
+        visible: false
+      }));
+      this.loadSpinner.animate({
+        rotation: 360,
+        options: {
+          looping: true,
+          time: 1.25,
+          curve: 'linear'
+        }
+      });
+      this.iDUploadBlock = window.__framerNew(undefined, "831:23-838:1", "#147637b90",new UploadComponent({
+        parent: bodyFlexrow.content,
+        y: this.documentSelectField.maxY + 44,
+        failfirst: true
+      }));
+      this.selfieUploadBlock = window.__framerNew(undefined, "838:27-843:1", "#147637b90",new UploadComponent({
+        parent: bodyFlexrow.content,
+        y: this.iDUploadBlock.maxY + 44,
+        document: 'selfie'
+      }));
+      this.nextButton = window.__framerNew(undefined, "843:20-854:1", "?",new cs.Button({
+        parent: bodyFlexrow.content,
+        y: this.selfieUploadBlock.maxY + 44,
+        x: 16,
+        text: 'Next',
+        fill: 'dcaa74',
+        type: 'body',
+        color: 'white',
+        disabled: true,
+        action: this.goToNext
+      }));
+      this.contactUs = window.__framerNew(undefined, "854:19-864:1", "?",new cs.Text({
+        name: 'Contact us',
+        parent: bodyFlexrow.content,
+        y: this.nextButton.maxY,
+        text: 'Having trouble? Contact customer support.',
+        width: this.width,
+        textAlign: 'center'
+      }));
+      Utils.delay(.15, (function(_this) {
+        return function() {
+          _this.contentInset = {
+            top: 0,
+            bottom: 16,
+            left: 0,
+            right: 0
+          };
+          _this.addToStack(pullerFlexrow, {
+            x: 0,
+            y: 0
+          });
+          _this.addToStack(bodyFlexrow, {
+            x: 0,
+            y: 50
+          });
+          return _this.updateContent();
+        };
+      })(this));
+      this.content.onMove((function(_this) {
+        return function() {
+          if (_this.content.maxY <= Screen.height - 170) {
+            return _this.content.maxY = Screen.height - 170;
+          }
+        };
+      })(this));
+      this.iDUploadBlock.on("change:file", (function(_this) {
+        return function(success) {
+          user.hasDocPhoto = success;
+          return _this.checkForReady();
+        };
+      })(this));
+      this.selfieUploadBlock.on("change:file", (function(_this) {
+        return function(success) {
+          user.hasSelfiePhoto = success;
+          return _this.checkForReady();
+        };
+      })(this));
+      this.iDUploadBlock.visible = false;
+      this.selfieUploadBlock.visible = false;
+      this.nextButton.visible = false;
+      this.otherSelected.visible = false;
+    }
+
+    DocUploadView.prototype.setDocType = function() {
+      var hideLayers;
+      hideLayers = (function(_this) {
+        return function(bool, other) {
+          if (bool == null) {
+            bool = false;
+          }
+          if (other == null) {
+            other = false;
+          }
+          _this.iDUploadBlock.visible = bool;
+          _this.selfieUploadBlock.visible = bool;
+          _this.nextButton.visible = bool;
+          _this.otherSelected.visible = other;
+          _this.scrollToTop();
+          return _this.scrollVertical = bool;
+        };
+      })(this);
+      if (this.documentSelectField.text == null) {
+        return;
+      }
+      hideLayers(false, false);
+      Utils.delay(.05, (function(_this) {
+        return function() {
+          return _this.loadSpinner.visible = true;
+        };
+      })(this));
+      Utils.delay(1.25, (function(_this) {
+        return function() {
+          return _this.loadSpinner.visible = false;
+        };
+      })(this));
+      Utils.delay(1.35, (function(_this) {
+        return function() {
+          switch (_this.documentSelectField.text) {
+            case _this.documentSelectField.options[0]:
+              hideLayers(false, false);
+              return _.assign(_this.documentSelectField, {
+                backgroundColor: 'null'
+              });
+            case _this.documentSelectField.options[1]:
+              hideLayers(true, false);
+              _.assign(_this.documentSelectField, {
+                backgroundColor: '#FFF'
+              });
+              _.assign(_this.iDUploadBlock, {
+                document: 'passport',
+                photo: photo_passport
+              });
+              return _.assign(_this.selfieUploadBlock, {
+                photo: selfie_passport
+              });
+            case _this.documentSelectField.options[2]:
+              hideLayers(true, false);
+              _.assign(_this.documentSelectField, {
+                backgroundColor: '#FFF'
+              });
+              _.assign(_this.iDUploadBlock, {
+                document: 'licence',
+                photo: photo_id
+              });
+              return _.assign(_this.selfieUploadBlock, {
+                photo: selfie_id
+              });
+            case _this.documentSelectField.options[3]:
+              hideLayers(false, true);
+              return _.assign(_this.documentSelectField, {
+                backgroundColor: '#FFF'
+              });
+          }
+        };
+      })(this));
+      return Utils.delay(0, (function(_this) {
+        return function() {
+          _this.iDUploadBlock.setHeight();
+          _this.selfieUploadBlock.y = _this.iDUploadBlock.maxY + 44;
+          _this.nextButton.y = _this.selfieUploadBlock.maxY + 44;
+          return _this.contactUs.y = _this.nextButton.maxY + 16;
+        };
+      })(this));
+    };
+
+    DocUploadView.prototype.checkForReady = function() {
+      if (!_.every(_.map([this.iDUploadBlock, this.selfieUploadBlock], (function(_this) {
+        return function(d) {
+          return d.file != null;
+        };
+      })(this)))) {
+        this.nextButton.disabled = true;
+        return;
+      }
+      return this.nextButton.disabled = false;
+    };
+
+    DocUploadView.prototype.goToNext = function() {
+      return app.showNext(thinFileAccountView);
+    };
+
+    return DocUploadView;
+
+  })(RegistrationView);
+
+  ThinFileAccountView = (function(superClass) {
+    extend(ThinFileAccountView, superClass);
+
+    function ThinFileAccountView(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.goToNext = bind(this.goToNext, this);
+      options.showLayers = true;
+      ThinFileAccountView.__super__.constructor.call(this, options);
+      this.onLoad = function() {
+        app.navigation = 'registration';
+        app.navigation.step = 5;
+        return app.header.backgroundColor = '#79765e';
+      };
+      this.backgroundColor = '#FFF';
+      this.content.backgroundColor = '#FFF';
+      this.onLoad = (function(_this) {
+        return function() {
+          app.navigation = null;
+          app.header.backgroundColor = '#2a3544';
+          return _this.restart.bringToFront();
+        };
+      })(this);
+      _.assign(my_account_doc_submit, {
+        parent: this.content,
+        x: 0,
+        y: 0
+      });
+      this.restart = window.__framerNew(undefined, "1006:17-1013:1", "?",new cs.Text({
+        type: 'link',
+        x: Align.center,
+        y: 88,
+        text: 'Restart',
+        action: (function(_this) {
+          return function() {
+            return window.location.reload();
+          };
+        })(this)
+      }));
+      this.restart.sendToBack();
+    }
+
+    ThinFileAccountView.prototype.goToNext = function() {
+      user.docPhoto = this.docField.image;
+      user.selfiePhoto = this.selfieField.image;
+      return app.showNext(deadEndView, 'right');
+    };
+
+    return ThinFileAccountView;
+
+  })(RegistrationView);
+
+  user = {
+    docPhoto: void 0,
+    selfiePhoto: void 0,
+    hasDocPhoto: false,
+    hasSelfiePhoto: false
+  };
+
+  blankView = window.__framerNew("blankView", "1033:12-1033:24", "#cd66fab9",new BlankView);
+
+  priorView = window.__framerNew("priorView", "1035:12-1035:24", "#a1ed6b7a",new PriorView);
+
+  priorView1 = window.__framerNew("priorView1", "1036:13-1036:26", "#16364ca0b",new PriorView1);
+
+  docUploadView = window.__framerNew("docUploadView", "1037:16-1037:32", "#b156c100",new DocUploadView);
+
+  thinFileAccountView = window.__framerNew("thinFileAccountView", "1038:22-1038:44", "#ef712c45",new ThinFileAccountView);
+
+  app.showNext(docUploadView);
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=8e1498a1c4e3829b3ecfc26f93288d1d"></script>
+		<script src="framer/framer.generated.js?nocache=155505a00a4be85af3fdbebc2f9de3ca"></script>
+		<script src="framer/framer.modules.js?nocache=99322a84120b2ea8ce840241fe52fd1c"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 281;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var Alert, AlertTile, ChangeEntry, DARK, DateComponent, DetailView, HAS_UPCOMING_CHANGES, LAST_CHECKED_DAY_AGO, LIGHT, MonthContainer, NewDot, Report, SHOW_DATE_LABEL, TILES_SCROLL_SPEED, TIMELINE_SCROLL_SPEED, TimeLineComponent, TimelineButtonContainer, alerts, app, contents, cs, dates, dayLength, futureDate, lastChecked, lastDate, lorem, maxScore, minScore, moreutils, navBar, overview, reportView, today,
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  require("gotcha/gotcha");
+
+  moreutils = require('moreutils');
+
+  cs = require('cs');
+
+  cs.Context.setMobile();
+
+  Framer.Extras.Hints.disable();
+
+  app = window.__framerNew("app", "8:10-10:0", "?",new cs.App({
+    type: 'safari'
+  }));
+
+  app.header.collapse = false;
+
+  navBar = window.__framerNew("navBar", "13:13-19:0", "#b124d0fe",new Layer({
+    parent: app.header,
+    height: 56,
+    y: app.header.height,
+    width: Screen.width,
+    backgroundColor: '#e5e5e5'
+  }));
+
+  overview = window.__framerNew("overview", "20:15-25:0", "?",new cs.Text({
+    parent: navBar,
+    x: 16,
+    y: Align.center(),
+    text: 'OVERVIEW'
+  }));
+
+  app.header.height = navBar.maxY;
+
+  app.header.on("change:height", function() {
+    return app.header.height = navBar.maxY;
+  });
+
+  LAST_CHECKED_DAY_AGO = 45;
+
+  HAS_UPCOMING_CHANGES = true;
+
+  SHOW_DATE_LABEL = true;
+
+  LIGHT = '#fafed9';
+
+  DARK = '#5a5ff9';
+
+  minScore = 350;
+
+  maxScore = 450;
+
+  TILES_SCROLL_SPEED = 1;
+
+  TIMELINE_SCROLL_SPEED = .2;
+
+  Alert = (function() {
+    function Alert(options) {
+      var ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8;
+      if (options == null) {
+        options = {};
+      }
+      _.assign(this, {
+        seen: (ref = options.seen) != null ? ref : false,
+        date: (ref1 = options.date) != null ? ref1 : window.__framerNew(undefined, "59:28-59:33", "?",new Date()),
+        type: (ref2 = options.type) != null ? ref2 : 'changed',
+        month: (ref3 = options.month) != null ? ref3 : 0,
+        content: (ref4 = options.content) != null ? ref4 : 'Your membership in the Party has been revoked since last check.',
+        meaning: (ref5 = options.meaning) != null ? ref5 : "Your credit score is based in part on your Party membership. It should go without saying that losing the faith of your comrades has consequences. We don't know what you did, or who you crossed, but brother, you're in for it now.",
+        cta1: (ref6 = options.cta1) != null ? ref6 : "This doesn't look right.",
+        cta2: (ref7 = options.cta2) != null ? ref7 : "Why is this not part of my Report?",
+        thisMonth: (ref8 = options.thisMonth) != null ? ref8 : false,
+        score: _.random(350, 400)
+      });
+    }
+
+    return Alert;
+
+  })();
+
+  contents = ["A County Court Judgement  (CCJ) has been added since last check", "An account has been added to your Report since last check", "Key attribute(s) will be updated for a CIFAS"];
+
+  lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis mattis mauris, in lacinia nunc. Aenean enim urna, elementum nec turpis quis, congue cursus diam. Vestibulum at faucibus tortor. Nullam accumsan sodales placerat.";
+
+  today = window.__framerNew("today", "79:12-79:17", "?",new Date());
+
+  dayLength = 1000 * 60 * 60 * 24;
+
+  lastDate = today;
+
+  lastChecked = window.__framerNew("lastChecked", "85:18-85:55", "?",new Date(today.getTime() - 45 * dayLength));
+
+  dates = _.map([14, 32, 38, 44, 44, 63, 91, 95, 95, 105, 152, 161, 200, 240, 270, 301, 330, 360, 400], function(d) {
+    return window.__framerNew(undefined, "89:12-89:48", "?",new Date(today.getTime() - d * dayLength));
+  });
+
+  alerts = _.map(dates, function(date) {
+    var alert;
+    alert = window.__framerNew("alert", "94:13-105:0", "#d90031bc",new Alert({
+      seen: date < lastChecked,
+      date: date,
+      month: date.getMonth() % 12,
+      thisMonth: date.getMonth() === today.getMonth(),
+      content: _.sample(contents),
+      meaning: lorem,
+      cta1: "This doesn't look right.",
+      cta2: "Why is this not part of my Report?",
+      type: 'changed'
+    }));
+    return alert;
+  });
+
+  futureDate = window.__framerNew("futureDate", "107:17-107:54", "?",new Date(today.getTime() + 14 * dayLength));
+
+  alerts.push(window.__framerNew(undefined, "109:16-119:0", "#d90031bc",new Alert({
+    seen: false,
+    date: futureDate,
+    month: futureDate.getMonth() % 12,
+    thisMonth: false,
+    content: "A HSBC credit card has been added to your account.",
+    meaning: lorem,
+    cta1: "This doesn't look right.",
+    cta2: "Why is this not part of my Report?",
+    type: 'upcoming'
+  })));
+
+  alerts = _.sortBy(alerts, 'date');
+
+  NewDot = (function(superClass) {
+    extend(NewDot, superClass);
+
+    function NewDot(options) {
+      if (options == null) {
+        options = {};
+      }
+      _.assign(options, {
+        name: 'New Dot',
+        y: 7,
+        height: 8,
+        width: 8,
+        borderRadius: 4,
+        visible: false
+      });
+      _.defaults(options, {
+        x: -16,
+        backgroundColor: 'rgba(74, 144, 226, 1.000)'
+      });
+      NewDot.__super__.constructor.apply(this, arguments);
+      Utils.delay(0, (function(_this) {
+        return function() {
+          return _this.x = options.x;
+        };
+      })(this));
+    }
+
+    return NewDot;
+
+  })(Layer);
+
+  ChangeEntry = function(alert, options) {
+    var container, data, getAlertAction;
+    if (options == null) {
+      options = {};
+    }
+    data = alert.date <= window.__framerNew(undefined, "151:23-151:37", "?",new Date('11/1/17')) ? (this.alert = void 0, {
+      title: 'No changes',
+      color: '#333',
+      link: 'Expecting a change?'
+    }) : alert.date >= window.__framerNew(undefined, "156:28-156:33", "?",new Date()) ? {
+      title: 'Upcoming change',
+      color: '#23bdff',
+      link: 'More details'
+    } : {
+      title: 'Change updated on your Report',
+      color: 'secondary',
+      link: 'See on Report'
+    };
+    container = window.__framerNew("container", "165:17-165:29", "#1025241fe",new Layer(options));
+    getAlertAction = (function(_this) {
+      return function(alert) {
+        var action;
+        if (!alert) {
+          action = function() {
+            return app.showNext(window.__framerNew(undefined, "169:32-169:55", "?",new DetailView({
+              alert: null
+            })));
+          };
+        } else if (alert.thisMonth) {
+          action = function() {
+            return app.showNext(window.__framerNew(undefined, "171:32-171:56", "?",new DetailView({
+              alert: alert
+            })));
+          };
+        } else if (alert.type === 'upcoming') {
+          action = function() {
+            return app.showNext(window.__framerNew(undefined, "173:32-173:56", "?",new DetailView({
+              alert: alert
+            })));
+          };
+        } else {
+          action = function() {
+            return null;
+          };
+        }
+        return action;
+      };
+    })(this);
+    Utils.build(container, function() {
+      var date, description, dot, link, title;
+      title = window.__framerNew("title", "180:14-185:1", "?",new cs.Text({
+        parent: this,
+        text: data.title,
+        color: data.color
+      }));
+      dot = window.__framerNew("dot", "185:12-191:1", "#d141a2f8",new NewDot({
+        parent: title,
+        visible: !alert.seen,
+        x: Align.right(16),
+        backgroundColor: '#fd7d6a'
+      }));
+      description = window.__framerNew("description", "191:20-196:1", "?",new cs.Text({
+        parent: this,
+        text: alert.date.getMonth() === 9 ? 'You have no changes to display this month.' : alert.content,
+        y: title.maxY + 8
+      }));
+      link = window.__framerNew("link", "196:13-204:1", "?",new cs.Text({
+        parent: this,
+        text: data.link,
+        color: '#AAA',
+        type: 'link',
+        y: description.maxY + 8,
+        action: getAlertAction(alert)
+      }));
+      date = window.__framerNew("date", "204:13-211:1", "?",new cs.Text({
+        parent: this,
+        text: alert.date.toLocaleDateString([], {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        }).toUpperCase(),
+        y: link.y,
+        x: Align.right,
+        color: '#AAA'
+      }));
+      return Utils.contain(this, this.children);
+    });
+    return container;
+  };
+
+  DetailView = (function(superClass) {
+    extend(DetailView, superClass);
+
+    function DetailView(options) {
+      var content, date, meaning, ref, ref1, ref2, ref3, ref4, ref5, title, title2;
+      if (options == null) {
+        options = {};
+      }
+      this.getTitle = bind(this.getTitle, this);
+      this.alert = options.alert;
+      DetailView.__super__.constructor.apply(this, arguments);
+      this.backgroundColor = "#FFF";
+      this.content.backgroundColor = "#FFF";
+      this.header = window.__framerNew(undefined, "229:16-235:1", "#145009314",new Layer({
+        parent: this,
+        width: this.width,
+        height: 56,
+        backgroundColor: '#e5e5e5'
+      }));
+      this.back = window.__framerNew(undefined, "235:14-241:1", "?",new cs.Icon({
+        parent: this.header,
+        icon: 'chevron-left',
+        x: 8,
+        y: Align.center()
+      }));
+      this.backText = window.__framerNew(undefined, "241:18-248:1", "?",new cs.Text({
+        parent: this.header,
+        text: 'Overview',
+        x: this.back.maxX,
+        y: Align.center(),
+        color: '#000'
+      }));
+      this.header.onTap((function(_this) {
+        return function() {
+          app.showPrevious();
+          return Utils.delay(2, function() {
+            return _this.destroy();
+          });
+        };
+      })(this));
+      title = window.__framerNew("title", "254:14-260:1", "?",new cs.H3({
+        parent: this.content,
+        x: 32,
+        y: 80,
+        text: this.getTitle()
+      }));
+      date = window.__framerNew("date", "260:13-267:1", "?",new cs.Text({
+        parent: this.content,
+        x: Align.right(-32),
+        y: title.y + 4,
+        text: (ref = (ref1 = this.alert) != null ? ref1.date.toLocaleDateString() : void 0) != null ? ref : '',
+        color: '#AAA'
+      }));
+      content = window.__framerNew("content", "267:16-274:1", "?",new cs.Text({
+        parent: this.content,
+        x: 32,
+        y: title.maxY + 32,
+        text: (ref2 = (ref3 = this.alert) != null ? ref3.content : void 0) != null ? ref2 : 'Your membership in the Party has been revoked since last check.',
+        width: this.width - 64
+      }));
+      title2 = window.__framerNew("title2", "274:15-281:1", "?",new cs.Text({
+        parent: this.content,
+        x: 32,
+        y: content.maxY + 64,
+        textDecoration: 'underline',
+        text: 'What does this mean?'
+      }));
+      meaning = window.__framerNew("meaning", "281:16-288:0", "?",new cs.Text({
+        parent: this.content,
+        x: 32,
+        y: title2.maxY + 32,
+        text: (ref4 = (ref5 = this.alert) != null ? ref5.meaning : void 0) != null ? ref4 : "Your credit score is based in part on your Party membership. It should go without saying that losing the faith of your comrades has consequences. We don't know what you did, or who you crossed, but brother, you're in for it now.",
+        width: this.width - 64
+      }));
+    }
+
+    DetailView.prototype.getTitle = function() {
+      if (!this.alert) {
+        return 'Expecting a Change?';
+      }
+      if (this.alert.type === 'changed') {
+        return 'Upcoming Change';
+      }
+      if (this.alert.type === 'upcoming') {
+        return 'Upcoming Change';
+      }
+    };
+
+    return DetailView;
+
+  })(cs.View);
+
+  DateComponent = (function(superClass) {
+    extend(DateComponent, superClass);
+
+    function DateComponent(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.setMonth = bind(this.setMonth, this);
+      this.addMonth = bind(this.addMonth, this);
+      _.defaults(options, {
+        width: Screen.width,
+        height: 48,
+        scrollVertical: false
+      });
+      DateComponent.__super__.constructor.call(this, options);
+      _.assign(this, {
+        scrollTarget: void 0,
+        handler: options.handler
+      });
+      this.monthDates = [];
+      this.markerlayerLeft = window.__framerNew(undefined, "317:25-321:1", "#d6e9fc92",new Layer({
+        parent: this.content,
+        width: 1
+      }));
+      this.markerlayerRight = window.__framerNew(undefined, "321:26-326:0", "#fbf575da",new Layer({
+        parent: this.content,
+        width: 1
+      }));
+    }
+
+    DateComponent.prototype.addMonth = function(monthContainer, dateString) {
+      var monthDate, throttledSetMonth;
+      monthDate = window.__framerNew("monthDate", "327:18-333:1", "?",new cs.Text({
+        type: 'body1',
+        parent: this.content,
+        x: monthContainer.x,
+        text: dateString
+      }));
+      monthDate.monthContainer = monthContainer;
+      monthDate.range = [monthContainer.x, monthContainer.maxX - monthDate.width];
+      this.monthDates.push(monthDate);
+      this.updateContent();
+      throttledSetMonth = Utils.throttle(.15, this.setMonth);
+      return (function(_this) {
+        return function(monthDate, monthContainer) {
+          return _this.scrollTarget.content.on("change:x", function() {
+            return _this.setMonth(monthDate, monthContainer);
+          });
+        };
+      })(this)(monthDate, monthContainer);
+    };
+
+    DateComponent.prototype.getDateByMonthContainer = function(monthContainer) {
+      return _.find(this.monthDates, ['monthContainer', monthContainer]);
+    };
+
+    DateComponent.prototype.setMonth = function(monthDate, monthContainer) {
+      var currentIndex, ref, ref1, referenceMaxX, referenceX, thisIndex, tileMidX;
+      thisIndex = this.scrollTarget.content.children.indexOf(monthContainer);
+      currentIndex = this.scrollTarget.content.children.indexOf((ref = this.handler) != null ? (ref1 = ref.currentMonth) != null ? ref1.tilePage : void 0 : void 0);
+      referenceX = monthContainer.x - this.scrollTarget.scrollX + this.scrollTarget.contentInset.left;
+      referenceMaxX = monthContainer.maxX - this.scrollTarget.scrollX + this.scrollTarget.contentInset.left;
+      if (thisIndex > currentIndex) {
+        return monthDate.x = referenceX;
+      } else if (thisIndex < currentIndex) {
+        return monthDate.x = _.clamp(referenceMaxX - monthDate.width, -999, -10);
+      } else {
+        this.markerlayerLeft.x = referenceX;
+        this.markerlayerRight.x = _.clamp(referenceMaxX, 0, 108);
+        tileMidX = 104 - (monthDate.width / 2);
+        return monthDate.x = _.clamp(Screen.width / 2 - monthDate / 2, 108, Screen.width - 108);
+      }
+    };
+
+    return DateComponent;
+
+  })(ScrollComponent);
+
+  TimeLineComponent = (function(superClass) {
+    extend(TimeLineComponent, superClass);
+
+    function TimeLineComponent(options) {
+      var alert, buttonStart, dateString, firstDate, fn, i, j, k, lastX, lastY, layer, len, len1, len2, m, month, monthButton, monthObject, monthPage, months, path, predictedScore, predictedScoreLabel, ref, ref1, ref2, score, start, y, year, years;
+      if (options == null) {
+        options = {};
+      }
+      this.showCurrentMonthTile = bind(this.showCurrentMonthTile, this);
+      this.showCurrentMonthButtonPage = bind(this.showCurrentMonthButtonPage, this);
+      this.focusCurrentMonth = bind(this.focusCurrentMonth, this);
+      this.getCurrentMonthFromTileScroll = bind(this.getCurrentMonthFromTileScroll, this);
+      this.getCurrentMonthFromTimeLineScroll = bind(this.getCurrentMonthFromTimeLineScroll, this);
+      this.startTimeLineScrollTimer = bind(this.startTimeLineScrollTimer, this);
+      _.defaults(options, {
+        name: 'Timeline/ Alerts Component',
+        alerts: null,
+        backgroundColor: null
+      });
+      TimeLineComponent.__super__.constructor.call(this, options);
+      _.assign(this, {
+        months: [],
+        alerts: options.alerts,
+        _transitioning: false,
+        width: Screen.width,
+        _lastTileScrollX: 0,
+        _lastTimeLineX: 0,
+        animateTiles: false
+      });
+      years = {};
+      ref = this.alerts;
+      for (i = 0, len = ref.length; i < len; i++) {
+        alert = ref[i];
+        y = alert.date.getYear();
+        m = alert.date.getMonth();
+        if (years[y] == null) {
+          years[y] = _.range(12).map(function(y) {
+            return [];
+          });
+        }
+        years[y][m].push(alert);
+      }
+      lastDate = _.last(this.alerts).date;
+      firstDate = this.alerts[0].date;
+      this.timeLineScroll = window.__framerNew(undefined, "414:24-422:1", "#111ce6562",new ScrollComponent({
+        parent: this,
+        width: this.width,
+        height: 112,
+        scrollVertical: false,
+        originX: 0,
+        originY: 0
+      }));
+      this.timeLineScroll.contentInset = {
+        left: this.width / 3,
+        right: this.width / 3
+      };
+      this.tileScroll = window.__framerNew(undefined, "435:20-446:1", "#a200123f",new ScrollComponent({
+        parent: this,
+        y: this.timeLineScroll.maxY + 8,
+        width: this.width,
+        height: 228,
+        scrollVertical: false,
+        originX: .5,
+        originY: 0
+      }));
+      this.tileScroll.contentInset = {
+        left: 104,
+        right: 104
+      };
+      this.setCurrentMonthWhileScrollingThrottled = Utils.throttle(1, this.setCurrentMonthWhileScrolling);
+      ref1 = [this.timeLineScroll, this.tileScroll];
+      fn = (function(_this) {
+        return function(layer) {
+          return layer.onPan(function(event) {
+            if (event.offsetDirection === 'left' || event.offsetDirection === 'right') {
+              app.current.scrollVertical = false;
+              return _this._scrollY = app.current.scrollY;
+            } else {
+              app.current.scrollVertical = true;
+              if (_this._scrollY != null) {
+                app.current.scrollToPoint({
+                  x: 0,
+                  y: _this._scrollY
+                }, false);
+                return _this._scrollY = void 0;
+              }
+            }
+          });
+        };
+      })(this);
+      for (j = 0, len1 = ref1.length; j < len1; j++) {
+        layer = ref1[j];
+        layer.content.draggable.momentumOptions = {
+          friction: 8,
+          tolerance: 50
+        };
+        fn(layer);
+      }
+      for (year in years) {
+        months = years[year];
+        for (month = k = 0, len2 = months.length; k < len2; month = ++k) {
+          alerts = months[month];
+          if (year >= lastDate.getYear() && month > lastDate.getMonth()) {
+            continue;
+          }
+          if (year <= firstDate.getYear() && month < firstDate.getMonth()) {
+            continue;
+          }
+          score = _.random(minScore, maxScore);
+          monthPage = window.__framerNew("monthPage", "499:20-511:3", "?",new MonthContainer({
+            name: 'Month Page',
+            parent: this.tileScroll.content,
+            x: typeof start !== "undefined" && start !== null ? start : 0,
+            backgroundColor: null,
+            alerts: alerts,
+            year: year,
+            month: month,
+            score: score,
+            animationOptions: {
+              time: .25
+            }
+          }));
+          start = monthPage.maxX;
+          dateString = window.__framerNew(undefined, "513:21-513:53", "?",new Date('20' + year.slice(1), month)).toLocaleDateString([], {
+            year: 'numeric',
+            month: 'long'
+          });
+          monthButton = window.__framerNew("monthButton", "520:22-542:3", "?",new TimelineButtonContainer({
+            parent: this.timeLineScroll.content,
+            height: this.timeLineScroll.height,
+            x: buttonStart,
+            score: score,
+            minScore: minScore,
+            maxScore: maxScore,
+            buttonStart: buttonStart,
+            year: year,
+            month: month,
+            lastY: lastY,
+            lastX: lastX,
+            tileContainer: monthPage,
+            alertsCount: alerts.length,
+            handler: this
+          }));
+          buttonStart = monthButton.maxX;
+          lastY = monthButton.button.midY;
+          lastX = monthButton.button.midX;
+          monthObject = {
+            month: month,
+            tilePage: monthPage,
+            buttonPage: monthButton
+          };
+          monthButton.monthObject = monthObject;
+          Utils.delay(0, (function(_this) {
+            return function() {
+              return monthButton.button.bringToFront();
+            };
+          })(this));
+          this.months.push(monthObject);
+        }
+      }
+      if (parseInt(year) === window.__framerNew(undefined, "555:27-555:32", "?",new Date()).getYear() && parseInt(month) > window.__framerNew(undefined, "556:24-556:29", "?",new Date()).getMonth()) {
+        path = (ref2 = monthButton.shape._elementHTML) != null ? ref2.children[0].children[0] : void 0;
+        path.setAttribute('stroke-dasharray', '3, 3');
+        predictedScore = window.__framerNew("predictedScore", "560:24-569:2", "#cd9cb83b",new Layer({
+          parent: monthButton,
+          x: monthButton.button.maxX + 8,
+          y: monthButton.button.y,
+          height: 32,
+          width: 96,
+          borderRadius: 4,
+          backgroundColor: DARK
+        }));
+        predictedScoreLabel = window.__framerNew("predictedScoreLabel", "569:29-577:2", "#eaaaf5b2",new TextLayer({
+          parent: predictedScore,
+          color: LIGHT,
+          fontSize: 12,
+          y: Align.center,
+          x: 8,
+          text: 'Predicted Score'
+        }));
+        predictedScore.width = predictedScoreLabel.width + 16;
+        monthButton.width = predictedScore.maxX;
+        this.timeLineScroll.updateContent();
+      }
+      Utils.define(this, 'currentMonth', void 0, this.setCurrentMonth);
+      this.height = this.tileScroll.maxY;
+      this._timeLineMonth = monthObject;
+      this.timeLineScroll.content.onDragStart(this.startTimeLineScrollTimer);
+      this.timer = void 0;
+      this.time = 0;
+      this.basicTimer = Utils.interval(.25, (function(_this) {
+        return function() {
+          var ref3, tilescrollMonth;
+          if (_this.timeLineScroll.content.draggable.isDragging) {
+            return;
+          }
+          tilescrollMonth = _this.getCurrentMonthFromTileScroll();
+          _this.currentMonth = (ref3 = _this._timeLineMonth) != null ? ref3 : tilescrollMonth;
+          if (_this.currentMonth === _this._lastCurrentMonth) {
+            return;
+          }
+          _this._lastCurrentMonth = _this.currentMonth;
+          return _this.focusCurrentMonth(_this.currentMonth, _this._timeLineMonth != null);
+        };
+      })(this));
+    }
+
+    TimeLineComponent.prototype.startTimeLineScrollTimer = function() {
+      this._timeLineIsScrolling = true;
+      return this.timer = Utils.interval(.1, (function(_this) {
+        return function() {
+          var newX;
+          newX = _this.timeLineScroll.content.x;
+          if (Math.abs(_this._lastTimeLineX - newX) === 0) {
+            if (_this.timeLineScroll.content.draggable.isDragging) {
+              return;
+            }
+            _this._timeLineIsScrolling = false;
+            _this._timeLineMonth = _this.getCurrentMonthFromTimeLineScroll();
+            clearInterval(_this.timer);
+          }
+          return _this._lastTimeLineX = newX;
+        };
+      })(this));
+    };
+
+    TimeLineComponent.prototype.getCurrentMonthFromTimeLineScroll = function() {
+      var underMonthObject;
+      underMonthObject = _.find(this.months, (function(_this) {
+        return function(m) {
+          var ref;
+          return (m.buttonPage.screenFrame.x < (ref = Screen.width / 2) && ref < m.buttonPage.screenFrame.x + m.buttonPage.width);
+        };
+      })(this));
+      return underMonthObject;
+    };
+
+    TimeLineComponent.prototype.getCurrentMonthFromTileScroll = function() {
+      var insideMonthObject, scrollMaxX, underMonthObject;
+      scrollMaxX = this.scrollX + this.width;
+      insideMonthObject = _.find(this.months, (function(_this) {
+        return function(m) {
+          var offLeft, offRight;
+          offLeft = m.tilePage.screenFrame.x < 0;
+          offRight = m.tilePage.screenFrame.x + m.tilePage.width > _this.width;
+          return offLeft && offRight;
+        };
+      })(this));
+      if (insideMonthObject != null) {
+        return insideMonthObject;
+      }
+      underMonthObject = _.find(this.months, (function(_this) {
+        return function(m) {
+          var ref;
+          return (m.tilePage.screenFrame.x < (ref = Screen.width / 2) && ref < m.tilePage.screenFrame.x + m.tilePage.width);
+        };
+      })(this));
+      return underMonthObject;
+    };
+
+    TimeLineComponent.prototype.focusCurrentMonth = function(monthObject, tilesScroll) {
+      if (tilesScroll == null) {
+        tilesScroll = false;
+      }
+      this._scrollingToTile = true;
+      this.showCurrentMonthButtonPage(monthObject);
+      if (tilesScroll) {
+        this.showCurrentMonthTile(monthObject);
+      }
+      return Utils.delay(1, (function(_this) {
+        return function() {
+          return _this.animateTiles = true;
+        };
+      })(this));
+    };
+
+    TimeLineComponent.prototype.showCurrentMonthButtonPage = function(monthObject) {
+      var centerX, i, j, layer, len, len1, ref, ref1;
+      if (!monthObject) {
+        return;
+      }
+      this._scrollingToTile = true;
+      centerX = monthObject.buttonPage.x + this.timeLineScroll.contentInset.left - this.width / 2 + monthObject.buttonPage.width / 2;
+      this.timeLineScroll.scrollToPoint({
+        x: centerX,
+        y: 0
+      }, this.animateTiles, TIMELINE_SCROLL_SPEED);
+      ref = _.without(this.timeLineScroll.content.children, monthObject.buttonPage);
+      for (i = 0, len = ref.length; i < len; i++) {
+        layer = ref[i];
+        layer.animate({
+          opacity: .5
+        });
+      }
+      ref1 = _.without(this.tileScroll.content.children, monthObject.tilePage);
+      for (j = 0, len1 = ref1.length; j < len1; j++) {
+        layer = ref1[j];
+        layer.dateLayer.animate({
+          opacity: .5
+        });
+      }
+      return (function(_this) {
+        return function(monthObject) {
+          return Utils.delay(0, function() {
+            monthObject.buttonPage.animate({
+              opacity: 1
+            });
+            return monthObject.tilePage.dateLayer.animate({
+              opacity: 1
+            });
+          });
+        };
+      })(this)(monthObject);
+    };
+
+    TimeLineComponent.prototype.showCurrentMonthTile = function(monthObject) {
+      this.tileScroll.scrollToPoint({
+        x: monthObject.tilePage.x - this.width / 2 + 128,
+        y: 0
+      }, this.animateTiles, TILES_SCROLL_SPEED);
+      return this.tileScroll.on(Events.ScrollAnimationDidEnd, (function(_this) {
+        return function() {
+          return _this._timeLineMonth = void 0;
+        };
+      })(this));
+    };
+
+    return TimeLineComponent;
+
+  })(Layer);
+
+  TimelineButtonContainer = (function(superClass) {
+    extend(TimelineButtonContainer, superClass);
+
+    function TimelineButtonContainer(options) {
+      var scoreLabel;
+      if (options == null) {
+        options = {};
+      }
+      _.defaults(options, {
+        name: 'Month Button',
+        backgroundColor: null,
+        x: typeof buttonStart !== "undefined" && buttonStart !== null ? buttonStart : 0,
+        width: 112,
+        animationOptions: {
+          time: .25
+        }
+      });
+      TimelineButtonContainer.__super__.constructor.call(this, options);
+      this.alertsCount = options.alertsCount;
+      this.tileContainer = options.tileContainer;
+      this.monthObject = options.monthObject;
+      this.handler = options.handler;
+      this.button = window.__framerNew(undefined, "748:16-767:1", "#1381f985a",new SVGLayer({
+        name: 'Button',
+        parent: this,
+        x: Align.center(),
+        y: Utils.modulate(options.score, [options.minScore, options.maxScore], [24, this.height + (SHOW_DATE_LABEL ? -60 : -36)], true),
+        height: 32,
+        width: 32,
+        borderRadius: 16,
+        borderWidth: 1,
+        borderColor: '#000'
+      }));
+      scoreLabel = window.__framerNew("scoreLabel", "767:19-777:1", "?",new cs.Text({
+        name: 'Score',
+        parent: this.button,
+        point: Align.center(),
+        textAlign: 'center',
+        text: this.alertsCount,
+        color: '#333'
+      }));
+      scoreLabel = window.__framerNew("scoreLabel", "777:19-786:1", "?",new cs.Text({
+        name: 'Score',
+        parent: this,
+        width: 200,
+        midX: this.button.midX,
+        y: -32,
+        textAlign: 'center',
+        text: options.score
+      }));
+      scoreLabel.maxY = this.button.y - 4;
+      if (SHOW_DATE_LABEL) {
+        this.dateLabel = window.__framerNew(undefined, "791:20-803:2", "?",new cs.Text({
+          name: 'Date',
+          parent: this,
+          width: 200,
+          midX: this.button.midX,
+          y: this.button.height + 32,
+          textAlign: 'center',
+          text: window.__framerNew(undefined, "798:14-799:17", "?",new Date('20' + options.year.slice(1), options.month)).toLocaleDateString([], {
+            year: 'numeric',
+            month: 'short'
+          })
+        }));
+        this.dateLabel.y = this.button.maxY + 4;
+      }
+      if (options.buttonStart != null) {
+        this.shape = window.__framerNew(undefined, "808:16-822:2", "#db574d75",new SVGLayer({
+          name: 'Line',
+          parent: this,
+          y: _.min(this.button.midY, options.lastY),
+          x: -40,
+          height: this.height,
+          width: 96,
+          svg: ("<svg><path d='M" + (-this.button.width / 2) + " " + options.lastY + " ") + ("L " + 80. + " " + this.button.midY + "'/></svg>"),
+          stroke: "000",
+          clip: true,
+          strokeWidth: 1,
+          strokeDashoffset: -8
+        }));
+        this.shape.sendToBack();
+      }
+      this.button.onTap((function(_this) {
+        return function(event) {
+          if (Math.abs(event.offset.x) > 16) {
+            return;
+          }
+          return _this.handler.focusCurrentMonth(_this.monthObject);
+        };
+      })(this));
+    }
+
+    return TimelineButtonContainer;
+
+  })(Layer);
+
+  MonthContainer = (function(superClass) {
+    extend(MonthContainer, superClass);
+
+    function MonthContainer(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.makeTiles = bind(this.makeTiles, this);
+      _.defaults(options, {
+        backgroundColor: null
+      });
+      MonthContainer.__super__.constructor.call(this, options);
+      _.assign(this, {
+        year: options.year,
+        month: options.month,
+        alerts: options.alerts,
+        label: options.month
+      });
+      this.dateLayer = window.__framerNew(undefined, "849:19-859:1", "?",new cs.Text({
+        type: 'body1',
+        parent: this,
+        text: window.__framerNew(undefined, "852:13-852:47", "?",new Date('20' + this.year.slice(1), this.month)).toLocaleDateString([], {
+          year: 'numeric',
+          month: 'long'
+        }),
+        animationOptions: {
+          time: .2
+        }
+      }));
+      this.makeTiles();
+      this.width = _.maxBy(this.children, 'maxX').maxX + 8;
+    }
+
+    MonthContainer.prototype.makeTiles = function() {
+      var alert, i, len, ref, results, start;
+      if (this.alerts.length === 0) {
+        window.__framerNew(undefined, "867:7-872:2", "?",new AlertTile({
+          parent: this,
+          y: this.dateLayer.maxY + 4,
+          date: window.__framerNew("date", "870:14-870:48", "?",new Date('20' + this.year.slice(1), this.month)),
+          alert: null
+        }));
+        return;
+      }
+      ref = this.alerts;
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        alert = ref[i];
+        alert = window.__framerNew("alert", "877:15-884:2", "?",new AlertTile({
+          parent: this,
+          y: this.dateLayer.maxY + 4,
+          x: typeof start !== "undefined" && start !== null ? start : 0,
+          date: alert.date,
+          alert: alert
+        }));
+        results.push(start = alert.maxX + 8);
+      }
+      return results;
+    };
+
+    return MonthContainer;
+
+  })(Layer);
+
+  AlertTile = (function(superClass) {
+    extend(AlertTile, superClass);
+
+    function AlertTile(options) {
+      var ref, ref1, ref2;
+      if (options == null) {
+        options = {};
+      }
+      this.getColor = bind(this.getColor, this);
+      this.getAlert = bind(this.getAlert, this);
+      this.getDescription = bind(this.getDescription, this);
+      _.assign(options, {
+        name: 'Alert Tile',
+        backgroundColor: null
+      });
+      this.alert = options.alert;
+      this.date = (ref = (ref1 = this.alert) != null ? ref1.date : void 0) != null ? ref : options.date;
+      if (!HAS_UPCOMING_CHANGES) {
+        if (((ref2 = this.alert) != null ? ref2.date : void 0) === futureDate) {
+          this.noUpcoming = true;
+          this.alert = void 0;
+        }
+      }
+      AlertTile.__super__.constructor.call(this, options);
+      this.tile = window.__framerNew(undefined, "906:14-913:1", "#92ba174c",new Layer({
+        parent: this,
+        y: 0,
+        width: 208,
+        height: 180,
+        backgroundColor: this.getColor()
+      }));
+      if (this.alert != null) {
+        this.type = window.__framerNew(undefined, "914:15-922:2", "?",new cs.Text({
+          type: 'body1',
+          parent: this.tile,
+          x: 8,
+          y: 8,
+          color: '#AAA',
+          text: _.startCase(this.alert.type.toUpperCase())
+        }));
+        if (!this.alert.seen) {
+          this.newDot = window.__framerNew(undefined, "923:18-927:1", "#d141a2f8",new NewDot({
+            parent: this.type,
+            x: Align.right(16)
+          }));
+        }
+      }
+      this.description = window.__framerNew(undefined, "927:21-936:1", "?",new cs.Text({
+        type: 'body1',
+        parent: this.tile,
+        x: Align.center(),
+        y: Align.center(-4),
+        width: this.tile.width - 32,
+        text: this.getDescription(),
+        textAlign: 'center'
+      }));
+      Utils.contain(this, this.children);
+      this.seeMore = window.__framerNew(undefined, "938:17-947:0", "?",new cs.Text({
+        type: 'link',
+        parent: this.tile,
+        x: 8,
+        y: Align.bottom(-16),
+        color: 'primary',
+        text: this.getAlert().text,
+        action: this.getAlert().action
+      }));
+    }
+
+    AlertTile.prototype.getDescription = function() {
+      var ref;
+      if ((ref = this.alert) != null ? ref.content : void 0) {
+        return this.alert.content;
+      }
+      if (this.noUpcoming) {
+        return 'No upcoming changes';
+      } else {
+        return 'No changes this month';
+      }
+    };
+
+    AlertTile.prototype.getAlert = function() {
+      var action, text;
+      if (!this.alert) {
+        text = 'Expecting an update?';
+        action = (function(_this) {
+          return function() {
+            return app.showNext(window.__framerNew(undefined, "959:32-959:55", "#12830df9d",new DetailView({
+              alert: null
+            })));
+          };
+        })(this);
+      } else if (this.alert.thisMonth) {
+        text = 'See details';
+        action = (function(_this) {
+          return function() {
+            return app.showNext(window.__framerNew(undefined, "962:32-962:57", "#12830df9d",new DetailView({
+              alert: _this.alert
+            })));
+          };
+        })(this);
+      } else if (this.alert.type === 'upcoming') {
+        text = 'See details';
+        action = (function(_this) {
+          return function() {
+            return app.showNext(window.__framerNew(undefined, "965:32-965:57", "#12830df9d",new DetailView({
+              alert: _this.alert
+            })));
+          };
+        })(this);
+      } else {
+        text = 'See on Report';
+        action = (function(_this) {
+          return function() {
+            return null;
+          };
+        })(this);
+      }
+      return {
+        text: text,
+        action: action
+      };
+    };
+
+    AlertTile.prototype.getColor = function() {
+      if (this.alert == null) {
+        return 'rgba(216, 216, 216, 1.000)';
+      }
+      if (this.alert.type === 'changed') {
+        return 'rgba(237, 244, 230, 1.000)';
+      }
+      return 'rgba(231, 246, 251, 1.000)';
+    };
+
+    return AlertTile;
+
+  })(Layer);
+
+  Report = (function(superClass) {
+    extend(Report, superClass);
+
+    function Report(options) {
+      var start, welcome1;
+      if (options == null) {
+        options = {};
+      }
+      this.setChangesCounts = bind(this.setChangesCounts, this);
+      this.setUpdateCount = bind(this.setUpdateCount, this);
+      _.defaults(options, {
+        alerts: alerts,
+        showLayers: true,
+        contentInset: {
+          top: app.header.height,
+          bottom: 48
+        }
+      });
+      _.assign(this, {
+        alerts: options.alerts
+      });
+      Report.__super__.constructor.apply(this, arguments);
+      this.backgroundColor = "#FFF";
+      this.content.backgroundColor = "#FFF";
+      welcome1 = window.__framerNew("welcome1", "1011:17-1020:1", "?",new cs.H3({
+        name: 'welcome',
+        parent: this.content,
+        text: 'Welcome back Kimberly Wood',
+        y: 32,
+        x: Align.center(),
+        width: this.width,
+        textAlign: 'center'
+      }));
+      this.upcomingChangesCount = window.__framerNew(undefined, "1020:30-1028:1", "?",new cs.Text({
+        name: 'Upcoming Changes',
+        parent: this.content,
+        text: ' ',
+        color: 'primary',
+        textAlign: 'center',
+        y: welcome1.maxY + 8
+      }));
+      this.upcomingChangesCountDot = window.__framerNew(undefined, "1028:33-1033:1", "#d141a2f8",new NewDot({
+        parent: this.upcomingChangesCount,
+        x: Align.right(16),
+        backgroundColor: '#fd7d6a'
+      }));
+      this.updatesCount = window.__framerNew(undefined, "1033:22-1041:1", "?",new cs.Text({
+        name: 'Upcoming Changes',
+        parent: this.content,
+        text: ' ',
+        color: 'secondary',
+        textAlign: 'center',
+        y: this.upcomingChangesCount.maxY
+      }));
+      this.updatesCountDot = window.__framerNew(undefined, "1041:25-1046:1", "#d141a2f8",new NewDot({
+        parent: this.updatesCount,
+        x: Align.right(16),
+        backgroundColor: '#fd7d6a'
+      }));
+      this.noUpdates = window.__framerNew(undefined, "1046:19-1056:1", "?",new cs.Text({
+        name: 'Upcoming Changes',
+        parent: this.content,
+        text: 'You have no new upcoming updates',
+        color: '#AAA',
+        y: welcome1.maxY + 8,
+        textAlign: 'center',
+        visible: false
+      }));
+      this.setChangesCounts();
+      start = this.updatesCount.maxY;
+      this.timeLine = window.__framerNew(undefined, "1065:18-1071:1", "#158babf79",new TimeLineComponent({
+        parent: this.content,
+        y: start + 24,
+        width: this.width,
+        alerts: this.alerts
+      }));
+      this.theRestOfTheReport = window.__framerNew(undefined, "1071:28-1101:0", "#e440b56b",new Layer({
+        parent: this.content,
+        y: this.timeLine.maxY,
+        width: this.width,
+        height: this.width * (3232 / 758),
+        image: 'images/statics.png'
+      }));
+    }
+
+    Report.prototype.setUpdateCount = function(num) {
+      var maxX, text;
+      text = num + " new update";
+      if (num > 1) {
+        text += 's';
+      }
+      maxX = this.updatesCount;
+      this.updatesCount.template = text;
+      this.updatesCount.visible = num > 0;
+      return this.updatesCount.x = Align.right(-16);
+    };
+
+    Report.prototype.setChangesCounts = function() {
+      var a, fresh, stale, text;
+      a = _.partition(this.alerts, function(a) {
+        return a.date >= window.__framerNew(undefined, "1111:48-1111:53", "?",new Date());
+      });
+      fresh = a[0].filter(function(a) {
+        return !a.seen;
+      }).length;
+      stale = a[1].filter(function(a) {
+        return !a.seen;
+      }).length;
+      if (fresh + stale === 0) {
+        this.noUpdates.visible = true;
+      }
+      text = "You have " + fresh + " new upcoming change";
+      if (fresh > 1) {
+        text += 's';
+      }
+      this.upcomingChangesCount.text = text;
+      this.upcomingChangesCount.visible = fresh > 0;
+      this.upcomingChangesCount.x = Align.center();
+      this.upcomingChangesCountDot.x = Align.right(16);
+      text = "You have " + stale + " changes updated";
+      this.updatesCount.text = text;
+      this.updatesCount.visible = stale > 0;
+      this.updatesCount.x = Align.center();
+      this.updatesCountDot.x = Align.right(16);
+      return Utils.delay(0, (function(_this) {
+        return function() {
+          return Utils.align([_this.upcomingChangesCount, _this.updatesCount, _this.noUpdates], 'x', Align.center);
+        };
+      })(this));
+    };
+
+    return Report;
+
+  })(cs.View);
+
+  reportView = window.__framerNew("reportView", "1144:13-1144:22", "#1216efdab",new Report);
+
+  app.showNext(reportView);
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

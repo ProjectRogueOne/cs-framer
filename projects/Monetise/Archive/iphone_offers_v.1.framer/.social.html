@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=f659e5cdb27d12e093201af25dbb0005"></script>
+		<script src="framer/framer.modules.js?nocache=0f7c844bee35a167e0cdc5048dd600ec"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 4880;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var OfferButton, OffersPager, SHOW_PROGRESS, TabButton, app, button, cardButton, coaching, coachingButton, cs, i, j, k, len, len1, offers, offersButton, offersPager, ref, ref1, view,
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  cs = require('cs');
+
+  cs.Context.setMobile();
+
+  SHOW_PROGRESS = true;
+
+  TabButton = (function(superClass) {
+    extend(TabButton, superClass);
+
+    function TabButton(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      this._title;
+      if (options.title == null) {
+        options.title = 'Tab';
+      }
+      this._isOn;
+      if (options.isOn == null) {
+        options.isOn = false;
+      }
+      _.assign(options, {
+        y: 420,
+        width: (Screen.width - 48) / 2,
+        backgroundColor: null
+      });
+      TabButton.__super__.constructor.call(this, options);
+      this.titleLayer = window.__framerNew(undefined, "28:20-36:1", "?",new cs.MediumBold({
+        parent: this,
+        y: 16,
+        color: '#CCC',
+        text: options.title,
+        width: this.width,
+        textAlign: 'center'
+      }));
+      this.indicator = window.__framerNew(undefined, "36:19-43:1", "#111a5c2a3",new Layer({
+        parent: this,
+        height: 3,
+        backgroundColor: '#CCC',
+        y: this.titleLayer.maxY + 16,
+        width: this.width
+      }));
+      this.height = this.indicator.maxY + 8;
+      delete this.__constructor;
+      this.on("change:isOn", function() {
+        if (this.isOn) {
+          this.titleLayer.color = "#FFF";
+          this.indicator.backgroundColor = "#FFF";
+          return;
+        }
+        this.titleLayer.color = "#CCC";
+        return this.indicator.backgroundColor = "#CCC";
+      });
+      this.isOn = options.isOn;
+    }
+
+    TabButton.define("isOn", {
+      get: function() {
+        return this._isOn;
+      },
+      set: function(bool) {
+        if (this.__constructor) {
+          return;
+        }
+        this._isOn = bool;
+        return this.emit("change:isOn", bool, this);
+      }
+    });
+
+    return TabButton;
+
+  })(Layer);
+
+  OffersPager = (function(superClass) {
+    extend(OffersPager, superClass);
+
+    function OffersPager(options) {
+      if (options == null) {
+        options = {};
+      }
+      _.assign(options, {
+        width: Screen.width,
+        height: 120,
+        propagateEvents: false
+      });
+      OffersPager.__super__.constructor.call(this, options);
+      this.scrollVertical = false;
+      this.on("change:currentPage", function() {
+        if (this.currentPage.name === "Offers") {
+          offersButton.isOn = true;
+          return coachingButton.isOn = false;
+        } else if (this.currentPage.name === "Coaching") {
+          coachingButton.isOn = true;
+          return offersButton.isOn = false;
+        }
+      });
+    }
+
+    return OffersPager;
+
+  })(PageComponent);
+
+  OfferButton = (function(superClass) {
+    extend(OfferButton, superClass);
+
+    function OfferButton(options) {
+      var ref, ref1;
+      if (options == null) {
+        options = {};
+      }
+      this.icon = (ref = options.icon) != null ? ref : 'cards';
+      this.title = (ref1 = options.title) != null ? ref1 : 'Credit Cards';
+      _.assign(options, {
+        height: 84,
+        width: 84,
+        borderRadius: 100
+      });
+      OfferButton.__super__.constructor.call(this, options);
+      _.assign(this, {
+        backgroundColor: 'rgba(255,255,255,.16)',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,.36)',
+        min: 0,
+        max: 100,
+        stroke: 'tertiary',
+        value: options.value
+      });
+      this.numberLayer.opacity = 0;
+      this.content.backgroundColor = 'rgba(0,0,0,0)';
+      this.iconLayer = window.__framerNew(undefined, "114:19-122:1", "#b537191c",new Layer({
+        name: 'Icon',
+        parent: this,
+        width: 64,
+        height: 64,
+        point: Align.center,
+        image: "images/" + this.icon + ".png"
+      }));
+      this.titleLayer = window.__framerNew(undefined, "122:20-133:0", "?",new cs.Small({
+        name: 'Title',
+        parent: this,
+        color: '#FFF',
+        text: this.title,
+        width: this.width,
+        textAlign: 'center',
+        y: this.maxY + 8
+      }));
+    }
+
+    return OfferButton;
+
+  })(cs.Donut);
+
+  app = window.__framerNew("app", "134:10-136:1", "?",new cs.App({
+    type: 'safari'
+  }));
+
+  view = window.__framerNew("view", "137:11-139:0", "?",new cs.View({
+    image: bg.image
+  }));
+
+  view.content.backgroundColor = null;
+
+  app.navigation.backgroundColor = null;
+
+  offersButton = window.__framerNew("offersButton", "145:19-150:0", "#128beefb6",new TabButton({
+    parent: view,
+    title: 'Offers',
+    x: 24 + ((Screen.width - 48) / 2) * 0,
+    isOn: true
+  }));
+
+  offersButton.onTap(function() {
+    return offersPager.snapToPage(offers);
+  });
+
+  coachingButton = window.__framerNew("coachingButton", "154:21-158:0", "#128beefb6",new TabButton({
+    parent: view,
+    title: 'Coaching',
+    x: 24 + ((Screen.width - 48) / 2) * 1
+  }));
+
+  coachingButton.onTap(function() {
+    return offersPager.snapToPage(coaching);
+  });
+
+  offers = window.__framerNew("offers", "166:13-172:0", "#e847a6a8",new ScrollComponent({
+    name: 'Offers',
+    parent: view,
+    width: Screen.width,
+    height: 120,
+    contentInset: {
+      left: 24,
+      right: 24
+    }
+  }));
+
+  offers.scrollVertical = false;
+
+  offers.propagateEvents = false;
+
+  ref = [
+    {
+      title: 'Credit Cards',
+      icon: 'cards',
+      value: 42
+    }, {
+      title: 'Loans',
+      icon: 'bankloans',
+      value: 15
+    }, {
+      title: 'Car Finance',
+      icon: 'autoloans',
+      value: 42
+    }, {
+      title: 'Mortages',
+      icon: 'mortgages',
+      value: 42
+    }, {
+      title: 'Credit Cards',
+      icon: 'cards',
+      value: 42
+    }, {
+      title: 'Loans',
+      icon: 'bankloans',
+      value: 42
+    }, {
+      title: 'Car Finance',
+      icon: 'autoloans',
+      value: 42
+    }, {
+      title: 'Mortages',
+      icon: 'mortagges',
+      value: 42
+    }
+  ];
+  for (i = j = 0, len = ref.length; j < len; i = ++j) {
+    button = ref[i];
+    cardButton = window.__framerNew("cardButton", "186:18-194:0", "#13248cc0e",new OfferButton({
+      parent: offers.content,
+      x: 104 * i,
+      icon: button.icon,
+      title: button.title,
+      value: SHOW_PROGRESS ? button.value : null
+    }));
+  }
+
+  coaching = window.__framerNew("coaching", "195:15-201:0", "#13d4ff5ce",new ScrollComponent({
+    name: 'Coaching',
+    parent: view,
+    width: Screen.width,
+    height: 120,
+    contentInset: {
+      left: 24,
+      right: 24
+    }
+  }));
+
+  coaching.scrollVertical = false;
+
+  coaching.propagateEvents = false;
+
+  ref1 = [
+    {
+      title: 'Credit Cards',
+      icon: 'cards',
+      value: 12
+    }, {
+      title: 'Loans',
+      icon: 'bankloans',
+      value: 2
+    }, {
+      title: 'Car Finance',
+      icon: 'autoloans',
+      value: 85
+    }, {
+      title: 'Mortages',
+      icon: 'mortgages',
+      value: 12
+    }, {
+      title: 'Credit Cards',
+      icon: 'cards',
+      value: 65
+    }, {
+      title: 'Loans',
+      icon: 'bankloans',
+      value: 72
+    }, {
+      title: 'Car Finance',
+      icon: 'autoloans',
+      value: 42
+    }, {
+      title: 'Mortages',
+      icon: 'mortagges',
+      value: 15
+    }
+  ];
+  for (i = k = 0, len1 = ref1.length; k < len1; i = ++k) {
+    button = ref1[i];
+    cardButton = window.__framerNew("cardButton", "215:18-223:0", "#13248cc0e",new OfferButton({
+      parent: coaching.content,
+      x: 104 * i,
+      icon: button.icon,
+      title: button.title,
+      value: SHOW_PROGRESS ? button.value : null
+    }));
+  }
+
+  offersPager = window.__framerNew("offersPager", "224:18-228:0", "#17c1b4bd1",new OffersPager({
+    parent: view,
+    y: 494,
+    icon: 'cards'
+  }));
+
+  offersPager.addPage(offers);
+
+  offersPager.addPage(coaching);
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

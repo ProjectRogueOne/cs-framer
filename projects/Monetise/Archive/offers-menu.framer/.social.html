@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=d7a4e320a550ffcc4e73157a9ba5a99e"></script>
+		<script src="framer/framer.modules.js?nocache=b4659708b3e9838b5eecf3a0bcc79ba2"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 678;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var Carousel, CarouselPage, CategoryLink, CategoryScroll, CheckboxItem, CreditCardOffer, OfferCard, PersonalLoanOffer, app, categoriesOverlay, categoryView, cs, database, filter, filtersOverlay, i, j, k, len, len1, productsView, ref, ref1, singleView, sort,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  cs = require('cs');
+
+  cs.Context.setMobile();
+
+  Framer.Extras.Hints.disable();
+
+  Framer.Extras.Preloader.enable();
+
+  cs.Colors.navigation = '#FFF';
+
+  cs.Colors.navigationButtons = "rgba(0, 146, 188, 1.000)";
+
+  app = window.__framerNew("app", "18:10-22:0", "?",new cs.App({
+    type: 'safari',
+    navigation: 'default',
+    collapse: true
+  }));
+
+  app.navigation.titleLayer.fontWeight = 300;
+
+  Carousel = (function(superClass) {
+    extend(Carousel, superClass);
+
+    function Carousel(options) {
+      if (options == null) {
+        options = {};
+      }
+      this._makeIndicators = bind(this._makeIndicators, this);
+      this._setIndicators = bind(this._setIndicators, this);
+      this.__constructor = true;
+      this.indicators = [];
+      _.assign(options, {
+        scrollVertical: false,
+        scrollHorizontal: false
+      });
+      _.defaults(options, {
+        name: 'Carousel',
+        width: Screen.width,
+        height: 233
+      });
+      Carousel.__super__.constructor.call(this, options);
+      this.directionLock = true;
+      this.directionLockThreshold = {
+        x: 16,
+        y: 999
+      };
+      this.onDirectionLockStart(function() {
+        return app.current.scrollVertical = false;
+      });
+      this.onSwipeEnd(function() {
+        return app.current.scrollVertical = true;
+      });
+      this.onSwipeRightEnd(this._moveLeft);
+      this.onSwipeLeftEnd(this._moveRight);
+      this.on("change:currentPage", this._setIndicators);
+      this.content.on("change:children", this._makeIndicators);
+      delete this.__constructor;
+    }
+
+    Carousel.prototype._moveRight = function() {
+      return this.snapToNextPage("right", true);
+    };
+
+    Carousel.prototype._moveLeft = function() {
+      return this.snapToNextPage("left", true);
+    };
+
+    Carousel.prototype._setIndicators = function() {
+      var activeNum, indicator, j, len, ref;
+      ref = this.indicators;
+      for (j = 0, len = ref.length; j < len; j++) {
+        indicator = ref[j];
+        indicator.opacity = .26;
+      }
+      activeNum = _.indexOf(this.content.children, this.currentPage);
+      return this.indicators[activeNum].opacity = 1;
+    };
+
+    Carousel.prototype._makeIndicators = function() {
+      var indicator, j, k, len, len1, page, pages, ref;
+      ref = this.indicators;
+      for (j = 0, len = ref.length; j < len; j++) {
+        indicator = ref[j];
+        indicator.destroy();
+      }
+      this.indicators = [];
+      pages = this.content.children;
+      for (k = 0, len1 = pages.length; k < len1; k++) {
+        page = pages[k];
+        indicator = window.__framerNew("indicator", "100:19-113:2", "#816df69f",new Layer({
+          parent: this,
+          name: 'indicator',
+          width: 24,
+          height: 8,
+          y: Align.bottom(-16),
+          x: 0,
+          borderRadius: 8,
+          backgroundColor: 'white',
+          borderWidth: 1,
+          borderColor: 'white',
+          opacity: .26
+        }));
+        this.indicators.push(indicator);
+      }
+      Utils.distribute.horizontal(this, this.indicators);
+      return this._setIndicators();
+    };
+
+    return Carousel;
+
+  })(PageComponent);
+
+  CarouselPage = (function(superClass) {
+    extend(CarouselPage, superClass);
+
+    function CarouselPage(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      _.assign(options, {
+        width: Screen.width
+      });
+      _.defaults(options, {
+        name: 'Carousel Page',
+        height: 233,
+        title: "carouselPage.title",
+        subtitle: ".subtitle",
+        ctaText: ".ctaText",
+        image: Utils.randomImage(),
+        data: database.creditCards,
+        callback: function() {
+          return null;
+        }
+      });
+      CarouselPage.__super__.constructor.call(this, options);
+      this.image = null;
+      this.imageLayer = window.__framerNew(undefined, "153:20-161:1", "#9f9dad57",new Layer({
+        name: 'Image',
+        parent: this,
+        size: this.size,
+        image: options.image,
+        brightness: 75,
+        saturate: 62
+      }));
+      this.titleLayer = window.__framerNew(undefined, "161:20-170:1", "?",new cs.H2({
+        name: 'Title',
+        parent: this,
+        y: 32,
+        x: 16,
+        width: this.width - 32,
+        color: 'white',
+        text: options.title
+      }));
+      this.subtitleLayer = window.__framerNew(undefined, "170:23-179:1", "?",new cs.H3({
+        name: 'Subtitle',
+        parent: this,
+        y: this.titleLayer.maxY + 16,
+        x: 16,
+        width: this.width - 32,
+        color: 'white',
+        text: options.subtitle
+      }));
+      this.ctaButton = window.__framerNew(undefined, "179:19-197:1", "?",new cs.Button({
+        name: 'CTA',
+        parent: this,
+        y: this.subtitleLayer.maxY + 16,
+        x: 16,
+        color: 'white',
+        type: 'body',
+        size: 'auto',
+        fill: '#0492bd',
+        text: options.ctaText,
+        action: options.callback
+      }));
+      delete this.__constructor;
+    }
+
+    return CarouselPage;
+
+  })(Layer);
+
+  CategoryScroll = (function(superClass) {
+    extend(CategoryScroll, superClass);
+
+    function CategoryScroll(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.addLink = bind(this.addLink, this);
+      this.__constructor = true;
+      _.defaults(options, {
+        name: 'Categroy Scroll',
+        width: Screen.width,
+        height: 96,
+        backgroundColor: null,
+        scrollVertical: false
+      });
+      this.links = [];
+      CategoryScroll.__super__.constructor.call(this, options);
+      this.directionLock = true;
+      this.directionLockThreshold = {
+        x: 16,
+        y: 999
+      };
+      this.onDirectionLockStart(function() {
+        return app.current.scrollVertical = false;
+      });
+      this.onSwipeEnd(function() {
+        return app.current.scrollVertical = true;
+      });
+      delete this.__constructor;
+    }
+
+    CategoryScroll.prototype.addLink = function(link) {
+      var ref, ref1, ypos;
+      ypos = (ref = (ref1 = _.last(this.links)) != null ? ref1.maxX : void 0) != null ? ref : 0;
+      _.assign(link, {
+        parent: this.content,
+        x: 16 + ypos
+      });
+      this.links.push(link);
+      return this.updateContent();
+    };
+
+    return CategoryScroll;
+
+  })(ScrollComponent);
+
+  CategoryLink = (function(superClass) {
+    extend(CategoryLink, superClass);
+
+    function CategoryLink(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      _.assign(options, {
+        width: 88,
+        height: 96,
+        backgroundColor: null
+      });
+      _.defaults(options, {
+        name: 'Categroy Link',
+        icon: 'images/creditcards.png',
+        text: '.title',
+        callback: function() {
+          return null;
+        }
+      });
+      CategoryLink.__super__.constructor.call(this, options);
+      this.iconLayer = window.__framerNew(undefined, "299:19-308:1", "#15309e29e",new Layer({
+        name: "Icon Layer",
+        parent: this,
+        image: options.icon,
+        width: 64,
+        height: 64,
+        x: Align.center,
+        backgroundColor: null
+      }));
+      this.titleLayer = window.__framerNew(undefined, "308:20-321:1", "?",new cs.Text({
+        name: "Title Layer",
+        parent: this,
+        width: this.width + 32,
+        x: Align.center,
+        y: this.iconLayer.maxY + 4,
+        type: 'body1',
+        textAlign: 'center',
+        color: 'black',
+        text: options.text
+      }));
+      this.onTap(options.callback);
+      delete this.__constructor;
+    }
+
+    return CategoryLink;
+
+  })(Layer);
+
+  OfferCard = (function(superClass) {
+    extend(OfferCard, superClass);
+
+    function OfferCard(options) {
+      var background, offset, ref, startY;
+      if (options == null) {
+        options = {};
+      }
+      this.data = (function() {
+        if ((ref = options.data) != null) {
+          return ref;
+        } else {
+          throw 'No data!';
+        }
+      })();
+      background = '#FFF';
+      if (this.data.exclusive) {
+        background = 'eef9fb';
+      } else if (this.data.preapproved) {
+        background = 'f6faf3';
+      }
+      startY = 21;
+      OfferCard.__super__.constructor.call(this, _.defaults(options, {
+        name: 'Offer Card',
+        width: Screen.width,
+        height: 137,
+        backgroundColor: background,
+        animationOptions: {
+          time: .25
+        }
+      }));
+      this.divider = window.__framerNew(undefined, "363:17-370:1", "?",new cs.Divider({
+        parent: this,
+        x: 20,
+        width: Screen.width - 20
+      }));
+      if (this.data.exclusive || this.data.specialOffer && !this.data.preapproved) {
+        this.height = 160;
+        this.flag = window.__framerNew(undefined, "372:15-386:2", "?",new cs.Small({
+          name: 'Flag',
+          parent: this,
+          y: 10,
+          height: 22,
+          fontWeight: 500,
+          borderRadius: 2,
+          fontSize: 11,
+          backgroundColor: this.data.exclusive ? '59c9d5' : 'ff731b',
+          color: cs.Colors.lightText,
+          textTransform: 'uppercase',
+          padding: {
+            left: 16,
+            right: 16,
+            top: 3
+          },
+          text: this.data.exclusive ? 'exclusive' : 'special offer'
+        }));
+        startY = 42;
+      }
+      this.cardImage = window.__framerNew(undefined, "390:19-401:1", "#a068bfe6",new Layer({
+        name: 'Card Image',
+        parent: this,
+        x: 20,
+        y: startY,
+        width: 127,
+        height: 81,
+        image: this.data.image
+      }));
+      this.rating = window.__framerNew(undefined, "401:16-410:1", "#c6013058",new Layer({
+        name: 'Rating',
+        parent: this,
+        x: 20,
+        y: this.cardImage.maxY + 10,
+        width: 113,
+        height: 16,
+        image: 'images/stars_score.png'
+      }));
+      if (this.data.preapproved) {
+        this.preapprovedFlag = window.__framerNew(undefined, "414:26-430:2", "?",new cs.Small({
+          name: 'Preapproved Flag',
+          parent: this,
+          y: 10,
+          x: 144,
+          height: 22,
+          fontWeight: 500,
+          borderRadius: 2,
+          fontSize: 11,
+          backgroundColor: '71b341',
+          color: cs.Colors.lightText,
+          textTransform: 'uppercase',
+          padding: {
+            left: 32,
+            right: 16,
+            top: 3
+          },
+          text: 'pre-approved'
+        }));
+        this.approvalChance = window.__framerNew(undefined, "430:25-445:2", "#11c94119a",new Layer({
+          name: 'Approved Flag',
+          parent: this,
+          x: 138,
+          y: startY - 15,
+          width: 30,
+          height: 30,
+          borderRadius: 15,
+          fontWeight: 500,
+          backgroundColor: '#71b341',
+          color: cs.Colors.lightText,
+          textTransform: 'uppercase',
+          textAlign: 'center',
+          borderWidth: 1,
+          borderColor: '#FFF'
+        }));
+        offset = Framer.Device.context.scale === 1 ? 3 : 3;
+        this.preapprovedCheck = window.__framerNew(undefined, "447:27-459:1", "?",new cs.Icon({
+          name: 'Check Icon',
+          parent: this.approvalChance,
+          x: Align.center,
+          y: offset,
+          color: '#FFF',
+          icon: 'check',
+          height: 20,
+          width: 20
+        }));
+      } else {
+        this.approvalChance = window.__framerNew(undefined, "463:25-480:2", "?",new cs.Small({
+          name: 'Approval Chance',
+          parent: this,
+          x: 138,
+          y: startY - 15,
+          width: 30,
+          height: 30,
+          borderRadius: 15,
+          fontWeight: 500,
+          backgroundColor: 'a7d089',
+          color: cs.Colors.lightText,
+          textTransform: 'uppercase',
+          textAlign: 'center',
+          borderWidth: 1,
+          borderColor: '#FFF',
+          padding: {
+            top: 6
+          },
+          text: this.data.chance
+        }));
+        this.chanceLabel = window.__framerNew(undefined, "480:22-493:1", "?",new cs.Small({
+          name: 'Approval Label',
+          parent: this,
+          x: this.approvalChance.maxX + 4,
+          y: this.approvalChance.y + 8,
+          fontWeight: 500,
+          fontSize: 12,
+          color: cs.Colors.lightText,
+          color: 'a7d089',
+          text: "% chance of being approved"
+        }));
+      }
+      this.productName = window.__framerNew(undefined, "493:21-503:1", "?",new cs.H4({
+        name: 'product Name',
+        parent: this,
+        y: this.approvalChance.maxY + 8,
+        x: this.approvalChance.maxX + 4,
+        width: this.width - (this.approvalChance.maxX + 4 + 38),
+        text: this.data.brand + " " + this.data.category
+      }));
+      this.moreIcon = window.__framerNew(undefined, "503:18-513:1", "?",new cs.Icon({
+        name: 'More Icon',
+        parent: this,
+        x: Align.right(-10),
+        y: Align.center,
+        icon: 'chevron-right',
+        color: '#CCC'
+      }));
+      this.productDetail = window.__framerNew(undefined, "513:23-525:1", "?",new cs.SmallBold({
+        name: 'Product Detail',
+        parent: this,
+        y: this.productName.maxY + 18,
+        x: this.approvalChance.maxX + 4,
+        fontSize: 12,
+        width: this.width - (this.approvalChance.maxX + 20),
+        text: this.data.apr + "% Representative APR",
+        color: this.data.apr < 20 ? '71b341' : Color.main
+      }));
+      this.checkbox = window.__framerNew(undefined, "525:18-532:1", "?",new cs.Checkbox({
+        parent: this,
+        y: this.cardImage.midY - 12,
+        x: -14,
+        opacity: 0,
+        visible: false
+      }));
+      this.onTap(function(event) {
+        var ref1, ref2, ref3;
+        event.stopPropagation();
+        if (((ref1 = this.checkbox) != null ? ref1.visible : void 0) === false) {
+          return;
+        }
+        return (ref2 = this.checkbox) != null ? ref2.isOn = !((ref3 = this.checkbox) != null ? ref3.isOn : void 0) : void 0;
+      });
+    }
+
+    OfferCard.prototype.showCheckbox = function() {
+      var ref, ref1;
+      this.animate({
+        x: 24
+      });
+      if ((ref = this.checkbox) != null) {
+        ref.visible = true;
+      }
+      return (ref1 = this.checkbox) != null ? ref1.animate({
+        opacity: 1
+      }) : void 0;
+    };
+
+    OfferCard.prototype.hideCheckbox = function() {
+      var ref;
+      this.animate({
+        x: 0
+      });
+      if ((ref = this.checkbox) != null) {
+        ref.animate({
+          opacity: 0
+        });
+      }
+      return Utils.delay(.25, (function(_this) {
+        return function() {
+          var ref1;
+          return (ref1 = _this.checkbox) != null ? ref1.visible = false : void 0;
+        };
+      })(this));
+    };
+
+    return OfferCard;
+
+  })(Layer);
+
+  CheckboxItem = (function(superClass) {
+    extend(CheckboxItem, superClass);
+
+    function CheckboxItem(options) {
+      if (options == null) {
+        options = {};
+      }
+      _.assign(options, {
+        backgroundColor: null
+      });
+      _.defaults(options, {
+        name: 'Checkbox Item',
+        width: (Screen.width - 32) / 2,
+        value: ''
+      });
+      this.value = options.value;
+      CheckboxItem.__super__.constructor.call(this, options);
+      this.checkbox = window.__framerNew(undefined, "570:18-574:1", "?",new cs.Checkbox({
+        parent: this,
+        x: 0,
+        y: 12
+      }));
+      this.labelLayer = window.__framerNew(undefined, "574:20-580:1", "?",new cs.Large({
+        parent: this,
+        x: 32,
+        y: 12,
+        width: this.width,
+        text: options.text
+      }));
+      this.height = this.labelLayer.maxY + 16;
+      this.onTap(function() {
+        return this.checkbox.isOn = !this.checkbox.isOn;
+      });
+    }
+
+    CheckboxItem.define("isOn", {
+      get: function() {
+        return this.checkbox.isOn;
+      }
+    });
+
+    return CheckboxItem;
+
+  })(Layer);
+
+  database = {
+    creditCardOffers: [],
+    personalLoanOffers: [],
+    preapproved: [true, false],
+    categories: ['Rewards Cards', 'Low APR', 'Travel Abroad', 'Balance Transfer', 'Purchase Cards', 'Credit Builder'],
+    brands: ['Barclays', 'American Express', 'LUMA', 'Vanquis', 'Natwest', 'Capital One', 'TescoBank', 'MBNA'],
+    rateTypes: ['Guaranteed', 'Select'],
+    cardImages: ['images/card1.png', 'images/card2.png'],
+    features: ['Amazon Cashback', '20 bottles of beer', 'Free tickets to movies']
+  };
+
+  _.assign(database.creditCardOffers, {
+    filterLinkText: "All cards",
+    title: 'Credit Cards'
+  });
+
+  _.assign(database.personalLoanOffers, {
+    filterLinkText: "All loans",
+    title: 'Personal Loans'
+  });
+
+  CreditCardOffer = (function() {
+    function CreditCardOffer(options) {
+      if (options == null) {
+        options = {};
+      }
+      _.defaults(options, {
+        brand: _.sample(database.brands),
+        category: _.sample(database.categories),
+        features: _.sampleSize(database.features, _.random(3)),
+        aprType: _.sample(database.rateTypes),
+        image: _.sample(database.cardImages),
+        chance: _.random(50, 80),
+        apr: _.random(12.5, 25.5).toFixed(1),
+        exclusive: Math.random() > .9,
+        specialOffer: Math.random() > .9,
+        preapproved: Math.random() > .9
+      });
+      _.assign(this, options);
+      database.creditCardOffers.push(this);
+    }
+
+    return CreditCardOffer;
+
+  })();
+
+  PersonalLoanOffer = (function() {
+    function PersonalLoanOffer(options) {
+      if (options == null) {
+        options = {};
+      }
+      _.defaults(options, {
+        brand: _.sample(database.brands),
+        category: _.sample(database.categories),
+        features: _.sampleSize(database.features, _.random(3)),
+        aprType: _.sample(database.rateTypes),
+        image: _.sample(database.cardImages),
+        chance: _.random(50, 80),
+        apr: _.random(12.5, 25.5).toFixed(1),
+        exclusive: Math.random() > .9,
+        specialOffer: Math.random() > .9,
+        preapproved: Math.random() > .9
+      });
+      _.assign(this, options);
+      database.personalLoanOffers.push(this);
+    }
+
+    return PersonalLoanOffer;
+
+  })();
+
+  filter = {
+    brands: [],
+    categories: [],
+    features: [],
+    filters: [],
+    minAPR: null,
+    maxAPR: null,
+    preapproved: null,
+    sort: void 0,
+    clearFilters: function() {
+      return _.assign(filter, {
+        brands: [],
+        categories: [],
+        features: [],
+        minAPR: null,
+        maxAPR: null,
+        preapproved: null
+      });
+    },
+    addFilter: function(type, value) {
+      return filter[type].push(value);
+    },
+    removeFilter: function(type, value) {
+      return _.pull(filter[type], value);
+    },
+    brand: function(offer) {
+      if (filter.brands.length === 0) {
+        return true;
+      }
+      return _.includes(filter.brands, offer.brand);
+    },
+    category: function(offer) {
+      if (filter.categories.length === 0) {
+        return true;
+      }
+      return _.includes(filter.categories, offer.category);
+    },
+    feature: function(offer) {
+      if (filter.features.length === 0) {
+        return true;
+      }
+      return _.intersection(filter.features, offer.features) != null;
+    },
+    apr: function(offer) {
+      var ref;
+      if ((filter.minAPR == null) && (filter.maxAPR == null)) {
+        return true;
+      }
+      if ((filter.minAPR < (ref = offer.apr) && ref < filter.maxAPR)) {
+        return true;
+      }
+      return false;
+    },
+    preapproved: function(offer) {
+      var ref;
+      if (filter.preapproved == null) {
+        return true;
+      }
+      return (ref = offer.preapproved) != null ? ref : false;
+    }
+  };
+
+  filter.filters = [filter.category, filter.feature, filter.brand, filter.apr, filter.preapproved];
+
+  sort = {
+    key: void 0,
+    direction: 'descending',
+    clearSort: function() {
+      sort.key = void 0;
+      return sort.direction = 'descending';
+    }
+  };
+
+  productsView = window.__framerNew("productsView", "776:19-780:0", "?",new cs.View({
+    name: 'Products View',
+    title: 'Products',
+    showLayers: false
+  }));
+
+  productsView.build(function() {
+    var i, j, len, page, pages;
+    this.carousel = window.__framerNew(undefined, "785:17-788:0", "#122ca1920",new Carousel({
+      parent: this.content
+    }));
+    pages = [
+      {
+        title: "Christmas holidays?",
+        subtitle: 'New AMEX to use abroad',
+        ctaText: 'Find out more',
+        callback: function() {
+          filter.clearFilters();
+          filter.addFilter('brands', 'American Express');
+          return categoryView.loadCategory(database.creditCardOffers, "American Express");
+        }
+      }, {
+        title: "Christmas shopping",
+        subtitle: 'Try a new Purchase card',
+        ctaText: 'Search purchase cards',
+        callback: function() {
+          filter.clearFilters();
+          filter.addFilter('categories', 'Purchase Cards');
+          return categoryView.loadCategory(database.creditCardOffers, "Purchase Cards");
+        }
+      }, {
+        title: "Going far?",
+        subtitle: 'Get a Card with Airmiles',
+        ctaText: 'Start saving',
+        callback: function() {
+          filter.clearFilters();
+          filter.addFilter('features', 'Armiles');
+          return categoryView.loadCategory(database.creditCardOffers, "Armiles");
+        }
+      }, {
+        title: "Elves on strike?",
+        subtitle: 'Get a low-rate personal loan',
+        ctaText: 'Sleigh this Way',
+        callback: function() {
+          filter.clearFilters();
+          filter.addFilter('categories', 'Low APR');
+          return categoryView.loadCategory(database.personalLoanOffers, "Low APR");
+        }
+      }
+    ];
+    for (i = j = 0, len = pages.length; j < len; i = ++j) {
+      page = pages[i];
+      this.carousel.addPage(window.__framerNew(undefined, "837:24-837:40", "#10be50132",new CarouselPage(page)));
+    }
+    this.recommendedContainer = window.__framerNew(undefined, "841:29-848:0", "#ea17cffa",new Layer({
+      name: 'Categroy Container',
+      parent: this.content,
+      y: this.carousel.maxY,
+      width: this.width,
+      backgroundColor: '#FFF'
+    }));
+    _.bind(function() {
+      var divider, k, len1, link, links, results1;
+      this.recommended = window.__framerNew(undefined, "850:21-858:1", "?",new cs.Text({
+        name: 'Recommended',
+        parent: this,
+        y: 16,
+        x: 16,
+        type: 'body',
+        text: 'Recommended'
+      }));
+      this.recommendedLink = window.__framerNew(undefined, "858:25-867:1", "?",new cs.Text({
+        name: 'Recommended Link',
+        parent: this,
+        y: 16,
+        x: Align.right(-16),
+        type: 'body',
+        color: 'primary',
+        text: 'See all'
+      }));
+      this.recommendedLink.onTap(function() {
+        return app.showOverlayBottom(categoriesOverlay);
+      });
+      divider = window.__framerNew("divider", "870:16-877:1", "?",new cs.Divider({
+        name: 'Divider',
+        parent: this,
+        x: 16,
+        y: this.recommendedLink.maxY + 16,
+        width: this.width - 32
+      }));
+      this.categoryScroll = window.__framerNew(undefined, "877:24-881:1", "#8408e2e2",new CategoryScroll({
+        parent: this,
+        y: divider.maxY + 24
+      }));
+      this.height = this.categoryScroll.maxY;
+      links = [
+        {
+          icon: "images/creditcards.png",
+          text: 'Credit cards',
+          callback: function() {
+            filter.clearFilters();
+            return categoryView.loadCategory(database.creditCardOffers);
+          }
+        }, {
+          icon: "images/bankloans.png",
+          text: 'Personal loans',
+          callback: function() {
+            filter.clearFilters();
+            return categoryView.loadCategory(database.personalLoanOffers);
+          }
+        }, {
+          icon: "images/carloans.png",
+          text: 'Car finance',
+          callback: function() {
+            return null;
+          }
+        }, {
+          icon: "images/mortgages.png",
+          text: 'Mortgages',
+          callback: function() {
+            return null;
+          }
+        }
+      ];
+      results1 = [];
+      for (i = k = 0, len1 = links.length; k < len1; i = ++k) {
+        link = links[i];
+        results1.push(this.categoryScroll.addLink(window.__framerNew(undefined, "908:31-908:47", "#aff42189",new CategoryLink(link))));
+      }
+      return results1;
+    }, this.recommendedContainer)();
+    return _.assign(productsView_static, {
+      parent: this.content,
+      x: 0,
+      y: this.recommendedContainer.maxY
+    });
+  });
+
+  categoryView = window.__framerNew("categoryView", "919:19-927:0", "?",new cs.View({
+    name: 'Category View',
+    title: '',
+    showLayers: false,
+    padding: {
+      top: 60,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      stack: 0
+    }
+  }));
+
+  categoryView.build(function() {
+    this.cards = [];
+    this.currentOffers = void 0;
+    this.content.backgroundColor = "#FFF";
+    this.subnav = window.__framerNew(undefined, "937:15-945:0", "#b776a8af",new Layer({
+      name: 'Subnav',
+      parent: this,
+      y: app.navigation.maxY,
+      height: 60,
+      width: Screen.width,
+      backgroundColor: '#2c3756'
+    }));
+    app.navigation.on("change:y", (function(_this) {
+      return function() {
+        return _this.subnav.y = app.navigation.maxY;
+      };
+    })(this));
+    _.bind(function() {
+      this.backButton = window.__framerNew(undefined, "950:20-958:1", "#10a45afb2",new Layer({
+        name: 'Back Button',
+        parent: this,
+        x: 0,
+        height: this.height,
+        width: this.height + 32,
+        backgroundColor: null
+      }));
+      this.backbuttonIcon = window.__framerNew(undefined, "958:24-966:1", "?",new cs.Icon({
+        name: 'Back Icon',
+        parent: this.backButton,
+        x: 8,
+        y: Align.center,
+        icon: 'chevron-left',
+        color: 'white'
+      }));
+      this.backButtonLabel = window.__framerNew(undefined, "966:25-977:1", "?",new cs.SmallBold({
+        name: 'Back Label',
+        parent: this.backButton,
+        x: this.backbuttonIcon.maxX,
+        y: Align.center,
+        text: "Back",
+        color: 'white',
+        width: 128
+      }));
+      this.compareButton = window.__framerNew(undefined, "977:23-985:1", "#10a210e50",new Layer({
+        name: 'Compare Button',
+        parent: this,
+        x: Align.right(-16 + -(this.height + 16) * 2),
+        height: this.height,
+        width: this.height,
+        backgroundColor: null
+      }));
+      this.compareButtonIcon = window.__framerNew(undefined, "985:27-993:1", "?",new cs.Icon({
+        name: 'Compare Icon',
+        parent: this.compareButton,
+        x: Align.center,
+        y: Align.center(-8),
+        icon: 'repeat',
+        color: 'white'
+      }));
+      this.compareButtonLabel = window.__framerNew(undefined, "993:28-1005:1", "?",new cs.Small({
+        name: 'Compare Label',
+        parent: this.compareButton,
+        x: Align.center,
+        y: Align.bottom(-6),
+        width: 128,
+        text: "Compare",
+        textAlign: 'center',
+        color: 'white'
+      }));
+      this.filtersButton = window.__framerNew(undefined, "1005:23-1013:1", "#1759fea5b",new Layer({
+        name: 'Filters Button',
+        parent: this,
+        x: this.compareButton.maxX + 16,
+        height: this.height,
+        width: this.height,
+        backgroundColor: null
+      }));
+      this.filtersButtonIcon = window.__framerNew(undefined, "1013:27-1021:1", "?",new cs.Icon({
+        name: 'Filters Icon',
+        parent: this.filtersButton,
+        x: Align.center,
+        y: Align.center(-8),
+        icon: 'tune',
+        color: 'white'
+      }));
+      this.filtersButtonLabel = window.__framerNew(undefined, "1021:28-1033:1", "?",new cs.Small({
+        name: 'Filters Label',
+        parent: this.filtersButton,
+        x: Align.center,
+        y: Align.bottom(-6),
+        width: 128,
+        text: "Filters",
+        textAlign: 'center',
+        color: 'white'
+      }));
+      this.categoriesButton = window.__framerNew(undefined, "1033:26-1041:1", "#162d52423",new Layer({
+        name: 'Categories Button',
+        parent: this,
+        x: this.filtersButton.maxX + 16,
+        height: this.height,
+        width: this.height,
+        backgroundColor: null
+      }));
+      this.categoriesButtonIcon = window.__framerNew(undefined, "1041:30-1049:1", "?",new cs.Icon({
+        name: 'Categories Icon',
+        parent: this.categoriesButton,
+        x: Align.center,
+        y: Align.center(-8),
+        icon: 'grid',
+        color: 'white'
+      }));
+      return this.categoriesButtonLabel = window.__framerNew(undefined, "1049:31-1059:0", "?",new cs.Small({
+        name: 'Categories Label',
+        parent: this.categoriesButton,
+        x: Align.center,
+        y: Align.bottom(-6),
+        width: 128,
+        text: "Categories",
+        textAlign: 'center',
+        color: 'white'
+      }));
+    }, this.subnav)();
+    this.addToStack(this.filtersBar = window.__framerNew(undefined, "1064:31-1072:0", "#88f2011f",new Layer({
+      name: 'Purchase Cards Bar',
+      height: 48,
+      width: Screen.width,
+      backgroundColor: '#FFF',
+      shadowY: 1,
+      shadowColor: 'rgba(0,0,0,.26)'
+    })));
+    _.bind(function() {
+      this.labelLayer = window.__framerNew(undefined, "1074:20-1082:1", "?",new cs.Text({
+        name: 'Purchase Cards',
+        parent: this,
+        type: 'body',
+        y: Align.center,
+        x: 16,
+        text: "Purchase Cards"
+      }));
+      this.tapArea = window.__framerNew(undefined, "1082:17-1090:1", "#dea3612b",new Layer({
+        name: 'Tap Area',
+        parent: this,
+        height: this.height,
+        x: Align.right,
+        width: 128,
+        backgroundColor: null
+      }));
+      return this.labelLink = window.__framerNew(undefined, "1090:19-1100:0", "?",new cs.Text({
+        name: 'All Cards',
+        parent: this.tapArea,
+        type: 'link',
+        y: Align.center,
+        x: Align.right(-16),
+        textAlign: 'right',
+        text: "All Cards",
+        color: 'primary'
+      }));
+    }, this.filtersBar)();
+    this.filtersBar.tapArea.onTap(function() {
+      return categoryView.clearFilters();
+    });
+    this.subnav.backButton.onTap(function() {
+      return app.showNext(productsView);
+    });
+    this.subnav.compareButton.onTap(function() {
+      return null;
+    });
+    this.subnav.filtersButton.onTap(function() {
+      return filtersOverlay.show();
+    });
+    return this.subnav.categoriesButton.onTap(function() {
+      return app.showOverlayBottom(categoriesOverlay);
+    });
+  });
+
+  categoryView.noResults = window.__framerNew(undefined, "1110:29-1118:0", "?",new cs.LargeBold({
+    name: 'No Results',
+    parent: categoryView,
+    x: Align.center,
+    y: 300,
+    text: 'No Results'
+  }));
+
+  categoryView.clearFilters = function() {
+    filter.clearFilters();
+    sort.clearSort();
+    return Utils.delay(.25, function() {
+      return categoryView.loadCategory(categoryView.currentOffers, null, false);
+    });
+  };
+
+  categoryView.loadCategory = function(offers, filterLabel, changeView) {
+    var card, filteredOffers, fn, j, k, len, len1, newCard, offer, ref, ref1, results1, sortedOffers;
+    if (changeView == null) {
+      changeView = true;
+    }
+    if (!offers) {
+      return;
+    }
+    this.title = offers.title;
+    this.currentOffers = offers;
+    if (changeView) {
+      app.showNext(this);
+    }
+    ref = this.cards;
+    for (j = 0, len = ref.length; j < len; j++) {
+      card = ref[j];
+      this.removeFromStack(card);
+      card.destroy();
+    }
+    this.cards = [];
+    this.filtersBar.labelLayer.text = filterLabel;
+    this.filtersBar.labelLink.text = offers.filterLinkText;
+    this.filtersBar.height = filterLabel != null ? 48 : 1;
+    filteredOffers = _.filter(offers, function(offer) {
+      var results, testFilter;
+      results = [];
+      testFilter = function(f) {
+        return f(offer);
+      };
+      results = _.map(filter.filters, testFilter);
+      return !_.includes(results, false);
+    });
+    sortedOffers = _.sortBy(filteredOffers, sort.key);
+    if (sort.direction === "descending") {
+      _.reverse(sortedOffers);
+    }
+    categoryView.noResults.visible = sortedOffers.length <= 0;
+    ref1 = _.take(sortedOffers, 24);
+    fn = function(newCard, offer) {
+      return newCard.onTap(function() {
+        return singleView.showOffer(offer);
+      });
+    };
+    results1 = [];
+    for (k = 0, len1 = ref1.length; k < len1; k++) {
+      offer = ref1[k];
+      newCard = window.__framerNew("newCard", "1174:16-1178:1", "#8b637288",new OfferCard({
+        name: '.',
+        data: offer
+      }));
+      fn(newCard, offer);
+      this.addToStack(newCard);
+      results1.push(this.cards.push(newCard));
+    }
+    return results1;
+  };
+
+  singleView = window.__framerNew("singleView", "1188:17-1200:0", "?",new cs.View({
+    name: 'Single Offer View',
+    title: 'Offer',
+    showLayers: false,
+    padding: {
+      top: 60,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      stack: 0
+    }
+  }));
+
+  singleView.build(function() {
+    var ref, ref1, ref2;
+    this.content.backgroundColor = "#FFF";
+    static_view_single.parent = this.content;
+    static_view_single.x = 0;
+    static_view_single.y = -134;
+    static_view_single_bottom.parent = this.content;
+    static_view_single_bottom.x = 0;
+    static_view_single_bottom.y = static_view_single.maxY + 72;
+    this.subnav = window.__framerNew(undefined, "1215:15-1224:0", "#f0de91fd",new Layer({
+      name: 'Subnav',
+      parent: this,
+      y: app.navigation.maxY,
+      height: 60,
+      width: Screen.width,
+      backgroundColor: '#2c3756',
+      backgroundBlur: 10
+    }));
+    app.navigation.on("change:y", (function(_this) {
+      return function() {
+        return _this.subnav.y = app.navigation.maxY;
+      };
+    })(this));
+    _.bind(function() {
+      this.backButton = window.__framerNew(undefined, "1229:20-1237:1", "#126161794",new Layer({
+        name: 'Back Button',
+        parent: this,
+        x: 0,
+        height: this.height,
+        width: this.height + 32,
+        backgroundColor: null
+      }));
+      this.backbuttonIcon = window.__framerNew(undefined, "1237:24-1244:1", "?",new cs.Icon({
+        parent: this.backButton,
+        x: 8,
+        y: Align.center,
+        icon: 'chevron-left',
+        color: 'white'
+      }));
+      this.backButtonLabel = window.__framerNew(undefined, "1244:25-1253:1", "?",new cs.SmallBold({
+        parent: this.backButton,
+        x: this.backbuttonIcon.maxX,
+        y: Align.center,
+        text: "Back",
+        color: 'white'
+      }));
+      this.shareButton = window.__framerNew(undefined, "1253:21-1261:1", "#173aa6ede",new Layer({
+        name: 'Share Button',
+        parent: this,
+        x: Align.right(-16),
+        height: this.height,
+        width: this.height,
+        backgroundColor: null
+      }));
+      this.shareButtonIcon = window.__framerNew(undefined, "1261:25-1268:1", "?",new cs.Icon({
+        parent: this.shareButton,
+        x: Align.center,
+        y: Align.center(-8),
+        icon: 'email-outline',
+        color: 'white'
+      }));
+      return this.shareButtonLabel = window.__framerNew(undefined, "1268:26-1277:0", "?",new cs.Small({
+        parent: this.shareButton,
+        x: Align.center,
+        y: Align.bottom(-6),
+        width: 128,
+        text: "Share",
+        textAlign: 'center',
+        color: 'white'
+      }));
+    }, this.subnav)();
+    this.footer = window.__framerNew(undefined, "1281:15-1291:0", "#15f38e788",new Layer({
+      name: 'Footer',
+      parent: this,
+      maxY: (ref = (ref1 = app.footer) != null ? ref1.y : void 0) != null ? ref : Screen.height,
+      height: 72,
+      width: Screen.width,
+      backgroundColor: '#FFF',
+      backgroundBlur: 10,
+      shadowY: -1
+    }));
+    if ((ref2 = app.footer) != null) {
+      ref2.on("change:y", (function(_this) {
+        return function() {
+          if (_this.footer.parent !== _this) {
+            return;
+          }
+          return _this.footer.maxY = app.footer.y;
+        };
+      })(this));
+    }
+    _.bind(function() {
+      this.icon = window.__framerNew(undefined, "1298:14-1305:1", "?",new cs.Icon({
+        parent: this,
+        y: Align.center,
+        x: 32,
+        color: '#87cb55',
+        icon: 'checkbox-marked-circle'
+      }));
+      this.icon.size = 32;
+      this.icon.y = Align.center;
+      this.label = window.__framerNew(undefined, "1308:15-1315:1", "?",new cs.SmallBold({
+        parent: this,
+        y: Align.center,
+        x: this.icon.maxX + 4,
+        text: 'PRE APPROVED',
+        color: '#87cb55'
+      }));
+      this.cta = window.__framerNew(undefined, "1315:13-1324:1", "?",new cs.Button({
+        parent: this,
+        type: 'body',
+        fill: '#0492bd',
+        color: '#FFF',
+        text: 'Apply now',
+        size: 'auto',
+        y: Align.center
+      }));
+      return this.cta.x = Align.right(-16);
+    }, this.footer)();
+    this.inlineFooter = window.__framerNew(undefined, "1330:21-1340:0", "#107c77b5e",new Layer({
+      name: 'Footer',
+      parent: this.content,
+      y: static_view_single.maxY,
+      height: 72,
+      width: Screen.width,
+      backgroundColor: '#FFF',
+      backgroundBlur: 10,
+      shadowY: -1
+    }));
+    _.bind(function() {
+      this.icon = window.__framerNew(undefined, "1342:14-1349:1", "?",new cs.Icon({
+        parent: this,
+        y: Align.center,
+        x: 32,
+        color: '#87cb55',
+        icon: 'checkbox-marked-circle'
+      }));
+      this.icon.size = 32;
+      this.icon.y = Align.center;
+      this.label = window.__framerNew(undefined, "1352:15-1359:1", "?",new cs.SmallBold({
+        parent: this,
+        y: Align.center,
+        x: this.icon.maxX + 4,
+        text: 'PRE APPROVED',
+        color: '#87cb55'
+      }));
+      this.cta = window.__framerNew(undefined, "1359:13-1368:1", "?",new cs.Button({
+        parent: this,
+        type: 'body',
+        fill: '#0492bd',
+        color: '#FFF',
+        text: 'Apply now',
+        size: 'auto',
+        y: Align.center
+      }));
+      return this.cta.x = Align.right(-16);
+    }, this.inlineFooter)();
+    this.imageLayerContainer = window.__framerNew(undefined, "1374:28-1382:0", "#f8c08f65",new Layer({
+      name: 'Background Image Container',
+      parent: this.content,
+      width: this.width,
+      height: 212,
+      backgroundColor: '#bfcddf',
+      clip: true
+    }));
+    this.imageLayer = window.__framerNew(undefined, "1382:19-1392:0", "#bb9be38a",new Layer({
+      name: 'Background Image',
+      parent: this.imageLayerContainer,
+      size: this.imageLayerContainer.size,
+      point: Align.center,
+      scale: 1.5,
+      blur: 10
+    }));
+    this.cardImageLayer = window.__framerNew(undefined, "1392:23-1406:0", "#151409e24",new Layer({
+      name: 'Card Image',
+      parent: this.content,
+      width: 213,
+      height: 136,
+      x: Align.center,
+      y: 96,
+      backgroundColor: '#0069b5',
+      borderRadius: 4,
+      shadowY: 1,
+      shadowBlur: 3
+    }));
+    this.rating = window.__framerNew(undefined, "1406:15-1417:0", "#ad0e3219",new Layer({
+      name: 'Rating',
+      parent: this.content,
+      x: Align.center,
+      y: this.cardImageLayer.maxY + 24,
+      width: 153,
+      height: 21,
+      image: 'images/stars_score.png'
+    }));
+    this.cardBrand = window.__framerNew(undefined, "1417:18-1429:0", "?",new cs.H1({
+      name: 'Title',
+      parent: this.content,
+      x: Align.center,
+      y: this.rating.maxY + 8,
+      width: this.width,
+      textAlign: 'center',
+      fontSize: 28,
+      fontWeight: 300,
+      color: '#404F5D'
+    }));
+    this.cardCategory = window.__framerNew(undefined, "1429:21-1441:0", "?",new cs.H1({
+      name: 'Category',
+      parent: this.content,
+      x: Align.center,
+      y: this.cardBrand.maxY,
+      width: this.width,
+      textAlign: 'center',
+      fontSize: 28,
+      fontWeight: 300,
+      color: '#404F5D'
+    }));
+    this.cardAPR = window.__framerNew(undefined, "1441:16-1454:0", "?",new cs.H1({
+      name: 'Category',
+      parent: this.content,
+      x: Align.center,
+      y: this.cardCategory.maxY,
+      width: this.width,
+      textAlign: 'center',
+      fontSize: 28,
+      fontWeight: 300,
+      color: '#0492BD'
+    }));
+    this.subnav.backButton.onTap(function() {
+      return app.showPrevious();
+    });
+    this.subnav.shareButton.onTap(function() {
+      return null;
+    });
+    return this.content.onMove((function(_this) {
+      return function() {
+        if (_this.footer.screenFrame.y <= _this.inlineFooter.screenFrame.y && _this.footer.visible === false) {
+          return _this.footer.visible = true;
+        } else if (_this.footer.screenFrame.y > _this.inlineFooter.screenFrame.y && _this.footer.visible === true) {
+          return _this.footer.visible = false;
+        }
+      };
+    })(this));
+  });
+
+  singleView.showOffer = function(offer) {
+    if (offer == null) {
+      offer = _.sample(database.creditCardOffers);
+    }
+    app.showNext(this);
+    this.imageLayer.image = offer.image;
+    this.imageLayer.blur = 32;
+    this.cardImageLayer.image = offer.image;
+    this.cardBrand.text = offer.brand;
+    this.cardCategory.text = offer.category;
+    return this.cardAPR.text = offer.apr + '% ' + offer.aprType + ' APR';
+  };
+
+  filtersOverlay = window.__framerNew("filtersOverlay", "1479:21-1484:0", "?",new cs.View({
+    name: 'Filters Overlay',
+    title: 'Filters',
+    padding: {
+      top: 8,
+      stack: 0,
+      bottom: 6
+    },
+    showLayers: false
+  }));
+
+  filtersOverlay.build(function() {
+    var titleRow;
+    this.backgroundColor = '#FFF';
+    this.content.backgroundColor = '#FFF';
+    titleRow = window.__framerNew("titleRow", "1492:16-1497:0", "#143ff7d27",new Layer({
+      height: 60,
+      width: this.width,
+      backgroundColor: null
+    }));
+    _.bind(function() {
+      this.labelLayer = window.__framerNew(undefined, "1499:20-1508:1", "?",new cs.SmallBold({
+        parent: this,
+        y: Align.center(),
+        padding: {
+          top: 20,
+          right: 20,
+          left: 20,
+          bottom: 20
+        },
+        text: 'Clear Filters',
+        textDecoration: 'underline',
+        color: '#008bb2',
+        width: 300
+      }));
+      return this.backButton = window.__framerNew(undefined, "1508:20-1515:0", "?",new cs.Icon({
+        parent: this,
+        icon: 'close',
+        x: Align.right(-20),
+        y: Align.center,
+        color: '#979797'
+      }));
+    }, titleRow)();
+    this.addToStack(titleRow);
+    this.addToStack(window.__framerNew(undefined, "1518:17-1524:0", "?",new cs.Divider({
+      width: this.width
+    })));
+    this.sortCards = window.__framerNew(undefined, "1524:18-1530:0", "#fa486dff",new Layer({
+      name: 'Pre Approved Filters',
+      width: this.width,
+      height: 60,
+      backgroundColor: null
+    }));
+    _.bind(function() {
+      var button, buttons, fn, i, j, len, newButton, sortButtons;
+      this.labelLayer = window.__framerNew(undefined, "1532:20-1537:1", "?",new cs.LargeBold({
+        parent: this,
+        x: 20,
+        y: Align.center(4),
+        text: 'Sort cards by'
+      }));
+      sortButtons = [];
+      buttons = [
+        {
+          text: 'Eligability',
+          key: 'chance',
+          direction: 'descending'
+        }, {
+          text: 'APR',
+          key: 'apr',
+          direction: 'ascending'
+        }, {
+          text: 'A to Z',
+          key: 'brand',
+          direction: 'ascending'
+        }
+      ];
+      this.buttonLayers = [];
+      fn = function(newButton, button) {
+        return newButton.action = function() {
+          sort.key = button.key;
+          return sort.direction = button.direction;
+        };
+      };
+      for (i = j = 0, len = buttons.length; j < len; i = ++j) {
+        button = buttons[i];
+        newButton = window.__framerNew("newButton", "1548:19-1562:2", "?",new cs.Button({
+          parent: this,
+          x: 16 + (((this.width - 48) + 16) / 3 * i),
+          y: this.labelLayer.maxY + 16,
+          text: button.text,
+          size: 'auto',
+          border: 'main',
+          fill: "white",
+          type: 'body1',
+          toggle: true,
+          group: sortButtons
+        }));
+        newButton.key = button.key;
+        fn(newButton, button);
+        newButton.showPressed = function() {
+          return null;
+        };
+        newButton.on("change:isOn", function() {
+          if (this.isOn) {
+            this.animate({
+              backgroundColor: '#253454'
+            });
+            return this.textLayer.animate({
+              color: '#FFF'
+            });
+          } else {
+            this.animate({
+              backgroundColor: '#FFF'
+            });
+            return this.textLayer.animate({
+              color: '#253454'
+            });
+          }
+        });
+        newButton.width = (this.width - 48) / 3;
+        newButton.textLayer.padding = {};
+        this.buttonLayers.push(newButton);
+      }
+      this.height = newButton.maxY + 16;
+      this.clear = function() {
+        var k, len1, ref, results1;
+        ref = this.buttonLayers;
+        results1 = [];
+        for (k = 0, len1 = ref.length; k < len1; k++) {
+          button = ref[k];
+          results1.push(button.isOn = false);
+        }
+        return results1;
+      };
+      return this.update = function() {
+        var k, len1, ref, results1;
+        ref = this.buttonLayers;
+        results1 = [];
+        for (k = 0, len1 = ref.length; k < len1; k++) {
+          button = ref[k];
+          results1.push(button.isOn = button.key === sort.key);
+        }
+        return results1;
+      };
+    }, this.sortCards)();
+    this.addToStack(this.sortCards);
+    this.preApprovedFilter = window.__framerNew(undefined, "1601:26-1607:0", "#8ffe241c",new Layer({
+      name: 'Pre Approved Filters',
+      width: this.width,
+      height: 60,
+      backgroundColor: null
+    }));
+    _.bind(function() {
+      this.labelLayer = window.__framerNew(undefined, "1609:20-1614:1", "?",new cs.LargeBold({
+        parent: this,
+        x: 20,
+        y: Align.center(4),
+        text: 'Pre approved filters only'
+      }));
+      this.uiSwitch = window.__framerNew(undefined, "1614:18-1619:1", "?",new cs.Switch({
+        parent: this,
+        x: Align.right(-20),
+        y: Align.center
+      }));
+      this.divider = window.__framerNew(undefined, "1619:17-1625:1", "?",new cs.Divider({
+        parent: this,
+        width: this.width - 40,
+        x: 20,
+        y: Align.bottom
+      }));
+      this.report = function() {
+        return this.uiSwitch.isOn;
+      };
+      this.clear = function() {
+        return this.uiSwitch.isOn = false;
+      };
+      return this.update = function() {
+        return this.uiSwitch.isOn = filter.preapproved;
+      };
+    }, this.preApprovedFilter)();
+    this.addToStack(this.preApprovedFilter);
+    this.cardCategories = window.__framerNew(undefined, "1638:23-1644:0", "#123c964b5",new Layer({
+      name: 'Card Categories',
+      width: this.width,
+      height: 60,
+      backgroundColor: null
+    }));
+    _.bind(function() {
+      var category, checkbox, i, j, len, ref;
+      this.labelLayer = window.__framerNew(undefined, "1646:20-1651:1", "?",new cs.LargeBold({
+        parent: this,
+        x: 20,
+        y: Align.center(4),
+        text: 'Card Categories'
+      }));
+      this.items = [];
+      ref = database.categories;
+      for (i = j = 0, len = ref.length; j < len; i = ++j) {
+        category = ref[i];
+        checkbox = window.__framerNew("checkbox", "1654:18-1663:2", "#cf55276b",new CheckboxItem({
+          name: '.',
+          parent: this,
+          text: category,
+          textTransform: 'capitalize',
+          x: i % 2 ? (this.width / 2) + 8 : 17,
+          y: this.labelLayer.maxY + 20 + (48 * _.floor(i / 2)),
+          value: category
+        }));
+        this.items.push(checkbox);
+      }
+      this.divider = window.__framerNew(undefined, "1665:17-1671:1", "?",new cs.Divider({
+        parent: this,
+        width: this.width - 40,
+        x: 20,
+        y: checkbox.maxY + 20
+      }));
+      this.height = this.divider.maxY;
+      this.report = (function(_this) {
+        return function() {
+          var onItems, onValues;
+          onItems = _.filter(_this.items, 'isOn');
+          onValues = _.map(onItems, 'value');
+          return onValues;
+        };
+      })(this);
+      this.clear = function() {
+        var item, k, len1, ref1, results1;
+        ref1 = this.items;
+        results1 = [];
+        for (k = 0, len1 = ref1.length; k < len1; k++) {
+          item = ref1[k];
+          results1.push(item.checkbox.isOn = false);
+        }
+        return results1;
+      };
+      return this.update = (function(_this) {
+        return function() {
+          var item, k, len1, ref1, results1;
+          ref1 = _this.items;
+          results1 = [];
+          for (k = 0, len1 = ref1.length; k < len1; k++) {
+            item = ref1[k];
+            results1.push(item.checkbox.isOn = _.includes(filter.categories, item.value));
+          }
+          return results1;
+        };
+      })(this);
+    }, this.cardCategories)();
+    this.addToStack(this.cardCategories);
+    this.apr = window.__framerNew(undefined, "1693:12-1699:0", "#943b2e40",new Layer({
+      name: 'Brands',
+      width: this.width,
+      height: 60,
+      backgroundColor: null
+    }));
+    _.bind(function() {
+      var maxMarker, midMarker, minMarker, offset;
+      this.labelLayer = window.__framerNew(undefined, "1701:20-1706:1", "?",new cs.LargeBold({
+        parent: this,
+        x: 20,
+        y: Align.center(4),
+        text: 'APR'
+      }));
+      this.slider = window.__framerNew(undefined, "1706:16-1718:1", "#103cf3693",new RangeSliderComponent({
+        name: 'Slider',
+        parent: this,
+        width: this.width - 80,
+        x: Align.center,
+        y: this.labelLayer.maxY + 40,
+        backgroundColor: '#f2f2f2',
+        min: 0,
+        minValue: 0,
+        max: 50,
+        maxValue: 50
+      }));
+      this.slider.minKnob.draggable.propagateEvents = false;
+      this.slider.minKnob.draggable.momentum = false;
+      this.slider.maxKnob.draggable.propagateEvents = false;
+      this.slider.maxKnob.draggable.momentum = false;
+      this.slider.fill.backgroundColor = cs.Colors.main;
+      offset = Framer.Device.context.scale === 1 ? 3 : 3;
+      this.minKnobIcon = window.__framerNew(undefined, "1727:21-1735:1", "?",new cs.Icon({
+        parent: this.slider.minKnob,
+        height: 18,
+        width: 18,
+        x: Align.center,
+        y: offset,
+        icon: 'code-tags',
+        color: cs.Colors.main
+      }));
+      this.maxKnobIcon = window.__framerNew(undefined, "1735:21-1743:1", "?",new cs.Icon({
+        parent: this.slider.maxKnob,
+        height: 18,
+        width: 18,
+        x: Align.center,
+        y: offset,
+        icon: 'code-tags',
+        color: cs.Colors.main
+      }));
+      this.minLabel = window.__framerNew(undefined, "1743:18-1750:1", "?",new cs.Large({
+        parent: this,
+        color: '8d9499',
+        y: this.slider.maxY + 20,
+        textAlign: 'center',
+        text: '{value}%'
+      }));
+      minMarker = window.__framerNew("minMarker", "1750:18-1758:1", "#10023e9c4",new Layer({
+        parent: this,
+        color: '8d9499',
+        x: this.slider.screenFrame.x + 10,
+        y: this.slider.y - 5,
+        width: 1,
+        height: 10 + this.slider.height
+      }));
+      this.midLabel = window.__framerNew(undefined, "1758:18-1765:1", "?",new cs.Large({
+        parent: this,
+        color: '8d9499',
+        y: this.slider.maxY + 20,
+        textAlign: 'center',
+        text: '{value}%'
+      }));
+      midMarker = window.__framerNew("midMarker", "1765:18-1773:1", "#9bce3920",new Layer({
+        parent: this,
+        color: '8d9499',
+        x: this.width / 2,
+        y: this.slider.y - 5,
+        width: 1,
+        height: 10 + this.slider.height
+      }));
+      this.maxLabel = window.__framerNew(undefined, "1773:18-1780:1", "?",new cs.Large({
+        parent: this,
+        color: '8d9499',
+        y: this.slider.maxY + 20,
+        textAlign: 'right',
+        text: '{value}%'
+      }));
+      maxMarker = window.__framerNew("maxMarker", "1780:18-1788:1", "#bcf136c7",new Layer({
+        parent: this,
+        color: '8d9499',
+        x: this.slider.screenFrame.x + this.slider.width - 10,
+        y: this.slider.y - 5,
+        width: 1,
+        height: 10 + this.slider.height
+      }));
+      this.slider.bringToFront();
+      this.divider = window.__framerNew(undefined, "1790:17-1796:1", "?",new cs.Divider({
+        parent: this,
+        width: this.width - 40,
+        x: 20,
+        y: this.maxLabel.maxY + 35
+      }));
+      this.report = function() {
+        return {
+          min: this.slider.minValue,
+          max: this.slider.maxValue
+        };
+      };
+      this.clear = function() {
+        this.slider.minValue = this.slider.min;
+        return this.slider.maxValue = this.slider.max;
+      };
+      this.update = (function(_this) {
+        return function() {
+          var max, min, ref, ref1, ref2, ref3, ref4, ref5;
+          min = (ref = (ref1 = _.minBy(database.creditCardOffers, 'apr')) != null ? ref1.apr : void 0) != null ? ref : 0;
+          max = (ref2 = (ref3 = _.maxBy(database.creditCardOffers, 'apr')) != null ? ref3.apr : void 0) != null ? ref2 : 50;
+          _this.currentMin = parseInt(min);
+          _this.currentMax = parseInt(max);
+          _this.slider.min = _this.currentMin;
+          _this.slider.max = _this.currentMax;
+          _this.slider.minValue = (ref4 = filter.minAPR) != null ? ref4 : _this.currentMin;
+          _this.slider.maxValue = (ref5 = filter.maxAPR) != null ? ref5 : _this.currentMax;
+          _this.minLabel.template = _this.slider.valueForPoint(10).toFixed();
+          _this.midLabel.template = _this.slider.valueForPoint(_this.slider.width / 2).toFixed();
+          _this.maxLabel.template = _this.slider.valueForPoint(_this.slider.width - 10).toFixed();
+          _this.minLabel.midX = _this.slider.x + 10;
+          _this.midLabel.midX = _this.slider.midX;
+          return _this.maxLabel.midX = _this.slider.maxX - 10;
+        };
+      })(this);
+      return this.height = this.divider.maxY;
+    }, this.apr)();
+    this.addToStack(this.apr);
+    this.brands = window.__framerNew(undefined, "1837:15-1843:0", "#a2e27077",new Layer({
+      name: 'Brands',
+      width: this.width,
+      height: 60,
+      backgroundColor: null
+    }));
+    _.bind(function() {
+      var brand, checkbox, i, j, len, ref;
+      this.labelLayer = window.__framerNew(undefined, "1845:20-1850:1", "?",new cs.LargeBold({
+        parent: this,
+        x: 20,
+        y: Align.center(4),
+        text: 'Brands'
+      }));
+      this.items = [];
+      ref = database.brands;
+      for (i = j = 0, len = ref.length; j < len; i = ++j) {
+        brand = ref[i];
+        checkbox = window.__framerNew("checkbox", "1853:18-1862:2", "#cf55276b",new CheckboxItem({
+          name: '.',
+          parent: this,
+          text: brand,
+          textTransform: 'capitalize',
+          x: i % 2 ? (this.width / 2) + 8 : 17,
+          y: this.labelLayer.maxY + 20 + (48 * _.floor(i / 2)),
+          value: brand
+        }));
+        this.items.push(checkbox);
+      }
+      this.divider = window.__framerNew(undefined, "1864:17-1870:1", "?",new cs.Divider({
+        parent: this,
+        width: this.width - 40,
+        x: 20,
+        y: checkbox.maxY + 20
+      }));
+      this.report = (function(_this) {
+        return function() {
+          var onItems, onValues;
+          onItems = _.filter(_this.items, 'isOn');
+          onValues = _.map(onItems, 'value');
+          return onValues;
+        };
+      })(this);
+      this.clear = function() {
+        var item, k, len1, ref1, results1;
+        ref1 = this.items;
+        results1 = [];
+        for (k = 0, len1 = ref1.length; k < len1; k++) {
+          item = ref1[k];
+          results1.push(item.checkbox.isOn = false);
+        }
+        return results1;
+      };
+      this.update = (function(_this) {
+        return function() {
+          var item, k, len1, ref1, results1;
+          ref1 = _this.items;
+          results1 = [];
+          for (k = 0, len1 = ref1.length; k < len1; k++) {
+            item = ref1[k];
+            results1.push(item.checkbox.isOn = _.includes(filter.categories, item.value));
+          }
+          return results1;
+        };
+      })(this);
+      return this.height = this.divider.maxY;
+    }, this.brands)();
+    this.addToStack(this.brands);
+    this.features = window.__framerNew(undefined, "1892:17-1898:0", "#115335924",new Layer({
+      name: 'Features',
+      width: this.width,
+      height: 60,
+      backgroundColor: null
+    }));
+    _.bind(function() {
+      var checkbox, feature, i, j, len, ref;
+      this.labelLayer = window.__framerNew(undefined, "1900:20-1906:1", "?",new cs.LargeBold({
+        name: 'Features Label',
+        parent: this,
+        x: 20,
+        y: Align.center(4),
+        text: 'Features'
+      }));
+      this.items = [];
+      ref = database.features;
+      for (i = j = 0, len = ref.length; j < len; i = ++j) {
+        feature = ref[i];
+        checkbox = window.__framerNew("checkbox", "1909:18-1918:2", "#cf55276b",new CheckboxItem({
+          name: '.',
+          parent: this,
+          text: feature,
+          textTransform: 'capitalize',
+          x: 17,
+          y: this.labelLayer.maxY + 20 + (40 * i),
+          value: feature
+        }));
+        this.items.push(checkbox);
+      }
+      this.report = (function(_this) {
+        return function() {
+          var onItems, onValues;
+          onItems = _.filter(_this.items, 'isOn');
+          onValues = _.map(onItems, 'value');
+          return onValues;
+        };
+      })(this);
+      this.clear = function() {
+        var item, k, len1, ref1, results1;
+        ref1 = this.items;
+        results1 = [];
+        for (k = 0, len1 = ref1.length; k < len1; k++) {
+          item = ref1[k];
+          results1.push(item.checkbox.isOn = false);
+        }
+        return results1;
+      };
+      this.update = (function(_this) {
+        return function() {
+          var item, k, len1, ref1, results1;
+          ref1 = _this.items;
+          results1 = [];
+          for (k = 0, len1 = ref1.length; k < len1; k++) {
+            item = ref1[k];
+            results1.push(item.checkbox.isOn = _.includes(filter.categories, item.value));
+          }
+          return results1;
+        };
+      })(this);
+      return this.height = checkbox.maxY + 20;
+    }, this.features)();
+    this.addToStack(this.features);
+    this.footer = window.__framerNew(undefined, "1942:15-1952:0", "#1240a703c",new Layer({
+      name: 'Footer',
+      parent: this,
+      y: Align.bottom,
+      width: Screen.width,
+      height: 70,
+      backgroundColor: '#FFF',
+      shadowY: -1,
+      shadowColor: '#CCC'
+    }));
+    _.bind(function() {
+      return this.button = window.__framerNew(undefined, "1954:16-1964:0", "?",new cs.Button({
+        name: 'Footer Text',
+        parent: this,
+        point: Align.center(),
+        size: 'large',
+        color: 'white',
+        fill: 'rgba(0, 139, 178, 1.000)',
+        type: 'body1',
+        text: 'Apply Filters'
+      }));
+    }, this.footer)();
+    titleRow.backButton.onTap(function() {
+      return filtersOverlay.hide();
+    });
+    titleRow.labelLayer.onTap(function() {
+      categoryView.clearFilters();
+      return Utils.delay(.35, function() {
+        return filtersOverlay.hide();
+      });
+    });
+    this.footer.button.action = function() {
+      filtersOverlay.setFilters();
+      return filtersOverlay.hide();
+    };
+    this.show = (function(_this) {
+      return function() {
+        _this.resetItems();
+        app.showOverlayBottom(_this);
+        _this.footer.maxY = app.footer.y;
+        return app.footer.on("change:y", function() {
+          return _this.footer.maxY = app.footer.y;
+        });
+      };
+    })(this);
+    this.hide = (function(_this) {
+      return function() {
+        return app.showPrevious();
+      };
+    })(this);
+    this.resetItems = (function(_this) {
+      return function() {
+        var j, len, ref, section;
+        ref = [_this.cardCategories, _this.brands, _this.features];
+        for (j = 0, len = ref.length; j < len; j++) {
+          section = ref[j];
+          section.update();
+        }
+        _this.preApprovedFilter.update();
+        _this.apr.update();
+        return _this.sortCards.update();
+      };
+    })(this);
+    this.setFilters = (function(_this) {
+      return function() {
+        var filterText, filtersCount, hasAPR, hasPreapproved;
+        filter.clearFilters();
+        filter.preapproved = _this.preApprovedFilter.report();
+        filter.categories = _this.cardCategories.report();
+        filter.brands = _this.brands.report();
+        filter.features = _this.features.report();
+        filter.minAPR = _this.apr.report().min;
+        filter.maxAPR = _this.apr.report().max;
+        hasAPR = filter.minAPR > _this.apr.slider.min || filter.maxAPR < _this.apr.slider.max ? 1 : 0;
+        hasPreapproved = filter.preapproved ? 1 : 0;
+        filtersCount = _.sum([filter.categories.length, filter.brands.length, filter.features.length, hasAPR, hasPreapproved]);
+        filterText = filtersCount > 0 ? filtersCount + " Filters" : null;
+        if (app.previous === categoryView) {
+          return categoryView.loadCategory(categoryView.currentOffers, filterText, false);
+        }
+      };
+    })(this);
+    return this.refresh = function() {
+      return null;
+    };
+  });
+
+  categoriesOverlay = window.__framerNew("categoriesOverlay", "2043:24-2048:0", "?",new cs.View({
+    name: 'Categories Overlay',
+    title: 'Categories',
+    padding: {
+      top: 8,
+      stack: 0,
+      bottom: 6
+    },
+    showLayers: false
+  }));
+
+  categoriesOverlay.build(function() {
+    var button, category, dimMask, i, images, j, labelLayer, len, ref, results1;
+    this.backgroundColor = '#FFF';
+    this.content.backgroundColor = '#FFF';
+    images = ["images/energyImg.png", "images/savingsImg.png", "images/telcosImg.png", "images/insuranceImg.png", "images/carfinanceImg.png", "images/personalloansImg.png", "images/creditcardsImg.png", "images/mortgagesImg.png"];
+    ref = database.categories;
+    results1 = [];
+    for (i = j = 0, len = ref.length; j < len; i = ++j) {
+      category = ref[i];
+      button = window.__framerNew("button", "2068:15-2076:1", "#ba2a1422",new Layer({
+        parent: this.content,
+        x: 11 + (i % 2) * ((this.width - 11) / 2),
+        y: 11 + Math.floor(i / 2) * (140 + 11),
+        width: (this.width - 33) / 2,
+        height: 140,
+        image: images[i]
+      }));
+      dimMask = window.__framerNew("dimMask", "2076:16-2081:1", "#17eba40e6",new Layer({
+        parent: button,
+        size: button.size,
+        backgroundColor: 'rgba(0,0,0,.35)'
+      }));
+      labelLayer = window.__framerNew("labelLayer", "2081:19-2089:1", "?",new cs.MediumBold({
+        parent: button,
+        y: Align.center,
+        width: button.width,
+        text: category,
+        color: 'white',
+        textAlign: 'center'
+      }));
+      results1.push((function(button, category) {
+        return button.onTap(function() {
+          app.showPrevious();
+          filter.clearFilters();
+          filter.addFilter('categories', category);
+          return categoryView.loadCategory(database.creditCardOffers, category, true);
+        });
+      })(button, category));
+    }
+    return results1;
+  });
+
+  ref = _.range(100);
+  for (j = 0, len = ref.length; j < len; j++) {
+    i = ref[j];
+    window.__framerNew(undefined, "2108:1-2108:19", "#88dae7d3",new CreditCardOffer);
+  }
+
+  ref1 = _.range(100);
+  for (k = 0, len1 = ref1.length; k < len1; k++) {
+    i = ref1[k];
+    window.__framerNew(undefined, "2111:1-2111:21", "#16208fe4c",new PersonalLoanOffer);
+  }
+
+  app.showNext(productsView);
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

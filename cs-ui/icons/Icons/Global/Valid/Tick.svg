@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Bonds/Icons/Global/Valid/Tick</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M39.378418,7.41427734 C37.4927148,5.52857422 34.1978711,5.52857422 32.312168,7.41427734 L15.8409961,23.8792773 L9.53091797,17.5691211 C7.63896484,15.6772461 4.35037109,15.6772461 2.46466797,17.5691211 C0.511777344,19.5157617 0.511777344,22.6887305 2.46466797,24.6353711 L12.3070898,34.4856055 C13.2538867,35.4245898 14.5099023,35.9495117 15.8409961,35.9495117 C17.1767773,35.9495117 18.4343555,35.4245898 19.3811523,34.4856055 L39.378418,14.4867773 C40.3251367,13.5416211 40.8438086,12.2838867 40.8438086,10.9466211 C40.8438086,9.61716797 40.3251367,8.35951172 39.378418,7.41427734 L39.378418,7.41427734 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bonds/Icons/Global/Valid/Tick">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Shape" fill-rule="nonzero"></g>
+            <g id="Bonds/Colours/General/White" mask="url(#mask-2)" fill="#FFFFFF">
+                <rect id="Rectangle-3" x="0" y="0" width="42" height="42"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

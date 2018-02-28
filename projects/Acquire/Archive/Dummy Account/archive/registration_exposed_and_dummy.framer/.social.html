@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=aa9c6026650540b5f263eabb88e19c50"></script>
+		<script src="framer/framer.modules.js?nocache=a81164e9ac45b4688f836bf151a60553"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 16;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var app, buttonPage, checkboxPage, containerPage, cs, fieldPage, headerPage, iconPage, j, len, link, links, logoPage, navigationPage, overlayPage, progressPage, pullerPage, radioboxPage, ref, textPage, togglePage, view;
+
+  cs = require('cs');
+
+  cs.Context.setMobile();
+
+  app = window.__framerNew("app", "6:10-12:0", "?",new cs.App({
+    backgroundColor: '#efefef',
+    collapse: true,
+    type: 'safari'
+  }));
+
+  Screen.backgroundColor = cs.Colors.page;
+
+  Framer.Extras.Hints.disable();
+
+  Framer.Extras.Preloader.enable();
+
+  textPage = window.__framerNew("textPage", "24:15-26:0", "?",new cs.View({
+    title: 'Text'
+  }));
+
+  textPage.build(function() {
+    this.addToStack(window.__framerNew(undefined, "29:17-33:0", "?",new cs.Text({
+      type: 'subheader',
+      text: 'Subheader'
+    })));
+    this.addToStack(window.__framerNew(undefined, "33:17-37:0", "?",new cs.Text({
+      type: 'body',
+      text: 'Body'
+    })));
+    this.addToStack(window.__framerNew(undefined, "37:17-41:0", "?",new cs.Text({
+      type: 'body1',
+      text: 'Body1'
+    })));
+    this.addToStack(window.__framerNew(undefined, "41:17-45:0", "?",new cs.Text({
+      type: 'button',
+      text: 'Button'
+    })));
+    this.addToStack(window.__framerNew(undefined, "45:17-49:0", "?",new cs.Text({
+      type: 'link',
+      text: 'link'
+    })));
+    this.addToStack(window.__framerNew(undefined, "49:17-53:0", "?",new cs.Text({
+      type: 'caption',
+      text: 'Caption'
+    })));
+    this.addToStack(window.__framerNew(undefined, "53:13-53:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "57:17-61:0", "?",new cs.Text({
+      color: 'primary',
+      text: 'Primary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "61:17-65:0", "?",new cs.Text({
+      color: 'secondary',
+      text: 'Secondary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "65:17-69:0", "?",new cs.Text({
+      color: 'tertiary',
+      text: 'Tertiary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "69:17-73:0", "?",new cs.Text({
+      color: 'accent',
+      text: 'Accent'
+    })));
+    this.addToStack(window.__framerNew(undefined, "73:17-77:0", "?",new cs.Text({
+      color: 'grey',
+      text: 'Grey'
+    })));
+    this.addToStack(window.__framerNew(undefined, "77:17-81:0", "?",new cs.Text({
+      color: 'white',
+      text: 'White'
+    })));
+    this.addToStack(window.__framerNew(undefined, "81:17-85:0", "?",new cs.Text({
+      color: 'black',
+      text: 'Black'
+    })));
+    this.addToStack(window.__framerNew(undefined, "85:17-89:0", "?",new cs.Text({
+      color: 'disabled',
+      text: 'Disabled'
+    })));
+    this.addToStack(window.__framerNew(undefined, "89:13-89:26", "?",new cs.Divider));
+    return this.addToStack(window.__framerNew(undefined, "93:17-99:0", "?",new cs.Text({
+      type: 'link',
+      text: 'Click Here!',
+      action: function() {
+        return this.text = 'Clicked!';
+      }
+    })));
+  });
+
+  iconPage = window.__framerNew("iconPage", "100:15-102:0", "?",new cs.View({
+    title: 'Icon'
+  }));
+
+  iconPage.build(function() {
+    var arrows, color, colorTypes, colors, direction, i, iconContainer, j, k, l, len, len1, len2, len3, len4, len5, m, n, o, outlines, ref, ref1, ref2, ref3, ref4, ref5, type, types;
+    this.addToStack(window.__framerNew(undefined, "107:13-107:26", "?",new cs.Divider));
+    this.addToStack(types = window.__framerNew("types", "109:25-114:0", "#129d50511",new Layer({
+      width: this.width - 32,
+      height: 64,
+      backgroundColor: null
+    })));
+    ref = ['info', 'menu', 'required', 'arrow', 'check'];
+    for (i = j = 0, len = ref.length; j < len; i = ++j) {
+      type = ref[i];
+      window.__framerNew(undefined, "115:6-122:0", "?",new cs.Icon({
+        parent: types,
+        x: 48 * i,
+        y: Align.center,
+        type: type
+      }));
+    }
+    this.addToStack(window.__framerNew(undefined, "122:13-122:26", "?",new cs.Divider));
+    this.addToStack(colorTypes = window.__framerNew("colorTypes", "124:30-129:0", "#14c6665d2",new Layer({
+      width: this.width - 32,
+      height: 64,
+      backgroundColor: null
+    })));
+    ref1 = ['cross', 'star-outline', 'star', 'notification'];
+    for (i = k = 0, len1 = ref1.length; k < len1; i = ++k) {
+      type = ref1[i];
+      window.__framerNew(undefined, "130:6-137:0", "?",new cs.Icon({
+        parent: colorTypes,
+        x: 48 * i,
+        y: Align.center,
+        type: type
+      }));
+    }
+    this.addToStack(window.__framerNew(undefined, "137:13-137:26", "?",new cs.Divider));
+    this.addToStack(outlines = window.__framerNew("outlines", "139:28-144:0", "#e6cc9897",new Layer({
+      width: this.width - 32,
+      height: 64,
+      backgroundColor: null
+    })));
+    ref2 = ['accordian', 'account', 'question', 'score', 'empty'];
+    for (i = l = 0, len2 = ref2.length; l < len2; i = ++l) {
+      type = ref2[i];
+      window.__framerNew(undefined, "145:6-152:0", "?",new cs.Icon({
+        parent: outlines,
+        x: 48 * i,
+        y: Align.center,
+        type: type
+      }));
+    }
+    this.addToStack(window.__framerNew(undefined, "152:13-152:26", "?",new cs.Divider));
+    this.addToStack(arrows = window.__framerNew("arrows", "154:26-159:0", "#107d3673c",new Layer({
+      width: this.width - 32,
+      height: 64,
+      backgroundColor: null
+    })));
+    ref3 = ['right', 'down', 'left', 'up'];
+    for (i = m = 0, len3 = ref3.length; m < len3; i = ++m) {
+      direction = ref3[i];
+      window.__framerNew(undefined, "160:6-168:0", "?",new cs.Icon({
+        parent: arrows,
+        x: 48 * i,
+        y: Align.center,
+        type: 'accordian',
+        direction: direction
+      }));
+    }
+    this.addToStack(window.__framerNew(undefined, "168:13-168:26", "?",new cs.Divider));
+    this.addToStack(colors = window.__framerNew("colors", "170:26-175:0", "#90d791c2",new Layer({
+      width: this.width - 32,
+      height: 64,
+      backgroundColor: null
+    })));
+    ref4 = ['black', 'grey', 'white', 'primary', 'secondary'];
+    for (i = n = 0, len4 = ref4.length; n < len4; i = ++n) {
+      color = ref4[i];
+      window.__framerNew(undefined, "176:6-184:0", "?",new cs.Icon({
+        parent: colors,
+        x: 48 * i,
+        y: Align.center,
+        type: 'account',
+        color: color
+      }));
+    }
+    this.addToStack(window.__framerNew(undefined, "184:13-184:26", "?",new cs.Divider));
+    this.addToStack(iconContainer = window.__framerNew("iconContainer", "186:33-192:0", "?",new cs.Container({
+      fill: 'none',
+      border: 'grey',
+      height: this.width - 32,
+      width: this.width - 32
+    })));
+    ref5 = _.range(100);
+    for (o = 0, len5 = ref5.length; o < len5; o++) {
+      i = ref5[o];
+      window.__framerNew(undefined, "193:6-198:0", "?",new cs.Icon({
+        parent: iconContainer,
+        x: 14 + (32 * (i % 10)),
+        y: 14 + (32 * Math.floor(i / 10))
+      }));
+    }
+    this.addToStack(window.__framerNew(undefined, "198:17-202:0", "?",new cs.Text({
+      type: 'body',
+      text: 'About 1600 in total'
+    })));
+    return this.addToStack(window.__framerNew(undefined, "202:17-207:0", "?",new cs.Text({
+      type: 'body1',
+      text: 'See https://materialdesignicons.com/ for complete set.'
+    })));
+  });
+
+  logoPage = window.__framerNew("logoPage", "208:15-210:0", "?",new cs.View({
+    title: 'Logo'
+  }));
+
+  logoPage.padding.stack = 32;
+
+  logoPage.build(function() {
+    this.addToStack(window.__framerNew(undefined, "217:17-222:0", "?",new cs.Logo({
+      type: 'logo'
+    })));
+    this.addToStack(window.__framerNew(undefined, "222:17-227:0", "?",new cs.Logo({
+      type: 'logotype'
+    })));
+    this.addToStack(window.__framerNew(undefined, "227:17-232:0", "?",new cs.Logo({
+      type: 'logomark'
+    })));
+    this.addToStack(window.__framerNew(undefined, "232:13-232:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "234:13-234:23", "?",new cs.Logo));
+    this.addToStack(window.__framerNew(undefined, "236:17-239:0", "?",new cs.Logo({
+      color: 'white'
+    })));
+    this.addToStack(window.__framerNew(undefined, "239:17-242:0", "?",new cs.Logo({
+      color: 'grey'
+    })));
+    return this.addToStack(window.__framerNew(undefined, "242:17-246:0", "?",new cs.Logo({
+      color: 'primary'
+    })));
+  });
+
+  containerPage = window.__framerNew("containerPage", "247:20-249:0", "?",new cs.View({
+    title: 'Container'
+  }));
+
+  containerPage.build(function() {
+    this.addToStack(window.__framerNew(undefined, "252:13-252:28", "?",new cs.Container));
+    this.addToStack(window.__framerNew(undefined, "255:13-255:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "259:17-262:0", "?",new cs.Container({
+      size: 'icon'
+    })));
+    this.addToStack(window.__framerNew(undefined, "262:17-265:0", "?",new cs.Container({
+      size: 'small'
+    })));
+    this.addToStack(window.__framerNew(undefined, "265:17-268:0", "?",new cs.Container({
+      size: 'medium'
+    })));
+    this.addToStack(window.__framerNew(undefined, "268:17-272:0", "?",new cs.Container({
+      size: 'large'
+    })));
+    this.addToStack(window.__framerNew(undefined, "272:13-272:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "276:17-279:0", "?",new cs.Container({
+      fill: 'transparent'
+    })));
+    this.addToStack(window.__framerNew(undefined, "279:17-282:0", "?",new cs.Container({
+      fill: 'white'
+    })));
+    this.addToStack(window.__framerNew(undefined, "282:17-285:0", "?",new cs.Container({
+      fill: 'primary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "285:17-289:0", "?",new cs.Container({
+      fill: 'secondary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "289:13-289:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "293:17-297:0", "?",new cs.Container({
+      border: 'transparent',
+      fill: 'transparent'
+    })));
+    this.addToStack(window.__framerNew(undefined, "297:17-301:0", "?",new cs.Container({
+      border: 'white',
+      fill: 'transparent'
+    })));
+    this.addToStack(window.__framerNew(undefined, "301:17-305:0", "?",new cs.Container({
+      border: 'primary',
+      fill: 'transparent'
+    })));
+    return this.addToStack(window.__framerNew(undefined, "305:17-311:0", "?",new cs.Container({
+      border: 'secondary',
+      fill: 'transparent'
+    })));
+  });
+
+  buttonPage = window.__framerNew("buttonPage", "312:17-314:0", "?",new cs.View({
+    title: 'Button'
+  }));
+
+  buttonPage.build(function() {
+    this.addToStack(window.__framerNew(undefined, "319:17-322:0", "?",new cs.Button({
+      action: function() {
+        return this.text = 'Tapped!';
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "322:17-329:0", "?",new cs.Button({
+      text: 'toggle button',
+      toggle: true,
+      action: function() {
+        if (this.isOn) {
+          return this.text = 'Toggled!';
+        } else {
+          return this.text = 'toggle button';
+        }
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "329:13-329:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "333:17-337:0", "?",new cs.Button({
+      size: 'small',
+      text: 'Small'
+    })));
+    this.addToStack(window.__framerNew(undefined, "337:17-341:0", "?",new cs.Button({
+      size: 'medium',
+      text: 'Medium'
+    })));
+    this.addToStack(window.__framerNew(undefined, "341:17-345:0", "?",new cs.Button({
+      size: 'large',
+      text: 'Large'
+    })));
+    this.addToStack(window.__framerNew(undefined, "345:17-349:0", "?",new cs.Button({
+      size: 'auto',
+      text: 'Auto'
+    })));
+    this.addToStack(window.__framerNew(undefined, "349:13-349:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "353:17-358:0", "?",new cs.Button({
+      fill: 'todo'
+    })));
+    this.addToStack(window.__framerNew(undefined, "358:17-362:0", "?",new cs.Button({
+      fill: 'todo',
+      border: 'secondary'
+    })));
+    this.addToStack(window.__framerNew(undefined, "362:13-362:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "366:17-372:0", "?",new cs.Button({
+      text: 'Click Here!',
+      action: function() {
+        return this.text = 'Clicked!';
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "372:17-379:0", "?",new cs.Button({
+      text: 'Click Here!',
+      type: 'body',
+      action: function() {
+        return this.text = 'Clicked!';
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "379:17-385:0", "?",new cs.Button({
+      text: 'Click Here!',
+      type: 'body',
+      color: 'white',
+      action: function() {
+        return this.text = 'Clicked!';
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "385:13-385:26", "?",new cs.Divider));
+    return this.addToStack(window.__framerNew(undefined, "389:17-397:0", "?",new cs.Button({
+      text: 'Click Here!',
+      type: 'body',
+      color: 'white',
+      disabled: true,
+      action: function() {
+        return this.text = 'Clicked!';
+      }
+    })));
+  });
+
+  fieldPage = window.__framerNew("fieldPage", "398:16-400:0", "?",new cs.View({
+    title: 'Field'
+  }));
+
+  fieldPage.build(function() {
+    var sWords, test;
+    this.addToStack(window.__framerNew(undefined, "404:13-404:24", "?",new cs.Field));
+    this.addToStack(window.__framerNew(undefined, "407:17-411:0", "?",new cs.Field({
+      placeholder: 'Placeholder'
+    })));
+    this.addToStack(window.__framerNew(undefined, "411:17-416:0", "?",new cs.Field({
+      placeholder: 'Password',
+      password: true
+    })));
+    this.addToStack(window.__framerNew(undefined, "416:13-416:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "419:17-424:0", "?",new cs.Field({
+      placeholder: 'Border',
+      border: 'black'
+    })));
+    this.addToStack(window.__framerNew(undefined, "424:17-429:0", "?",new cs.Field({
+      placeholder: 'Fill',
+      fill: 'field'
+    })));
+    this.addToStack(window.__framerNew(undefined, "429:17-435:0", "?",new cs.Field({
+      placeholder: 'Border and Fill',
+      fill: 'field',
+      border: 'black'
+    })));
+    this.addToStack(window.__framerNew(undefined, "435:13-435:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "438:17-443:0", "?",new cs.Field({
+      placeholder: 'Colored Text',
+      color: 'accent'
+    })));
+    this.addToStack(window.__framerNew(undefined, "443:17-448:0", "?",new cs.Field({
+      placeholder: 'Disabled',
+      disabled: true
+    })));
+    this.addToStack(window.__framerNew(undefined, "448:13-448:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "451:17-456:0", "?",new cs.Field({
+      placeholder: 'Field with a left icon',
+      leftIcon: 'information-outline'
+    })));
+    this.addToStack(window.__framerNew(undefined, "456:17-461:0", "?",new cs.Field({
+      placeholder: 'Field with a right icon',
+      rightIcon: 'eye'
+    })));
+    this.addToStack(window.__framerNew(undefined, "461:17-467:0", "?",new cs.Field({
+      placeholder: 'Field with both icons',
+      leftIcon: 'information-outline',
+      rightIcon: 'eye'
+    })));
+    this.addToStack(window.__framerNew(undefined, "467:13-467:26", "?",new cs.Divider));
+    this.addToStack(sWords = window.__framerNew("sWords", "470:26-478:0", "?",new cs.Field({
+      y: 100,
+      placeholder: 'Patterns (s words only)',
+      pattern: function(value) {
+        return value[0] === "s" || value[0] === "S" || value === '';
+      }
+    })));
+    sWords.on("change:matches", function(matches, hasTextContent) {
+      if (matches) {
+        this.color = 'black';
+        return this.border = 'grey';
+      } else {
+        this.color = 'accent';
+        return this.border = 'accent';
+      }
+    });
+    this.addToStack(window.__framerNew(undefined, "487:13-487:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "489:17-493:0", "?",new cs.Field({
+      placeholder: 'Field with Title',
+      title: 'Title'
+    })));
+    this.addToStack(window.__framerNew(undefined, "493:17-497:0", "?",new cs.Field({
+      placeholder: 'Field with Message',
+      message: 'Message'
+    })));
+    return this.addToStack(test = window.__framerNew("test", "497:24-504:0", "?",new cs.Field({
+      placeholder: 'Field with Label and Message',
+      title: 'Label',
+      message: 'Message',
+      color: 'accent'
+    })));
+  });
+
+  togglePage = window.__framerNew("togglePage", "505:17-507:0", "?",new cs.View({
+    title: 'Toggle'
+  }));
+
+  togglePage.build(function() {
+    var makeReport, report, toggle;
+    this.addToStack(toggle = window.__framerNew("toggle", "510:22-510:34", "?",new cs.Toggle));
+    this.addToStack(report = window.__framerNew("report", "514:26-519:0", "?",new cs.Text({
+      type: 'subheader',
+      text: '{string}'
+    })));
+    makeReport = function(isOn) {
+      if (isOn) {
+        return report.template = 'Toggle is on / open.';
+      } else {
+        return report.template = 'Toggle is off / closed.';
+      }
+    };
+    toggle.on("change:isOn", function(isOn) {
+      return makeReport(isOn);
+    });
+    makeReport(toggle.isOn);
+    this.addToStack(window.__framerNew(undefined, "532:13-532:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "534:17-537:0", "?",new cs.Toggle({
+      isOn: true
+    })));
+    this.addToStack(window.__framerNew(undefined, "537:17-541:0", "?",new cs.Text({
+      type: 'body1',
+      text: 'Alternative UI Switch:'
+    })));
+    return this.addToStack(window.__framerNew(undefined, "541:13-541:25", "?",new cs.Switch));
+  });
+
+  checkboxPage = window.__framerNew("checkboxPage", "545:19-547:0", "?",new cs.View({
+    title: 'Checkbox'
+  }));
+
+  checkboxPage.build(function() {
+    var box, boxesWidth, checkboxContainer, checkboxReport, checkboxes, gap, i, j, k, len, len1, ref, showChecked, startX;
+    this.addToStack(window.__framerNew(undefined, "550:13-550:27", "?",new cs.Checkbox));
+    this.addToStack(window.__framerNew(undefined, "552:13-552:26", "?",new cs.Divider));
+    this.addToStack(checkboxContainer = window.__framerNew("checkboxContainer", "555:37-561:0", "?",new cs.Container({
+      size: 'medium',
+      border: 'grey',
+      fill: 'transparent'
+    })));
+    checkboxes = [];
+    boxesWidth = 0;
+    ref = _.range(6);
+    for (j = 0, len = ref.length; j < len; j++) {
+      i = ref[j];
+      box = window.__framerNew("box", "567:12-573:1", "?",new cs.Checkbox({
+        parent: checkboxContainer,
+        group: checkboxes,
+        y: Align.center,
+        value: i
+      }));
+      box.on("change:isOn", function(isOn) {
+        return showChecked();
+      });
+      boxesWidth += box.width;
+    }
+    gap = (checkboxContainer.width - boxesWidth) / 6;
+    startX = gap / 2;
+    for (k = 0, len1 = checkboxes.length; k < len1; k++) {
+      box = checkboxes[k];
+      box.x = startX;
+      startX += box.width + gap;
+    }
+    this.addToStack(checkboxReport = window.__framerNew("checkboxReport", "586:34-591:0", "?",new cs.Text({
+      type: 'subheader',
+      text: 'Checked: {string}'
+    })));
+    showChecked = function() {
+      var l, len2, string;
+      string = '';
+      for (l = 0, len2 = checkboxes.length; l < len2; l++) {
+        box = checkboxes[l];
+        if (box.isOn === true) {
+          string += box.value + ', ';
+        }
+      }
+      string = _.trimEnd(string, ', ');
+      return checkboxReport.template = string;
+    };
+    return showChecked();
+  });
+
+  radioboxPage = window.__framerNew("radioboxPage", "607:19-609:0", "?",new cs.View({
+    title: 'Radiobox'
+  }));
+
+  radioboxPage.build(function() {
+    var box, boxesWidth, gap, i, j, k, len, len1, radioboxContainer, radioboxReport, radioboxes, ref, showSelected, startX;
+    this.addToStack(window.__framerNew(undefined, "612:13-612:27", "?",new cs.Radiobox));
+    this.addToStack(window.__framerNew(undefined, "614:13-614:26", "?",new cs.Divider));
+    this.addToStack(radioboxContainer = window.__framerNew("radioboxContainer", "617:37-623:0", "?",new cs.Container({
+      size: 'medium',
+      border: 'grey',
+      fill: 'transparent'
+    })));
+    radioboxes = [];
+    this.addToStack(radioboxReport = window.__framerNew("radioboxReport", "626:34-631:0", "?",new cs.Text({
+      type: 'subheader',
+      text: 'Selected: {string}'
+    })));
+    showSelected = function(value) {
+      return radioboxReport.template = value;
+    };
+    boxesWidth = 0;
+    ref = _.range(6);
+    for (j = 0, len = ref.length; j < len; j++) {
+      i = ref[j];
+      box = window.__framerNew("box", "638:12-644:1", "?",new cs.Radiobox({
+        parent: radioboxContainer,
+        group: radioboxes,
+        y: Align.center,
+        value: i
+      }));
+      boxesWidth += box.width;
+      box.on("change:isOn", function(isOn) {
+        if (isOn === true) {
+          return showSelected(this.value);
+        }
+      });
+    }
+    gap = (radioboxContainer.width - boxesWidth) / 6;
+    startX = gap / 2;
+    for (k = 0, len1 = radioboxes.length; k < len1; k++) {
+      box = radioboxes[k];
+      box.x = startX;
+      startX += box.width + gap;
+    }
+    return radioboxes[1].isOn = true;
+  });
+
+  overlayPage = window.__framerNew("overlayPage", "665:18-667:0", "?",new cs.View({
+    title: 'Overlay'
+  }));
+
+  overlayPage.build(function() {
+    return this.addToStack(window.__framerNew(undefined, "670:17-676:0", "?",new cs.Button({
+      text: 'Show Overlay',
+      x: Align.center,
+      action: function() {
+        return window.__framerNew(undefined, "673:13-673:26", "?",new cs.Overlay);
+      }
+    })));
+  });
+
+  pullerPage = window.__framerNew("pullerPage", "677:17-679:0", "?",new cs.View({
+    title: 'Puller'
+  }));
+
+  pullerPage.build(function() {
+    var puller;
+    puller = window.__framerNew("puller", "682:14-685:0", "?",new cs.Puller({
+      text: 'Custom text for the puller.'
+    }));
+    this.addToStack(puller, {
+      x: 0,
+      y: 0
+    });
+    return this.addToStack(window.__framerNew(undefined, "689:13-689:25", "?",new cs.Puller), {
+      x: 0
+    });
+  });
+
+  progressPage = window.__framerNew("progressPage", "694:19-697:0", "?",new cs.View({
+    title: 'Progress',
+    padding: {
+      left: 0,
+      top: 32,
+      stack: 32,
+      right: 0
+    }
+  }));
+
+  progressPage.build(function() {
+    var progress;
+    this.addToStack(progress = window.__framerNew("progress", "700:28-703:0", "?",new cs.Progress({
+      step: 1
+    })));
+    this.addToStack(window.__framerNew(undefined, "703:17-710:0", "?",new cs.Button({
+      text: 'next step',
+      color: 'white',
+      x: Align.center,
+      action: function() {
+        return progress.step++;
+      }
+    })));
+    return this.addToStack(window.__framerNew(undefined, "710:17-718:0", "?",new cs.Button({
+      text: 'previous step',
+      color: 'white',
+      x: Align.center,
+      action: function() {
+        return progress.step--;
+      }
+    })));
+  });
+
+  navigationPage = window.__framerNew("navigationPage", "719:21-721:0", "?",new cs.View({
+    title: 'Navigation'
+  }));
+
+  navigationPage.build(function() {
+    this.addToStack(window.__framerNew(undefined, "724:17-729:0", "?",new cs.Button({
+      text: 'No Navigation',
+      action: function() {
+        return app.navigation = void 0;
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "729:17-734:0", "?",new cs.Button({
+      text: 'Navigation Only',
+      action: function() {
+        return app.navigation = window.__framerNew(undefined, "732:20-732:36", "?",new cs.Navigation);
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "734:17-741:0", "?",new cs.Button({
+      text: 'Subnav Only',
+      size: 'auto',
+      action: function() {
+        return app.navigation = window.__framerNew(undefined, "738:24-741:0", "?",new cs.Subnav({
+          links: links
+        }));
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "741:17-752:0", "?",new cs.Button({
+      text: 'Navigation with Subnav',
+      size: 'auto',
+      action: function() {
+        return app.navigation = window.__framerNew(undefined, "745:24-752:0", "?",new cs.Navigation({
+          links: links
+        }));
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "752:17-755:0", "?",new cs.Divider({
+      x: Align.center
+    })));
+    this.addToStack(window.__framerNew(undefined, "755:17-762:0", "?",new cs.Button({
+      text: 'default nav type',
+      action: function() {
+        var ref;
+        return (ref = app.navigation) != null ? ref.type = 'default' : void 0;
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "762:17-765:0", "?",new cs.Divider({
+      x: Align.center
+    })));
+    this.addToStack(window.__framerNew(undefined, "765:17-772:0", "?",new cs.Button({
+      text: 'login nav type',
+      action: function() {
+        var ref;
+        return (ref = app.navigation) != null ? ref.type = 'login' : void 0;
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "772:17-775:0", "?",new cs.Divider({
+      x: Align.center
+    })));
+    this.addToStack(window.__framerNew(undefined, "775:17-782:0", "?",new cs.Button({
+      text: 'registration nav type',
+      action: function() {
+        var ref;
+        return (ref = app.navigation) != null ? ref.type = 'registration' : void 0;
+      }
+    })));
+    this.addToStack(window.__framerNew(undefined, "782:17-787:0", "?",new cs.Button({
+      text: 'next step',
+      action: function() {
+        return app.navigation.progress.step++;
+      }
+    })));
+    return this.addToStack(window.__framerNew(undefined, "787:17-793:0", "?",new cs.Button({
+      text: 'previous step',
+      action: function() {
+        return app.navigation.progress.step--;
+      }
+    })));
+  });
+
+  headerPage = window.__framerNew("headerPage", "794:17-798:0", "?",new cs.View({
+    title: 'Headers',
+    right: {
+      icon: 'settings'
+    }
+  }));
+
+  headerPage.build(function() {
+    var swap;
+    this.addToStack(swap = window.__framerNew("swap", "802:24-810:0", "?",new cs.Button({
+      text: 'Safari Bar',
+      action: function() {
+        app.type = "safari";
+        return app.header.on("change:height", function() {
+          return nav.y = app.header.maxY;
+        });
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "810:24-818:0", "?",new cs.Button({
+      text: 'iOS Bar',
+      action: function() {
+        app.type = "ios";
+        return app.header.on("change:height", function() {
+          return nav.y = app.header.maxY;
+        });
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "818:24-828:0", "?",new cs.Button({
+      text: 'iOS Bar (collapse)',
+      size: 'auto',
+      action: function() {
+        app.type = "ios";
+        app.header.collapse = true;
+        return app.header.on("change:height", function() {
+          return nav.y = app.header.maxY;
+        });
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "828:24-836:0", "?",new cs.Button({
+      text: 'Android Bar',
+      action: function() {
+        app.type = "android";
+        return app.header.on("change:height", function() {
+          return nav.y = app.header.maxY;
+        });
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "836:24-844:0", "?",new cs.Button({
+      text: 'Blank Bar',
+      action: function() {
+        app.type = "mobile";
+        return app.header.on("change:height", function() {
+          return nav.y = app.header.maxY;
+        });
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "844:24-854:0", "?",new cs.Button({
+      text: 'Blank Bar (collapse)',
+      size: 'auto',
+      action: function() {
+        app.type = "mobile";
+        app.header.collapse = true;
+        return app.header.on("change:height", function() {
+          return nav.y = app.header.maxY;
+        });
+      }
+    })));
+    this.addToStack(swap = window.__framerNew("swap", "854:24-866:0", "?",new cs.Button({
+      text: 'Blank Bar (fill color)',
+      size: 'auto',
+      action: function() {
+        app.type = "mobile";
+        app.header.collapse = true;
+        app.header.fill = 'secondary';
+        app.header.closedFill = 'secondary';
+        return app.header.on("change:height", function() {
+          return nav.y = app.header.maxY;
+        });
+      }
+    })));
+    return this.addToStack(swap = window.__framerNew("swap", "866:24-879:0", "?",new cs.Button({
+      text: 'Blank Bar (closedFill)',
+      size: 'auto',
+      action: function() {
+        app.type = "mobile";
+        app.header.collapse = true;
+        app.header.fill = 'secondary';
+        app.header.closedFill = 'tertiary';
+        return app.header.on("change:height", function() {
+          return nav.y = app.header.maxY;
+        });
+      }
+    })));
+  });
+
+  links = [];
+
+  ref = app.views;
+  for (j = 0, len = ref.length; j < len; j++) {
+    view = ref[j];
+    link = {
+      label: view.title,
+      view: view
+    };
+    links.push(link);
+  }
+
+  app.navigation = window.__framerNew(undefined, "890:21-892:0", "?",new cs.Navigation({
+    links: links
+  }));
+
+  app.showNext(textPage);
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

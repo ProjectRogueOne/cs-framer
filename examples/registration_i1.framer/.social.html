@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=331dfc09b6f9ff28c08b345f40cbd3dd"></script>
+		<script src="framer/framer.modules.js?nocache=109132d9d7d018a87d9f3cb9b787b49d"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 4532;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var app, cs, puller, uploadBackSide, uploadFrontSide, view;
+
+  cs = require('cs');
+
+  cs.Context.setMobile();
+
+  Framer.Extras.Hints.disable();
+
+  puller = void 0;
+
+  uploadFrontSide = void 0;
+
+  uploadBackSide = void 0;
+
+  app = window.__framerNew("app", "9:10-13:0", "?",new cs.App({
+    type: 'safari',
+    navigation: 'registration',
+    collapse: true
+  }));
+
+  app.navigation.step = 4;
+
+  view = window.__framerNew("view", "17:11-20:0", "?",new cs.View({
+    showLayers: true,
+    backgroundColor: '#FFF'
+  }));
+
+  view.padding.top = 120;
+
+  view.build(function() {
+    puller = window.__framerNew("puller", "28:14-31:0", "?",new cs.Puller({
+      parent: this.content
+    }));
+    return this.addToStack(this.idTitle = window.__framerNew(undefined, "31:28-36:0", "?",new cs.Text({
+      type: 'body',
+      text: 'ID Verification'
+    })));
+  });
+
+  view.build(function() {
+    var uploadingFrontState;
+    this.addToStack(uploadFrontSide = window.__framerNew("uploadFrontSide", "38:35-47:0", "?",new cs.UploadButton({
+      width: 355,
+      height: 177,
+      fill: 'white',
+      shadowY: 0,
+      shadowBlur: 0,
+      style: {
+        border: '3px dashed #777'
+      }
+    })));
+    _.bind(function() {
+      this.icon = window.__framerNew(undefined, "49:14-57:1", "?",new cs.Icon({
+        parent: this,
+        icon: 'camera',
+        border: 1,
+        scale: 2,
+        x: Align.center,
+        y: Align.center(4)
+      }));
+      this.detail = window.__framerNew(undefined, "57:16-64:1", "?",new cs.Text({
+        parent: this,
+        type: 'body',
+        text: 'Driving License (front side)',
+        x: Align.center,
+        y: 15
+      }));
+      this.detail1 = window.__framerNew(undefined, "64:17-71:1", "?",new cs.Text({
+        parent: this,
+        type: 'body',
+        text: 'Take a picture or select a file',
+        x: Align.center,
+        y: this.icon.maxY + 38
+      }));
+      this.display = window.__framerNew(undefined, "71:17-78:1", "#15b356f4a",new Layer({
+        parent: this,
+        size: this.size,
+        backgroundColor: null
+      }));
+      if (Utils.isMobile()) {
+        return _.assign(this.display, {
+          originX: 0,
+          originY: 0,
+          rotation: 90,
+          width: this.height,
+          height: this.width,
+          x: this.width
+        });
+      }
+    }, uploadFrontSide)();
+    uploadingFrontState = window.__framerNew("uploadingFrontState", "89:27-98:0", "#130381de2",new Layer({
+      parent: this.content,
+      y: this.idTitle.maxY + 16,
+      x: 12,
+      width: this.width - 24,
+      opacity: 0,
+      visible: false,
+      backgroundColor: null
+    }));
+    _.bind(function() {
+      this.box = window.__framerNew(undefined, "100:13-106:1", "?",new cs.Container({
+        parent: this,
+        width: this.width,
+        border: 'black',
+        fill: 'white'
+      }));
+      this.iconLayer = window.__framerNew(undefined, "106:19-115:1", "?",new cs.Icon({
+        parent: this,
+        icon: 'file-outline',
+        scale: 1.4,
+        x: 8,
+        y: 12,
+        color: '#4a90e2',
+        visible: false
+      }));
+      this.progress = window.__framerNew(undefined, "115:18-121:1", "#11d0a2e7a",new Layer({
+        parent: this.box,
+        height: this.box.height,
+        width: 1,
+        backgroundColor: 'b8e986'
+      }));
+      this.labelLayer = window.__framerNew(undefined, "121:20-130:1", "?",new cs.Text({
+        parent: this.box,
+        type: 'body',
+        width: this.width,
+        y: Align.center,
+        textAlign: 'center',
+        text: 'Uploading',
+        color: 'black'
+      }));
+      this.uploadImage = function(url, callback) {
+        if (callback == null) {
+          callback = function() {
+            return null;
+          };
+        }
+        this.visible = true;
+        this.animate({
+          opacity: 1,
+          options: {
+            time: .15,
+            delay: .15
+          }
+        });
+        this.progress.onAnimationEnd(_.once(callback));
+        this.progress.animate({
+          width: this.box.width,
+          options: {
+            delay: .75,
+            time: 2,
+            curve: 'linear'
+          }
+        });
+        return uploadFrontSide.animate({
+          height: this.box.height
+        });
+      };
+      return this.confirmUpload = (function(_this) {
+        return function() {
+          _this.progress.width = 0;
+          _this.box.fill = 'dbe9f9';
+          _this.box.border = '4a90e2';
+          _this.labelLayer.color = '#4a90e2';
+          _this.labelLayer.text = 'Driving license - front side';
+          _this.iconLayer.visible = true;
+          return uploadBackSide.open();
+        };
+      })(this);
+    }, uploadingFrontState)();
+    return uploadFrontSide.on("change:file", function(url) {
+      this.onAnimationEnd(_.once(function() {
+        this.visible = false;
+        return uploadingFrontState.uploadImage(url, uploadingFrontState.confirmUpload);
+      }));
+      return this.animate({
+        opacity: 0,
+        options: {
+          time: .15
+        }
+      });
+    });
+  });
+
+  view.build(function() {
+    var uploadingBackState;
+    this.addToStack(uploadBackSide = window.__framerNew("uploadBackSide", "178:34-187:0", "?",new cs.UploadButton({
+      width: 355,
+      height: 177,
+      fill: 'white',
+      shadowY: 0,
+      shadowBlur: 0,
+      style: {
+        border: '3px dashed #777'
+      }
+    })));
+    _.bind(function() {
+      this.open = function() {
+        this.animate({
+          height: 177
+        });
+        this.style.border = '3px dashed #777';
+        return this.animate({
+          opacity: 1,
+          options: {
+            time: .15,
+            delay: .15
+          }
+        });
+      };
+      this.icon = window.__framerNew(undefined, "200:14-208:1", "?",new cs.Icon({
+        parent: this,
+        icon: 'camera',
+        border: 1,
+        scale: 2,
+        x: Align.center,
+        y: Align.center(4)
+      }));
+      this.detail = window.__framerNew(undefined, "208:16-215:1", "?",new cs.Text({
+        parent: this,
+        type: 'body',
+        text: 'Driving License (back side)',
+        x: Align.center,
+        y: 15
+      }));
+      this.detail1 = window.__framerNew(undefined, "215:17-222:1", "?",new cs.Text({
+        parent: this,
+        type: 'body',
+        text: 'Take a picture or select a file',
+        x: Align.center,
+        y: this.icon.maxY + 38
+      }));
+      this.display = window.__framerNew(undefined, "222:17-229:1", "#16de6707c",new Layer({
+        parent: this,
+        size: this.size,
+        backgroundColor: null
+      }));
+      if (Utils.isMobile()) {
+        _.assign(this.display, {
+          originX: 0,
+          originY: 0,
+          rotation: 90,
+          width: this.height,
+          height: this.width,
+          x: this.width
+        });
+      }
+      this.height = 1;
+      return this.opacity = 0;
+    }, uploadBackSide)();
+    uploadingBackState = window.__framerNew("uploadingBackState", "243:26-252:0", "#fff73c7b",new Layer({
+      parent: this.content,
+      y: uploadBackSide.y,
+      x: 12,
+      width: this.width - 24,
+      opacity: 0,
+      visible: false,
+      backgroundColor: null
+    }));
+    _.bind(function() {
+      this.box = window.__framerNew(undefined, "254:13-260:1", "?",new cs.Container({
+        parent: this,
+        width: this.width,
+        border: 'black',
+        fill: 'white'
+      }));
+      this.iconLayer = window.__framerNew(undefined, "260:19-269:1", "?",new cs.Icon({
+        parent: this,
+        icon: 'file-outline',
+        scale: 1.4,
+        x: 8,
+        y: 12,
+        color: '#4a90e2',
+        visible: false
+      }));
+      this.progress = window.__framerNew(undefined, "269:18-275:1", "#962e7e1a",new Layer({
+        parent: this.box,
+        height: this.box.height,
+        width: 1,
+        backgroundColor: 'b8e986'
+      }));
+      this.labelLayer = window.__framerNew(undefined, "275:20-284:1", "?",new cs.Text({
+        parent: this.box,
+        type: 'body',
+        width: this.width,
+        y: Align.center,
+        textAlign: 'center',
+        text: 'Uploading',
+        color: 'black'
+      }));
+      this.uploadImage = function(url, callback) {
+        if (callback == null) {
+          callback = function() {
+            return null;
+          };
+        }
+        this.visible = true;
+        this.animate({
+          opacity: 1,
+          options: {
+            time: .15,
+            delay: .15
+          }
+        });
+        this.progress.onAnimationEnd(_.once(callback));
+        this.progress.animate({
+          width: this.box.width,
+          options: {
+            delay: .75,
+            time: 2,
+            curve: 'linear'
+          }
+        });
+        return uploadBackSide.animate({
+          height: this.progress.height
+        });
+      };
+      return this.confirmUpload = (function(_this) {
+        return function() {
+          _this.progress.width = 0;
+          _this.box.fill = 'dbe9f9';
+          _this.box.border = '4a90e2';
+          _this.labelLayer.color = '#4a90e2';
+          _this.labelLayer.text = 'Driving license - back side';
+          _this.iconLayer.visible = true;
+          return view.continueContainer.open();
+        };
+      })(this);
+    }, uploadingBackState)();
+    return uploadBackSide.on("change:file", function(url) {
+      uploadingBackState.y = this.y;
+      this.onAnimationEnd(_.once(function() {
+        this.visible = false;
+        return uploadingBackState.uploadImage(url, uploadingBackState.confirmUpload);
+      }));
+      return this.animate({
+        opacity: 0,
+        options: {
+          time: .15
+        }
+      });
+    });
+  });
+
+  view.build(function() {
+    var continueButton;
+    this.addToStack(window.__framerNew(undefined, "336:17-340:0", "?",new cs.Accordian({
+      title: 'What documents can I use?',
+      color: '#000'
+    })));
+    this.addToStack(window.__framerNew(undefined, "340:13-340:26", "?",new cs.Divider));
+    this.addToStack(window.__framerNew(undefined, "342:17-350:0", "?",new cs.Text({
+      x: 20,
+      type: 'caption',
+      width: this.width - 32,
+      text: 'Files must be smaller than 4MB. We keep your ID confidential and its use is for internal use only.'
+    })));
+    this.continueContainer = window.__framerNew(undefined, "350:26-361:0", "#150e195fe",new Layer({
+      parent: this,
+      y: Align.bottom(-app.footer.height),
+      width: this.width,
+      height: 64,
+      backgroundColor: '#FFF',
+      shadowY: -1,
+      visible: false,
+      animationOptions: {
+        time: .25
+      }
+    }));
+    continueButton = window.__framerNew("continueButton", "361:22-370:0", "?",new cs.Button({
+      parent: this.continueContainer,
+      x: 16,
+      width: this.width - 32,
+      y: Align.center,
+      type: 'body',
+      color: 'white',
+      text: 'Continue'
+    }));
+    this.continueContainer.open = function() {
+      this.visible = true;
+      this.state = 'open';
+      return this.animate({
+        y: Align.bottom(-app.footer.height)
+      });
+    };
+    this.continueContainer.close = function() {
+      this.state = 'close';
+      return this.animate({
+        y: Align.bottom(this.height)
+      });
+    };
+    app.footer.on("change:height", function() {
+      if (this.continueContainer.state === 'open') {
+        return this.continueContainer.y = Align.bottom(-app.footer.height);
+      }
+    });
+    return this.continueContainer.close();
+  });
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=7448f96fcfa6b7836c038f32aa097a8c"></script>
+		<script src="framer/framer.modules.js?nocache=1e24bec416b4b7093e928895dd436559"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 867;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var app, backIcon, backText, child, content, cs, detailsView, i, len, puller, ref, reportView, subnav2, uploadBackSide, uploadFrontSide;
+
+  cs = require('cs');
+
+  cs.Context.setMobile();
+
+  Framer.Extras.Hints.disable();
+
+  puller = void 0;
+
+  uploadFrontSide = void 0;
+
+  uploadBackSide = void 0;
+
+  app = window.__framerNew("app", "8:10-17:0", "?",new cs.App({
+    type: 'safari',
+    collapse: true,
+    navigation: 'default',
+    links: [
+      {
+        text: 'overview',
+        view: reportView
+      }, {
+        text: 'personal',
+        view: reportView
+      }, {
+        text: 'accounting',
+        view: reportView
+      }
+    ]
+  }));
+
+  app.navigation.subnav.buttons[0].isOn = true;
+
+  reportView = window.__framerNew("reportView", "22:17-25:0", "?",new cs.View({
+    showLayers: true,
+    backgroundColor: '#FFF'
+  }));
+
+  reportView.build(function() {
+    report.parent = this.content;
+    return tap_area.onTap(function() {
+      return app.showNext(detailsView);
+    });
+  });
+
+  reportView.onLoad = function() {
+    subnav2.animate({
+      opacity: 0,
+      options: {
+        time: .1,
+        delay: .25
+      }
+    });
+    content.animate({
+      opacity: 0,
+      options: {
+        time: .15
+      }
+    });
+    return subnav2.ignoreEvents = true;
+  };
+
+  detailsView = window.__framerNew("detailsView", "51:18-54:0", "?",new cs.View({
+    showLayers: true,
+    backgroundColor: '#FFF'
+  }));
+
+  detailsView.build(function() {
+    var regButton, regLink;
+    learning.parent = this.content;
+    learning.point = {
+      x: 0,
+      y: 0
+    };
+    regButton = window.__framerNew("regButton", "59:17-70:0", "?",new cs.Button({
+      parent: this.content,
+      x: Align.center,
+      y: learning.maxY,
+      width: this.width - 32,
+      type: 'body',
+      color: 'white',
+      fill: 'rgba(5, 146, 188, 1.000)',
+      text: 'Register for the Electoral Roll',
+      action: function() {
+        return null;
+      }
+    }));
+    return regLink = window.__framerNew("regLink", "70:15-78:0", "?",new cs.Text({
+      parent: this.content,
+      x: Align.center,
+      y: regButton.maxY + 16,
+      type: 'link',
+      color: 'rgba(5, 146, 188, 1.000)',
+      text: "I'm already on the Electoral Roll",
+      action: function() {
+        return null;
+      }
+    }));
+  });
+
+  detailsView.onLoad = function() {
+    subnav2.bringToFront();
+    subnav2.animate({
+      opacity: 1,
+      options: {
+        time: .15
+      }
+    });
+    content.animate({
+      opacity: 1,
+      options: {
+        time: .1,
+        delay: .25
+      }
+    });
+    return subnav2.ignoreEvents = false;
+  };
+
+  app.showNext(reportView);
+
+  subnav2 = app.navigation.subnav.copySingle();
+
+  ref = subnav2.children;
+  for (i = 0, len = ref.length; i < len; i++) {
+    child = ref[i];
+    child.destroy();
+  }
+
+  subnav2.props = {
+    opacity: 0,
+    ignoreEvents: true,
+    shadowY: 3,
+    shadowColor: 'rgba(211, 123, 126, 1.000)',
+    animationOptions: {
+      curve: "spring(300, 35, 0)"
+    }
+  };
+
+  content = window.__framerNew("content", "109:14-114:0", "#1281214f1",new Layer({
+    parent: subnav2,
+    size: subnav2.size,
+    backgroundColor: null,
+    opacity: 0
+  }));
+
+  backIcon = window.__framerNew("backIcon", "115:15-121:0", "?",new cs.Icon({
+    parent: content,
+    x: 4,
+    y: Align.center,
+    icon: 'chevron-left',
+    color: 'white'
+  }));
+
+  backText = window.__framerNew("backText", "122:15-129:0", "?",new cs.Text({
+    parent: content,
+    x: backIcon.maxX + 4,
+    y: Align.center,
+    type: 'body1',
+    text: 'Back to report overview',
+    color: 'white'
+  }));
+
+  subnav2.y = app.navigation.subnav.screenFrame.y;
+
+  app.header.on("change:height", function() {
+    return subnav2.y = app.navigation.subnav.screenFrame.y;
+  });
+
+  subnav2.onTap(function() {
+    return app.showPrevious();
+  });
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

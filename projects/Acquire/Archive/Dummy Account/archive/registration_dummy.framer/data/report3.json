@@ -1,0 +1,1183 @@
+{
+  "provider": "EQ",
+  "clientRef": "CLEARSCORE",
+  "soleSearch": {
+    "primary": {
+      "linkedAddressData": [
+        
+      ],
+      "suppliedAddressData": [
+        {
+          "index": 1,
+          "matchedAddress": {
+            "address": {
+              "county": "WILTS",
+              "number": "00135",
+              "street1": "COURT LANE",
+              "district": "EDINGTON",
+              "postTown": "WESTBURY",
+              "postcode": "BA134NR",
+              "addressID": "58150003134"
+            },
+            "sourcedFrom": "ADO"
+          },
+          "addressMatchStatus": "SINGLE_MATCH",
+          "addressSpecificData": {
+            "cifasData": {
+              "cifas": [
+                {
+                  "name": {
+                    "title": "MR",
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "caseId": "CNO202242",
+                  "caseType": "AFR",
+                  "facility": "PRE",
+                  "fraudDate": {
+                    "day": 1,
+                    "year": 2014,
+                    "month": 11
+                  },
+                  "caseNumber": "202242",
+                  "sourcedFrom": "CPR",
+                  "subjectRole": "VOI",
+                  "emailAddress": "DARREN.BARNES@EFXTRTWN.ZZ",
+                  "filingReason": [
+                    {
+                      "id": 1,
+                      "value": "ADO"
+                    },
+                    {
+                      "id": 2,
+                      "value": "CCC"
+                    },
+                    {
+                      "id": 3,
+                      "value": "CNK"
+                    },
+                    {
+                      "id": 4,
+                      "value": "EOP"
+                    },
+                    {
+                      "id": 5,
+                      "value": "FAD"
+                    },
+                    {
+                      "id": 6,
+                      "value": "FAS"
+                    },
+                    {
+                      "id": 7,
+                      "value": "JAF"
+                    },
+                    {
+                      "id": 8,
+                      "value": "OTH"
+                    },
+                    {
+                      "id": 9,
+                      "value": "RWC"
+                    },
+                    {
+                      "id": 10,
+                      "value": "UMO"
+                    }
+                  ],
+                  "fraudAddress": {
+                    "line": [
+                      "135 COURT LANE",
+                      "EDINGTON",
+                      "WESTBURY",
+                      "WILTS"
+                    ],
+                    "postcode": "BA134NR"
+                  },
+                  "homeTelephone": "01274003134",
+                  "referenceText": "CIFAS-do not reject-validation required",
+                  "timeAtAddress": {
+                    "timeAtAddressFrom": {
+                      "day": 1,
+                      "year": 2010,
+                      "month": 1
+                    }
+                  },
+                  "applicationDate": {
+                    "day": 1,
+                    "year": 2014,
+                    "month": 11
+                  },
+                  "matchRuleResult": [
+                    {
+                      "ruleNumber": 1,
+                      "matchAchieved": true
+                    },
+                    {
+                      "ruleNumber": 2,
+                      "matchAchieved": false
+                    },
+                    {
+                      "ruleNumber": 3,
+                      "matchAchieved": true
+                    },
+                    {
+                      "ruleNumber": 5,
+                      "matchAchieved": true
+                    },
+                    {
+                      "ruleNumber": 7,
+                      "matchAchieved": false
+                    },
+                    {
+                      "ruleNumber": 8,
+                      "matchAchieved": false
+                    }
+                  ],
+                  "mobileTelephone": "07274003134",
+                  "nameMatchStatus": "A",
+                  "searchReference": "81840038CIFSUSER",
+                  "fraudAddressType": "CA",
+                  "supplyingMemberId": "143",
+                  "managingMemberName": "EQUIFAX",
+                  "supplyingMemberName": "BRITISH CREDIT MANAGEMENT",
+                  "managingMemberNumber": "095",
+                  "subjectRoleQualifier": "TI5",
+                  "additionalInformationIndicator": "Y"
+                },
+                {
+                  "name": {
+                    "title": "MR",
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "caseId": "CNO005484",
+                  "caseType": "AFR",
+                  "facility": "PRE",
+                  "fraudDate": {
+                    "day": 1,
+                    "year": 2014,
+                    "month": 10
+                  },
+                  "caseNumber": "005484",
+                  "sourcedFrom": "CPR",
+                  "subjectRole": "VOI",
+                  "emailAddress": "DARREN.BARNES@EFXTRTWN.ZZ",
+                  "filingReason": [
+                    {
+                      "id": 1,
+                      "value": "ADO"
+                    },
+                    {
+                      "id": 2,
+                      "value": "CCC"
+                    },
+                    {
+                      "id": 3,
+                      "value": "CNK"
+                    },
+                    {
+                      "id": 4,
+                      "value": "EOP"
+                    },
+                    {
+                      "id": 5,
+                      "value": "FAD"
+                    },
+                    {
+                      "id": 6,
+                      "value": "FAS"
+                    },
+                    {
+                      "id": 7,
+                      "value": "JAF"
+                    },
+                    {
+                      "id": 8,
+                      "value": "OTH"
+                    },
+                    {
+                      "id": 9,
+                      "value": "RWC"
+                    },
+                    {
+                      "id": 10,
+                      "value": "UMO"
+                    }
+                  ],
+                  "fraudAddress": {
+                    "line": [
+                      "135 COURT LANE",
+                      "EDINGTON",
+                      "WESTBURY",
+                      "WILTS"
+                    ],
+                    "postcode": "BA134NR"
+                  },
+                  "homeTelephone": "01274003134",
+                  "referenceText": "CIFAS-do not reject-validation required",
+                  "timeAtAddress": {
+                    "timeAtAddressFrom": {
+                      "day": 1,
+                      "year": 2010,
+                      "month": 1
+                    }
+                  },
+                  "applicationDate": {
+                    "day": 1,
+                    "year": 2014,
+                    "month": 10
+                  },
+                  "matchRuleResult": [
+                    {
+                      "ruleNumber": 1,
+                      "matchAchieved": true
+                    },
+                    {
+                      "ruleNumber": 2,
+                      "matchAchieved": false
+                    },
+                    {
+                      "ruleNumber": 3,
+                      "matchAchieved": true
+                    },
+                    {
+                      "ruleNumber": 5,
+                      "matchAchieved": true
+                    },
+                    {
+                      "ruleNumber": 7,
+                      "matchAchieved": false
+                    },
+                    {
+                      "ruleNumber": 8,
+                      "matchAchieved": false
+                    }
+                  ],
+                  "mobileTelephone": "07274003134",
+                  "nameMatchStatus": "A",
+                  "searchReference": "51140001CIFSUSER",
+                  "fraudAddressType": "CA",
+                  "supplyingMemberId": "119",
+                  "managingMemberName": "EQUIFAX",
+                  "supplyingMemberName": "SINGLEPOINT (4U) LTD",
+                  "managingMemberNumber": "095",
+                  "subjectRoleQualifier": "TI4",
+                  "additionalInformationIndicator": "Y"
+                },
+                {
+                  "name": {
+                    "title": "MR",
+                    "surname": "BERNES",
+                    "forename": "DARREN"
+                  },
+                  "caseId": "CNO61745C",
+                  "caseType": "AFR",
+                  "facility": "PRE",
+                  "fraudDate": {
+                    "day": 1,
+                    "year": 2014,
+                    "month": 7
+                  },
+                  "caseNumber": "61745C",
+                  "sourcedFrom": "CPR",
+                  "subjectRole": "VOI",
+                  "emailAddress": "DARREN.BERNES@EFXTRTWN.ZZ",
+                  "filingReason": [
+                    {
+                      "id": 1,
+                      "value": "ADO"
+                    },
+                    {
+                      "id": 2,
+                      "value": "CCC"
+                    },
+                    {
+                      "id": 3,
+                      "value": "CNK"
+                    },
+                    {
+                      "id": 4,
+                      "value": "EOP"
+                    },
+                    {
+                      "id": 5,
+                      "value": "FAD"
+                    },
+                    {
+                      "id": 6,
+                      "value": "FAS"
+                    },
+                    {
+                      "id": 7,
+                      "value": "JAF"
+                    },
+                    {
+                      "id": 8,
+                      "value": "OTH"
+                    },
+                    {
+                      "id": 9,
+                      "value": "RWC"
+                    },
+                    {
+                      "id": 10,
+                      "value": "UMO"
+                    }
+                  ],
+                  "fraudAddress": {
+                    "line": [
+                      "135 COURT LANE",
+                      "EDINGTON",
+                      "WESTBURY",
+                      "WILTS"
+                    ],
+                    "postcode": "BA134NR"
+                  },
+                  "homeTelephone": "01274003134",
+                  "referenceText": "CIFAS-do not reject-validation required",
+                  "timeAtAddress": {
+                    "timeAtAddressFrom": {
+                      "day": 1,
+                      "year": 2010,
+                      "month": 1
+                    }
+                  },
+                  "applicationDate": {
+                    "day": 1,
+                    "year": 2014,
+                    "month": 7
+                  },
+                  "matchRuleResult": [
+                    {
+                      "ruleNumber": 1,
+                      "matchAchieved": true
+                    },
+                    {
+                      "ruleNumber": 2,
+                      "matchAchieved": false
+                    },
+                    {
+                      "ruleNumber": 3,
+                      "matchAchieved": true
+                    },
+                    {
+                      "ruleNumber": 5,
+                      "matchAchieved": true
+                    },
+                    {
+                      "ruleNumber": 7,
+                      "matchAchieved": false
+                    },
+                    {
+                      "ruleNumber": 8,
+                      "matchAchieved": false
+                    }
+                  ],
+                  "mobileTelephone": "07274003134",
+                  "nameMatchStatus": "A",
+                  "searchReference": "14420000CIFS0040",
+                  "fraudAddressType": "CA",
+                  "supplyingMemberId": "020",
+                  "managingMemberName": "EQUIFAX",
+                  "supplyingMemberName": "CHARTERED TRUST PLC",
+                  "managingMemberNumber": "095",
+                  "subjectRoleQualifier": "TI4",
+                  "additionalInformationIndicator": "Y"
+                }
+              ]
+            },
+            "insightData": {
+              "xmasClub": [
+                
+              ],
+              "chargeCard": [
+                
+              ],
+              "creditCard": [
+                
+              ],
+              "greenDeals": [
+                
+              ],
+              "securedLoan": [
+                
+              ],
+              "studentLoan": [
+                
+              ],
+              "hirePurchase": [
+                
+              ],
+              "budgetAccount": [
+                
+              ],
+              "optionAccount": [
+                
+              ],
+              "unsecuredLoan": [
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "title": "MR",
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "companyName": "LONDON SCOTTISH BANK PLC",
+                  "sourcedFrom": "INY",
+                  "clientNumber": "18390017",
+                  "companyClass": "MS",
+                  "startBalance": {
+                    "suppressed": false,
+                    "balanceAmount": {
+                      "amount": 0,
+                      "currency": "GBP"
+                    }
+                  },
+                  "accountNumber": "97-588-06526       P",
+                  "currentBalance": {
+                    "suppressed": false,
+                    "balanceAmount": {
+                      "amount": 908,
+                      "currency": "GBP"
+                    }
+                  },
+                  "defaultBalance": {
+                    "suppressed": false,
+                    "balanceAmount": {
+                      "amount": 908,
+                      "currency": "GBP"
+                    }
+                  },
+                  "insightQuality": {
+                    "qualityIndicator1": false,
+                    "qualityIndicator2": false
+                  },
+                  "lastUpdateDate": {
+                    "day": 1,
+                    "year": 2014,
+                    "month": 11
+                  },
+                  "paymentHistory": [
+                    {
+                      "ageInMonths": 0,
+                      "paymentStatus": "ZERO"
+                    }
+                  ],
+                  "nameMatchStatus": "A",
+                  "paymentFrequency": "MONTHLY",
+                  "lastDelinquentDate": "0607"
+                }
+              ],
+              "councilArrears": [
+                
+              ],
+              "currentAccount": [
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "title": "MR",
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "overdraft": true,
+                  "startDate": {
+                    "day": 1,
+                    "year": 2006,
+                    "month": 8
+                  },
+                  "companyName": "CO-OPERATIVE BANK PLC (AMC - DOMESTIC)",
+                  "sourcedFrom": "INY",
+                  "clientNumber": "10600245",
+                  "companyClass": "BF",
+                  "startBalance": {
+                    "suppressed": false,
+                    "balanceAmount": {
+                      "amount": 0,
+                      "currency": "GBP"
+                    }
+                  },
+                  "accountNumber": "90242211711700",
+                  "currentBalance": {
+                    "suppressed": false,
+                    "balanceAmount": {
+                      "amount": 3036,
+                      "currency": "GBP"
+                    }
+                  },
+                  "defaultBalance": {
+                    "suppressed": false,
+                    "balanceAmount": {
+                      "amount": 3036,
+                      "currency": "GBP"
+                    }
+                  },
+                  "insightQuality": {
+                    "qualityIndicator1": false,
+                    "qualityIndicator2": false
+                  },
+                  "lastUpdateDate": {
+                    "day": 1,
+                    "year": 2012,
+                    "month": 10
+                  },
+                  "paymentHistory": [
+                    {
+                      "ageInMonths": 0,
+                      "paymentStatus": "ZERO"
+                    }
+                  ],
+                  "nameMatchStatus": "A",
+                  "paymentFrequency": "MONTHLY",
+                  "lastDelinquentDate": "0807"
+                }
+              ],
+              "propertyRental": [
+                
+              ],
+              "bridgingFinance": [
+                
+              ],
+              "rentalAgreement": [
+                
+              ],
+              "basicBankAccount": [
+                
+              ],
+              "buyToLetMortgage": [
+                
+              ],
+              "consolidatedDebt": [
+                
+              ],
+              "mailOrderAccount": [
+                
+              ],
+              "commsSupplyAccount": [
+                
+              ],
+              "fixedTermAgreement": [
+                
+              ],
+              "insuranceAgreement": [
+                
+              ],
+              "socialHousingRental": [
+                
+              ],
+              "unpresentableCheque": [
+                
+              ],
+              "bankDefaultAgreement": [
+                
+              ],
+              "homeLendingAgreement": [
+                
+              ],
+              "publicUtilityAccount": [
+                
+              ],
+              "localAuthorityHousing": [
+                
+              ],
+              "payDayOrShortTermLoan": [
+                
+              ],
+              "uncategorisedAgreement": [
+                
+              ]
+            },
+            "previousSearches": {
+              "previousCreditSearch": [
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 4,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 12,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 15,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 15,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 15,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 15,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 15,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 15,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 15,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 15,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 15,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 15,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "name": {
+                    "title": "MR",
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 1,
+                    "year": 2015,
+                    "month": 3
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "VODAFONE CONNECT LIMITED",
+                  "companyType": "CS",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "17370152",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 1,
+                    "year": 2014,
+                    "month": 11
+                  },
+                  "searchType": "SUBSEQUENT_CREDIT_SEARCH",
+                  "companyName": "BRITISH CREDIT TRUST LTD CIFAS L",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "81840038",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "title": "MR",
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 1,
+                    "year": 2014,
+                    "month": 10
+                  },
+                  "searchType": "CREDIT_APPLICATION",
+                  "companyName": "SINGLEPOINT (4U) LTD",
+                  "companyType": "CS",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "51140024",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "title": "MR",
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "optIn": true,
+                  "searchDate": {
+                    "day": 10,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "searchType": "CREDIT_QUOTATION",
+                  "companyName": "PEPPER UK LTD",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "PEPP0019",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                }
+              ],
+              "previousNonCreditSearch": [
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "searchDate": {
+                    "day": 22,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "searchDate": {
+                    "day": 22,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                },
+                {
+                  "dob": {
+                    "day": 1,
+                    "year": 1971,
+                    "month": 10
+                  },
+                  "name": {
+                    "surname": "BARNES",
+                    "forename": "DARREN"
+                  },
+                  "searchDate": {
+                    "day": 23,
+                    "year": 2015,
+                    "month": 6
+                  },
+                  "companyName": "CLEARSCORE",
+                  "companyType": "FN",
+                  "sourcedFrom": "ASY",
+                  "accountNumber": "CLSC0018",
+                  "jointApplicant": false,
+                  "nameMatchStatus": "A"
+                }
+              ]
+            },
+            "electoralRollData": {
+              "electoralRoll": [
+                {
+                  "name": {
+                    "surname": "ARMITAGE",
+                    "forename": "DENIS",
+                    "middleName": "W"
+                  },
+                  "seniority": "UNKNOWN",
+                  "sourcedFrom": "ELR",
+                  "nameMatchStatus": "Z",
+                  "annualRegisterPeriod": {
+                    "end": "2009",
+                    "start": "1998"
+                  }
+                },
+                {
+                  "name": {
+                    "surname": "ARMITAGE",
+                    "forename": "JULIE",
+                    "middleName": "A"
+                  },
+                  "seniority": "UNKNOWN",
+                  "sourcedFrom": "ELR",
+                  "nameMatchStatus": "Z",
+                  "annualRegisterPeriod": {
+                    "end": "2006",
+                    "start": "1995"
+                  }
+                },
+                {
+                  "name": {
+                    "surname": "ARMITAGE",
+                    "forename": "VERA"
+                  },
+                  "seniority": "UNKNOWN",
+                  "sourcedFrom": "ELR",
+                  "nameMatchStatus": "Z",
+                  "annualRegisterPeriod": {
+                    "end": "2001",
+                    "start": "1995"
+                  }
+                },
+                {
+                  "name": {
+                    "surname": "ARMITAGE",
+                    "forename": "DENIS"
+                  },
+                  "seniority": "UNKNOWN",
+                  "sourcedFrom": "ELR",
+                  "nameMatchStatus": "Z",
+                  "annualRegisterPeriod": {
+                    "end": "1999",
+                    "start": "1995"
+                  }
+                },
+                {
+                  "name": {
+                    "surname": "HARRIS",
+                    "forename": "SELINA"
+                  },
+                  "seniority": "UNKNOWN",
+                  "sourcedFrom": "ELR",
+                  "nameMatchStatus": "Z",
+                  "annualRegisterPeriod": {
+                    "end": "2014",
+                    "start": "2012"
+                  }
+                },
+                {
+                  "name": {
+                    "surname": "HIRST",
+                    "forename": "LINDA"
+                  },
+                  "seniority": "UNKNOWN",
+                  "sourcedFrom": "ELR",
+                  "nameMatchStatus": "Z",
+                  "annualRegisterPeriod": {
+                    "end": "2012",
+                    "start": "2009"
+                  }
+                }
+              ]
+            }
+          },
+          "potentialMatchedAddress": [
+            
+          ],
+          "noticeOfCorrectionOrDisputePresent": false
+        }
+      ]
+    }
+  },
+  "providerVersion": "ii",
+  "nonAddressSpecificData": {
+    "scores": {
+      "score": [
+        {
+          "value": 137,
+          "positive": true,
+          "scoreLabel": "RNOLF04",
+          "sourcedFrom": "SCO"
+        },
+        {
+          "value": 124,
+          "positive": true,
+          "scoreLabel": "RNILF04",
+          "sourcedFrom": "SCO"
+        },
+        {
+          "value": 124,
+          "positive": true,
+          "scoreLabel": "RNALF04",
+          "sourcedFrom": "SCO"
+        }
+      ]
+    },
+    "associates": {
+      "associate": [
+        {
+          "dob": {
+            "day": 1,
+            "year": 1978,
+            "month": 11
+          },
+          "name": {
+            "title": "MISS",
+            "surname": "HARRIS",
+            "forename": "LISA",
+            "middleName": "M"
+          },
+          "sourcedFrom": "ASC"
+        }
+      ]
+    }
+  }
+}

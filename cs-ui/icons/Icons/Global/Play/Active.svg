@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Bonds/Icons/Global/Play/Active</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M20.921875,1 C31.9244531,1 40.84375,9.91929688 40.84375,20.921875 C40.84375,31.9244531 31.9244531,40.84375 20.921875,40.84375 C9.91929687,40.84375 1,31.9244531 1,20.921875 C1,9.91929687 9.91929687,1 20.921875,1 Z M17.0919531,28.9692969 C17.0919531,29.6298438 17.8732813,29.9332813 18.3710156,29.4990625 C18.3860156,29.4859375 27.714375,22.9996094 28.8286719,22.2154688 C28.9133594,22.1558594 28.99125,22.0871094 29.0564844,22.0067188 C29.5667969,21.3779688 29.5667969,20.4657813 29.0564844,19.8370313 C28.99125,19.7566406 28.9133594,19.6878906 28.8286719,19.6282813 C27.714375,18.8441406 18.3860156,12.3578125 18.3710156,12.3446875 C17.8732031,11.9104688 17.0919531,12.2139063 17.0919531,12.8744531 L17.0919531,28.9692969 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bonds/Icons/Global/Play/Active">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Shape" fill-rule="nonzero"></g>
+            <g id="Bonds/Colours/General/White" mask="url(#mask-2)" fill="#FFFFFF">
+                <rect id="Rectangle-3" x="0" y="0" width="42" height="42"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,186 @@
+app.coffee
+cs-ux.sublime-project
+cs-ux.sublime-workspace
+data/report1.json
+data/report2.json
+data/report3.json
+data/report4.json
+data/report5.json
+data/report6.json
+fonts/AktivGrotesk_Bd.ttf
+fonts/AktivGrotesk_BdIt.ttf
+fonts/AktivGrotesk_Hair.ttf
+fonts/AktivGrotesk_HairIt.ttf
+fonts/AktivGrotesk_It.ttf
+fonts/AktivGrotesk_Lt.ttf
+fonts/AktivGrotesk_LtIt.ttf
+fonts/AktivGrotesk_Md.ttf
+fonts/AktivGrotesk_MdIt.ttf
+fonts/AktivGrotesk_Rg.ttf
+fonts/AktivGrotesk_Th.ttf
+fonts/AktivGrotesk_ThIt.ttf
+framer/coffee-script.js
+framer/config.json
+framer/framer.generated.js
+framer/framer.init.js
+framer/framer.js
+framer/framer.modules (Sebastian Bailey's conflicted copy 2017-10-04).js
+framer/framer.modules (Stephen Ruiz's conflicted copy 2017-10-05).js
+framer/framer.modules (Stephen Ruiz's conflicted copy 2017-10-06).js
+framer/framer.modules (Stephen Ruiz's conflicted copy 2017-10-10 (1)).js
+framer/framer.modules (Stephen Ruiz's conflicted copy 2017-10-10).js
+framer/framer.modules (Stephen Ruiz's conflicted copy 2017-10-11 (1)).js
+framer/framer.modules (Stephen Ruiz's conflicted copy 2017-10-11 (2)).js
+framer/framer.modules (Stephen Ruiz's conflicted copy 2017-10-11).js
+framer/framer.modules (Stephen Ruiz's conflicted copy 2017-10-12).js
+framer/framer.modules.js
+framer/framer.vekter.js
+framer/images/cursor-active.png
+framer/images/cursor-active@2x.png
+framer/images/cursor.png
+framer/images/cursor@2x.png
+framer/images/icon-120.png
+framer/images/icon-152.png
+framer/images/icon-180.png
+framer/images/icon-192.png
+framer/images/icon-76.png
+framer/manifest (Stephen Ruiz's conflicted copy 2017-10-04).txt
+framer/manifest (Stephen Ruiz's conflicted copy 2017-10-05).txt
+framer/manifest (Stephen Ruiz's conflicted copy 2017-10-06).txt
+framer/manifest (Stephen Ruiz's conflicted copy 2017-10-10).txt
+framer/manifest.txt
+framer/preview (Sebastian Bailey's conflicted copy 2017-10-04).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (1)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (10)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (11)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (12)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (13)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (14)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (15)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (16)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (17)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (18)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (19)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (2)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (20)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (21)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (22)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (23)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (24)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (25)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (26)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (27)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (28)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (29)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (3)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (30)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (31)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (32)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (33)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (34)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (35)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (36)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (37)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (38)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (4)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (5)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (6)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (7)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (8)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04 (9)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-04).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-05).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-06).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-10).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-11 (1)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-11).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-12 (1)).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-12).png
+framer/preview (Stephen Ruiz's conflicted copy 2017-10-13).png
+framer/preview.png
+framer/style.css
+framer/version
+images/camera (1).png
+index.html
+modules/Accordian.coffee
+modules/ActionSheet.coffee
+modules/AndroidBar.coffee
+modules/App.coffee
+modules/Arrow.coffee
+modules/Button.coffee
+modules/CameraLayer.coffee
+modules/Card.coffee
+modules/Carousel.coffee
+modules/Checkbox.coffee
+modules/Colors.coffee
+modules/Comment.coffee
+modules/Container.coffee
+modules/cs-ux-images/android_status_bar.png
+modules/cs-ux-images/icons/account.png
+modules/cs-ux-images/icons/account_menu.png
+modules/cs-ux-images/icons/browser_bg.png
+modules/cs-ux-images/icons/burger.png
+modules/cs-ux-images/icons/close.png
+modules/cs-ux-images/icons/coaching.png
+modules/cs-ux-images/icons/faqs.png
+modules/cs-ux-images/icons/help.png
+modules/cs-ux-images/icons/info.png
+modules/cs-ux-images/icons/learn.png
+modules/cs-ux-images/icons/logout.png
+modules/cs-ux-images/icons/menu_close.png
+modules/cs-ux-images/icons/menu_help.png
+modules/cs-ux-images/icons/menu_lock.png
+modules/cs-ux-images/icons/menu_map.png
+modules/cs-ux-images/icons/my_account.png
+modules/cs-ux-images/icons/offers.png
+modules/cs-ux-images/icons/report.png
+modules/cs-ux-images/icons/score0.png
+modules/cs-ux-images/icons/score1.png
+modules/cs-ux-images/icons/score2.png
+modules/cs-ux-images/icons/score3.png
+modules/cs-ux-images/icons/score4.png
+modules/cs-ux-images/icons/timeline.png
+modules/cs-ux-images/ios_keyboard.png
+modules/cs-ux-images/ios_status_bar.png
+modules/cs-ux-images/safari_device.png
+modules/cs-ux-svgs/android-status-icons.svg
+modules/cs-ux-svgs/android-top-bar-icons.svg
+modules/cs-ux-svgs/android_bottom_bar_icons.svg
+modules/cs-ux-svgs/battery.svg
+modules/cs-ux-svgs/bounds.svg
+modules/cs-ux-svgs/cellular.svg
+modules/cs-ux-svgs/safari_bottom_bar.svg
+modules/cs-ux-svgs/time.svg
+modules/cs-ux-svgs/wifi.svg
+modules/cs.coffee
+modules/Database.coffee
+modules/Divider.coffee
+modules/Donut.coffee
+modules/Expand.coffee
+modules/Field.coffee
+modules/Icon.coffee
+modules/IOSBar.coffee
+modules/Logo.coffee
+modules/MenuOverlay.coffee
+modules/Mobile.coffee
+modules/MobileHeader.coffee
+modules/myModule.coffee
+modules/NavButton.coffee
+modules/Navigation.coffee
+modules/Overlay.coffee
+modules/Progress.coffee
+modules/ProgressBar.coffee
+modules/Puller.coffee
+modules/Radiobox.coffee
+modules/SafariBar.coffee
+modules/SegmentControl.coffee
+modules/Sortable.coffee
+modules/StackView.coffee
+modules/Standard.coffee
+modules/Subnav.coffee
+modules/Switch.coffee
+modules/Text.coffee
+modules/Toggle.coffee
+modules/Toolbar.coffee
+modules/UploadButton.coffee
+modules/View.coffee

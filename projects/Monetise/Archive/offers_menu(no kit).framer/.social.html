@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=6b11c582b3e86fd091097499738fd264"></script>
+		<script src="framer/framer.modules.js?nocache=62418f90cf83756af3f1d5b3f3156c72"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 15020;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};window.__framerAnimation = function (th,a){if (a.isNoop === true) {return a;};var l = a.layer;if (l == null) { return a; };if (l.__framerAnimationInfo == null) {l.__framerAnimationInfo = {};};l.__framerAnimationInfo[th] = {originalState:a._originalState, destinationProperties: a.properties, destinationOptions: a.options};return a;};(function() {
+  var ChatAvatar, ChatBubble, ChatContainer, ChatView, ChatViewButton, ChoiceContainer, ChoiceScroll, EezyButton, Flow, Icon, InputChoice, LinkChoiceBox, LinkChoiceScroll, Person, PersonChoice, PersonChoiceScroll, Place, Plan, PlanModal, TextChoice, TextChoiceBox, Type, User, View, askWhat, chatViews, colors, confirmAdded, confirmNegative, confirmPositive, confirmTime, database, diveBar, flow, greeting, kebabTruck, mainChat, plan, suggestBar, suggestRestaurant, suggestWhen, user,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  Framer.Extras.Hints.disable();
+
+  Type = require('Type');
+
+  Flow = require('Flow').Flow;
+
+  database = require('Database').database;
+
+  User = require('User').User;
+
+  View = require('View').View;
+
+  Icon = require('Icon').Icon;
+
+  colors = require('Colors').colors;
+
+  _.assign(colors, {
+    tint: '#FFF',
+    bright: '#FFF',
+    medium: '#016a94',
+    light: '#96d3fe',
+    deep: '#1a87c6',
+    chat: '#00fff7',
+    choiceText: '#0183f3',
+    choiceBackground: '#00fff7',
+    cta: '#21aa99',
+    chosen: '#000',
+    suggested: 'rgba(0,0,0,.62)'
+  });
+
+  Utils.timeUntil = function(date) {
+    var hours, minutes, timeDifference;
+    timeDifference = _.floor((date.getTime() - _.now()) / 60000);
+    hours = _.floor(timeDifference / 60);
+    minutes = timeDifference - (hours * 60);
+    return {
+      hours: hours,
+      minutes: minutes
+    };
+  };
+
+  Plan = (function() {
+    function Plan(options) {
+      var defaultWhen, ref, ref1, ref2, ref3, ref4, ref5;
+      if (options == null) {
+        options = {};
+      }
+      defaultWhen = window.__framerNew("defaultWhen", "50:20-50:25", "?",new Date());
+      defaultWhen.setHours(21, 0);
+      this.what = (ref = options.what) != null ? ref : 'eat';
+      this.where = (ref1 = options.where) != null ? ref1 : kebabTruck;
+      this.when = (ref2 = options.when) != null ? ref2 : defaultWhen;
+      this.budget = (ref3 = options.budget) != null ? ref3 : 0;
+      this.people = (ref4 = options.people) != null ? ref4 : [];
+      this.confirmed = (ref5 = options.confirmed) != null ? ref5 : false;
+      this.choices = {
+        what: false,
+        where: false,
+        when: false,
+        who: false
+      };
+    }
+
+    Plan.prototype.confirm = function() {
+      this.confirmed = true;
+      return user.plans.push(this);
+    };
+
+    Plan.prototype.saveDraft = function() {
+      return user.drafts.push(this);
+    };
+
+    return Plan;
+
+  })();
+
+  Person = function(options) {
+    _.assign(this, options);
+    return this;
+  };
+
+  Place = function(options) {
+    _.assign(this, options);
+    return this;
+  };
+
+  ChatView = (function(superClass) {
+    extend(ChatView, superClass);
+
+    function ChatView(options) {
+      var eezyButton, ref, ref1, ref2;
+      if (options == null) {
+        options = {};
+      }
+      this.addChat = bind(this.addChat, this);
+      this.removeChat = bind(this.removeChat, this);
+      this.resetChatPositions = bind(this.resetChatPositions, this);
+      this.resetChatIndices = bind(this.resetChatIndices, this);
+      this.clearInputs = bind(this.clearInputs, this);
+      this.setInputs = bind(this.setInputs, this);
+      this.__constructor = true;
+      this._inputs = [];
+      this.inputChoices = [];
+      this.choices = [];
+      this.chats = [];
+      this.leftAvatarOptions = options.leftAvatar;
+      this.rightAvatarOptions = options.rightAvatar;
+      this.leftStyle = (ref = options.leftStyle) != null ? ref : {
+        backgroundColor: '#f0f0f0',
+        color: '#000'
+      };
+      this.rightStyle = (ref1 = options.rightStyle) != null ? ref1 : {
+        backgroundColor: '#0183f3',
+        color: '#FFF'
+      };
+      this.padding = (ref2 = options.padding) != null ? ref2 : {
+        sameSender: 8,
+        differentSenders: 24
+      };
+      ChatView.__super__.constructor.call(this, _.defaults(options, {
+        name: "Chat View",
+        backgroundColor: colors.light
+      }));
+      this.inputScroll = window.__framerNew(undefined, "131:21-142:1", "#125ad22e7",new ScrollComponent({
+        name: 'Input Button Scroll',
+        parent: this,
+        y: Align.bottom,
+        width: this.width,
+        height: 64,
+        backgroundColor: '#FFF',
+        shadowY: -1,
+        shadowColor: 'rgba(0,0,0,.24)',
+        scrollVertical: false
+      }));
+      this.inputScroll.content.backgroundColor = null;
+      eezyButton = window.__framerNew("eezyButton", "151:19-151:30", "?",new EezyButton());
+      _.assign(eezyButton, {
+        parent: this,
+        x: Align.right(-16),
+        y: Align.bottom(-eezyButton.height / 2)
+      });
+      eezyButton.onTap(function() {
+        return window.__framerNew(undefined, "157:22-157:34", "undefined",new PlanModal);
+      });
+      chatViews.push(this);
+      delete this.__constructor;
+      this.on("change:inputs", this.setInputs);
+    }
+
+    ChatView.prototype.setInputs = function() {
+      var fn, input, inputChoice, j, last, len, ref, ref1;
+      last = void 0;
+      ref = this.inputs;
+      fn = (function(_this) {
+        return function(input) {
+          inputChoice.onTap(function() {
+            _this.addChat(window.__framerNew(undefined, "176:18-179:4", "?",new ChatBubble({
+              text: input.text,
+              align: 'right'
+            })));
+            _this.clearInputs();
+            _this.inputs = [];
+            return Utils.delay(1, function() {
+              return input.callback();
+            });
+          });
+          return _this.inputChoices.push(inputChoice);
+        };
+      })(this);
+      for (j = 0, len = ref.length; j < len; j++) {
+        input = ref[j];
+        inputChoice = window.__framerNew("inputChoice", "168:21-174:2", "?",new InputChoice({
+          parent: this.inputScroll.content,
+          x: ((ref1 = last != null ? last.maxX : void 0) != null ? ref1 : 0) + 16,
+          y: 8,
+          text: input.text
+        }));
+        fn(input);
+        last = inputChoice;
+      }
+      return this.inputScroll.updateContent();
+    };
+
+    ChatView.prototype.clearInputs = function() {
+      var input, j, len, ref, results;
+      ref = this.inputChoices;
+      results = [];
+      for (j = 0, len = ref.length; j < len; j++) {
+        input = ref[j];
+        results.push(input.destroy());
+      }
+      return results;
+    };
+
+    ChatView.prototype.resetChatIndices = function() {
+      var chatBubble, i, j, len, ref, results;
+      ref = this.chats;
+      results = [];
+      for (i = j = 0, len = ref.length; j < len; i = ++j) {
+        chatBubble = ref[i];
+        results.push(chatBubble.i = i);
+      }
+      return results;
+    };
+
+    ChatView.prototype.resetChatPositions = function() {
+      var chatBubble, i, j, last, len, ref;
+      last = void 0;
+      ref = this.chats;
+      for (i = j = 0, len = ref.length; j < len; i = ++j) {
+        chatBubble = ref[i];
+        if (i === 0) {
+          chatBubble.y = 0;
+          last = chatBubble;
+          continue;
+        }
+        if (last.align === chatBubble.align) {
+          chatBubble.y = last.maxY + this.padding.sameSender;
+          last = chatBubble;
+          continue;
+        }
+        chatBubble.y = last.maxY + this.padding.differentSenders;
+        last = chatBubble;
+      }
+      return this.updateContent();
+    };
+
+    ChatView.prototype.removeChat = function(chatBubble) {
+      _.pull(this.chats, chatBubble);
+      this.resetChatIndices();
+      return this.resetChatPositions();
+    };
+
+    ChatView.prototype.addChat = function(chatBubble) {
+      var i, last, ref, yGap;
+      switch (chatBubble.align) {
+        case "left":
+          chatBubble.setStyle(this.leftStyle);
+          _.assign(chatBubble.avatarLayer, this.leftAvatarOptions);
+          break;
+        case "right":
+          _.assign(chatBubble.avatarLayer, this.rightAvatarOptions);
+          chatBubble.setStyle(this.rightStyle);
+          break;
+        case "full":
+          _.assign(chatBubble, {
+            width: this.width,
+            x: 0
+          });
+      }
+      i = this.chats.length;
+      yGap = this.padding.differentSenders;
+      if (i > 0) {
+        last = _.last(this.chats);
+        last.hideAvatar();
+        if (last.align === chatBubble.align || last.align === "left" && chatBubble.align === "full") {
+          yGap = this.padding.sameSender;
+        }
+      }
+      _.assign(chatBubble, {
+        parent: this.content,
+        chatView: this,
+        y: ((ref = last != null ? last.maxY : void 0) != null ? ref : -yGap) + yGap
+      });
+      chatBubble.on("change:height", (function(_this) {
+        return function(lastHeight, newHeight, layer) {
+          var ref1;
+          if ((ref1 = _this.chats[layer.i + 1]) != null) {
+            ref1.y = layer.maxY + yGap;
+          }
+          return _this.updateContent();
+        };
+      })(this));
+      chatBubble.on("change:y", (function(_this) {
+        return function(lastHeight, newHeight, layer) {
+          var ref1;
+          return (ref1 = _this.chats[layer.i + 1]) != null ? ref1.y = layer.maxY + yGap : void 0;
+        };
+      })(this));
+      this.resetChatIndices();
+      this.updateContent();
+      this.animateStop();
+      if (chatBubble.maxY > (Screen.height * .7)) {
+        this.scrollToPoint({
+          x: 0,
+          y: chatBubble.maxY - Screen.height * .7
+        }, true, {
+          time: .25
+        });
+      }
+      return this.chats.push(chatBubble);
+    };
+
+    ChatView.define("inputs", {
+      get: function() {
+        return this._inputs;
+      },
+      set: function(array) {
+        this.clearInputs();
+        this._inputs = array != null ? array : [];
+        return this.emit("change:inputs", array, this);
+      }
+    });
+
+    return ChatView;
+
+  })(View);
+
+  ChatViewButton = (function(superClass) {
+    extend(ChatViewButton, superClass);
+
+    function ChatViewButton(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      if (options.view == null) {
+        options.view = (function() {
+          throw 'ChatViewButton needs a view property.';
+        })();
+      }
+      ChatViewButton.__super__.constructor.call(this, _.defaults(options, {
+        name: "Chat View Button",
+        width: 32,
+        height: 32,
+        borderRadius: 16
+      }));
+      delete this.__constructor;
+      this.onTap(function() {
+        return flow.showNext(options.view);
+      });
+    }
+
+    return ChatViewButton;
+
+  })(Layer);
+
+  EezyButton = function() {
+    var background, icon;
+    background = window.__framerNew("background", "312:18-319:0", "#cdf98a1b",new Layer({
+      name: 'Eezy Button',
+      width: 64,
+      height: 64,
+      borderRadius: 36,
+      backgroundColor: '#4455bb'
+    }));
+    icon = window.__framerNew("icon", "319:12-327:0", "#a4cd372e",new Layer({
+      name: "Icon",
+      parent: background,
+      width: 40,
+      height: 40,
+      point: Align.center,
+      image: eezy_icon.image
+    }));
+    return background;
+  };
+
+  InputChoice = (function(superClass) {
+    extend(InputChoice, superClass);
+
+    function InputChoice(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      if (options.text == null) {
+        options.text = "Choice";
+      }
+      if (options.callback == null) {
+        options.callback = function() {
+          return null;
+        };
+      }
+      InputChoice.__super__.constructor.call(this, _.defaults(options, {
+        name: "Input Choice",
+        height: 48,
+        backgroundColor: '#FFF',
+        borderRadius: 16,
+        borderWidth: 1,
+        borderColor: colors.choiceText
+      }));
+      this.contentLayer = window.__framerNew(undefined, "346:22-354:1", "?",new Type.Regular({
+        parent: this,
+        padding: {
+          left: 16,
+          right: 16
+        },
+        x: 0,
+        y: Align.center,
+        color: colors.choiceText,
+        text: options.text
+      }));
+      this.width = this.contentLayer.width;
+      delete this.__constructor;
+    }
+
+    return InputChoice;
+
+  })(Layer);
+
+  ChatAvatar = (function(superClass) {
+    extend(ChatAvatar, superClass);
+
+    function ChatAvatar(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      _.assign(options, {
+        height: 24,
+        width: 24,
+        borderRadius: 16,
+        backgroundColor: '#333'
+      });
+      ChatAvatar.__super__.constructor.call(this, _.defaults(options, {
+        name: "Chat Avatar"
+      }));
+      delete this.__constructor;
+    }
+
+    return ChatAvatar;
+
+  })(Layer);
+
+  ChatContainer = (function(superClass) {
+    extend(ChatContainer, superClass);
+
+    function ChatContainer(options) {
+      var ref;
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      this.align = (ref = options.align) != null ? ref : "left";
+      ChatContainer.__super__.constructor.call(this, _.defaults(options, {
+        name: "Chat Container",
+        backgroundColor: null,
+        width: Screen.width,
+        animationOptions: {
+          time: .35
+        }
+      }));
+      this.backgroundLayer = window.__framerNew(undefined, "399:25-413:1", "#148cfce58",new Layer({
+        name: "Background Container",
+        parent: this,
+        x: 32,
+        width: this.width,
+        borderRadius: 16,
+        backgroundColor: '#fff',
+        borderWidth: 1,
+        borderColor: "#rgba(0,0,0,.2)",
+        clip: true,
+        animationOptions: this.animationOptions
+      }));
+      this.avatarLayer = window.__framerNew(undefined, "413:21-419:1", "#cb6b7db0",new ChatAvatar({
+        parent: this,
+        y: Align.bottom,
+        image: options.image,
+        animationOptions: this.animationOptions
+      }));
+      delete this.__constructor;
+      this.backgroundLayer.on("change:height", (function(_this) {
+        return function() {
+          return _this.height = _this.backgroundLayer.height;
+        };
+      })(this));
+      this.on("change:height", function() {
+        var ref1;
+        return (ref1 = this.avatarLayer) != null ? ref1.y = Align.bottom() : void 0;
+      });
+    }
+
+    ChatContainer.prototype.hide = function() {
+      return this.animate({
+        height: 0
+      });
+    };
+
+    ChatContainer.prototype.setStyle = function(style) {
+      return this.backgroundLayer.backgroundColor = style.backgroundColor;
+    };
+
+    ChatContainer.prototype.setAlignment = function() {
+      switch (this.align) {
+        case "left":
+          this.avatarLayer.x = 16;
+          return this.backgroundLayer.x = 48;
+        case "right":
+          this.avatarLayer.x = Align.right(-16);
+          return this.backgroundLayer.x = Align.right(-48);
+      }
+    };
+
+    ChatContainer.prototype.clampLayerWidth = function(layer) {
+      return layer.width = _.clamp(layer.width, 32, Screen.width - 64);
+    };
+
+    ChatContainer.prototype.setSizeToLayer = function(layer, padding) {
+      if (padding == null) {
+        padding = 16;
+      }
+      return _.assign(this.backgroundLayer, {
+        height: layer.maxY + padding,
+        width: layer.maxX + padding
+      });
+    };
+
+    ChatContainer.prototype.hideAvatar = function() {
+      var ref;
+      if ((ref = this.avatarLayer) != null) {
+        ref.destroy();
+      }
+      return window.__framerAnimation("#cdd7ae3a",this.backgroundLayer.animate({
+        x: this.align === "left" ? 16 : Align.right(-16)
+      }));
+    };
+
+    return ChatContainer;
+
+  })(Layer);
+
+  ChoiceContainer = (function(superClass) {
+    extend(ChoiceContainer, superClass);
+
+    function ChoiceContainer(options) {
+      var choice, i, j, len, ref, textBox;
+      if (options == null) {
+        options = {};
+      }
+      this.makeChoice = bind(this.makeChoice, this);
+      this.__constructor = true;
+      this.choice = void 0;
+      if (options.text == null) {
+        options.text = "Choice Container's header text.";
+      }
+      this.choices = options.choices != null ? options.choices : options.choices = [
+        {
+          text: "Choice 1",
+          callback: function() {
+            return null;
+          }
+        }, {
+          text: "Choice 2",
+          callback: function() {
+            return null;
+          }
+        }
+      ];
+      ChoiceContainer.__super__.constructor.call(this, _.defaults(options, {
+        name: "Choice Container"
+      }));
+      this.header = window.__framerNew(undefined, "481:16-490:1", "#16824a860",new Layer({
+        name: "Header",
+        parent: this.backgroundLayer,
+        width: 268,
+        height: 50,
+        x: 0,
+        backgroundColor: null,
+        image: options.image
+      }));
+      this.clampLayerWidth(this.header);
+      this.choicesContent = window.__framerNew(undefined, "494:24-502:1", "#135a5479b",new Layer({
+        name: "Choices Content",
+        parent: this.backgroundLayer,
+        y: this.header.maxY,
+        width: this.header.width,
+        height: this.choices.length * 50,
+        backgroundColor: null
+      }));
+      this.clampLayerWidth(this.header);
+      this.setSizeToLayer(this.choicesContent, 0);
+      ref = this.choices;
+      for (i = j = 0, len = ref.length; j < len; i = ++j) {
+        choice = ref[i];
+        textBox = window.__framerNew("textBox", "509:17-518:1", "?",new TextChoice({
+          parent: this.choicesContent,
+          width: this.choicesContent.width - 2,
+          x: 1,
+          y: i * 50,
+          box: this,
+          text: choice.text,
+          callback: choice.callback
+        }));
+      }
+      delete this.__constructor;
+      this.setAlignment();
+    }
+
+    ChoiceContainer.prototype.setStyle = function(style) {
+      return this.backgroundLayer.backgroundColor = style.backgroundColor;
+    };
+
+    ChoiceContainer.prototype.makeChoice = function(choice) {
+      var ref, ref1;
+      if (_.last(this.chatView.chats) !== this) {
+        return;
+      }
+      this.emit("choice", choice, this);
+      if ((ref = this.chatView) != null) {
+        ref.addChat(window.__framerNew(undefined, "529:25-533:1", "?",new ChatBubble({
+          align: "right",
+          text: choice.text
+        })));
+      }
+      if ((ref1 = this.chatView) != null) {
+        ref1.inputs = [];
+      }
+      Utils.delay(1, (function(_this) {
+        return function() {
+          return choice.callback();
+        };
+      })(this));
+      return this.choice = choice;
+    };
+
+    return ChoiceContainer;
+
+  })(ChatContainer);
+
+  ChoiceScroll = (function(superClass) {
+    extend(ChoiceScroll, superClass);
+
+    function ChoiceScroll(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.makeChoice = bind(this.makeChoice, this);
+      this.__constructor = true;
+      ChoiceScroll.__super__.constructor.call(this, _.defaults(options, {
+        name: "Image Choice Scroll",
+        align: "full"
+      }));
+      this.hideAvatar();
+      _.assign(this.backgroundLayer, {
+        x: 0,
+        width: this.width,
+        borderWidth: 0,
+        height: 340
+      });
+      this.scrollLayer = window.__framerNew(undefined, "557:21-567:1", "#8ea2d29f",new ScrollComponent({
+        name: "Scroll",
+        parent: this.backgroundLayer,
+        width: this.width,
+        height: this.height,
+        scrollVertical: false,
+        contentInset: {
+          right: 16
+        }
+      }));
+      Utils.delay(0, (function(_this) {
+        return function() {
+          _this.parent.parent.onScrollStart(function() {
+            return _this.scrollLayer.scrollHorizontal = false;
+          });
+          return _this.parent.parent.onScrollEnd(function() {
+            return _this.scrollLayer.scrollHorizontal = true;
+          });
+        };
+      })(this));
+      this.scrollLayer.onScrollStart((function(_this) {
+        return function() {
+          return _this.parent.parent.scrollVertical = false;
+        };
+      })(this));
+      this.scrollLayer.onScrollEnd((function(_this) {
+        return function() {
+          return _this.parent.parent.scrollVertical = true;
+        };
+      })(this));
+      delete this.__constructor;
+    }
+
+    ChoiceScroll.prototype.setStyle = function(style) {
+      return this.backgroundLayer.backgroundColor = style.backgroundColor;
+    };
+
+    ChoiceScroll.prototype.makeChoice = function(choice, link) {
+      var ref, ref1;
+      if (_.last(this.chatView.chats) !== this) {
+        return;
+      }
+      if ((ref = this.chatView) != null) {
+        ref.addChat(window.__framerNew(undefined, "582:25-586:1", "?",new ChatBubble({
+          align: "right",
+          text: choice.text
+        })));
+      }
+      if ((ref1 = this.chatView) != null) {
+        ref1.inputs = [];
+      }
+      Utils.delay(1, (function(_this) {
+        return function() {
+          return choice.callback();
+        };
+      })(this));
+      return this.choice = choice;
+    };
+
+    ChoiceScroll.prototype.hideAvatar = function() {
+      var ref;
+      return (ref = this.avatarLayer) != null ? ref.destroy() : void 0;
+    };
+
+    return ChoiceScroll;
+
+  })(ChatContainer);
+
+  TextChoice = (function(superClass) {
+    extend(TextChoice, superClass);
+
+    function TextChoice(options) {
+      var ref;
+      if (options == null) {
+        options = {};
+      }
+      this.sendChoice = bind(this.sendChoice, this);
+      this.__constructor = true;
+      this.text = options.text != null ? options.text : options.text = "Example Choice";
+      this.callback = options.callback != null ? options.callback : options.callback = function() {
+        return print("Be sure to set a callback!");
+      };
+      this.box = (function() {
+        if ((ref = options.box) != null) {
+          return ref;
+        } else {
+          throw 'Text Choice needs a TextChoiceBox';
+        }
+      })();
+      TextChoice.__super__.constructor.call(this, _.defaults(options, {
+        name: "Text Choice",
+        height: 50,
+        backgroundColor: colors.choiceBackground,
+        shadowY: -1,
+        shadowColor: 'rgba(0,0,0,0.09)'
+      }));
+      this.contentLayer = window.__framerNew(undefined, "612:22-623:1", "?",new Type.Regular({
+        name: "Text Content",
+        parent: this,
+        x: 0,
+        y: Align.center,
+        width: this.width,
+        textAlign: 'center',
+        color: colors.choiceText,
+        text: options.text,
+        animationOptions: this.animationOptions
+      }));
+      delete this.__constructor;
+      this.onTap(this.sendChoice);
+    }
+
+    TextChoice.prototype.sendChoice = function() {
+      if (this.box.choice != null) {
+        return;
+      }
+      return this.box.makeChoice(this);
+    };
+
+    return TextChoice;
+
+  })(Layer);
+
+  ChatBubble = (function(superClass) {
+    extend(ChatBubble, superClass);
+
+    function ChatBubble(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      if (options.text == null) {
+        options.text = "Chat bubble text content.";
+      }
+      ChatBubble.__super__.constructor.call(this, _.defaults(options, {
+        name: "Chat Bubble"
+      }));
+      this.contentLayer = window.__framerNew(undefined, "651:22-660:1", "?",new Type.Regular({
+        name: "Text Content",
+        parent: this.backgroundLayer,
+        x: 16,
+        y: 16,
+        text: options.text,
+        animationOptions: this.animationOptions,
+        padding: {}
+      }));
+      this.clampLayerWidth(this.contentLayer);
+      this.setSizeToLayer(this.contentLayer);
+      this.setAlignment();
+      delete this.__constructor;
+    }
+
+    ChatBubble.prototype.setStyle = function(style) {
+      this.backgroundLayer.backgroundColor = style.backgroundColor;
+      return this.contentLayer.color = style.color;
+    };
+
+    return ChatBubble;
+
+  })(ChatContainer);
+
+  TextChoiceBox = (function(superClass) {
+    extend(TextChoiceBox, superClass);
+
+    function TextChoiceBox(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      TextChoiceBox.__super__.constructor.call(this, _.defaults(options, {
+        name: "Text Choice Box",
+        text: "Text choice header content.",
+        choices: [
+          {
+            text: "Choice 1",
+            callback: function() {
+              return null;
+            }
+          }, {
+            text: "Choice 2",
+            callback: function() {
+              return null;
+            }
+          }, {
+            text: "Choice 3",
+            callback: function() {
+              return null;
+            }
+          }
+        ]
+      }));
+      this.headerContent = window.__framerNew(undefined, "689:23-699:1", "?",new Type.Regular({
+        name: "Header Content",
+        parent: this.header,
+        x: 0,
+        y: 16,
+        width: this.header.width,
+        textAlign: "center",
+        text: options.text,
+        animationOptions: this.animationOptions
+      }));
+      delete this.__constructor;
+    }
+
+    TextChoiceBox.prototype.setStyle = function(style) {
+      this.backgroundLayer.backgroundColor = style.backgroundColor;
+      return this.headerContent.color = style.color;
+    };
+
+    return TextChoiceBox;
+
+  })(ChoiceContainer);
+
+  LinkChoiceBox = (function(superClass) {
+    extend(LinkChoiceBox, superClass);
+
+    function LinkChoiceBox(options) {
+      var link;
+      if (options == null) {
+        options = {};
+      }
+      this.makeChoice = bind(this.makeChoice, this);
+      this.__constructor = true;
+      this.chatView = void 0;
+      this.link = options.link != null ? options.link : options.link = {
+        title: "Example Link",
+        subtitle: "examplelink.geocities.com",
+        image: Utils.randomImage()
+      };
+      if (options.choices == null) {
+        options.choices = [
+          {
+            text: "More like this",
+            callback: function() {
+              return null;
+            }
+          }, {
+            text: "Less like this",
+            callback: function() {
+              return null;
+            }
+          }
+        ];
+      }
+      LinkChoiceBox.__super__.constructor.call(this, _.defaults(options, {
+        name: "Link Choice Box",
+        text: "Link Choice's header text."
+      }));
+      this.header.height = 240;
+      this.header.backgroundColor = '#FFF';
+      link = this.link;
+      _.bind(function() {
+        this.linkImage = window.__framerNew(undefined, "739:20-745:2", "#a0148349",new Layer({
+          parent: this,
+          width: this.width,
+          height: this.height - 64,
+          image: link.image
+        }));
+        this.linkTitle = window.__framerNew(undefined, "745:20-753:2", "?",new Type.Regular({
+          parent: this,
+          width: this.width,
+          height: 18,
+          y: this.linkImage.maxY + 16,
+          text: link.title,
+          truncate: true
+        }));
+        return this.linkSubtitle = window.__framerNew(undefined, "753:23-761:1", "?",new Type.Caption({
+          parent: this,
+          width: this.width,
+          height: 18,
+          y: this.linkTitle.maxY + 4,
+          text: link.subtitle,
+          truncate: true
+        }));
+      }, this.header)();
+      this.choicesContent.y = this.header.maxY;
+      this.setSizeToLayer(this.choicesContent, 0);
+      delete this.__constructor;
+      this.setAlignment();
+    }
+
+    LinkChoiceBox.prototype.setStyle = function(style) {
+      this.backgroundLayer.backgroundColor = style.backgroundColor;
+      this.header.linkTitle.color = style.color;
+      return this.header.linkSubtitle.color = window.__framerNew(undefined, "774:35-774:52", "@Color",new Color(style.color)).alpha(.8);
+    };
+
+    LinkChoiceBox.prototype.makeChoice = function(choice, link) {
+      var ref, ref1, ref2;
+      this.emit("choice", choice, this.link, this);
+      if ((ref = this.chatView) != null) {
+        ref.addChat(window.__framerNew(undefined, "779:25-783:1", "#e72d8d9c",new ChatBubble({
+          align: "right",
+          text: (ref1 = choice.text) != null ? ref1 : link.title
+        })));
+      }
+      this.choice = choice;
+      if ((ref2 = this.chatView) != null) {
+        ref2.inputs = [];
+      }
+      return Utils.delay(1, (function(_this) {
+        return function() {
+          return choice.callback();
+        };
+      })(this));
+    };
+
+    return LinkChoiceBox;
+
+  })(ChoiceContainer);
+
+  LinkChoiceScroll = (function(superClass) {
+    extend(LinkChoiceScroll, superClass);
+
+    function LinkChoiceScroll(options) {
+      var i, j, last, len, link, newLink, ref, ref1;
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      this.links = options.links != null ? options.links : options.links = [
+        {
+          title: "Example Link 1",
+          subtitle: "examplelink.geocities.com",
+          image: Utils.randomImage(),
+          callback: function() {
+            return null;
+          }
+        }, {
+          title: "Example Link 2",
+          subtitle: "examplelink.geocities.com",
+          image: Utils.randomImage(),
+          callback: function() {
+            return null;
+          }
+        }, {
+          title: "Example Link 3",
+          subtitle: "examplelink.geocities.com",
+          image: Utils.randomImage(),
+          callback: function() {
+            return null;
+          }
+        }
+      ];
+      LinkChoiceScroll.__super__.constructor.call(this, _.defaults(options, {
+        name: "Link Choice Scroll",
+        align: "full"
+      }));
+      last = void 0;
+      ref = this.links;
+      for (i = j = 0, len = ref.length; j < len; i = ++j) {
+        link = ref[i];
+        newLink = window.__framerNew("newLink", "823:17-828:2", "#130829ee0",new LinkChoiceBox({
+          parent: this.scrollLayer.content,
+          link: link,
+          choices: link.choices
+        }));
+        newLink.avatarLayer.destroy();
+        newLink.backgroundLayer.x = 0;
+        newLink.size = newLink.backgroundLayer.size;
+        newLink.x = ((ref1 = last != null ? last.maxX : void 0) != null ? ref1 : 0) + 16;
+        newLink.on("choice", (function(_this) {
+          return function(choice, link) {
+            if (_this.choice != null) {
+              return;
+            }
+            return _this.choice = choice;
+          };
+        })(this));
+        last = newLink;
+      }
+      this.scrollLayer.updateContent();
+      delete this.__constructor;
+    }
+
+    LinkChoiceScroll.prototype.setStyle = function(style) {
+      return this.backgroundLayer.backgroundColor = style.backgroundColor;
+    };
+
+    return LinkChoiceScroll;
+
+  })(ChoiceScroll);
+
+  PersonChoiceScroll = (function(superClass) {
+    extend(PersonChoiceScroll, superClass);
+
+    function PersonChoiceScroll(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      PersonChoiceScroll.__super__.constructor.call(this, _.defaults(options, {
+        name: "Person Choice Scroll"
+      }));
+      delete this.__constructor;
+    }
+
+    return PersonChoiceScroll;
+
+  })(ScrollComponent);
+
+  PersonChoice = (function(superClass) {
+    extend(PersonChoice, superClass);
+
+    function PersonChoice(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      PersonChoice.__super__.constructor.call(this, _.defaults(options, {
+        name: "Person Choice"
+      }));
+      delete this.__constructor;
+    }
+
+    return PersonChoice;
+
+  })(Layer);
+
+  PlanModal = (function(superClass) {
+    extend(PlanModal, superClass);
+
+    function PlanModal(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.close = bind(this.close, this);
+      this.open = bind(this.open, this);
+      this.__constructor = true;
+      _.assign(options, {
+        size: Screen.size,
+        backgroundColor: 'rgba(0,0,0,.88)',
+        opacity: 0
+      });
+      PlanModal.__super__.constructor.call(this, _.defaults(options, {
+        name: "Plan Modal",
+        animationOptions: {
+          time: .25
+        }
+      }));
+      this.modalLayer = window.__framerNew(undefined, "887:20-898:1", "#a9f1c5af",new Layer({
+        parent: this,
+        point: Align.center,
+        width: Screen.width * .8,
+        height: Screen.height * .62,
+        backgroundColor: colors.deep,
+        opacity: 0,
+        borderRadius: 4,
+        clip: true,
+        animationOptions: this.animationOptions
+      }));
+      _.bind(function() {
+        var budgetColor, i, j, len, ref, timeUntil;
+        this.imageLayer = window.__framerNew(undefined, "900:21-907:2", "#124fd9c2e",new Layer({
+          name: 'Image',
+          parent: this,
+          width: this.width,
+          image: plan.where.image,
+          opacity: .78
+        }));
+        budgetColor = plan.choices.where ? colors.chosen : colors.suggested;
+        ref = _.range(5);
+        for (j = 0, len = ref.length; j < len; j++) {
+          i = ref[j];
+          window.__framerNew(undefined, "910:8-919:2", "?",new Icon({
+            name: '.',
+            parent: this,
+            y: 16,
+            x: 16 + (i * 16),
+            icon: 'currency-usd',
+            color: i < plan.where.budget ? budgetColor : 'rgba(0,0,0,.25)'
+          }));
+        }
+        this.addToPlanCTA = window.__framerNew(undefined, "919:23-928:2", "#16048ce08",new Layer({
+          parent: this,
+          width: this.width * .82,
+          height: 48,
+          x: Align.center,
+          y: this.imageLayer.maxY - 24,
+          borderRadius: 4,
+          backgroundColor: colors.cta
+        }));
+        this.addToPlanLabel = window.__framerNew(undefined, "928:25-939:2", "?",new Type.Regular({
+          parent: this.addToPlanCTA,
+          width: this.addToPlanCTA.width,
+          textAlign: 'center',
+          fontWeight: 600,
+          x: 0,
+          y: Align.center,
+          text: 'Add to Plan'
+        }));
+        this.whereIcon = window.__framerNew(undefined, "939:20-946:2", "?",new Icon({
+          parent: this,
+          name: '.',
+          icon: 'fire',
+          y: this.imageLayer.maxY + 40,
+          x: 16
+        }));
+        this.venueName = window.__framerNew(undefined, "946:20-956:2", "?",new Type.Regular({
+          parent: this,
+          name: 'Venue name',
+          y: this.whereIcon.y + 4,
+          x: this.whereIcon.maxX + 8,
+          text: plan.where.name,
+          color: plan.choices.where ? colors.chosen : colors.suggested
+        }));
+        this.whenIcon = window.__framerNew(undefined, "956:19-963:2", "?",new Icon({
+          parent: this,
+          name: '.',
+          icon: 'clock',
+          y: this.whereIcon.maxY + 16,
+          x: 16
+        }));
+        timeUntil = Utils.timeUntil(plan.when);
+        this.howSoon = window.__framerNew(undefined, "965:18-975:2", "?",new Type.Regular({
+          parent: this,
+          name: 'How soon',
+          y: this.whenIcon.y + 4,
+          x: this.whenIcon.maxX + 8,
+          text: timeUntil.hours + ' hours, ' + timeUntil.minutes + " minutes",
+          color: plan.choices.when ? colors.chosen : colors.suggested
+        }));
+        this.distanceIcon = window.__framerNew(undefined, "975:23-982:2", "?",new Icon({
+          parent: this,
+          name: '.',
+          icon: 'map',
+          y: this.whenIcon.maxY + 16,
+          x: 16
+        }));
+        this.howFar = window.__framerNew(undefined, "982:17-992:2", "?",new Type.Regular({
+          parent: this,
+          name: 'How far',
+          y: this.distanceIcon.y + 4,
+          x: this.distanceIcon.maxX + 8,
+          text: plan.where.distance + ' miles',
+          color: plan.choices.where ? colors.chosen : colors.suggested
+        }));
+        this.whoIcon = window.__framerNew(undefined, "992:18-999:2", "?",new Icon({
+          parent: this,
+          name: '.',
+          icon: 'account',
+          y: this.distanceIcon.maxY + 16,
+          x: 16
+        }));
+        return this.sendInvite = window.__framerNew(undefined, "999:21-1007:1", "?",new Type.Regular({
+          parent: this,
+          name: 'Send invite',
+          y: this.whoIcon.y + 4,
+          x: this.whoIcon.maxX + 8,
+          text: "Send an invite to: "
+        }));
+      }, this.modalLayer)();
+      delete this.__constructor;
+      this.modalLayer.onTap(function(event) {
+        return event.stopPropagation();
+      });
+      this.onTap(this.close);
+      this.modalLayer.addToPlanCTA.onTouchStart(function() {
+        return this.brightness = 80;
+      });
+      this.modalLayer.addToPlanCTA.onTouchEnd(function() {
+        return this.brightness = 100;
+      });
+      this.modalLayer.addToPlanCTA.onTap((function(_this) {
+        return function() {
+          Utils.delay(.15, _this.close);
+          return plan.confirmed = true;
+        };
+      })(this));
+      this.open();
+    }
+
+    PlanModal.prototype.open = function() {
+      this.animate({
+        opacity: 1
+      });
+      return this.modalLayer.animate({
+        opacity: 1,
+        delay: .1
+      });
+    };
+
+    PlanModal.prototype.close = function() {
+      this.animate({
+        opacity: 0
+      });
+      return this.onAnimationEnd(_.once(this.destroy));
+    };
+
+    return PlanModal;
+
+  })(Layer);
+
+  flow = window.__framerNew("flow", "1041:7-1041:14", "undefined",new Flow);
+
+  flow.header.backgroundColor = colors.medium;
+
+  flow.header.statusBar.invert = 100;
+
+  user = database.user = window.__framerNew(undefined, "1046:23-1046:30", "undefined",new User);
+
+  _.assign(user, {
+    plans: [],
+    drafts: []
+  });
+
+  kebabTruck = window.__framerNew("kebabTruck", "1053:17-1062:0", "*",new Place({
+    name: "Whitmore's Fyne Kebabs",
+    type: 'restaurant',
+    location: 'london',
+    address: '54th and Broadway',
+    image: Utils.randomImage(),
+    budget: 3,
+    rating: 4,
+    distance: 1.5
+  }));
+
+  diveBar = window.__framerNew("diveBar", "1063:14-1073:22", "*",new Place({
+    name: 'The Black Cell',
+    type: 'bar',
+    location: 'london',
+    address: '21st and Canal',
+    image: Utils.randomImage(),
+    budget: 1,
+    rating: 2,
+    distance: .8
+  }));
+
+  plan = window.__framerNew("plan", "1074:7-1074:14", "#174608d29",new Plan);
+
+  chatViews = [];
+
+  mainChat = window.__framerNew("mainChat", "1084:15-1121:0", "#11ab19b18",new ChatView({
+    title: 'Main Chat',
+    left: {
+      icon: 'menu'
+    },
+    right: {
+      icon: 'navigation'
+    },
+    leftAvatar: {
+      backgroundColor: 'red'
+    },
+    rightAvatar: {
+      backgroundColor: 'blue'
+    },
+    padding: {
+      sameSender: 8,
+      differentSenders: 24
+    },
+    leftStyle: {
+      backgroundColor: colors.chat,
+      color: '#000'
+    },
+    rightStyle: {
+      backgroundColor: '#0183f3',
+      color: '#FFF'
+    }
+  }));
+
+  greeting = function() {
+    mainChat.addChat(window.__framerNew(undefined, "1123:22-1126:0", "#e72d8d9c",new ChatBubble({
+      text: 'Hi there'
+    })));
+    return Utils.delay(2, function() {
+      return askWhat();
+    });
+  };
+
+  askWhat = function() {
+    var drinkChoice, eatChoice;
+    drinkChoice = {
+      text: "Drinking",
+      callback: function() {
+        plan.what = "drink";
+        plan.choices.what = true;
+        return suggestBar();
+      }
+    };
+    eatChoice = {
+      text: "Eating",
+      callback: function() {
+        plan.what = "eat";
+        plan.choices.what = true;
+        return suggestRestaurant();
+      }
+    };
+    return mainChat.addChat(window.__framerNew(undefined, "1147:22-1153:0", "#d905e0f5",new TextChoiceBox({
+      text: "What do you feel like doing?",
+      choices: [drinkChoice, eatChoice]
+    })));
+  };
+
+  suggestBar = function() {
+    var diveLink, noChoice, okChoice;
+    diveLink = {
+      title: diveBar.name,
+      subtitle: "A low, low place to drink it off.",
+      image: diveBar.image
+    };
+    okChoice = {
+      text: "Sure",
+      callback: function() {
+        plan.where = diveBar;
+        plan.choices.where = true;
+        confirmAdded();
+        return Utils.delay(1, (function(_this) {
+          return function() {
+            return suggestWhen();
+          };
+        })(this));
+      }
+    };
+    noChoice = {
+      text: "No way",
+      callback: function() {
+        return confirmNegative();
+      }
+    };
+    mainChat.addChat(window.__framerNew(undefined, "1179:22-1184:0", "#e72d8d9c",new ChatBubble({
+      text: 'How about a drink here?'
+    })));
+    return Utils.delay(1, (function(_this) {
+      return function() {
+        return mainChat.addChat(window.__framerNew(undefined, "1185:23-1192:0", "#130829ee0",new LinkChoiceBox({
+          chatView: _this,
+          link: diveLink,
+          choices: [noChoice, okChoice]
+        })));
+      };
+    })(this));
+  };
+
+  suggestRestaurant = function() {
+    var kebabLink, noChoice, okChoice;
+    kebabLink = {
+      title: kebabTruck.name,
+      subtitle: "Ask for extra garlic sauce.",
+      image: kebabTruck.image
+    };
+    okChoice = {
+      text: "Sure",
+      callback: function() {
+        plan.where = kebabTruck;
+        plan.choices.where = true;
+        confirmAdded();
+        return Utils.delay(1, (function(_this) {
+          return function() {
+            return suggestWhen();
+          };
+        })(this));
+      }
+    };
+    noChoice = {
+      text: "No way",
+      callback: function() {
+        return confirmNegative();
+      }
+    };
+    mainChat.addChat(window.__framerNew(undefined, "1218:22-1223:0", "#e72d8d9c",new ChatBubble({
+      text: 'How about a quick bite?'
+    })));
+    return Utils.delay(1, (function(_this) {
+      return function() {
+        return mainChat.addChat(window.__framerNew(undefined, "1224:23-1231:0", "#130829ee0",new LinkChoiceBox({
+          chatView: _this,
+          link: kebabLink,
+          choices: [noChoice, okChoice]
+        })));
+      };
+    })(this));
+  };
+
+  suggestWhen = function() {
+    var eightChoice, nineChoice, sevenChoice;
+    sevenChoice = {
+      text: "7:00PM",
+      callback: function() {
+        plan.when = window.__framerNew(undefined, "1237:19-1237:24", "?",new Date());
+        plan.when.setHours(19, 0);
+        plan.choices.when = true;
+        return confirmTime(plan.when);
+      }
+    };
+    eightChoice = {
+      text: "8:00PM",
+      callback: function() {
+        plan.when = window.__framerNew(undefined, "1245:19-1245:24", "?",new Date());
+        plan.when.setHours(20, 0);
+        plan.choices.when = true;
+        return confirmTime(plan.when);
+      }
+    };
+    nineChoice = {
+      text: "9:00PM",
+      callback: function() {
+        plan.when = window.__framerNew(undefined, "1253:19-1253:24", "?",new Date());
+        plan.when.setHours(21, 0);
+        plan.choices.when = true;
+        return confirmTime(plan.when);
+      }
+    };
+    return mainChat.addChat(window.__framerNew(undefined, "1258:22-1265:15", "#d905e0f5",new TextChoiceBox({
+      text: "When would you like to go?",
+      choices: [sevenChoice, eightChoice, nineChoice]
+    })));
+  };
+
+  confirmTime = function(time) {
+    var timeOptions, timeString;
+    timeOptions = {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    };
+    timeString = time.toLocaleTimeString([], timeOptions);
+    return mainChat.addChat(window.__framerNew(undefined, "1274:22-1277:57", "#e72d8d9c",new ChatBubble({
+      text: "Ok, you're set for " + (timeString.toUpperCase()) + "."
+    })));
+  };
+
+  confirmAdded = function() {
+    return mainChat.addChat(window.__framerNew(undefined, "1279:22-1286:28", "#e72d8d9c",new ChatBubble({
+      text: Utils.randomChoice(["Ok, it's on your plan.", 'Added to your plan.', "Right on, that's sorted."])
+    })));
+  };
+
+  confirmPositive = function() {
+    return mainChat.addChat(window.__framerNew(undefined, "1288:22-1295:28", "#e72d8d9c",new ChatBubble({
+      text: Utils.randomChoice(['Sounds good.', 'Okay.', 'Right on buddy.'])
+    })));
+  };
+
+  confirmNegative = function() {
+    mainChat.addChat(window.__framerNew(undefined, "1297:22-1305:0", "#e72d8d9c",new ChatBubble({
+      text: Utils.randomChoice(['Ok, sorry.', 'My mistake.', 'Oops, you got it.'])
+    })));
+    return Utils.delay(1, function() {
+      return askWhat();
+    });
+  };
+
+  greeting();
+
+  flow.bringToFront();
+
+  flow.showNext(mainChat);
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

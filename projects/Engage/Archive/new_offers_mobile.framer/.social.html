@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=d302bd360663dc146bf5d921e2dd228d"></script>
+		<script src="framer/framer.generated.js?nocache=77c1ba407cd3d9c37ab7ffcf66cb320b"></script>
+		<script src="framer/framer.modules.js?nocache=65f26c1194c8c722fa82d27d86a6b6c0"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 1116;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var ANIMATION_SPEED_FACTOR, POPUP_SPEED, PopUp, app, cs, newPopup, popUp, showButton, view,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  cs = require('cs');
+
+  cs.Context.setMobile();
+
+  ANIMATION_SPEED_FACTOR = 1;
+
+  POPUP_SPEED = .25;
+
+  offers_button.props = {
+    x: 675,
+    y: 40,
+    width: 87,
+    height: 32,
+    opacity: 0
+  };
+
+  popUp = void 0;
+
+  PopUp = (function(superClass) {
+    extend(PopUp, superClass);
+
+    function PopUp(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.hide = bind(this.hide, this);
+      this.show = bind(this.show, this);
+      if (popUp != null) {
+        popUp.hide();
+      }
+      popUp = this;
+      if (options.title == null) {
+        options.title = 'Title';
+      }
+      if (options.body == null) {
+        options.body = 'Body';
+      }
+      PopUp.__super__.constructor.call(this, _.defaults(options, {
+        name: 'Pop Up',
+        width: 300,
+        height: 100,
+        backgroundColor: '#FFF',
+        borderRadius: 5
+      }));
+      this.base = {
+        y: this.y
+      };
+      this.icon = window.__framerNew(undefined, "53:14-61:1", "#10244a483",new Layer({
+        parent: this,
+        height: 64,
+        width: 64,
+        image: cards.image,
+        x: Align.center,
+        y: 48
+      }));
+      this.headerLayer = window.__framerNew(undefined, "61:21-71:1", "?",new cs.H4({
+        parent: this,
+        x: 16,
+        y: this.icon.maxY + 48,
+        fontSize: 20,
+        fontWeight: 400,
+        width: this.width - 32,
+        textAlign: 'center',
+        text: options.title
+      }));
+      this.bodyLayer = window.__framerNew(undefined, "71:19-79:1", "?",new cs.Small({
+        parent: this,
+        x: 24,
+        y: this.headerLayer.maxY + 16,
+        width: this.width - 48,
+        textAlign: 'center',
+        text: options.body
+      }));
+      this.button = window.__framerNew(undefined, "79:16-88:1", "?",new cs.Button({
+        parent: this,
+        text: 'See my offers',
+        type: 'body',
+        color: 'white',
+        fill: '#0592bc',
+        y: this.bodyLayer.maxY + 34,
+        action: this.hide
+      }));
+      this.button.x = Align.center;
+      this.height = this.button.maxY + 30;
+      this.onTap(function(event) {
+        return event.stopPropagation();
+      });
+      this.show();
+    }
+
+    PopUp.prototype.show = function() {
+      this.props = {
+        y: this.base.y - 32,
+        scale: .8,
+        opacity: 0
+      };
+      view.content.animate({
+        backgroundBlur: 10,
+        options: {
+          time: POPUP_SPEED,
+          delay: .5
+        }
+      });
+      return this.animate({
+        y: this.base.y,
+        scale: 1,
+        opacity: 1,
+        options: {
+          time: POPUP_SPEED,
+          delay: .5
+        }
+      });
+    };
+
+    PopUp.prototype.hide = function() {
+      this.animate({
+        y: this.base.y - 8,
+        scale: .8,
+        opacity: 0,
+        options: {
+          time: POPUP_SPEED - .1
+        }
+      });
+      view.content.animate({
+        backgroundBlur: 0,
+        options: {
+          time: POPUP_SPEED
+        }
+      });
+      return Utils.delay(POPUP_SPEED + .15, (function(_this) {
+        return function() {
+          return _this.destroy();
+        };
+      })(this));
+    };
+
+    return PopUp;
+
+  })(Layer);
+
+  Framer.Loop.delta = 1 / (60 / ANIMATION_SPEED_FACTOR);
+
+  app = window.__framerNew("app", "137:10-140:0", "?",new cs.App({
+    type: 'safari',
+    navigation: 'default'
+  }));
+
+  view = window.__framerNew("view", "141:7-141:17", "?",new cs.View);
+
+  view.image = bg_image.image;
+
+  view.content.backgroundColor = null;
+
+  app._navigation.backgroundColor = 'rgba(0,0,0,0)';
+
+  newPopup = function() {
+    return window.__framerNew(undefined, "148:5-154:0", "#f1b34c42",new PopUp({
+      parent: view,
+      y: app.navigation.maxY + 32,
+      x: Align.center,
+      title: 'You’ve got new offers',
+      body: 'We search the market to find the best offers for you - for credit cards, loans, car finance, mortgages and more. Your score has improved, which means your offers have, too!'
+    }));
+  };
+
+  showButton = window.__framerNew("showButton", "155:17-163:0", "#16e0dd2fd",new Layer({
+    parent: view,
+    type: 'close',
+    x: Align.center,
+    y: Align.center(32),
+    height: 500,
+    width: 400,
+    opacity: 0
+  }));
+
+  showButton.onTap(newPopup);
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Bonds/Icons/Social/Facebook</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M2.4,0.0173153785 C1.0704,0.0173153785 -4.80894624e-18,1.08345084 0,2.40775363 L0,21.5312596 C0,22.8555624 1.0704,23.9216978 2.4,23.9216978 L10.809,23.9216978 L10.809,13.2140285 L8.6835,13.2140285 L8.6835,9.42817195 L10.809,9.42817195 L10.809,6.97946677 C10.809,5.22601195 11.6458949,2.48693689 15.321,2.48693689 L18.6315,2.49888908 L18.6315,6.17269386 L16.227,6.17269386 C15.8353402,6.17269386 15.279,6.36789466 15.279,7.20357036 L15.279,9.42817195 L18.6855,9.42817195 L18.2955,13.2140285 L15.279,13.2140285 L15.279,23.9216978 L21.6,23.9216978 C22.9296,23.9216978 24,22.8555624 24,21.5312596 L24,2.40775363 C24,1.08345084 22.9296,0.0173153785 21.6,0.0173153785 L2.4,0.0173153785 L2.4,0.0173153785 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bonds/Icons/Social/Facebook">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="rect2995"></g>
+            <g id="Bonds/Colours/General/Black" mask="url(#mask-2)" fill="#000000">
+                <rect id="Rectangle-3" x="0" y="0" width="24" height="24"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

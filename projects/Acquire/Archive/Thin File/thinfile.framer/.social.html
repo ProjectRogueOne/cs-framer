@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=13eddb9320ab42232e19dfbac6906595"></script>
+		<script src="framer/framer.generated.js?nocache=0fa2bcaab79fbc4460cf0392a6d19acf"></script>
+		<script src="framer/framer.modules.js?nocache=57ae7977cfa95c490af4e35c08746b8a"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 1;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var ConfirmUploadsView, DeadEndView, DocUploadView, SelfieUploadView, ThinFileAccountView, UploadContainer, app, confirmUploadsView, cs, deadEndView, docUploadView, selfieUploadView, thinFileAccountView, user,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  require("gotcha/gotcha");
+
+  cs = require('cs');
+
+  cs.Context.setMobile();
+
+  Framer.Extras.Hints.disable();
+
+  app = window.__framerNew("app", "5:10-7:0", "?",new cs.App({
+    navigation: 'registration'
+  }));
+
+  app.navigation.step = 4;
+
+  UploadContainer = (function(superClass) {
+    extend(UploadContainer, superClass);
+
+    function UploadContainer(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.showUploadFail = bind(this.showUploadFail, this);
+      _.defaults(options, {
+        size: 'medium',
+        border: cs.Colors.main,
+        borderWidth: 1,
+        shadowY: 0,
+        shadowBlur: 0,
+        fill: 'none',
+        clip: false,
+        action: this.showUploading,
+        text: 'Upload your photo',
+        type: 'body1'
+      });
+      UploadContainer.__super__.constructor.call(this, options);
+      this.textLayer.textAlign = 'left';
+      this.textLayer.padding = {
+        left: 16
+      };
+      this.messageLayer = window.__framerNew(undefined, "32:22-42:1", "?",new cs.Text({
+        name: 'Message Layer',
+        parent: this,
+        y: this.height + 5,
+        width: this.width,
+        type: 'caption',
+        text: 'Files must be under 5mb',
+        color: cs.Colors.dark,
+        padding: {
+          left: 15
+        }
+      }));
+      this.uploadIcon = window.__framerNew(undefined, "42:20-49:1", "?",new cs.Icon({
+        parent: this,
+        y: Align.center(),
+        x: Align.right(16),
+        scale: .7,
+        icon: 'cs-upload'
+      }));
+      this.on("change:width", (function(_this) {
+        return function() {
+          _this.messageLayer.width = _this.width;
+          return _this.uploadIcon.maxX = _this.maxX - 32;
+        };
+      })(this));
+    }
+
+    UploadContainer.prototype.showUploading = function() {
+      this.fill = 'none';
+      this.messageLayer.text = '';
+      this.icon = 'loading';
+      this.iconLayer.animate({
+        rotation: 360,
+        options: {
+          curve: 'linear',
+          repeat: 4,
+          time: .5
+        }
+      });
+      this.uploadIcon.icon = 'none';
+      return Utils.delay(1, (function(_this) {
+        return function() {
+          var response, roll;
+          _this.iconLayer.animateStop();
+          _this.iconLayer.rotation = 0;
+          if (Math.random() < .5) {
+            roll = Math.random();
+            if (roll < .25) {
+              response = 'filesize';
+            } else if (roll < .5) {
+              response = 'filetype';
+            } else if (roll < .75) {
+              response = 'timeout';
+            } else {
+              response = 'notsure';
+            }
+            _this.showUploadFail(response);
+            return;
+          }
+          return _this.showUploadSuccess();
+        };
+      })(this));
+    };
+
+    UploadContainer.prototype.showUploadSuccess = function() {
+      this.icon = void 0;
+      this.color = '#80ad52';
+      this.border = '#80ad52';
+      this.fill = 'white';
+      this.messageLayer.color = '#80ad52';
+      this.messageLayer.text = 'Upload successful';
+      this.uploadIcon.color = '#80ad52';
+      this.uploadIcon.icon = 'check';
+      return this.emit("change:upload", true);
+    };
+
+    UploadContainer.prototype.showUploadFail = function(response) {
+      this.messageLayer.color = '#dcaa74';
+      this.color = cs.Colors.dark;
+      this.icon = void 0;
+      this.border = cs.Colors.dark;
+      this.iconLayer.color = cs.Colors.dark;
+      this.uploadIcon.color = cs.Colors.dark;
+      this.uploadIcon.icon = 'cs-upload';
+      this.emit("change:upload", false);
+      switch (response) {
+        case 'filesize':
+          return this.messageLayer.text = 'The file was over the 5mb limit – try uploading a smaller photo';
+        case 'filetype':
+          return this.messageLayer.text = "That file wasn't a photo – try uploading a .jpeg or .png file";
+        case 'timeout':
+          return this.messageLayer.text = "Our connection timed out – please try uploading again";
+        default:
+          return this.messageLayer.text = "Sorry, the upload didn't work – please try again";
+      }
+    };
+
+    return UploadContainer;
+
+  })(cs.Button);
+
+  DeadEndView = (function(superClass) {
+    extend(DeadEndView, superClass);
+
+    function DeadEndView(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.__constructor = true;
+      DeadEndView.__super__.constructor.apply(this, arguments);
+      this.addToStack(window.__framerNew(undefined, "144:18-148:1", "?",new cs.Text({
+        type: 'body',
+        text: 'Dead End'
+      })));
+      this.addToStack(window.__framerNew(undefined, "148:18-152:1", "?",new cs.Text({
+        type: 'body1',
+        text: "We haven't got here yet."
+      })));
+      delete this.__constructor;
+    }
+
+    return DeadEndView;
+
+  })(cs.View);
+
+  DocUploadView = (function(superClass) {
+    extend(DocUploadView, superClass);
+
+    function DocUploadView(options) {
+      var bodyFlexrow, pullerFlexrow;
+      if (options == null) {
+        options = {};
+      }
+      this.goToNext = bind(this.goToNext, this);
+      this.showDocumentUpload = bind(this.showDocumentUpload, this);
+      _.assign(options, {
+        name: 'Doc Upload View',
+        showLayers: true,
+        padding: {
+          top: 0,
+          stack: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+        }
+      });
+      DocUploadView.__super__.constructor.call(this, options);
+      this.contentInset = {
+        top: 0,
+        bottom: 120,
+        left: 0,
+        right: 0
+      };
+      pullerFlexrow = window.__framerNew("pullerFlexrow", "173:22-177:1", "?",new cs.FlexRow({
+        name: 'pullerFlexrow',
+        fullWidth: true
+      }));
+      this.puller = window.__framerNew(undefined, "177:16-181:1", "?",new cs.Puller({
+        parent: pullerFlexrow.content,
+        text: "For security reasons, we need additional proof of your identity. You'll need to upload a photo of your ID and a photo of you holding the ID."
+      }));
+      bodyFlexrow = window.__framerNew("bodyFlexrow", "181:20-185:1", "?",new cs.FlexRow({
+        name: 'bodyflexrow',
+        maxWidth: 580
+      }));
+      this.title = window.__framerNew(undefined, "185:15-193:1", "?",new cs.Text({
+        parent: bodyFlexrow.content,
+        x: 16,
+        text: 'Upload a photo of your ID',
+        type: 'body'
+      }));
+      this.documentSelectField = window.__framerNew(undefined, "193:29-204:1", "?",new cs.Select({
+        parent: bodyFlexrow.content,
+        y: this.title.maxY + 20,
+        action: this.showDocumentUpload,
+        options: ['Choose your document type', 'Passport', 'Birth Certificate', 'National ID']
+      }));
+      this.documentSelectField.textLayer.textAlign = 'left';
+      this.documentSelectField.textLayer.padding = {
+        left: 15
+      };
+      this.photoUploadField = window.__framerNew(undefined, "209:26-214:1", "#ca02c686",new UploadContainer({
+        parent: bodyFlexrow.content,
+        y: this.documentSelectField.maxY + 16,
+        x: 16
+      }));
+      this.photoUploadField.opacity = 0;
+      this.documentNotes = window.__framerNew(undefined, "218:23-225:1", "?",new cs.Text({
+        parent: bodyFlexrow.content,
+        y: this.photoUploadField.maxY + 32,
+        x: 16,
+        width: this.width - 32,
+        text: 'For a passport, upload a picture of the photo page, with all four corners visible. Your document needs to be in-date with all details visible (nothing covered).'
+      }));
+      this.documentNotes.opacity = 0;
+      this.nextButton = window.__framerNew(undefined, "227:20-240:1", "?",new cs.Button({
+        parent: bodyFlexrow.content,
+        y: this.documentNotes.maxY + 45,
+        x: 16,
+        text: 'Next',
+        fill: 'dcaa74',
+        type: 'body',
+        color: 'white',
+        disabled: true,
+        visible: false
+      }));
+      this.addToStack(pullerFlexrow, {
+        x: 0,
+        y: 0
+      });
+      this.addToStack(bodyFlexrow, {
+        x: 0,
+        y: 64
+      });
+      this.photoUploadField.on("change:upload", (function(_this) {
+        return function(success) {
+          user.hasDocPhoto = success;
+          if (!success) {
+            return;
+          }
+          _this.nextButton.disabled = false;
+          return _this.nextButton.action = _this.goToNext;
+        };
+      })(this));
+    }
+
+    DocUploadView.prototype.showDocumentUpload = function() {
+      if (this.documentSelectField.text === this.documentSelectField.options[0]) {
+        this.photoUploadField.opacity = 0;
+        this.documentSelectField.fill = 'none';
+        this.documentNotes.opacity = 0;
+        this.nextButton.visible = false;
+        return;
+      }
+      this.photoUploadField.opacity = 1;
+      this.documentSelectField.fill = 'white';
+      this.documentNotes.opacity = 1;
+      return this.nextButton.visible = true;
+    };
+
+    DocUploadView.prototype.goToNext = function() {
+      if (user.hasSelfiePhoto) {
+        app.showNext(confirmUploadsView);
+        return;
+      }
+      return app.showNext(selfieUploadView);
+    };
+
+    return DocUploadView;
+
+  })(cs.View);
+
+  SelfieUploadView = (function(superClass) {
+    extend(SelfieUploadView, superClass);
+
+    function SelfieUploadView(options) {
+      var bodyFlexrow, pullerFlexrow;
+      if (options == null) {
+        options = {};
+      }
+      this.goToNext = bind(this.goToNext, this);
+      _.assign(options, {
+        name: 'Selfie Upload View',
+        showLayers: true,
+        padding: {
+          top: 0,
+          stack: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+        }
+      });
+      SelfieUploadView.__super__.constructor.call(this, options);
+      this.contentInset = {
+        top: 0,
+        bottom: 120,
+        left: 0,
+        right: 0
+      };
+      pullerFlexrow = window.__framerNew("pullerFlexrow", "298:22-302:1", "?",new cs.FlexRow({
+        name: 'pullerFlexrow',
+        fullWidth: true
+      }));
+      this.puller = window.__framerNew(undefined, "302:16-306:1", "?",new cs.Puller({
+        parent: pullerFlexrow.content,
+        text: "For security reasons, we need additional proof of your identity. You'll need to upload a photo of your ID and a photo of you holding the ID."
+      }));
+      bodyFlexrow = window.__framerNew("bodyFlexrow", "306:20-310:1", "?",new cs.FlexRow({
+        name: 'bodyflexrow',
+        maxWidth: 580
+      }));
+      this.title = window.__framerNew(undefined, "310:15-318:1", "?",new cs.Text({
+        parent: bodyFlexrow.content,
+        x: 16,
+        text: 'Upload a selfie with your ID',
+        type: 'body'
+      }));
+      this.photoUploadField = window.__framerNew(undefined, "318:26-325:1", "#ca02c686",new UploadContainer({
+        parent: bodyFlexrow.content,
+        y: this.title.maxY + 20,
+        x: 16
+      }));
+      this.documentNotes = window.__framerNew(undefined, "325:23-332:1", "?",new cs.Text({
+        parent: bodyFlexrow.content,
+        y: this.photoUploadField.maxY + 32,
+        x: 16,
+        width: this.width - 32,
+        text: 'For your selfie, be sure that your face and your ID are both in the picture. Sorry if this is weird. Big smiles!'
+      }));
+      this.nextButton = window.__framerNew(undefined, "332:20-344:1", "?",new cs.Button({
+        parent: bodyFlexrow.content,
+        y: this.documentNotes.maxY + 45,
+        x: 16,
+        text: 'Next',
+        fill: 'dcaa74',
+        type: 'body',
+        color: 'white',
+        disabled: true
+      }));
+      this.addToStack(pullerFlexrow, {
+        x: 0,
+        y: 0
+      });
+      this.addToStack(bodyFlexrow, {
+        x: 0,
+        y: 64
+      });
+      this.photoUploadField.on("change:upload", (function(_this) {
+        return function(success) {
+          user.hasSelfiePhoto = success;
+          if (!success) {
+            return;
+          }
+          _this.nextButton.disabled = false;
+          return _this.nextButton.action = _this.goToNext;
+        };
+      })(this));
+    }
+
+    SelfieUploadView.prototype.goToNext = function() {
+      return app.showNext(confirmUploadsView, 'right');
+    };
+
+    return SelfieUploadView;
+
+  })(cs.View);
+
+  ConfirmUploadsView = (function(superClass) {
+    extend(ConfirmUploadsView, superClass);
+
+    function ConfirmUploadsView(options) {
+      var docFlexrow, docLinkFlexrow, nextFlexRow, pullerFlexrow, selfieFlexrow, selfieLinkFlexrow;
+      if (options == null) {
+        options = {};
+      }
+      this.goToNext = bind(this.goToNext, this);
+      _.assign(options, {
+        name: 'Confirm Uploads View',
+        showLayers: true,
+        padding: {
+          top: 0,
+          stack: 0,
+          left: 0,
+          right: 0
+        }
+      });
+      ConfirmUploadsView.__super__.constructor.call(this, options);
+      this.contentInset = {
+        top: 0,
+        bottom: 120,
+        left: 0,
+        right: 0
+      };
+      pullerFlexrow = window.__framerNew("pullerFlexrow", "383:22-388:1", "?",new cs.FlexRow({
+        name: 'pullerFlexrow',
+        parent: this.content,
+        fullWidth: true
+      }));
+      this.puller = window.__framerNew(undefined, "388:16-393:1", "?",new cs.Puller({
+        parent: pullerFlexrow,
+        width: this.width,
+        text: "Please check your photos again before sending them to us. If we have trouble seeing you or your ID, we may have to ask for you to send them again."
+      }));
+      docFlexrow = window.__framerNew("docFlexrow", "393:19-399:1", "?",new cs.FlexRow({
+        name: 'doc flex row',
+        maxWidth: 580
+      }));
+      this.docTitle = window.__framerNew(undefined, "399:18-407:1", "?",new cs.Text({
+        parent: docFlexrow.content,
+        x: 16,
+        text: 'Your Passport',
+        type: 'body'
+      }));
+      this.docField = window.__framerNew(undefined, "407:18-416:1", "?",new cs.Container({
+        parent: docFlexrow.content,
+        y: this.docTitle.maxY + 20,
+        x: 16,
+        height: 200,
+        image: Utils.randomImage()
+      }));
+      this.docNotes = window.__framerNew(undefined, "416:18-425:1", "?",new cs.Text({
+        parent: docFlexrow.content,
+        y: this.docField.maxY + 16,
+        x: 16,
+        width: this.width - 32,
+        text: 'For a passport, you should provide a picture of the photo page with all four corners visible. Your document needs to be in-date with all details visible (nothing covered).'
+      }));
+      docLinkFlexrow = window.__framerNew("docLinkFlexrow", "425:23-429:1", "?",new cs.FlexRow({
+        name: 'doc link flex row',
+        maxWidth: 580
+      }));
+      this.docUpdate = window.__framerNew(undefined, "429:19-439:1", "?",new cs.Text({
+        parent: docLinkFlexrow.content,
+        type: 'link',
+        x: 16,
+        width: this.width - 32,
+        text: 'Update',
+        action: function() {
+          return app.showNext(docUploadView);
+        }
+      }));
+      selfieFlexrow = window.__framerNew("selfieFlexrow", "439:22-443:1", "?",new cs.FlexRow({
+        name: 'selfie flex row',
+        maxWidth: 580
+      }));
+      this.selfieTitle = window.__framerNew(undefined, "443:21-451:1", "?",new cs.Text({
+        parent: selfieFlexrow.content,
+        x: 16,
+        text: 'Your Selfie',
+        type: 'body'
+      }));
+      this.selfieField = window.__framerNew(undefined, "451:21-460:1", "?",new cs.Container({
+        parent: selfieFlexrow.content,
+        y: this.selfieTitle.maxY + 20,
+        x: 16,
+        height: 200,
+        image: Utils.randomImage()
+      }));
+      this.selfieNotes = window.__framerNew(undefined, "460:21-469:1", "?",new cs.Text({
+        parent: selfieFlexrow.content,
+        y: this.selfieField.maxY + 16,
+        x: 16,
+        width: this.width - 32,
+        text: 'For your selfie, be sure that your face and your ID are both in the picture.'
+      }));
+      selfieLinkFlexrow = window.__framerNew("selfieLinkFlexrow", "469:26-473:1", "?",new cs.FlexRow({
+        name: 'selfie flex row',
+        maxWidth: 580
+      }));
+      this.selfieUpdate = window.__framerNew(undefined, "473:22-483:1", "?",new cs.Text({
+        parent: selfieLinkFlexrow.content,
+        type: 'link',
+        x: 16,
+        width: this.width - 32,
+        text: 'Update',
+        action: function() {
+          return app.showNext(selfieUploadView);
+        }
+      }));
+      nextFlexRow = window.__framerNew("nextFlexRow", "483:20-487:1", "?",new cs.FlexRow({
+        name: 'selfie flex row',
+        maxWidth: 580
+      }));
+      this.nextButton = window.__framerNew(undefined, "487:20-498:1", "?",new cs.Button({
+        parent: nextFlexRow.content,
+        x: 16,
+        text: 'Submit My Photos',
+        fill: 'dcaa74',
+        type: 'body',
+        color: 'white',
+        action: this.goToNext
+      }));
+      this.addToStack(pullerFlexrow, {
+        x: 0,
+        y: 0
+      });
+      this.addToStack(docFlexrow, {
+        x: 0,
+        y: 64
+      });
+      this.addToStack(docLinkFlexrow, {
+        x: 0,
+        y: 8
+      });
+      this.addToStack(selfieFlexrow, {
+        x: 0,
+        y: 32
+      });
+      this.addToStack(selfieLinkFlexrow, {
+        x: 0,
+        y: 8
+      });
+      this.addToStack(nextFlexRow, {
+        x: 0,
+        y: 32
+      });
+      Utils.delay(1, (function(_this) {
+        return function() {
+          return _this.stackView();
+        };
+      })(this));
+    }
+
+    ConfirmUploadsView.prototype.goToNext = function() {
+      return app.showNext(deadEndView, 'right');
+    };
+
+    return ConfirmUploadsView;
+
+  })(cs.View);
+
+  ThinFileAccountView = (function(superClass) {
+    extend(ThinFileAccountView, superClass);
+
+    function ThinFileAccountView(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.goToNext = bind(this.goToNext, this);
+      options.showLayers = true;
+      ThinFileAccountView.__super__.constructor.call(this, options);
+      this.content.backgroundColor = 'fff';
+      this.heading = window.__framerNew(undefined, "546:17-558:1", "#88ad8972",new TextLayer({
+        parent: this.content,
+        width: this.width,
+        fontSize: 24,
+        text: 'My Account',
+        color: cs.Colors.main,
+        backgroundColor: 'f1f1f1',
+        padding: {
+          left: 16,
+          top: 10,
+          bottom: 35
+        }
+      }));
+      this.heading = this;
+    }
+
+    ThinFileAccountView.prototype.goToNext = function() {
+      user.docPhoto = this.docField.image;
+      user.selfiePhoto = this.selfieField.image;
+      return app.showNext(deadEndView, 'right');
+    };
+
+    return ThinFileAccountView;
+
+  })(cs.View);
+
+  user = {
+    docPhoto: void 0,
+    selfiePhoto: void 0,
+    hasDocPhoto: false,
+    hasSelfiePhoto: false
+  };
+
+  deadEndView = window.__framerNew("deadEndView", "574:14-574:28", "#ae60c7fc",new DeadEndView);
+
+  docUploadView = window.__framerNew("docUploadView", "575:16-575:32", "#dc738c7f",new DocUploadView);
+
+  selfieUploadView = window.__framerNew("selfieUploadView", "576:19-576:38", "#92d603c9",new SelfieUploadView);
+
+  confirmUploadsView = window.__framerNew("confirmUploadsView", "577:21-577:42", "#84491cf2",new ConfirmUploadsView);
+
+  thinFileAccountView = window.__framerNew("thinFileAccountView", "578:22-578:44", "#14e2b5ddc",new ThinFileAccountView);
+
+  app.showNext(docUploadView);
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

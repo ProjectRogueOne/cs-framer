@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Bonds/Icons/Global/Expand/Simple</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M29.2833594,17.2228906 C28.9635156,16.9029688 28.4448437,16.9066406 28.125,17.2264844 L20.921875,24.4296875 L13.71875,17.2265625 C13.3989062,16.9067188 12.8803125,16.9030469 12.5603906,17.2229688 C12.236875,17.5464844 12.2404687,18.0650781 12.5603125,18.385 L20.2117969,26.0364844 C20.2438281,26.0875 20.2814062,26.1360938 20.3258594,26.1805469 C20.4911719,26.3458594 20.7073437,26.4253906 20.921875,26.4214063 C21.1364844,26.4253906 21.3525781,26.3458594 21.5179687,26.1805469 C21.5624219,26.1360938 21.6,26.0875 21.6320312,26.0364844 L29.2835156,18.385 C29.6032812,18.0650781 29.606875,17.5464063 29.2833594,17.2228906 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bonds/Icons/Global/Expand/Simple">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Path"></g>
+            <g id="Bonds/Colours/General/White" mask="url(#mask-2)" fill="#FFFFFF">
+                <rect id="Rectangle-3" x="0" y="0" width="42" height="42"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

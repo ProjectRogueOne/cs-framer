@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function() {
+ 		var scale = 1 / window.devicePixelRatio
+ 		var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no"
+ 		var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+ 		if (iOS) { viewport += ", shrink-to-fit=no" }
+ 		document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+		</script>
+
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+		<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+		<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+		<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+		<script src="framer/coffee-script.js"></script>
+		<script src="framer/framer.js?nocache=13eddb9320ab42232e19dfbac6906595"></script>
+		<script src="framer/framer.generated.js?nocache=abcd6113eed1fa9b95cc0e9827e991ea"></script>
+		<script src="framer/framer.modules.js?nocache=44bdd11b28be416a39bb0313fc3dba4f"></script>
+		<script src="framer/framer.vekter.js"></script>
+		<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 21;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var Alert, AlertTile, ChangeEntry, ChangesView, DetailView, HAS_UPCOMING_CHANGES, NewDot, Report, alerts, alertsIcon, alertsIconSmall, app, changesView, contents, cs, dates, dayLength, futureDate, lastChecked, lastDate, lorem, navBar, newDot, octSeen, overview, reportView, today,
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  cs = require('cs');
+
+  require("MoreUtils");
+
+  cs.Context.setMobile();
+
+  Framer.Extras.Hints.disable();
+
+  app = window.__framerNew("app", "5:10-7:0", "?",new cs.App({
+    type: 'safari'
+  }));
+
+  app.header.collapse = false;
+
+  navBar = window.__framerNew("navBar", "10:13-16:0", "#179814a61",new Layer({
+    parent: app.header,
+    height: 56,
+    y: app.header.height,
+    width: Screen.width,
+    backgroundColor: '#e5e5e5'
+  }));
+
+  alertsIcon = window.__framerNew("alertsIcon", "17:17-25:0", "#150e1e27e",new Layer({
+    parent: navBar,
+    y: Align.center(),
+    x: 8,
+    height: 40,
+    width: 48,
+    borderRadius: 4,
+    backgroundColor: '#AAA'
+  }));
+
+  alertsIconSmall = window.__framerNew("alertsIconSmall", "26:22-34:0", "#17eb387ba",new Layer({
+    parent: alertsIcon,
+    y: Align.center(),
+    x: Align.center,
+    height: 20,
+    width: 20,
+    borderRadius: 4,
+    backgroundColor: '#CCC'
+  }));
+
+  overview = window.__framerNew("overview", "35:15-40:0", "?",new cs.Text({
+    parent: navBar,
+    x: alertsIcon.maxX + 24,
+    y: Align.center(),
+    text: 'OVERVIEW'
+  }));
+
+  overview.onTap(function() {
+    return app.showNext(reportView);
+  });
+
+  app.header.height = navBar.maxY;
+
+  app.header.on("change:height", function() {
+    return app.header.height = navBar.maxY;
+  });
+
+  alertsIcon.onTap(function() {
+    return app.showNext(changesView);
+  });
+
+  HAS_UPCOMING_CHANGES = true;
+
+  Alert = (function() {
+    function Alert(options) {
+      var ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8;
+      if (options == null) {
+        options = {};
+      }
+      _.assign(this, {
+        seen: (ref = options.seen) != null ? ref : false,
+        date: (ref1 = options.date) != null ? ref1 : window.__framerNew(undefined, "59:28-59:33", "?",new Date()),
+        type: (ref2 = options.type) != null ? ref2 : 'changed',
+        month: (ref3 = options.month) != null ? ref3 : 0,
+        content: (ref4 = options.content) != null ? ref4 : 'Your membership in the Party has been revoked since last check.',
+        meaning: (ref5 = options.meaning) != null ? ref5 : "Your credit score is based in part on your Party membership. It should go without saying that losing the faith of your comrades has consequences. We don't know what you did, or who you crossed, but brother, you're in for it now.",
+        cta1: (ref6 = options.cta1) != null ? ref6 : "This doesn't look right.",
+        cta2: (ref7 = options.cta2) != null ? ref7 : "Why is this not part of my Report?",
+        thisMonth: (ref8 = options.thisMonth) != null ? ref8 : false
+      });
+    }
+
+    return Alert;
+
+  })();
+
+  contents = ["A County Court Judgement  (CCJ) has been added since last check", "An account has been added to your Report since last check", "Key attribute(s) will be updated for a CIFAS"];
+
+  lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis mattis mauris, in lacinia nunc. Aenean enim urna, elementum nec turpis quis, congue cursus diam. Vestibulum at faucibus tortor. Nullam accumsan sodales placerat.";
+
+  lastChecked = window.__framerNew("lastChecked", "78:18-78:33", "?",new Date('11/15/17'));
+
+  today = window.__framerNew("today", "79:12-79:27", "?",new Date('12/25/17'));
+
+  dayLength = 1000 * 60 * 60 * 24;
+
+  lastDate = today;
+
+  dates = [window.__framerNew(undefined, "85:5-85:19", "?",new Date('1/14/18')), window.__framerNew(undefined, "86:5-86:20", "?",new Date('12/14/17')), window.__framerNew(undefined, "87:5-87:20", "?",new Date('11/14/17')), window.__framerNew(undefined, "88:5-88:20", "?",new Date('10/14/17')), window.__framerNew(undefined, "89:5-89:19", "?",new Date('9/14/17')), window.__framerNew(undefined, "90:5-90:19", "?",new Date('8/14/17'))];
+
+  alerts = _.map(dates, function(date) {
+    var alert;
+    alert = window.__framerNew("alert", "95:13-106:0", "#d90031bc",new Alert({
+      seen: date < lastChecked,
+      date: date,
+      month: date.getMonth() % 12,
+      thisMonth: date.getMonth() === today.getMonth(),
+      content: _.sample(contents),
+      meaning: lorem,
+      cta1: "This doesn't look right.",
+      cta2: "Why is this not part of my Report?",
+      type: 'changed'
+    }));
+    return alert;
+  });
+
+  futureDate = window.__framerNew("futureDate", "108:17-108:31", "?",new Date('2/19/18'));
+
+  alerts.push(window.__framerNew(undefined, "109:16-119:0", "#d90031bc",new Alert({
+    seen: false,
+    date: futureDate,
+    month: futureDate.getMonth() % 12,
+    thisMonth: false,
+    content: "A HSBC credit card has been added to your account.",
+    meaning: lorem,
+    cta1: "This doesn't look right.",
+    cta2: "Why is this not part of my Report?",
+    type: 'upcoming'
+  })));
+
+  alerts = _.sortBy(alerts, 'date');
+
+  NewDot = (function(superClass) {
+    extend(NewDot, superClass);
+
+    function NewDot(options) {
+      if (options == null) {
+        options = {};
+      }
+      _.assign(options, {
+        name: 'New Dot',
+        y: 7,
+        height: 8,
+        width: 8,
+        borderRadius: 4
+      });
+      _.defaults(options, {
+        x: -16,
+        backgroundColor: 'rgba(74, 144, 226, 1.000)'
+      });
+      NewDot.__super__.constructor.apply(this, arguments);
+      Utils.delay(0, (function(_this) {
+        return function() {
+          return _this.x = options.x;
+        };
+      })(this));
+    }
+
+    return NewDot;
+
+  })(Layer);
+
+  octSeen = false;
+
+  AlertTile = (function(superClass) {
+    extend(AlertTile, superClass);
+
+    function AlertTile(options) {
+      var ref, ref1, ref2;
+      if (options == null) {
+        options = {};
+      }
+      this.getColor = bind(this.getColor, this);
+      this.getAlert = bind(this.getAlert, this);
+      this.getDescription = bind(this.getDescription, this);
+      _.assign(options, {
+        name: 'Alert Tile',
+        backgroundColor: null
+      });
+      this.alert = options.alert;
+      this.date = (ref = (ref1 = this.alert) != null ? ref1.date : void 0) != null ? ref : options.date;
+      if (this.date <= window.__framerNew(undefined, "160:18-160:32", "?",new Date('11/1/17'))) {
+        this.alert = void 0;
+      }
+      if (!HAS_UPCOMING_CHANGES) {
+        if (((ref2 = this.alert) != null ? ref2.date : void 0) === futureDate) {
+          this.noUpcoming = true;
+          this.alert = void 0;
+        }
+      }
+      AlertTile.__super__.constructor.call(this, options);
+      this.date = window.__framerNew(undefined, "170:14-175:1", "?",new cs.Text({
+        type: 'body1',
+        parent: this,
+        text: this.date.toLocaleDateString([], {
+          month: 'long',
+          year: 'numeric'
+        })
+      }));
+      this.tile = window.__framerNew(undefined, "175:14-182:1", "#966c6a7c",new Layer({
+        parent: this,
+        y: this.date.maxY + 8,
+        width: 208,
+        height: 180,
+        backgroundColor: this.getColor()
+      }));
+      if (this.alert != null) {
+        this.type = window.__framerNew(undefined, "183:15-191:2", "?",new cs.Text({
+          type: 'body1',
+          parent: this.tile,
+          x: 8,
+          y: 8,
+          color: '#AAA',
+          text: _.startCase(this.alert.type.toUpperCase())
+        }));
+        if (!this.alert.seen) {
+          this.newDot = window.__framerNew(undefined, "192:18-196:1", "#d141a2f8",new NewDot({
+            parent: this.type,
+            x: Align.right(16)
+          }));
+        }
+      }
+      this.description = window.__framerNew(undefined, "196:21-205:1", "?",new cs.Text({
+        type: 'body1',
+        parent: this.tile,
+        x: Align.center(),
+        y: Align.center(-4),
+        width: this.tile.width - 32,
+        text: this.getDescription(),
+        textAlign: 'center'
+      }));
+      Utils.contain(this, this.children);
+      this.seeMore = window.__framerNew(undefined, "207:17-216:0", "?",new cs.Text({
+        type: 'link',
+        parent: this.tile,
+        x: 8,
+        y: Align.bottom(-16),
+        color: 'primary',
+        text: this.getAlert().text,
+        action: this.getAlert().action
+      }));
+    }
+
+    AlertTile.prototype.getDescription = function() {
+      var ref;
+      if ((ref = this.alert) != null ? ref.content : void 0) {
+        return this.alert.content;
+      }
+      if (this.noUpcoming) {
+        return 'No upcoming changes';
+      } else {
+        return 'No changes this month';
+      }
+    };
+
+    AlertTile.prototype.getAlert = function() {
+      var action, text;
+      if (!this.alert) {
+        text = 'Expecting an update?';
+        action = (function(_this) {
+          return function() {
+            return app.showNext(window.__framerNew(undefined, "228:32-228:55", "?",new DetailView({
+              alert: null
+            })));
+          };
+        })(this);
+      } else if (this.alert.thisMonth) {
+        text = 'See details';
+        action = (function(_this) {
+          return function() {
+            return app.showNext(window.__framerNew(undefined, "231:32-231:57", "?",new DetailView({
+              alert: _this.alert
+            })));
+          };
+        })(this);
+      } else if (this.alert.type === 'upcoming') {
+        text = 'See details';
+        action = (function(_this) {
+          return function() {
+            return app.showNext(window.__framerNew(undefined, "234:32-234:57", "?",new DetailView({
+              alert: _this.alert
+            })));
+          };
+        })(this);
+      } else {
+        text = 'See on Report';
+        action = (function(_this) {
+          return function() {
+            return null;
+          };
+        })(this);
+      }
+      return {
+        text: text,
+        action: action
+      };
+    };
+
+    AlertTile.prototype.getColor = function() {
+      if (this.alert == null) {
+        return 'rgba(216, 216, 216, 1.000)';
+      }
+      if (this.alert.type === 'changed') {
+        return 'rgba(237, 244, 230, 1.000)';
+      }
+      return 'rgba(231, 246, 251, 1.000)';
+    };
+
+    return AlertTile;
+
+  })(Layer);
+
+  ChangeEntry = function(alert, options) {
+    var container, data, getAlertAction;
+    if (options == null) {
+      options = {};
+    }
+    data = alert.date <= window.__framerNew(undefined, "258:23-258:37", "?",new Date('11/1/17')) ? (this.alert = void 0, {
+      title: 'No changes',
+      color: '#333',
+      link: 'Expecting a change?'
+    }) : alert.date >= window.__framerNew(undefined, "263:28-263:33", "?",new Date()) ? {
+      title: 'Upcoming change',
+      color: '#23bdff',
+      link: 'More details'
+    } : {
+      title: 'Change updated on your Report',
+      color: 'secondary',
+      link: 'See on Report'
+    };
+    container = window.__framerNew("container", "272:17-272:29", "#1533c9b81",new Layer(options));
+    getAlertAction = (function(_this) {
+      return function(alert) {
+        var action;
+        if (!alert) {
+          action = function() {
+            return app.showNext(window.__framerNew(undefined, "276:32-276:55", "?",new DetailView({
+              alert: null
+            })));
+          };
+        } else if (alert.thisMonth) {
+          action = function() {
+            return app.showNext(window.__framerNew(undefined, "278:32-278:56", "?",new DetailView({
+              alert: alert
+            })));
+          };
+        } else if (alert.type === 'upcoming') {
+          action = function() {
+            return app.showNext(window.__framerNew(undefined, "280:32-280:56", "?",new DetailView({
+              alert: alert
+            })));
+          };
+        } else {
+          action = function() {
+            return null;
+          };
+        }
+        return action;
+      };
+    })(this);
+    Utils.build(container, function() {
+      var date, description, dot, link, title;
+      title = window.__framerNew("title", "287:14-292:1", "?",new cs.Text({
+        parent: this,
+        text: data.title,
+        color: data.color
+      }));
+      dot = window.__framerNew("dot", "292:12-298:1", "#d141a2f8",new NewDot({
+        parent: title,
+        visible: !alert.seen,
+        x: Align.right(16),
+        backgroundColor: '#fd7d6a'
+      }));
+      description = window.__framerNew("description", "298:20-303:1", "?",new cs.Text({
+        parent: this,
+        text: alert.date.getMonth() === 9 ? 'You have no changes to display this month.' : alert.content,
+        y: title.maxY + 8
+      }));
+      link = window.__framerNew("link", "303:13-311:1", "?",new cs.Text({
+        parent: this,
+        text: data.link,
+        color: '#AAA',
+        type: 'link',
+        y: description.maxY + 8,
+        action: getAlertAction(alert)
+      }));
+      date = window.__framerNew("date", "311:13-318:1", "?",new cs.Text({
+        parent: this,
+        text: alert.date.toLocaleDateString([], {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        }).toUpperCase(),
+        y: link.y,
+        x: Align.right,
+        color: '#AAA'
+      }));
+      return Utils.contain(this, this.children);
+    });
+    return container;
+  };
+
+  DetailView = (function(superClass) {
+    extend(DetailView, superClass);
+
+    function DetailView(options) {
+      var content, date, meaning, ref, ref1, ref2, ref3, ref4, ref5, title, title2;
+      if (options == null) {
+        options = {};
+      }
+      this.getTitle = bind(this.getTitle, this);
+      this.alert = options.alert;
+      DetailView.__super__.constructor.apply(this, arguments);
+      this.backgroundColor = "#FFF";
+      this.content.backgroundColor = "#FFF";
+      this.header = window.__framerNew(undefined, "336:16-342:1", "#95eaec97",new Layer({
+        parent: this,
+        width: this.width,
+        height: 56,
+        backgroundColor: '#e5e5e5'
+      }));
+      this.back = window.__framerNew(undefined, "342:14-348:1", "?",new cs.Icon({
+        parent: this.header,
+        icon: 'chevron-left',
+        x: 8,
+        y: Align.center()
+      }));
+      this.backText = window.__framerNew(undefined, "348:18-355:1", "?",new cs.Text({
+        parent: this.header,
+        text: 'Overview',
+        x: this.back.maxX,
+        y: Align.center(),
+        color: '#000'
+      }));
+      this.header.onTap((function(_this) {
+        return function() {
+          app.showPrevious();
+          return Utils.delay(2, function() {
+            return _this.destroy();
+          });
+        };
+      })(this));
+      title = window.__framerNew("title", "361:14-367:1", "?",new cs.H3({
+        parent: this.content,
+        x: 32,
+        y: 80,
+        text: this.getTitle()
+      }));
+      date = window.__framerNew("date", "367:13-374:1", "?",new cs.Text({
+        parent: this.content,
+        x: Align.right(-32),
+        y: title.y + 4,
+        text: (ref = (ref1 = this.alert) != null ? ref1.date.toLocaleDateString() : void 0) != null ? ref : '',
+        color: '#AAA'
+      }));
+      content = window.__framerNew("content", "374:16-381:1", "?",new cs.Text({
+        parent: this.content,
+        x: 32,
+        y: title.maxY + 32,
+        text: (ref2 = (ref3 = this.alert) != null ? ref3.content : void 0) != null ? ref2 : 'Your membership in the Party has been revoked since last check.',
+        width: this.width - 64
+      }));
+      title2 = window.__framerNew("title2", "381:15-388:1", "?",new cs.Text({
+        parent: this.content,
+        x: 32,
+        y: content.maxY + 64,
+        textDecoration: 'underline',
+        text: 'What does this mean?'
+      }));
+      meaning = window.__framerNew("meaning", "388:16-395:0", "?",new cs.Text({
+        parent: this.content,
+        x: 32,
+        y: title2.maxY + 32,
+        text: (ref4 = (ref5 = this.alert) != null ? ref5.meaning : void 0) != null ? ref4 : "Your credit score is based in part on your Party membership. It should go without saying that losing the faith of your comrades has consequences. We don't know what you did, or who you crossed, but brother, you're in for it now.",
+        width: this.width - 64
+      }));
+    }
+
+    DetailView.prototype.getTitle = function() {
+      if (!this.alert) {
+        return 'Expecting a Change?';
+      }
+      if (this.alert.type === 'changed') {
+        return 'Upcoming Change';
+      }
+      if (this.alert.type === 'upcoming') {
+        return 'Upcoming Change';
+      }
+    };
+
+    return DetailView;
+
+  })(cs.View);
+
+  Report = (function(superClass) {
+    extend(Report, superClass);
+
+    function Report(options) {
+      var address, dob, dot, etc, firstUnseen, i, j, last, len, month, monthdesc, name, newAlerts, pair, ref, sep, tile, title, welcome1, welcome2;
+      if (options == null) {
+        options = {};
+      }
+      this.setUpdateCount = bind(this.setUpdateCount, this);
+      _.defaults(options, {
+        alerts: alerts,
+        showLayers: true,
+        contentInset: {
+          top: 24,
+          bottom: 48
+        }
+      });
+      _.assign(this, {
+        alerts: options.alerts
+      });
+      Report.__super__.constructor.apply(this, arguments);
+      this.backgroundColor = "#FFF";
+      this.content.backgroundColor = "#FFF";
+      welcome1 = window.__framerNew("welcome1", "435:17-444:1", "?",new cs.H4({
+        name: 'welcome',
+        parent: this.content,
+        text: 'Welcome back Kimberly Wood',
+        y: 32,
+        x: Align.center(),
+        width: this.width,
+        textAlign: 'center'
+      }));
+      welcome2 = window.__framerNew("welcome2", "444:17-456:1", "?",new cs.Text({
+        name: 'subwelcome',
+        parent: this.content,
+        type: 'body1',
+        text: 'We can predict your Feb score too',
+        y: welcome1.maxY + 8,
+        x: Align.center(),
+        width: this.width,
+        textAlign: 'center'
+      }));
+      monthdesc = window.__framerNew("monthdesc", "456:18-463:1", "?",new cs.Text({
+        type: 'body1',
+        name: 'month1',
+        parent: this.content,
+        text: 'January 2018',
+        y: welcome2.maxY + 32
+      }));
+      month = window.__framerNew("month", "463:14-472:1", "?",new cs.Donut({
+        size: 'small',
+        parent: this.content,
+        y: monthdesc.maxY + 16,
+        x: 40,
+        value: 354,
+        color: 'secondary',
+        stroke: 'secondary'
+      }));
+      Utils.align([monthdesc], 'midX', month.midX);
+      monthdesc = window.__framerNew("monthdesc", "474:18-481:1", "?",new cs.Text({
+        type: 'body1',
+        name: 'month1',
+        parent: this.content,
+        text: 'February 2018',
+        y: welcome2.maxY + 32
+      }));
+      month = window.__framerNew("month", "481:14-490:1", "?",new cs.Donut({
+        size: 'small',
+        parent: this.content,
+        y: monthdesc.maxY + 16,
+        x: Align.right(-40),
+        value: 370,
+        color: 'primary',
+        stroke: 'primary'
+      }));
+      Utils.align([monthdesc], 'midX', month.midX);
+      dot = window.__framerNew("dot", "492:12-502:1", "#d141a2f8",new NewDot({
+        parent: monthdesc,
+        x: Align.right(16),
+        backgroundColor: '#4a90e2'
+      }));
+      title = window.__framerNew("title", "502:14-509:1", "?",new cs.H2({
+        parent: this.content,
+        text: 'Report Updates',
+        width: this.width - 32,
+        x: 16,
+        y: month.maxY + 64
+      }));
+      sep = window.__framerNew("sep", "509:12-515:1", "?",new cs.Divider({
+        parent: this.content,
+        x: title.x,
+        y: title.maxY + 8,
+        width: this.width - 32
+      }));
+      this.updatesCount = window.__framerNew(undefined, "515:22-523:1", "?",new cs.Text({
+        parent: this.content,
+        type: 'body1',
+        x: Align.right(-16),
+        y: title.y + 8,
+        text: '{result}',
+        textAlign: 'right'
+      }));
+      this.updatesCountDot = window.__framerNew(undefined, "523:25-528:1", "#d141a2f8",new NewDot({
+        parent: this.updatesCount
+      }));
+      newAlerts = _.filter(this.alerts, ['seen', false]).length;
+      Utils.define(this, "updates", newAlerts, this.setUpdateCount);
+      this.alertsScroll = window.__framerNew(undefined, "533:22-544:1", "#c6a358a2",new ScrollComponent({
+        parent: this.content,
+        propagateEvents: false,
+        y: sep.maxY + 32,
+        width: this.width,
+        scrollHorizontal: true,
+        scrollVertical: false,
+        contentInset: {
+          left: 16,
+          right: 16
+        }
+      }));
+      this.alertTiles = this.alerts.map((function(_this) {
+        return function(alert) {
+          if (!alert) {
+            return window.__framerNew(undefined, "546:15-550:3", "#169792c27",new AlertTile({
+              parent: _this.alertsScroll.content,
+              date: window.__framerNew("date", "548:15-548:28", "?",new Date("9/1/17")),
+              alert: null
+            }));
+            return;
+          }
+          return window.__framerNew(undefined, "552:14-559:1", "#169792c27",new AlertTile({
+            parent: _this.alertsScroll.content,
+            date: alert.date,
+            alert: alert
+          }));
+        };
+      })(this));
+      ref = _.sortBy(this.alertTiles, 'month');
+      for (i = j = 0, len = ref.length; j < len; i = ++j) {
+        tile = ref[i];
+        tile.x = (typeof last !== "undefined" && last !== null ? last : 0) + 8;
+        last = tile.maxX;
+      }
+      this.alertsScroll.updateContent();
+      firstUnseen = _.find(this.alertTiles, function(t) {
+        var ref1;
+        return ((ref1 = t.alert) != null ? ref1.seen : void 0) === false;
+      });
+      this.alertsScroll.scrollToLayer(firstUnseen, 0, 0, false);
+      title = window.__framerNew("title", "577:14-584:1", "?",new cs.H2({
+        parent: this.content,
+        text: 'Personal Information',
+        x: 16,
+        y: this.alertsScroll.maxY + 32,
+        width: this.width - 32
+      }));
+      sep = window.__framerNew("sep", "584:12-590:1", "?",new cs.Divider({
+        parent: this.content,
+        x: title.x,
+        y: title.maxY + 8,
+        width: this.width - 32
+      }));
+      etc = window.__framerNew("etc", "590:12-596:1", "?",new cs.Text({
+        parent: this.content,
+        text: "...",
+        y: sep.maxY + 16,
+        x: 16
+      }));
+      pair = (function(_this) {
+        return function(title, content, y) {
+          var contentLayer, titleLayer;
+          titleLayer = window.__framerNew("titleLayer", "597:20-603:2", "?",new cs.H4({
+            parent: _this.content,
+            x: 16,
+            y: y,
+            text: title
+          }));
+          contentLayer = window.__framerNew("contentLayer", "603:22-609:2", "?",new cs.Text({
+            parent: _this.content,
+            x: 16,
+            y: titleLayer.maxY + 4,
+            text: content
+          }));
+          return contentLayer;
+        };
+      })(this);
+      name = pair('Name', 'Kimberly Wood', sep.maxY + 16);
+      dob = pair('Date of birth', '25 January 1981', name.maxY + 16);
+      address = pair('Current address', '50 Regents Street, London SL1 6AH', dob.maxY + 16);
+    }
+
+    Report.prototype.setUpdateCount = function(num) {
+      var maxX, text;
+      text = num + " new update";
+      if (num > 1) {
+        text += 's';
+      }
+      maxX = this.updatesCount;
+      this.updatesCount.template = text;
+      this.updatesCount.visible = num > 0;
+      return this.updatesCount.x = Align.right(-16);
+    };
+
+    return Report;
+
+  })(cs.View);
+
+  ChangesView = (function(superClass) {
+    extend(ChangesView, superClass);
+
+    function ChangesView(options) {
+      var a, alert, c, currentScore, div, dot, i, j, len, month, monthdesc, predicatedStore, ref, score, start, welcome1;
+      if (options == null) {
+        options = {};
+      }
+      this.setChangesCounts = bind(this.setChangesCounts, this);
+      _.defaults(options, {
+        alerts: alerts,
+        contentInset: {
+          top: 24,
+          bottom: 48
+        }
+      });
+      _.assign(this, {
+        alerts: _.sortBy(options.alerts, 'date').slice().reverse()
+      });
+      ChangesView.__super__.constructor.apply(this, arguments);
+      this.backgroundColor = "#FFF";
+      this.content.backgroundColor = "#FFF";
+      welcome1 = window.__framerNew("welcome1", "650:17-659:1", "?",new cs.H3({
+        name: 'welcome',
+        parent: this.content,
+        text: 'Welcome back Kimberly Wood',
+        y: 32,
+        x: Align.center(),
+        width: this.width,
+        textAlign: 'center'
+      }));
+      this.upcomingChangesCount = window.__framerNew(undefined, "659:30-668:1", "?",new cs.Text({
+        name: 'Upcoming Changes',
+        parent: this.content,
+        text: ' ',
+        color: 'primary',
+        y: welcome1.maxY + 8,
+        x: Align.center(),
+        textAlign: 'center'
+      }));
+      this.upcomingChangesCountDot = window.__framerNew(undefined, "668:33-673:1", "#d141a2f8",new NewDot({
+        parent: this.upcomingChangesCount,
+        x: Align.right(16),
+        backgroundColor: '#fd7d6a'
+      }));
+      this.updatesCount = window.__framerNew(undefined, "673:22-682:1", "?",new cs.Text({
+        name: 'Upcoming Changes',
+        parent: this.content,
+        text: ' ',
+        color: 'secondary',
+        y: this.upcomingChangesCount.maxY,
+        x: Align.center(),
+        textAlign: 'center'
+      }));
+      this.updatesCountDot = window.__framerNew(undefined, "682:25-687:1", "#d141a2f8",new NewDot({
+        parent: this.updatesCount,
+        x: Align.right(16),
+        backgroundColor: '#fd7d6a'
+      }));
+      this.noUpdates = window.__framerNew(undefined, "687:19-698:1", "?",new cs.Text({
+        name: 'Upcoming Changes',
+        parent: this.content,
+        text: 'You have no new upcoming updates',
+        color: '#AAA',
+        y: welcome1.maxY + 8,
+        x: Align.center(),
+        width: this.width,
+        textAlign: 'center',
+        visible: false
+      }));
+      this.setChangesCounts();
+      start = this.updatesCount.maxY;
+      if (options.donuts) {
+        currentScore = window.__framerNew("currentScore", "707:22-714:2", "?",new cs.Text({
+          name: 'currentScore',
+          parent: this.content,
+          type: 'body',
+          text: 'Your current score',
+          y: this.updatesCount.maxY + 32
+        }));
+        monthdesc = window.__framerNew("monthdesc", "714:19-721:2", "?",new cs.Text({
+          type: 'body1',
+          name: 'month1',
+          parent: this.content,
+          text: 'January 2018',
+          y: currentScore.maxY + 8
+        }));
+        month = window.__framerNew("month", "721:15-730:2", "?",new cs.Donut({
+          size: 'small',
+          parent: this.content,
+          y: monthdesc.maxY + 16,
+          x: 40,
+          value: 354,
+          color: 'secondary',
+          stroke: 'secondary'
+        }));
+        Utils.align([currentScore, monthdesc], 'midX', month.midX);
+        predicatedStore = window.__framerNew("predicatedStore", "732:25-739:2", "?",new cs.Text({
+          name: 'currentScore',
+          parent: this.content,
+          type: 'body',
+          text: 'Your predicted score',
+          y: this.updatesCount.maxY + 32
+        }));
+        monthdesc = window.__framerNew("monthdesc", "739:19-746:2", "?",new cs.Text({
+          type: 'body1',
+          name: 'month1',
+          parent: this.content,
+          text: 'February 2018',
+          y: predicatedStore.maxY + 8
+        }));
+        month = window.__framerNew("month", "746:15-755:2", "?",new cs.Donut({
+          size: 'small',
+          parent: this.content,
+          y: monthdesc.maxY + 16,
+          x: Align.right(-40),
+          value: 370,
+          color: 'primary',
+          stroke: 'primary'
+        }));
+        Utils.align([predicatedStore, monthdesc], 'midX', month.midX);
+        dot = window.__framerNew("dot", "757:13-762:2", "#d141a2f8",new NewDot({
+          parent: monthdesc,
+          x: Align.right(16),
+          backgroundColor: '#fd7d6a'
+        }));
+        start = month.maxY;
+      }
+      month = this.alerts[0].date.getMonth();
+      ref = this.alerts;
+      for (i = j = 0, len = ref.length; j < len; i = ++j) {
+        alert = ref[i];
+        a = window.__framerNew("a", "770:11-777:2", "*",new ChangeEntry(alert, {
+          parent: this.content,
+          y: start + 48,
+          x: 16,
+          width: this.width - 32,
+          backgroundColor: null
+        }));
+        start = a.maxY;
+        if (alert.date.getMonth() !== month) {
+          div = window.__framerNew("div", "780:14-787:3", "?",new cs.Divider({
+            parent: this.content,
+            y: start + 48,
+            x: 16,
+            width: this.width - 32,
+            height: 1
+          }));
+          c = window.__framerNew("c", "787:12-795:3", "#b40faaf3",new Layer({
+            parent: this.content,
+            backgroundColor: '#FFF',
+            height: 32,
+            width: 72,
+            x: Align.right(),
+            midY: div.y
+          }));
+          score = window.__framerNew("score", "795:16-803:3", "?",new cs.Text({
+            parent: c,
+            color: '#AAA',
+            text: _.random(300, 400),
+            type: 'body',
+            x: Align.right(-16),
+            y: Align.center()
+          }));
+          start = div.maxY;
+        }
+      }
+    }
+
+    ChangesView.prototype.setChangesCounts = function() {
+      var a, fresh, stale, text;
+      a = _.partition(this.alerts, function(a) {
+        return a.date >= window.__framerNew(undefined, "806:48-806:53", "?",new Date());
+      });
+      fresh = a[0].filter(function(a) {
+        return !a.seen;
+      }).length;
+      stale = a[1].filter(function(a) {
+        return !a.seen;
+      }).length;
+      if (fresh + stale === 0) {
+        this.noUpdates.visible = true;
+      }
+      text = "You have " + fresh + " new upcoming change";
+      if (fresh > 1) {
+        text += 's';
+      }
+      this.upcomingChangesCount.text = text;
+      this.upcomingChangesCount.visible = fresh > 0;
+      this.upcomingChangesCount.x = Align.center();
+      this.upcomingChangesCountDot.x = Align.right(16);
+      text = "You have " + stale + " changes updated";
+      this.updatesCount.text = text;
+      this.updatesCount.visible = stale > 0;
+      this.updatesCount.x = Align.center();
+      return this.updatesCountDot.x = Align.right(16);
+    };
+
+    return ChangesView;
+
+  })(cs.View);
+
+  reportView = window.__framerNew("reportView", "831:13-831:22", "#b0d7259d",new Report);
+
+  changesView = window.__framerNew("changesView", "832:18-832:43", "#13b174736",new ChangesView({
+    donuts: true
+  }));
+
+  app.showNext(reportView);
+
+  newDot = window.__framerNew("newDot", "839:13-843:26", "#d141a2f8",new NewDot({
+    parent: alertsIcon,
+    x: 30,
+    y: 16,
+    backgroundColor: '#fd7d6a'
+  }));
+
+}).call(this);
+})</script>
+
+	</head>
+	<body>
+	</body>
+</html>

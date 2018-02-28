@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<script type="text/javascript">
+		// This automatically sets the right viewport scale on mobile devices
+		(function () {
+			var scale = 1 / window.devicePixelRatio
+			var viewport = "width=device-width, height=device-height, initial-scale=" + scale + ", maximum-scale=" + scale + ", user-scalable=no, viewport-fit=cover"
+			var iOS = /iPad|iPhone|iPod/.test(navigator.platform)
+			if (iOS) { viewport += ", shrink-to-fit=no" }
+			document.write("<meta name=\"viewport\" content=\"" + viewport + "\">")
+		})()
+	</script>
+
+	<link rel="apple-touch-icon" href="framer/images/icon-120.png">
+	<link rel="apple-touch-icon" href="framer/images/icon-76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="framer/images/icon-120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="framer/images/icon-152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="framer/images/icon-180.png" sizes="180x180">
+	<link rel="apple-touch-icon" href="framer/images/icon-192.png" sizes="192x192">
+
+	<link rel="stylesheet" type="text/css" href="framer/style.css?nocache=6d40bc53861208d298f85019e08849ff">
+
+	<script src="framer/coffee-script.js"></script>
+	<script src="framer/framer.js?nocache=8e1498a1c4e3829b3ecfc26f93288d1d"></script>
+	<script src="framer/framer.generated.js?nocache=f0759d72a059b8298445f8f279b9b050"></script>
+	<script src="framer/framer.modules.js?nocache=3512adc6120234137ab83a7e1407bdf2"></script>
+	<script src="framer/framer.vekter.js"></script>
+	<script>Framer.Device.hideBezel = false</script><script>document.addEventListener("DOMContentLoaded", function() {window.__framerClientCodeId = 1;window.__framerNew = function (n,loc,th,i){if (i == null) { return i };i.__framerInstanceInfo = _.defaults({name:n,location:loc,hash:th},i.__framerInstanceInfo);_.defaults(i.__framerInstanceInfo,{name:"Untitled"});return i;};(function() {
+  var Alert, AlertLink, DetailView, SHOW_COUNT_ON_DOTS, SHOW_DATE_LABEL, STARTING_ALERTS_COUNT, Timeline, TimelineButtonContainer, alert, alerts, app, contents, dates, dayLength, firstDate, futureDate, homeView, i, j, k, lastChecked, lastDate, leftText, len, len1, lorem, m, navBar, navBar2, overview, ref, rightText, today, y, years,
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  require('cs-ux');
+
+  require('gotcha');
+
+  Canvas.backgroundColor = '#000';
+
+  Framer.Extras.Hints.disable();
+
+  SHOW_DATE_LABEL = true;
+
+  SHOW_COUNT_ON_DOTS = false;
+
+  STARTING_ALERTS_COUNT = 2;
+
+  Alert = (function() {
+    function Alert(options) {
+      var ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8;
+      if (options == null) {
+        options = {};
+      }
+      _.assign(this, {
+        seen: (ref = options.seen) != null ? ref : false,
+        date: (ref1 = options.date) != null ? ref1 : window.__framerNew(undefined, "22:28-22:33", "?",new Date()),
+        type: (ref2 = options.type) != null ? ref2 : 'changed',
+        month: (ref3 = options.month) != null ? ref3 : 0,
+        content: (ref4 = options.content) != null ? ref4 : 'Your membership in the Party has been revoked since last check.',
+        meaning: (ref5 = options.meaning) != null ? ref5 : "Your credit score is based in part on your Party membership. It should go without saying that losing the faith of your comrades has consequences. We don't know what you did, or who you crossed, but brother, you're in for it now.",
+        cta1: (ref6 = options.cta1) != null ? ref6 : "This doesn't look right.",
+        cta2: (ref7 = options.cta2) != null ? ref7 : "Why is this not part of my Report?",
+        thisMonth: (ref8 = options.thisMonth) != null ? ref8 : false,
+        score: _.random(350, 400)
+      });
+    }
+
+    return Alert;
+
+  })();
+
+  contents = ["A County Court Judgement  (CCJ) has been added since last check", "An account has been added to your Report since last check", "Key attribute(s) will be updated for a CIFAS"];
+
+  lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis mattis mauris, in lacinia nunc. Aenean enim urna, elementum nec turpis quis, congue cursus diam. Vestibulum at faucibus tortor. Nullam accumsan sodales placerat.";
+
+  today = window.__framerNew("today", "42:12-42:17", "?",new Date());
+
+  dayLength = 1000 * 60 * 60 * 24;
+
+  lastDate = today;
+
+  lastChecked = window.__framerNew("lastChecked", "48:18-48:55", "?",new Date(today.getTime() - 45 * dayLength));
+
+  dates = _.map([90, 180, 180, 240, 240, 240, 240, 240], function(d) {
+    return window.__framerNew(undefined, "52:12-52:48", "?",new Date(today.getTime() - d * dayLength));
+  });
+
+  alerts = _.map(dates, function(date) {
+    var alert;
+    alert = window.__framerNew("alert", "57:13-68:0", "#d90031bc",new Alert({
+      seen: date < lastChecked,
+      date: date,
+      month: date.getMonth() % 12,
+      thisMonth: date.getMonth() === today.getMonth(),
+      content: _.sample(contents),
+      meaning: lorem,
+      cta1: "This doesn't look right.",
+      cta2: "Why is this not part of my Report?",
+      type: 'changed'
+    }));
+    return alert;
+  });
+
+  futureDate = window.__framerNew("futureDate", "70:17-70:54", "?",new Date(today.getTime() + 14 * dayLength));
+
+  ref = _.range(2);
+  for (j = 0, len = ref.length; j < len; j++) {
+    i = ref[j];
+    alerts.push(window.__framerNew(undefined, "73:17-83:0", "#d90031bc",new Alert({
+      seen: false,
+      date: futureDate,
+      month: futureDate.getMonth() % 12,
+      thisMonth: false,
+      content: "A HSBC credit card will be added to your account.",
+      meaning: lorem,
+      cta1: "This doesn't look right.",
+      cta2: "Why is this not part of my Report?",
+      type: 'upcoming'
+    })));
+  }
+
+  alerts = _.sortBy(alerts, 'date');
+
+  years = {};
+
+  for (k = 0, len1 = alerts.length; k < len1; k++) {
+    alert = alerts[k];
+    y = alert.date.getYear();
+    m = alert.date.getMonth();
+    if (years[y] == null) {
+      years[y] = _.range(12).map(function(y) {
+        var ref1;
+        return {
+          alerts: [],
+          timelineButton: void 0,
+          future: (y > (ref1 = alert.date.getMonth()) && ref1 <= window.__framerNew(undefined, "96:43-96:48", "?",new Date()).getMonth())
+        };
+      });
+    }
+    years[y][m].alerts.push(alert);
+  }
+
+  lastDate = _.last(alerts).date;
+
+  firstDate = alerts[0].date;
+
+  DetailView = (function() {
+    function DetailView(options) {
+      if (options == null) {
+        options = {};
+      }
+      _.defaults(options, {
+        alert: alerts[_.random(10)]
+      });
+      this.view = window.__framerNew(undefined, "116:14-122:1", "?",new View({
+        backgroundColor: bg1,
+        contentInset: {
+          top: 32
+        }
+      }));
+      Utils.bind(this.view, function() {
+        var content, date, meaning, ref1, ref2, ref3, ref4, ref5, ref6, title, title2;
+        this.alert = options.alert;
+        this.getTitle = (function(_this) {
+          return function() {
+            if (!_this.alert) {
+              return 'Expecting a Change?';
+            }
+            if (_this.alert.type === 'changed') {
+              return 'Upcoming Change';
+            }
+            if (_this.alert.type === 'upcoming') {
+              return 'Upcoming Change';
+            }
+          };
+        })(this);
+        this.alert = options.alert;
+        this.header = window.__framerNew(undefined, "139:17-146:2", "#e509a877",new Layer({
+          parent: this,
+          width: this.width,
+          y: app.header.maxY,
+          height: 56,
+          backgroundColor: '#e5e5e5'
+        }));
+        this.back = window.__framerNew(undefined, "146:15-152:2", "?",new Icon({
+          parent: this.header,
+          icon: 'chevron-left',
+          x: 8,
+          y: Align.center()
+        }));
+        this.backText = window.__framerNew(undefined, "152:19-159:2", "?",new Body({
+          parent: this.header,
+          text: 'Overview',
+          x: this.back.maxX,
+          y: Align.center(),
+          color: '#000'
+        }));
+        this.header.onTap((function(_this) {
+          return function() {
+            app.showPrevious();
+            return Utils.delay(1, function() {
+              return _this.destroy();
+            });
+          };
+        })(this));
+        title = window.__framerNew("title", "165:15-171:2", "?",new H4({
+          parent: this.content,
+          x: 32,
+          y: 80,
+          text: this.getTitle()
+        }));
+        date = window.__framerNew("date", "171:14-178:2", "?",new Body({
+          parent: this.content,
+          x: Align.right(-32),
+          y: title.y + 4,
+          text: (ref1 = (ref2 = this.alert) != null ? ref2.date.toLocaleDateString() : void 0) != null ? ref1 : '',
+          color: '#AAA'
+        }));
+        content = window.__framerNew("content", "178:17-185:2", "?",new Body({
+          parent: this.content,
+          x: 32,
+          y: title.maxY + 32,
+          text: (ref3 = (ref4 = this.alert) != null ? ref4.content : void 0) != null ? ref3 : 'Your membership in the Party has been revoked since last check.',
+          width: this.width - 64
+        }));
+        title2 = window.__framerNew("title2", "185:16-192:2", "?",new H4({
+          parent: this.content,
+          x: 32,
+          y: content.maxY + 64,
+          textDecoration: 'underline',
+          text: 'What does this mean?'
+        }));
+        return meaning = window.__framerNew("meaning", "192:17-199:1", "?",new Body({
+          parent: this.content,
+          x: 32,
+          y: title2.maxY + 32,
+          text: (ref5 = (ref6 = this.alert) != null ? ref6.meaning : void 0) != null ? ref5 : "Your credit score is based in part on your Party membership. It should go without saying that losing the faith of your comrades has consequences. We don't know what you did, or who you crossed, but brother, you're in for it now.",
+          width: this.width - 64
+        }));
+      });
+      return this.view;
+    }
+
+    return DetailView;
+
+  })();
+
+  TimelineButtonContainer = (function(superClass) {
+    extend(TimelineButtonContainer, superClass);
+
+    function TimelineButtonContainer(options) {
+      var alertsCountLabel, scoreLabel;
+      if (options == null) {
+        options = {};
+      }
+      _.defaults(options, {
+        name: 'Timeline Button Container',
+        backgroundColor: null,
+        x: 0,
+        width: 112,
+        animationOptions: {
+          time: .25
+        },
+        minScore: 100,
+        maxScore: 600,
+        score: 400,
+        monthObject: {},
+        dateString: 'OCT',
+        lastY: 0,
+        lastX: 0,
+        date: window.__framerNew("date", "223:13-223:18", "?",new Date())
+      });
+      TimelineButtonContainer.__super__.constructor.call(this, options);
+      _.assign(this, {
+        future: options.future,
+        score: options.score,
+        minScore: options.minScore,
+        maxScore: options.maxScore,
+        lastX: options.lastX,
+        lastY: options.lastY,
+        alertsCount: options.alertsCount,
+        monthObject: options.monthObject,
+        dateString: options.dateString,
+        date: options.date
+      });
+      this.button = window.__framerNew(undefined, "239:16-259:1", "#d9450215",new Layer({
+        name: 'Button',
+        parent: this,
+        x: Align.center(),
+        y: Utils.modulate(this.score, [this.minScore, this.maxScore], [24, this.height + (SHOW_DATE_LABEL ? -60 : -36)], true),
+        height: 32,
+        width: 32,
+        borderRadius: 16,
+        borderWidth: 1,
+        borderColor: '#000',
+        backgroundColor: '#CCC'
+      }));
+      if ((this.alertsCount != null) && SHOW_COUNT_ON_DOTS) {
+        alertsCountLabel = window.__framerNew("alertsCountLabel", "260:26-272:1", "?",new Body({
+          name: 'Score',
+          type: 'body1',
+          parent: this.button,
+          point: Align.center(),
+          width: this.button.width,
+          textAlign: 'center',
+          text: this.alertsCount,
+          color: '#333'
+        }));
+      }
+      scoreLabel = window.__framerNew("scoreLabel", "272:19-281:1", "?",new Label({
+        name: 'Score',
+        parent: this,
+        width: 200,
+        midX: this.button.midX,
+        y: -32,
+        textAlign: 'center',
+        text: this.score
+      }));
+      scoreLabel.maxY = this.button.y - 4;
+      if (SHOW_DATE_LABEL) {
+        this.dateLabel = window.__framerNew(undefined, "286:20-295:2", "?",new Label({
+          name: 'Date',
+          parent: this,
+          width: 200,
+          midX: this.button.midX,
+          y: this.button.height + 32,
+          textAlign: 'center',
+          text: this.dateString
+        }));
+        this.dateLabel.y = this.button.maxY + 4;
+      }
+    }
+
+    return TimelineButtonContainer;
+
+  })(Layer);
+
+  Timeline = (function(superClass) {
+    extend(Timeline, superClass);
+
+    function Timeline(options) {
+      var container, fn, insetValue, l, last, latestMonthObject, len2, monthObject, monthsArray, score, year;
+      if (options == null) {
+        options = {};
+      }
+      this.setShape = bind(this.setShape, this);
+      _.defaults(options, {
+        name: 'Timeline',
+        scrollVertical: false,
+        propagateEvents: false,
+        alerts: [],
+        handler: void 0
+      });
+      Timeline.__super__.constructor.call(this, options);
+      _.assign(this, {
+        alerts: options.alerts,
+        handler: options.handler
+      });
+      this.shape = window.__framerNew(undefined, "330:15-343:1", "#939de664",new SVGLayer({
+        name: 'Line',
+        parent: this.content,
+        height: this.height,
+        width: this.content.width,
+        svg: "<svg><path id='line' name='line' d=''/></svg>",
+        stroke: "000",
+        clip: true,
+        strokeWidth: 1,
+        strokeDashoffset: -8
+      }));
+      latestMonthObject = void 0;
+      for (year in years) {
+        monthsArray = years[year];
+        fn = (function(_this) {
+          return function(monthObject, container) {
+            return container.onTap(function(event) {
+              if (Math.abs(event.offset.x) > 12) {
+                return;
+              }
+              return _this.handler.showAlerts(monthObject);
+            });
+          };
+        })(this);
+        for (i = l = 0, len2 = monthsArray.length; l < len2; i = ++l) {
+          monthObject = monthsArray[i];
+          if ((year >= lastDate.getYear() && i > lastDate.getMonth()) || (year <= firstDate.getYear() && i < firstDate.getMonth())) {
+            continue;
+          }
+          score = _.random(200, 500);
+          container = window.__framerNew("container", "354:20-373:3", "#171db630f",new TimelineButtonContainer({
+            name: '.',
+            parent: this.content,
+            x: typeof last !== "undefined" && last !== null ? last.maxX : void 0,
+            height: this.height,
+            lastX: typeof last !== "undefined" && last !== null ? last.maxX : void 0,
+            lastY: typeof last !== "undefined" && last !== null ? last.y : void 0,
+            minScore: 100,
+            maxScore: 600,
+            score: score,
+            future: monthObject.future,
+            alertsCount: monthObject.alerts.length,
+            date: window.__framerNew("date", "367:15-367:38", "?",new Date("20" + year.slice(1, 3), i)),
+            dateString: window.__framerNew(undefined, "368:21-368:44", "?",new Date("20" + year.slice(1, 3), i)).toLocaleString([], {
+              month: 'short'
+            }).toUpperCase()
+          }));
+          last = container;
+          monthObject.timelineButton = container;
+          monthObject.date = window.__framerNew(undefined, "375:27-375:50", "?",new Date("20" + year.slice(1, 3), i));
+          latestMonthObject = monthObject;
+          fn(monthObject, container);
+        }
+      }
+      insetValue = (this.width - container.width) / 2;
+      this.contentInset = {
+        left: insetValue / 5,
+        right: insetValue / 5
+      };
+      this.updateContent();
+      this.setShape();
+      this.content.on("change:size", this.setShape);
+      Utils.delay(0, (function(_this) {
+        return function() {
+          return _this.handler.showAlerts(latestMonthObject);
+        };
+      })(this));
+    }
+
+    Timeline.prototype.setShape = function() {
+      var container, firstRun, future_string, l, len2, past_string, ref1, ref2, ref3, ref4, ref5;
+      future_string = '';
+      past_string = '';
+      firstRun = true;
+      if ((ref1 = this.shape) != null) {
+        ref1.destroy();
+      }
+      if ((ref2 = this.shapeDashed) != null) {
+        ref2.destroy();
+      }
+      ref3 = this.content.children;
+      for (i = l = 0, len2 = ref3.length; l < len2; i = ++l) {
+        container = ref3[i];
+        if (i === 0) {
+          past_string += "M " + container.midX + "," + container.button.midY + " L";
+          continue;
+        }
+        if (((ref4 = this.content.children[i + 1]) != null ? ref4.date : void 0) > today && firstRun) {
+          future_string += "M " + container.midX + "," + container.button.midY + " L";
+          firstRun = false;
+        }
+        if (container.date > today) {
+          future_string += " " + container.midX + "," + container.button.midY;
+          continue;
+        }
+        past_string += " " + container.midX + "," + container.button.midY;
+      }
+      this.shapeDashed = window.__framerNew(undefined, "428:21-441:1", "#13428ca15",new SVGLayer({
+        name: 'Line',
+        parent: this.content,
+        svg: "<svg><path id='line' d='" + future_string + "'/></svg>",
+        width: this.content.width,
+        height: this.content.height,
+        stroke: "#000",
+        clip: true,
+        fill: 'transparent',
+        strokeWidth: 1,
+        strokeDashoffset: -8,
+        strokeDasharray: '15, 15'
+      }));
+      this.shape = window.__framerNew(undefined, "441:15-454:1", "#840cf363",new SVGLayer({
+        name: 'Line',
+        parent: this.content,
+        svg: "<svg><path id='line' d='" + past_string + "'/></svg>",
+        width: this.content.width,
+        height: this.content.height,
+        fill: 'transparent',
+        stroke: "#000",
+        clip: true,
+        strokeWidth: 1,
+        strokeDasharray: '15, 15'
+      }));
+      if ((ref5 = this.shapeDashed._elementHTML) != null) {
+        ref5.children[0].children[0].setAttribute('stroke-dasharray', '3, 3');
+      }
+      this.shape.sendToBack();
+      return this.shapeDashed.sendToBack();
+    };
+
+    return Timeline;
+
+  })(ScrollComponent);
+
+  AlertLink = (function(superClass) {
+    extend(AlertLink, superClass);
+
+    function AlertLink(options) {
+      var chevron, emptyText;
+      if (options == null) {
+        options = {};
+      }
+      _.defaults(options, {
+        alert: alerts[0],
+        backgroundColor: '#f2f2f2',
+        empty: false
+      });
+      AlertLink.__super__.constructor.call(this, options);
+      _.assign(this, {
+        alert: options.alert
+      });
+      emptyText = "No changes this month";
+      this.content = window.__framerNew(undefined, "477:17-484:1", "?",new Body({
+        parent: this,
+        width: this.width - 128,
+        y: 32,
+        x: 32,
+        text: options.empty ? emptyText : alert.content
+      }));
+      this.height = this.content.maxY + 32;
+      if (options.empty) {
+        return;
+      }
+      chevron = window.__framerNew("chevron", "488:16-495:1", "?",new Icon({
+        parent: this,
+        x: Align.right(-16),
+        y: Align.center(),
+        size: 32,
+        icon: 'chevron-right'
+      }));
+      this.onTap(function(event) {
+        var detailView;
+        if (Math.abs(event.offset.y) > 20) {
+          return;
+        }
+        detailView = window.__framerNew("detailView", "497:20-500:2", "#ef568612",new DetailView({
+          alert: this.alert
+        }));
+        return app.showNext(detailView);
+      });
+    }
+
+    return AlertLink;
+
+  })(Layer);
+
+  app = window.__framerNew("app", "505:10-509:0", "?",new App({
+    title: 'www.clearscore.com'
+  }));
+
+  homeView = window.__framerNew("homeView", "510:15-516:10", "?",new View({
+    title: 'Framework Components',
+    contentInset: {
+      top: 96
+    }
+  }));
+
+  Utils.bind(homeView, function() {
+    this.showAlerts = (function(_this) {
+      return function(monthObject) {
+        var l, last, layer, len2, len3, len4, link, month, n, o, ref1, ref2, ref3, sib, startHeight, year;
+        _this.moreLink.text = 'See More';
+        _this.headingRight.visible = true;
+        _this.timeline.scrollToPoint({
+          x: monthObject.timelineButton.x + _this.timeline.contentInset.left - (Screen.width / 2 - monthObject.timelineButton.width / 2)
+        });
+        monthObject.timelineButton.animate({
+          brightness: 85
+        });
+        ref1 = monthObject.timelineButton.siblings;
+        for (l = 0, len2 = ref1.length; l < len2; l++) {
+          sib = ref1[l];
+          sib.animate({
+            brightness: 115
+          });
+        }
+        startHeight = 0;
+        month = monthObject.date.toLocaleString([], {
+          month: 'long'
+        });
+        year = monthObject.date.toLocaleString([], {
+          year: 'numeric'
+        });
+        _this.headingLeft.template = {
+          month: month,
+          year: year
+        };
+        if (monthObject.date > today) {
+          _this.headingLeft.template = {
+            month: 'Your next report',
+            year: ''
+          };
+          _this.headingRight.template = {
+            count: monthObject.alerts.length,
+            upcoming: '',
+            plural: monthObject.alerts.length > 1 ? 's' : '',
+            month: month
+          };
+        } else {
+          _this.headingLeft.template = {
+            month: month,
+            year: year
+          };
+          _this.headingRight.template = {
+            count: monthObject.alerts.length,
+            upcoming: '',
+            plural: monthObject.alerts.length > 1 ? 's' : '',
+            month: month
+          };
+        }
+        ref2 = _this.alertsContainer.children;
+        for (n = 0, len3 = ref2.length; n < len3; n++) {
+          layer = ref2[n];
+          layer.destroy();
+        }
+        if (monthObject.alerts.length <= 0) {
+          _this.alertsContainer.startHeight = 96;
+          _this.headingRight.visible = false;
+          window.__framerNew(undefined, "581:7-599:1", "#114579e07",new AlertLink({
+            parent: _this.alertsContainer,
+            width: _this.width,
+            y: 0,
+            empty: true
+          }));
+        }
+        ref3 = monthObject.alerts;
+        for (i = o = 0, len4 = ref3.length; o < len4; i = ++o) {
+          alert = ref3[i];
+          link = window.__framerNew("link", "600:14-606:2", "#114579e07",new AlertLink({
+            parent: _this.alertsContainer,
+            width: _this.width,
+            y: typeof last !== "undefined" && last !== null ? last : 0,
+            alert: alert
+          }));
+          last = link.maxY + 8;
+          if (i < STARTING_ALERTS_COUNT) {
+            _this.alertsContainer.startHeight = last;
+          }
+        }
+        _this.alertsContainer.maxHeight = last;
+        _this.alertsContainer.animate({
+          height: _this.alertsContainer.startHeight
+        });
+        return _.assign(_this.moreLink, {
+          visible: i > STARTING_ALERTS_COUNT
+        });
+      };
+    })(this);
+    return this.toggleShowMore = (function(_this) {
+      return function(bool) {
+        if (!bool) {
+          _this.alertsContainer.animate({
+            height: _this.alertsContainer.startHeight
+          });
+          _this.scrollToPoint({
+            x: 0,
+            y: 0
+          }, true);
+          _this.moreLink.text = 'See More';
+          return;
+        }
+        _this.alertsContainer.animate({
+          height: _this.alertsContainer.maxHeight
+        });
+        return _this.moreLink.text = 'See Less';
+      };
+    })(this);
+  });
+
+  Utils.bind(homeView, function() {
+    this.alertsByYear = years;
+    this.timeline = window.__framerNew(undefined, "639:17-647:0", "#161793148",new Timeline({
+      parent: this.content,
+      x: 0,
+      y: 16,
+      height: 128,
+      width: this.width,
+      alerts: this.alertsByYear,
+      handler: this
+    }));
+    this.headingLeft = window.__framerNew(undefined, "647:20-655:0", "?",new H4({
+      name: 'Heading',
+      parent: this.content,
+      y: this.timeline.maxY + 16,
+      x: 32,
+      width: this.width - 64,
+      text: '{month} {year}'
+    }));
+    this.headingRight = window.__framerNew(undefined, "655:21-664:0", "?",new H5({
+      name: 'Heading',
+      parent: this.content,
+      y: this.timeline.maxY + 16,
+      textAlign: 'right',
+      x: 32,
+      width: this.width - 64,
+      text: '{count}{upcoming} change{plural}'
+    }));
+    this.alertsContainer = window.__framerNew(undefined, "664:24-676:0", "#1616adcd6",new Layer({
+      name: 'Alerts Container',
+      parent: this.content,
+      y: this.headingLeft.maxY + 16,
+      x: 0,
+      width: this.width,
+      height: 120,
+      backgroundColor: null,
+      clip: true,
+      animationOptions: {
+        time: .5
+      }
+    }));
+    this.alertsContainer.handler = this;
+    this.moreLink = window.__framerNew(undefined, "678:17-688:0", "?",new H5({
+      name: 'See More',
+      parent: this.content,
+      width: this.width,
+      textAlign: 'center',
+      x: 0,
+      y: this.alertsContainer.maxY + 16,
+      height: 48,
+      text: 'See More'
+    }));
+    this.statics = window.__framerNew(undefined, "688:16-697:0", "#127dfc4b7",new Layer({
+      name: 'Static Content',
+      parent: this.content,
+      x: 0,
+      y: this.moreLink.maxY + 16,
+      image: 'images/statics.png',
+      width: this.width,
+      height: this.width * 3392 / 758
+    }));
+    Utils.define(this, 'showingMore', false, this.toggleShowMore);
+    Utils.pin(this.moreLink, this.alertsContainer, 'bottom');
+    Utils.pin(this.statics, this.moreLink, 'bottom');
+    return this.moreLink.onTap((function(_this) {
+      return function() {
+        return _this.showingMore = !_this.showingMore;
+      };
+    })(this));
+  });
+
+  navBar = window.__framerNew("navBar", "707:13-713:0", "#111fa4a6c",new Layer({
+    parent: homeView,
+    height: 55,
+    y: app.header.height,
+    width: Screen.width,
+    backgroundColor: '#e5e5e5'
+  }));
+
+  overview = window.__framerNew("overview", "714:15-720:0", "?",new Body2({
+    parent: navBar,
+    x: 16,
+    y: Align.center(),
+    text: 'OVERVIEW'
+  }));
+
+  navBar2 = window.__framerNew("navBar2", "721:14-727:0", "#cb4a32b5",new Layer({
+    parent: homeView,
+    height: 37,
+    y: navBar.maxY,
+    width: Screen.width,
+    backgroundColor: '#d8d8d8'
+  }));
+
+  leftText = window.__framerNew("leftText", "728:15-733:0", "?",new Body2({
+    parent: navBar2,
+    x: 16,
+    y: Align.center(),
+    text: 'Report date: 5 January 2018'
+  }));
+
+  rightText = window.__framerNew("rightText", "734:16-739:0", "?",new Body2({
+    parent: navBar2,
+    x: Align.right(-16),
+    y: Align.center(),
+    text: '17 days until next report'
+  }));
+
+  app.showNext(homeView);
+
+}).call(this);
+})</script>
+
+</head>
+
+<body>
+</body>
+
+</html>

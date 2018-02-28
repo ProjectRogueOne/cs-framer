@@ -1,0 +1,23 @@
+{
+  "orientation" : 0,
+  "updateDelay" : 0.3,
+  "designModeSelected" : 0,
+  "cachedDeviceHeight" : 1024,
+  "contentScale" : 1,
+  "cachedDeviceWidth" : 768,
+  "fullScreen" : false,
+  "deviceType" : "apple-ipad-air-2-gold",
+  "sharedPrototype" : true,
+  "propertyPanelToggleStates" : {
+
+  },
+  "projectId" : "04F4EFF2-08D1-422B-B92F-74EF97F45912",
+  "deviceOrientation" : 0,
+  "selectedHand" : "",
+  "showBezel" : true,
+  "foldedCodeRanges" : [
+    "{103, 864}",
+    "{968, 4753}"
+  ],
+  "deviceScale" : -1
+}
